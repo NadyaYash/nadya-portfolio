@@ -1114,8 +1114,7 @@ p {
 }
 
 .project-image-backdrop-2 {
-  right: 50px;
-  bottom: 16px;
+  display: none;
 }
 
 .project-media-kids .project-image-backdrop {
