@@ -1124,8 +1124,7 @@ p {
 }
 
 .project-media-kids .project-image-backdrop-1 {
-  top: 16px;
-  left: 18px;
+  display: none;
 }
 
 .project-media-kids .project-image-backdrop-2 {
@@ -1143,12 +1142,14 @@ p {
 }
 
 .project-media-kids .project-image-main {
-  width: 78%;
-  aspect-ratio: 4 / 3;
+  width: 76%;
+  aspect-ratio: 1500 / 1124;
+  background: rgba(238, 232, 250, 0.78);
 }
 
 .project-media-kids .project-image-main img {
   filter: saturate(1.03) contrast(1.02);
+  object-fit: contain;
   object-position: center center;
 }
 
