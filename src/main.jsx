@@ -53,7 +53,7 @@ const helpAreas = [
 
 const projects = [
   {
-    name: "PuzzleFree",
+    name: "PuzzleFree.game",
     category: "Mobile app / web product",
     role: "Co-founder & Product Lead",
     summary:
