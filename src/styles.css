@@ -1119,17 +1119,7 @@ p {
 }
 
 .project-media-kids .project-image-backdrop {
-  width: 56%;
-  opacity: 0.32;
-}
-
-.project-media-kids .project-image-backdrop-1 {
   display: none;
-}
-
-.project-media-kids .project-image-backdrop-2 {
-  right: 78px;
-  bottom: 18px;
 }
 
 .project-media-images.is-single .project-image-main {
@@ -1143,14 +1133,14 @@ p {
 
 .project-media-kids .project-image-main {
   width: 76%;
-  aspect-ratio: 1500 / 1068;
+  aspect-ratio: 1500 / 1124;
   background: rgba(238, 232, 250, 0.78);
 }
 
 .project-media-kids .project-image-main img {
   filter: saturate(1.03) contrast(1.02);
   object-fit: cover;
-  object-position: center top;
+  object-position: center center;
 }
 
 .project-image-side {
