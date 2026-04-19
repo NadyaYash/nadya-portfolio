@@ -1143,14 +1143,14 @@ p {
 
 .project-media-kids .project-image-main {
   width: 76%;
-  aspect-ratio: 1500 / 1124;
+  aspect-ratio: 1500 / 1068;
   background: rgba(238, 232, 250, 0.78);
 }
 
 .project-media-kids .project-image-main img {
   filter: saturate(1.03) contrast(1.02);
-  object-fit: contain;
-  object-position: center center;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .project-image-side {
