@@ -79,6 +79,20 @@ const projects = [
     impact: [
       "Clear path from concept to launch, with delivery and early growth aligned.",
     ],
+    links: [
+      {
+        label: "Web",
+        href: "https://puzzlefree.game/",
+      },
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/jigsaw-puzzles-by-puzzlefree/id6751572041",
+      },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.puzzlefree",
+      },
+    ],
     backdropImages: [
       {
         src: puzzleFreeDaily,
@@ -518,6 +532,18 @@ function Projects() {
                   <dt>Impact</dt>
                   <dd>{project.impact[0]}</dd>
                 </div>
+                {project.links?.length ? (
+                  <div>
+                    <dt>Links</dt>
+                    <dd className="project-links">
+                      {project.links.map((link) => (
+                        <a href={link.href} key={link.href} target="_blank" rel="noreferrer">
+                          {link.label}
+                        </a>
+                      ))}
+                    </dd>
+                  </div>
+                ) : null}
               </dl>
             </div>
             <span className="project-index">0{index + 1}</span>
