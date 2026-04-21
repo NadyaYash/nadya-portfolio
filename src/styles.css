@@ -1690,33 +1690,33 @@ p {
   }
 
   .project-media-images {
-    padding: 16px;
+    padding: 14px;
   }
 
   .project-image-backdrop {
-    width: 70%;
-    opacity: 0.28;
-  }
-
-  .project-image-backdrop-1 {
-    top: 10px;
-    left: 10px;
-  }
-
-  .project-image-backdrop-2 {
-    right: 28px;
-    bottom: 10px;
+    display: none;
   }
 
   .project-image-main {
-    width: 88%;
+    width: calc(100% - 34px);
   }
 
   .project-image-side {
-    right: 16px;
-    bottom: 16px;
-    width: clamp(96px, 31%, 128px);
-    padding: 6px;
+    right: 10px;
+    bottom: 10px;
+    width: clamp(88px, 29%, 116px);
+    border-radius: 22px;
+    padding: 5px;
+  }
+
+  .project-media-kids .project-image-main {
+    width: calc(100% - 40px);
+  }
+
+  .project-media-kids .project-image-side {
+    right: 10px;
+    bottom: 10px;
+    width: clamp(84px, 28%, 108px);
   }
 
   .project-media-summary {
