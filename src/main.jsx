@@ -334,11 +334,12 @@ const productSignals = [
 const teamMembers = [
   {
     name: "Ivan Lukichev",
-    role: "Product Growth, Investment & App Development",
-    summary: "Supports search visibility, traffic growth, investment, and the development of simpler product-facing apps.",
+    role: "SEO, Product Growth & App Development",
+    summary: "Supports search visibility, traffic growth, simpler app development, and selective backing for active products.",
     href: "https://lukichev.biz/",
     linkLabel: "Website",
     photo: teamIvanPhoto,
+    photoClass: "team-mark--ivan",
   },
   {
     name: "Egor Danilov",
@@ -347,6 +348,7 @@ const teamMembers = [
     href: "https://www.linkedin.com/in/egor-danilov-5907332b8",
     linkLabel: "LinkedIn",
     photo: teamEgorPhoto,
+    photoClass: "team-mark--egor",
   },
 ];
 
@@ -836,7 +838,7 @@ function Team() {
       <div className="team-grid">
         {teamMembers.map((member, index) => (
           <article className="team-card reveal" key={member.name} style={{ "--reveal-delay": `${index * 70}ms` }}>
-            <div className="team-mark" aria-hidden="true">
+            <div className={`team-mark ${member.photoClass || ""}`} aria-hidden="true">
               <img src={member.photo} alt="" />
             </div>
             <div className="team-copy">

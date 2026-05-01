@@ -955,6 +955,18 @@ p {
   filter: saturate(0.9) contrast(1.04) brightness(0.99);
   object-fit: cover;
   object-position: center 22%;
+  transform: scale(1.42);
+  transform-origin: center;
+}
+
+.team-mark--ivan img {
+  object-position: center 26%;
+  transform: scale(1.78);
+}
+
+.team-mark--egor img {
+  object-position: center 32%;
+  transform: scale(1.54);
 }
 
 .team-copy {
