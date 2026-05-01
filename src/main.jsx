@@ -55,24 +55,28 @@ const storeLaunches = [
   {
     title: "Kids Sudoku: Just Play",
     category: "Kids puzzle",
+    period: "2026",
     mark: "KS",
     note: "Store launch support",
   },
   {
     title: "CalcSprint: Just Play",
     category: "Math game",
+    period: "2026",
     mark: "CS",
     note: "Store presentation",
   },
   {
     title: "Sudoku: Just Play",
     category: "Puzzle",
+    period: "2026",
     mark: "SJ",
     note: "Publisher-side execution",
   },
   {
     title: "Morse: Learn & Translate",
     category: "Utility app",
+    period: "2026",
     mark: "ML",
     note: "Store packaging support",
   },
@@ -82,6 +86,7 @@ const projects = [
   {
     name: "PuzzleFree.game",
     category: "Mobile app / web product",
+    period: "2026",
     role: "Co-founder & Product Lead",
     summary:
       "End-to-end product ownership for a cross-platform puzzle product, from product direction and launch coordination to early growth and distribution setup.",
@@ -145,6 +150,7 @@ const projects = [
   {
     name: "Jigsaw Kids Puzzles PuzzleFree",
     category: "Kids mobile product",
+    period: "2026",
     role: "Co-founder & Product Lead",
     summary:
       "Product ownership for a kid-focused puzzle experience built from the PuzzleFree product foundation, with direction across child-friendly content, mobile UX, launch, and distribution.",
@@ -196,6 +202,7 @@ const projects = [
   {
     name: "WHMCS migration / optimization",
     category: "Platform migration / process optimization",
+    period: "2019-2025",
     role: "Project Lead (Platform & Integrations)",
     summary:
       "A migration and optimization project focused on moving from a custom panel to WHMCS while improving implementation flow and operational modules.",
@@ -542,6 +549,7 @@ function Projects() {
             <div className="project-content">
               <div className="project-heading-row">
                 <span className="project-label">{project.category}</span>
+                {project.period ? <span className="project-period">{project.period}</span> : null}
               </div>
               <h3>{project.name}</h3>
               {project.tags?.length ? (
@@ -639,7 +647,10 @@ function StoreLaunches() {
               {item.mark}
             </div>
             <div className="launch-copy">
-              <span className="launch-category">{item.category}</span>
+              <div className="launch-meta">
+                <span className="launch-category">{item.category}</span>
+                <span className="launch-period">{item.period}</span>
+              </div>
               <h3>{item.title}</h3>
               <p>{item.note}</p>
               <span className="launch-role">Publishing & Store Support</span>

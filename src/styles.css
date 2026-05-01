@@ -807,14 +807,33 @@ p {
   min-width: 0;
 }
 
+.launch-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
 .launch-category {
   display: inline-flex;
-  margin-bottom: 10px;
   color: #68737b;
   font-size: 0.76rem;
   font-weight: 780;
   letter-spacing: 0.03em;
   text-transform: uppercase;
+}
+
+.launch-period,
+.project-period {
+  display: inline-flex;
+  border: 1px solid rgba(17, 18, 20, 0.08);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.74);
+  color: #5f6b73;
+  font-size: 0.76rem;
+  font-weight: 760;
+  padding: 6px 9px;
 }
 
 .launch-copy h3 {
