@@ -732,7 +732,6 @@ function StoreLaunches() {
                   ))}
                 </div>
               ) : null}
-              <span className="launch-role">Publishing & Store Support</span>
             </div>
           </article>
         ))}
