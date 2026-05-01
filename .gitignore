@@ -7,3 +7,5 @@ dist/
 *.PNG
 !icon/
 !icon/*.png
+!src/assets/team-ivan.png
+!src/assets/team-egor.png

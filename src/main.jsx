@@ -10,6 +10,8 @@ import jigsawKidsPuzzles from "./assets/jigsaw-kids-puzzles.jpg";
 import jigsawKidsPacks from "./assets/jigsaw-kids-packs.jpg";
 import jigsawKidsPlay from "./assets/jigsaw-kids-play.jpg";
 import jigsawKidsMobile from "./assets/jigsaw-kids-mobile.jpg";
+import teamIvanPhoto from "./assets/team-ivan.png";
+import teamEgorPhoto from "./assets/team-egor.png";
 import calcSprintIcon from "../icon/CalcSprint.png";
 import sudokuJustPlayIcon from "../icon/SudokuJustPlay.png";
 import sudokuByPuzzleFreeIcon from "../icon/SudokubyPuzzlefree.png";
@@ -332,19 +334,19 @@ const productSignals = [
 const teamMembers = [
   {
     name: "Ivan Lukichev",
-    role: "SEO & Growth Strategy",
+    role: "SEO & Product Growth",
     summary: "Supports search visibility, traffic growth, and the broader development of product-facing projects.",
     href: "https://lukichev.biz/",
     linkLabel: "Website",
-    initials: "IL",
+    photo: teamIvanPhoto,
   },
   {
     name: "Egor Danilov",
-    role: "Development",
-    summary: "Supports implementation and product delivery on the development side when projects need stronger technical execution.",
+    role: "Software Development",
+    summary: "Supports implementation and delivery when products need stronger technical execution.",
     href: "https://www.linkedin.com/in/egor-danilov-5907332b8",
     linkLabel: "LinkedIn",
-    initials: "ED",
+    photo: teamEgorPhoto,
   },
 ];
 
@@ -828,18 +830,18 @@ function Team() {
     <Section
       id="team"
       eyebrow="Current collaborators"
-      title="People I work with on active projects when they need stronger growth or development support."
+      title="Current collaborators on active products."
       intro="For current products, I also work with a small trusted circle across development, SEO, and growth."
     >
       <div className="team-grid">
         {teamMembers.map((member, index) => (
           <article className="team-card reveal" key={member.name} style={{ "--reveal-delay": `${index * 70}ms` }}>
             <div className="team-mark" aria-hidden="true">
-              {member.initials}
+              <img src={member.photo} alt="" />
             </div>
             <div className="team-copy">
-              <span className="team-role">{member.role}</span>
               <h3>{member.name}</h3>
+              <span className="team-role">{member.role}</span>
               <p>{member.summary}</p>
               <a href={member.href} target="_blank" rel="noreferrer">
                 {member.linkLabel}
