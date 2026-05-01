@@ -51,6 +51,33 @@ const helpAreas = [
   },
 ];
 
+const storeLaunches = [
+  {
+    title: "Kids Sudoku: Just Play",
+    category: "Kids puzzle",
+    mark: "KS",
+    note: "Store launch support",
+  },
+  {
+    title: "CalcSprint: Just Play",
+    category: "Math game",
+    mark: "CS",
+    note: "Store presentation",
+  },
+  {
+    title: "Sudoku: Just Play",
+    category: "Puzzle",
+    mark: "SJ",
+    note: "Publisher-side execution",
+  },
+  {
+    title: "Morse: Learn & Translate",
+    category: "Utility app",
+    mark: "ML",
+    note: "Store packaging support",
+  },
+];
+
 const projects = [
   {
     name: "PuzzleFree.game",
@@ -262,6 +289,7 @@ function App() {
       <Hero />
       <About />
       <Projects />
+      <StoreLaunches />
       <Help />
       <Contact />
       <Footer />
@@ -588,6 +616,33 @@ function Help() {
               </span>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function StoreLaunches() {
+  return (
+    <Section
+      id="launches"
+      eyebrow="Publishing & Store Launches"
+      title="Additional mobile titles where I supported publishing and store presence."
+      intro="Compact launch support across puzzle, kids, and utility apps — focused on store presentation, listing packaging, and publisher-side execution."
+    >
+      <div className="launch-grid">
+        {storeLaunches.map((item, index) => (
+          <article className="launch-card reveal" key={item.title} style={{ "--reveal-delay": `${index * 60}ms` }}>
+            <div className="launch-mark" aria-hidden="true">
+              {item.mark}
+            </div>
+            <div className="launch-copy">
+              <span className="launch-category">{item.category}</span>
+              <h3>{item.title}</h3>
+              <p>{item.note}</p>
+              <span className="launch-role">Publishing & Store Support</span>
             </div>
           </article>
         ))}
