@@ -130,6 +130,20 @@ const projects = [
     impact: [
       "Extended the PuzzleFree product line into a clearer child-friendly experience with focused content and mobile-first positioning.",
     ],
+    links: [
+      {
+        label: "Web",
+        href: "https://kids.puzzlefree.game/",
+      },
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/jigsaw-kids-puzzles-puzzlefree/id6761406530",
+      },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.puzzlefreekids",
+      },
+    ],
     backdropImages: [
       {
         src: jigsawKidsPacks,
