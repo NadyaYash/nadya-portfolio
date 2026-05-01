@@ -20,7 +20,6 @@ const navItems = [
   { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
   { label: "How I help", href: "#help" },
-  { label: "Team", href: "#team" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -828,9 +827,9 @@ function Team() {
   return (
     <Section
       id="team"
-      eyebrow="Team"
-      title="People I collaborate with when a project needs stronger growth or development support."
-      intro="A small trusted circle I bring in when the work needs deeper execution beyond product direction alone."
+      eyebrow="Current collaborators"
+      title="People I work with on active projects when they need stronger growth or development support."
+      intro="For current products, I also work with a small trusted circle across development, SEO, and growth."
     >
       <div className="team-grid">
         {teamMembers.map((member, index) => (
