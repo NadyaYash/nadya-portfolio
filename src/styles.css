@@ -794,13 +794,19 @@ p {
 .launch-mark {
   display: grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
-  border-radius: var(--radius);
-  background: #edf8f6;
-  color: var(--accent-dark);
-  font-size: 0.84rem;
-  font-weight: 850;
+  width: 58px;
+  height: 58px;
+  overflow: hidden;
+  border: 1px solid rgba(17, 18, 20, 0.08);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 10px 24px rgba(18, 24, 29, 0.08);
+}
+
+.launch-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .launch-copy {
@@ -847,6 +853,39 @@ p {
   color: #4c565e;
   font-size: 0.95rem;
   line-height: 1.5;
+}
+
+.launch-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.launch-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(17, 18, 20, 0.08);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.82);
+  color: #435059;
+  font-size: 0.79rem;
+  font-weight: 760;
+  padding: 7px 10px;
+  text-decoration: none;
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.launch-links a:hover {
+  border-color: rgba(15, 118, 110, 0.18);
+  background: #edf8f6;
+  color: var(--accent-dark);
+  transform: translateY(-1px);
 }
 
 .launch-role {

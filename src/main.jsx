@@ -10,6 +10,11 @@ import jigsawKidsPuzzles from "./assets/jigsaw-kids-puzzles.jpg";
 import jigsawKidsPacks from "./assets/jigsaw-kids-packs.jpg";
 import jigsawKidsPlay from "./assets/jigsaw-kids-play.jpg";
 import jigsawKidsMobile from "./assets/jigsaw-kids-mobile.jpg";
+import calcSprintIcon from "../icon/CalcSprint.png";
+import sudokuJustPlayIcon from "../icon/SudokuJustPlay.png";
+import sudokuByPuzzleFreeIcon from "../icon/SudokubyPuzzlefree.png";
+import kidsSudokuIcon from "../icon/kidsSudoku.png";
+import morseIcon from "../icon/morse.png";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -56,29 +61,94 @@ const storeLaunches = [
     title: "Kids Sudoku: Just Play",
     category: "Kids puzzle",
     period: "2026",
-    mark: "KS",
+    icon: kidsSudokuIcon,
     note: "Store launch support",
+    links: [
+      {
+        label: "Web",
+        href: "https://sudoku-play.org/sudoku-for-kids/",
+      },
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/app/id6764041492",
+      },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.kidssudoku",
+      },
+    ],
   },
   {
     title: "CalcSprint: Just Play",
     category: "Math game",
     period: "2026",
-    mark: "CS",
+    icon: calcSprintIcon,
     note: "Store presentation",
+    links: [
+      {
+        label: "Web",
+        href: "https://calcsprint.com/",
+      },
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/at/app/calcsprint-just-play/id6763547636",
+      },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.calcsprint",
+      },
+    ],
   },
   {
     title: "Sudoku: Just Play",
     category: "Puzzle",
     period: "2026",
-    mark: "SJ",
+    icon: sudokuJustPlayIcon,
     note: "Publisher-side execution",
+    links: [
+      {
+        label: "Web",
+        href: "https://sudoku-play.org/",
+      },
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/app/id6763089363",
+      },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.justsudoku",
+      },
+    ],
+  },
+  {
+    title: "Sudoku by PuzzleFree",
+    category: "Puzzle",
+    period: "2026",
+    icon: sudokuByPuzzleFreeIcon,
+    note: "Publishing support",
+    links: [
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.sudoku",
+      },
+    ],
   },
   {
     title: "Morse: Learn & Translate",
     category: "Utility app",
     period: "2026",
-    mark: "ML",
+    icon: morseIcon,
     note: "Store packaging support",
+    links: [
+      {
+        label: "Web",
+        href: "https://morsecodes.app/",
+      },
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/morse-learn-translate/id6764839522",
+      },
+    ],
   },
 ];
 
@@ -644,7 +714,7 @@ function StoreLaunches() {
         {storeLaunches.map((item, index) => (
           <article className="launch-card reveal" key={item.title} style={{ "--reveal-delay": `${index * 60}ms` }}>
             <div className="launch-mark" aria-hidden="true">
-              {item.mark}
+              <img src={item.icon} alt="" />
             </div>
             <div className="launch-copy">
               <div className="launch-meta">
@@ -653,6 +723,15 @@ function StoreLaunches() {
               </div>
               <h3>{item.title}</h3>
               <p>{item.note}</p>
+              {item.links?.length ? (
+                <div className="launch-links">
+                  {item.links.map((link) => (
+                    <a href={link.href} key={link.href} target="_blank" rel="noreferrer">
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              ) : null}
               <span className="launch-role">Publishing & Store Support</span>
             </div>
           </article>
