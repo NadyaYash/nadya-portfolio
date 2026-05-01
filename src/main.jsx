@@ -713,9 +713,21 @@ function StoreLaunches() {
       <div className="launch-grid">
         {storeLaunches.map((item, index) => (
           <article className="launch-card reveal" key={item.title} style={{ "--reveal-delay": `${index * 60}ms` }}>
-            <div className="launch-mark" aria-hidden="true">
-              <img src={item.icon} alt="" />
-            </div>
+            {item.links?.find((link) => link.label === "Web") ? (
+              <a
+                className="launch-mark launch-mark-link"
+                href={item.links.find((link) => link.label === "Web").href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Open ${item.title} website`}
+              >
+                <img src={item.icon} alt="" />
+              </a>
+            ) : (
+              <div className="launch-mark" aria-hidden="true">
+                <img src={item.icon} alt="" />
+              </div>
+            )}
             <div className="launch-copy">
               <div className="launch-meta">
                 <span className="launch-category">{item.category}</span>

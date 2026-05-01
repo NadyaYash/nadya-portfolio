@@ -809,6 +809,20 @@ p {
   object-fit: cover;
 }
 
+.launch-mark-link {
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.launch-mark-link:hover {
+  border-color: rgba(15, 118, 110, 0.18);
+  box-shadow: 0 14px 30px rgba(18, 24, 29, 0.12);
+  transform: translateY(-1px);
+}
+
 .launch-copy {
   min-width: 0;
 }
