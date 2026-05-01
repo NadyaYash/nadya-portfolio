@@ -334,8 +334,8 @@ const productSignals = [
 const teamMembers = [
   {
     name: "Ivan Lukichev",
-    role: "SEO & Product Growth",
-    summary: "Supports search visibility, traffic growth, and the broader development of product-facing projects.",
+    role: "Product Growth, Investment & App Development",
+    summary: "Supports search visibility, traffic growth, investment, and the development of simpler product-facing apps.",
     href: "https://lukichev.biz/",
     linkLabel: "Website",
     photo: teamIvanPhoto,

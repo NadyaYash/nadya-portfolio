@@ -942,9 +942,7 @@ p {
   overflow: hidden;
   border: 1px solid rgba(15, 111, 104, 0.08);
   border-radius: 50%;
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(231, 242, 239, 0.92)),
-    white;
+  background: rgba(255, 255, 255, 0.98);
   box-shadow: 0 18px 42px rgba(25, 30, 35, 0.1);
 }
 
