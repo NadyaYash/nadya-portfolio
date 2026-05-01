@@ -832,8 +832,8 @@ function Team() {
     <Section
       id="team"
       eyebrow="Current collaborators"
-      title="Current collaborators on active products."
-      intro="For current products, I also work with a small trusted circle across development, SEO, and growth."
+      title="People I work closely with on active products."
+      intro="The people I stay in close touch with as we build, grow, and support current products together."
     >
       <div className="team-grid">
         {teamMembers.map((member, index) => (
