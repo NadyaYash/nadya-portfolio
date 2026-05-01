@@ -20,6 +20,7 @@ const navItems = [
   { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
   { label: "How I help", href: "#help" },
+  { label: "Team", href: "#team" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -329,6 +330,25 @@ const productSignals = [
   "Work happens, but nothing ships",
 ];
 
+const teamMembers = [
+  {
+    name: "Ivan Lukichev",
+    role: "SEO & Growth Strategy",
+    summary: "Supports search visibility, traffic growth, and the broader development of product-facing projects.",
+    href: "https://lukichev.biz/",
+    linkLabel: "Website",
+    initials: "IL",
+  },
+  {
+    name: "Egor Danilov",
+    role: "Development",
+    summary: "Supports implementation and product delivery on the development side when projects need stronger technical execution.",
+    href: "https://www.linkedin.com/in/egor-danilov-5907332b8",
+    linkLabel: "LinkedIn",
+    initials: "ED",
+  },
+];
+
 function App() {
   useEffect(() => {
     const revealElements = document.querySelectorAll(".reveal");
@@ -368,6 +388,7 @@ function App() {
       <Projects />
       <StoreLaunches />
       <Help />
+      <Team />
       <Contact />
       <Footer />
       <ScrollTopButton />
@@ -800,6 +821,35 @@ function Contact() {
         </div>
       </div>
     </section>
+  );
+}
+
+function Team() {
+  return (
+    <Section
+      id="team"
+      eyebrow="Team"
+      title="People I collaborate with when a project needs stronger growth or development support."
+      intro="A small trusted circle I bring in when the work needs deeper execution beyond product direction alone."
+    >
+      <div className="team-grid">
+        {teamMembers.map((member, index) => (
+          <article className="team-card reveal" key={member.name} style={{ "--reveal-delay": `${index * 70}ms` }}>
+            <div className="team-mark" aria-hidden="true">
+              {member.initials}
+            </div>
+            <div className="team-copy">
+              <span className="team-role">{member.role}</span>
+              <h3>{member.name}</h3>
+              <p>{member.summary}</p>
+              <a href={member.href} target="_blank" rel="noreferrer">
+                {member.linkLabel}
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </Section>
   );
 }
 
