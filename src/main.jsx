@@ -335,7 +335,7 @@ const teamMembers = [
   {
     name: "Ivan Lukichev",
     role: "SEO, Product Growth & App Development",
-    summary: "Supports search visibility, traffic growth, simpler app development, and selective backing for active products.",
+    summary: "Supports search visibility, traffic growth, simpler app development, and early-stage product backing.",
     href: "https://lukichev.biz/",
     linkLabel: "Website",
     photo: teamIvanPhoto,
