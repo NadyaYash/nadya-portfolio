@@ -359,7 +359,7 @@ const proofPoints = ["Mobile apps", "SaaS", "Web products", "Launch work", "Grow
 const contactMethods = [
   {
     label: "Location",
-    text: "Based in Austria, working across EU and remote teams",
+    text: "Based in Austria • EU and remote teams",
     icon: "pin",
   },
   {
