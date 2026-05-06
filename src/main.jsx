@@ -358,6 +358,11 @@ const proofPoints = ["Mobile apps", "SaaS", "Web products", "Launch work", "Grow
 
 const contactMethods = [
   {
+    label: "Location",
+    text: "Based in Austria, working across EU and remote teams",
+    icon: "pin",
+  },
+  {
     label: "Email",
     text: "Start the conversation",
     href: "mailto:nadyash.work@gmail.com",
@@ -604,7 +609,7 @@ function Hero() {
           </div>
           <p className="hero-copy">
             I make product work feel calmer, clearer, and easier to move across
-            mobile apps, SaaS, and web products.
+            mobile apps, SaaS, and web products from Austria, across EU and remote teams.
           </p>
           <div className="hero-actions" aria-label="Portfolio actions">
             <a className="button primary" href="#projects">
@@ -640,7 +645,7 @@ function About() {
       id="about"
       eyebrow="About"
       title="I help product work start stronger, scale cleaner, and get back on track when execution drifts."
-      intro="Some products need direction from day one. Others need structure when priorities shift, scope grows, or delivery starts looping. I work across both moments."
+      intro="Some products need direction from day one. Others need structure when priorities shift, scope grows, or delivery starts looping. Based in Austria, I work across both moments with remote and EU-based teams."
     >
       <div className="about-grid">
         <div className="about-lead reveal">
@@ -656,7 +661,7 @@ function About() {
           </p>
           <p>
             This comes from hands-on product ownership across web, iOS, and
-            Android — building products from idea to launch.
+            Android — building products from idea to launch while working from Austria across distributed teams.
           </p>
           <a className="nav-cta" href="#contact">
             Say hello
@@ -840,7 +845,7 @@ function Contact() {
             <h2>Need someone to bring order to the product work?</h2>
             <p>
               If your roadmap is messy, a launch is coming, or the team needs
-              clearer priorities, send me a note.
+              clearer priorities, send me a note. Based in Austria, I work with both EU-based and remote teams.
             </p>
           </div>
           <div className="contact-actions">
@@ -858,23 +863,35 @@ function Contact() {
           </div>
         </div>
         <div className="contact-card-grid reveal reveal-delay-1" aria-label="Contact links">
-          {contactMethods.map((method) => (
-            <a
-              className="contact-card"
-              href={method.href}
-              key={method.label}
-              target={method.href.startsWith("http") ? "_blank" : undefined}
-              rel={method.href.startsWith("http") ? "noreferrer" : undefined}
-            >
-              <span className="contact-card-icon" aria-hidden="true">
-                <ContactIcon name={method.icon} size={22} />
-              </span>
-              <span>
-                <strong>{method.label}</strong>
-                <small>{method.text}</small>
-              </span>
-            </a>
-          ))}
+          {contactMethods.map((method) =>
+            method.href ? (
+              <a
+                className="contact-card"
+                href={method.href}
+                key={method.label}
+                target={method.href.startsWith("http") ? "_blank" : undefined}
+                rel={method.href.startsWith("http") ? "noreferrer" : undefined}
+              >
+                <span className="contact-card-icon" aria-hidden="true">
+                  <ContactIcon name={method.icon} size={22} />
+                </span>
+                <span>
+                  <strong>{method.label}</strong>
+                  <small>{method.text}</small>
+                </span>
+              </a>
+            ) : (
+              <div className="contact-card contact-card-static" key={method.label}>
+                <span className="contact-card-icon" aria-hidden="true">
+                  <ContactIcon name={method.icon} size={22} />
+                </span>
+                <span>
+                  <strong>{method.label}</strong>
+                  <small>{method.text}</small>
+                </span>
+              </div>
+            ),
+          )}
         </div>
       </div>
     </section>
@@ -1128,6 +1145,12 @@ function ContactIcon({ name, ...props }) {
         <rect x="3" y="7" width="18" height="13" rx="2" />
         <path d="M9 7V5h6v2" />
         <path d="M3 12h18" />
+      </>
+    ),
+    pin: (
+      <>
+        <path d="M12 21s-6-5.27-6-11a6 6 0 1 1 12 0c0 5.73-6 11-6 11Z" />
+        <circle cx="12" cy="10" r="2.5" />
       </>
     ),
   };

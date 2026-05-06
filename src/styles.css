@@ -1661,6 +1661,16 @@ p {
   transform: translateY(-3px);
 }
 
+.contact-card-static {
+  cursor: default;
+}
+
+.contact-card-static:hover {
+  border-color: rgba(17, 18, 20, 0.09);
+  box-shadow: 0 10px 28px rgba(25, 30, 35, 0.05);
+  transform: none;
+}
+
 .contact-card-icon {
   display: grid;
   flex: 0 0 auto;
