@@ -14,6 +14,7 @@ import teamIvanPhoto from "./assets/team-ivan.png";
 import teamEgorPhoto from "./assets/team-egor.png";
 import calcSprintIcon from "../icon/CalcSprint.png";
 import colorfulHeartsIcon from "../icon/ColorfulHearts.png";
+import pixelPaintIcon from "../icon/PixelPaint.png";
 import sudokuJustPlayIcon from "../icon/SudokuJustPlay.png";
 import sudokuByPuzzleFreeIcon from "../icon/SudokubyPuzzlefree.png";
 import kidsSudokuIcon from "../icon/kidsSudoku.png";
@@ -167,6 +168,23 @@ const storeLaunches = [
       {
         label: "App Store",
         href: "https://apps.apple.com/us/app/colorful-hearts-paint-fun/id6764305398",
+      },
+    ],
+  },
+  {
+    title: "Pixel Paint Color Relax",
+    category: "Coloring app",
+    period: "2026",
+    icon: pixelPaintIcon,
+    note: "Store launch support",
+    links: [
+      {
+        label: "Web",
+        href: "https://pixelpaintapp.com/",
+      },
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/pixel-paint-color-relax/id6765738643",
       },
     ],
   },
