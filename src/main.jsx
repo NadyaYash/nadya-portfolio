@@ -13,6 +13,7 @@ import jigsawKidsMobile from "./assets/jigsaw-kids-mobile.jpg";
 import teamIvanPhoto from "./assets/team-ivan.png";
 import teamEgorPhoto from "./assets/team-egor.png";
 import calcSprintIcon from "../icon/CalcSprint.png";
+import beadArtIcon from "../icon/BeadArt.png";
 import colorfulHeartsIcon from "../icon/ColorfulHearts.png";
 import pixelPaintIcon from "../icon/PixelPaint.png";
 import sudokuJustPlayIcon from "../icon/SudokuJustPlay.png";
@@ -185,6 +186,23 @@ const storeLaunches = [
       {
         label: "App Store",
         href: "https://apps.apple.com/us/app/pixel-paint-color-relax/id6765738643",
+      },
+    ],
+  },
+  {
+    title: "Bead Art",
+    category: "Creative app",
+    period: "2026",
+    icon: beadArtIcon,
+    note: "Store launch support",
+    links: [
+      {
+        label: "Web",
+        href: "https://beadart.app/",
+      },
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/bead-art/id6766010170",
       },
     ],
   },
