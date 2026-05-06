@@ -13,6 +13,7 @@ import jigsawKidsMobile from "./assets/jigsaw-kids-mobile.jpg";
 import teamIvanPhoto from "./assets/team-ivan.png";
 import teamEgorPhoto from "./assets/team-egor.png";
 import calcSprintIcon from "../icon/CalcSprint.png";
+import colorfulHeartsIcon from "../icon/ColorfulHearts.png";
 import sudokuJustPlayIcon from "../icon/SudokuJustPlay.png";
 import sudokuByPuzzleFreeIcon from "../icon/SudokubyPuzzlefree.png";
 import kidsSudokuIcon from "../icon/kidsSudoku.png";
@@ -149,6 +150,23 @@ const storeLaunches = [
       {
         label: "App Store",
         href: "https://apps.apple.com/us/app/morse-learn-translate/id6764839522",
+      },
+    ],
+  },
+  {
+    title: "Colorful Hearts Paint Fun",
+    category: "Kids coloring app",
+    period: "2026",
+    icon: colorfulHeartsIcon,
+    note: "Store launch support",
+    links: [
+      {
+        label: "Web",
+        href: "https://colouringapp.com/",
+      },
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/colorful-hearts-paint-fun/id6764305398",
       },
     ],
   },
