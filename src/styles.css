@@ -991,6 +991,12 @@ p {
   line-height: 1.58;
 }
 
+.team-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .team-copy a {
   display: inline-flex;
   align-items: center;

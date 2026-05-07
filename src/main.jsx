@@ -395,8 +395,16 @@ const teamMembers = [
     name: "Ivan Lukichev",
     role: "Growth Strategy, Product Development & Strategic Backing",
     summary: "Supports search visibility, product growth, app development, and strategic backing across active products.",
-    href: "https://lukichev.biz/",
-    linkLabel: "Website",
+    links: [
+      {
+        href: "https://lukichev.biz/",
+        label: "Website",
+      },
+      {
+        href: "https://github.com/ivanlukichev",
+        label: "GitHub",
+      },
+    ],
     photo: teamIvanPhoto,
     photoClass: "team-mark--ivan",
   },
@@ -404,8 +412,12 @@ const teamMembers = [
     name: "Egor Danilov",
     role: "Software Development",
     summary: "Supports implementation and delivery when products need stronger technical execution.",
-    href: "https://www.linkedin.com/in/egor-danilov-5907332b8",
-    linkLabel: "LinkedIn",
+    links: [
+      {
+        href: "https://www.linkedin.com/in/egor-danilov-5907332b8",
+        label: "LinkedIn",
+      },
+    ],
     photo: teamEgorPhoto,
     photoClass: "team-mark--egor",
   },
@@ -916,9 +928,13 @@ function Team() {
               <h3>{member.name}</h3>
               <span className="team-role">{member.role}</span>
               <p>{member.summary}</p>
-              <a href={member.href} target="_blank" rel="noreferrer">
-                {member.linkLabel}
-              </a>
+              <div className="team-links">
+                {member.links.map((link) => (
+                  <a href={link.href} key={link.href} target="_blank" rel="noreferrer">
+                    {link.label}
+                  </a>
+                ))}
+              </div>
             </div>
           </article>
         ))}
