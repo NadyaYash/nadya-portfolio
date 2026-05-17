@@ -902,6 +902,19 @@ p {
   transform: translateY(-1px);
 }
 
+.launch-soon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(17, 18, 20, 0.08);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.82);
+  color: #5b6670;
+  font-size: 0.79rem;
+  font-weight: 760;
+  padding: 7px 10px;
+}
+
 .team-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

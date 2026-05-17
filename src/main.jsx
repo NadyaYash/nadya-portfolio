@@ -16,6 +16,7 @@ import calcSprintIcon from "../icon/CalcSprint.png";
 import beadArtIcon from "../icon/BeadArt.png";
 import colorfulHeartsIcon from "../icon/ColorfulHearts.png";
 import pixelPaintIcon from "../icon/PixelPaint.png";
+import slidePuzzleIcon from "../icon/SlidePuzzle.png";
 import sudokuJustPlayIcon from "../icon/SudokuJustPlay.png";
 import sudokuByPuzzleFreeIcon from "../icon/SudokubyPuzzlefree.png";
 import kidsSudokuIcon from "../icon/kidsSudoku.png";
@@ -205,6 +206,14 @@ const storeLaunches = [
         href: "https://apps.apple.com/us/app/bead-art/id6766010170",
       },
     ],
+  },
+  {
+    title: "Slide Puzzle - 8, 15, 24, 35",
+    category: "Puzzle app",
+    period: "2026",
+    icon: slidePuzzleIcon,
+    note: "Publishing support",
+    comingSoon: true,
   },
 ];
 
@@ -837,6 +846,10 @@ function StoreLaunches() {
                       {link.label}
                     </a>
                   ))}
+                </div>
+              ) : item.comingSoon ? (
+                <div className="launch-links">
+                  <span className="launch-soon">Coming soon</span>
                 </div>
               ) : null}
             </div>
