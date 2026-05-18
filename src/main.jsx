@@ -54,8 +54,8 @@ const helpAreas = [
     icon: "rocket",
   },
   {
-    title: "Find practical improvements",
-    text: "I look at what is already live and turn user signals, product gaps, and team observations into useful next steps.",
+    title: "Shape app store presence",
+    text: "I help prepare apps for launch with clearer store structure, visuals, listing presentation, and release readiness that support conversion.",
     icon: "pulse",
   },
   {
@@ -738,6 +738,11 @@ function About() {
             This comes from hands-on product ownership across web, iOS, and
             Android — building products from idea to launch while working from Austria across distributed teams.
           </p>
+          <p>
+            Alongside product direction and delivery, I also support app store
+            presentation, launch packaging, and listing clarity when products
+            need to show up better in the store.
+          </p>
           <a className="nav-cta" href="#contact">
             Say hello
           </a>
@@ -762,7 +767,7 @@ function Projects() {
       id="projects"
       eyebrow="Selected Projects"
       title="Product leadership from concept to release."
-      intro="Real cases across mobile, web, launch, migration, and growth — shaped through product direction, delivery ownership, and hands-on execution."
+      intro="Real cases across mobile, web, launch, migration, growth, and app store presence — shaped through product direction, delivery ownership, and hands-on execution."
     >
       <div className="project-stack">
         {projects.map((project, index) => (
