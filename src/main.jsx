@@ -16,6 +16,7 @@ import calcSprintIcon from "../icon/CalcSprint.png";
 import beadArtIcon from "../icon/BeadArt.png";
 import colorfulHeartsIcon from "../icon/ColorfulHearts.png";
 import gorodaOnlineIcon from "../icon/GorodaOnline.png";
+import wiseHusbandIcon from "../icon/WiseHusband.png";
 import pixelPaintIcon from "../icon/PixelPaint.png";
 import slidePuzzleIcon from "../icon/SlidePuzzle.png";
 import sudokuJustPlayIcon from "../icon/SudokuJustPlay.png";
@@ -222,6 +223,23 @@ const storeLaunches = [
       {
         label: "App Store",
         href: "https://apps.apple.com/us/app/%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B0-%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD/id6769050447",
+      },
+    ],
+  },
+  {
+    title: "Wise Husband",
+    category: "Relationship app",
+    period: "2026",
+    icon: wiseHusbandIcon,
+    note: "Publishing support",
+    links: [
+      {
+        label: "Web",
+        href: "https://wise-husband.com/",
+      },
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/wise-husband/id6767145321",
       },
     ],
   },
