@@ -267,7 +267,12 @@ const storeLaunches = [
     period: "2026",
     icon: slidePuzzleIcon,
     note: "Publishing support",
-    comingSoon: true,
+    links: [
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/slide-puzzle-8-15-24-35/id6770205599",
+      },
+    ],
   },
 ];
 
