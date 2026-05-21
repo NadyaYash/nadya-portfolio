@@ -304,16 +304,14 @@ const projects = [
     impact: [
       "Turned an original puzzle concept into a polished launch-ready mobile product with a distinct visual identity and clear gameplay proposition.",
     ],
-    backdropImages: [
+    images: [
       {
         src: flowblocksTablet,
         alt: "FlowBlocks gameplay shown across large-screen layouts",
       },
-    ],
-    images: [
       {
         src: flowblocksStore,
-        alt: "FlowBlocks App Store product page and gameplay presentation",
+        alt: "FlowBlocks App Store product page and visual identity",
       },
     ],
     visualVariant: "flowblocks",
