@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 import profilePhoto from "../1701113988652.jpeg";
+import flowblocksStore from "./assets/flowblocks-store.jpg";
+import flowblocksTablet from "./assets/flowblocks-tablet.jpg";
 import puzzleFreeWeb from "./assets/puzzlefree-web.jpg";
 import puzzleFreeDaily from "./assets/puzzlefree-daily.jpg";
 import puzzleFreeGrid from "./assets/puzzlefree-grid.jpg";
@@ -285,6 +287,38 @@ const storeLaunches = [
 ];
 
 const projects = [
+  {
+    name: "FlowBlocks: Puzzle Game",
+    category: "Puzzle game / mobile product",
+    period: "2026",
+    role: "Creator & Product Lead",
+    summary:
+      "Original product concept and end-to-end direction for a mobile puzzle game built around smooth block play, clear visual identity, and a store-ready launch presence.",
+    scope: [
+      "Original game concept and product framing",
+      "Gameplay feel, progression, and puzzle loop direction",
+      "Visual identity, messaging, and store presentation",
+      "Release preparation and launch packaging",
+    ],
+    tags: ["Original concept", "Game design", "Store launch"],
+    impact: [
+      "Turned an original puzzle concept into a polished launch-ready mobile product with a distinct visual identity and clear gameplay proposition.",
+    ],
+    backdropImages: [
+      {
+        src: flowblocksTablet,
+        alt: "FlowBlocks gameplay shown across large-screen layouts",
+      },
+    ],
+    images: [
+      {
+        src: flowblocksStore,
+        alt: "FlowBlocks App Store product page and gameplay presentation",
+      },
+    ],
+    visualVariant: "flowblocks",
+    featured: true,
+  },
   {
     name: "PuzzleFree.game",
     category: "Mobile app / web product",
