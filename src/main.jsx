@@ -273,6 +273,10 @@ const storeLaunches = [
     note: "Publishing support",
     links: [
       {
+        label: "Web",
+        href: "https://slidepuzzle.app/",
+      },
+      {
         label: "App Store",
         href: "https://apps.apple.com/us/app/slide-puzzle-8-15-24-35/id6770205599",
       },
