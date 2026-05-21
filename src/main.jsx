@@ -225,6 +225,10 @@ const storeLaunches = [
         label: "App Store",
         href: "https://apps.apple.com/us/app/%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B0-%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD/id6769050447",
       },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.kidssudoku",
+      },
     ],
   },
   {
