@@ -254,7 +254,7 @@ nav a[aria-current="page"] {
 }
 
 .section {
-  padding: 80px 24px;
+  padding: 58px 24px;
   scroll-margin-top: 78px;
 }
 
@@ -264,12 +264,12 @@ nav a[aria-current="page"] {
 }
 
 #about.section {
-  padding-top: 72px;
-  padding-bottom: 78px;
+  padding-top: 34px;
+  padding-bottom: 58px;
 }
 
 #about .section-heading {
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
 #about .section-heading p:last-child {
@@ -277,12 +277,12 @@ nav a[aria-current="page"] {
 }
 
 #projects.section {
-  padding-top: 76px;
+  padding-top: 56px;
 }
 
 #projects .section-heading {
   width: min(820px, 100%);
-  margin-bottom: 36px;
+  margin-bottom: 28px;
   text-align: center;
 }
 
@@ -313,7 +313,7 @@ nav a[aria-current="page"] {
   min-height: 84vh;
   overflow: hidden;
   padding-top: 104px;
-  padding-bottom: 76px;
+  padding-bottom: 36px;
 }
 
 .hero::before {
@@ -606,7 +606,7 @@ p {
   position: relative;
   width: min(760px, 100%);
   margin-right: auto;
-  margin-bottom: 42px;
+  margin-bottom: 32px;
   margin-left: auto;
   text-align: center;
 }
@@ -1672,7 +1672,7 @@ p {
 }
 
 .contact {
-  padding-top: 76px;
+  padding-top: 56px;
   padding-bottom: 32px;
 }
 
@@ -1919,7 +1919,7 @@ p {
 
 @media (max-width: 620px) {
   .section {
-    padding: 70px 18px;
+    padding: 52px 18px;
   }
 
   .site-header {
@@ -1933,7 +1933,7 @@ p {
 
   .hero {
     padding-top: 96px;
-    padding-bottom: 52px;
+    padding-bottom: 28px;
   }
 
   .hero::before {
@@ -1961,7 +1961,7 @@ p {
   }
 
   #projects.section {
-    padding-top: 68px;
+    padding-top: 50px;
   }
 
   .project-content h3 {

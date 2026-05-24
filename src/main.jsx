@@ -765,28 +765,21 @@ function About() {
       id="about"
       eyebrow="About"
       title="I help product work start stronger, scale cleaner, and get back on track when execution drifts."
-      intro="Some products need direction from day one. Others need structure when priorities shift, scope grows, or delivery starts looping. Based in Austria, I work across both moments with remote and EU-based teams."
+      intro="Based in Austria. Remote and EU-based teams."
     >
       <div className="about-grid">
         <div className="about-lead reveal">
           <p>
-            I step in to reset direction, clarify ownership, structure the work,
-            and move teams toward real release. Decisions start holding, delivery
-            becomes steadier, and the work stops looping around the same open
-            questions.
+            I step in when direction is unclear, priorities are overloaded, or
+            delivery keeps looping. I clarify ownership, structure the work, and
+            move teams toward a real release — whether that means starting from
+            scratch or resetting what's already stuck.
           </p>
           <p>
-            Sometimes the work starts earlier — shaping product direction, team
-            structure, and hiring so execution scales without chaos.
-          </p>
-          <p>
-            This comes from hands-on product ownership across web, iOS, and
-            Android — building products from idea to launch while working from Austria across distributed teams.
-          </p>
-          <p>
-            Alongside product direction and delivery, I also support app store
-            presentation, launch packaging, and listing clarity when products
-            need to show up better in the store.
+            My background is hands-on: product ownership across web, iOS, and
+            Android, from idea to launch. I also support app store presentation
+            and launch packaging when products need to show up better in the
+            store.
           </p>
           <a className="nav-cta" href="#contact">
             Say hello
