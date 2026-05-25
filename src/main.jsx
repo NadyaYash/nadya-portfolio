@@ -933,7 +933,7 @@ function PrivacyPolicyPage() {
             <section>
               <h2>2. Scope of this Privacy Policy</h2>
               <p>
-                This Privacy Policy applies to the website operated under nadyeyayashchuk.com and to the
+                This Privacy Policy applies to the website operated under nadzeyayashchuk.com and to the
                 information made available through this portfolio website. Separate privacy policies may apply to
                 individual games, mobile apps, or third-party platforms linked from this website.
               </p>
