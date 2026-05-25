@@ -30,6 +30,7 @@ import morseIcon from "../icon/morse.png";
 const navItems = [
   { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
+  { label: "Games", href: "#launches" },
   { label: "How I help", href: "#help" },
   { label: "Contact", href: "#contact" },
 ];
@@ -86,6 +87,43 @@ const privacyContact = {
   email: "contact@nadzeyayashchuk.com",
 };
 
+const gameLanding = {
+  title: "New Game",
+  slug: "new-game",
+  isDraft: true,
+  category: "Mobile game",
+  period: "2026",
+  tagline: "A focused mobile game landing page scaffold, ready for final copy, screenshots, and store links.",
+  summary:
+    "This page is prepared as the public home for a new game that does not need a separate standalone website.",
+  iconLabel: "NG",
+  storeLinks: [
+    {
+      label: "App Store",
+      href: "#app-store-coming-soon",
+    },
+    {
+      label: "Google Play",
+      href: "#google-play-coming-soon",
+    },
+  ],
+  legalLinks: [
+    {
+      label: "Privacy Policy",
+      href: "/games/new-game/privacy",
+    },
+    {
+      label: "Terms of Use",
+      href: "/games/new-game/terms",
+    },
+    {
+      label: "Support",
+      href: "/games/new-game/support",
+    },
+  ],
+  highlights: ["Simple public game page", "Store-ready link structure", "Dedicated legal pages"],
+};
+
 const helpAreas = [
   {
     title: "Turn messy input into a clear plan",
@@ -120,6 +158,25 @@ const helpAreas = [
 ];
 
 const storeLaunches = [
+  ...(gameLanding.isDraft
+    ? []
+    : [
+        {
+          title: gameLanding.title,
+          category: gameLanding.category,
+          period: gameLanding.period,
+          iconLabel: gameLanding.iconLabel,
+          note: "Game page scaffold ready for screenshots, store links, privacy, and terms.",
+          links: [
+            {
+              label: "Learn more",
+              href: `/games/${gameLanding.slug}`,
+            },
+            ...gameLanding.storeLinks,
+            ...gameLanding.legalLinks.slice(0, 2),
+          ],
+        },
+      ]),
   {
     title: "Kids Sudoku: Just Play",
     category: "Kids puzzle",
@@ -629,11 +686,18 @@ function App() {
     };
   }, []);
 
-  if (path === "/impressum" || path === "/privacy") {
+  if (path === "/impressum" || path === "/privacy" || path.startsWith(`/games/${gameLanding.slug}`)) {
     return (
       <main>
         <Header />
-        {path === "/impressum" ? <LegalNoticePage /> : <PrivacyPolicyPage />}
+        {path === "/impressum" ? <LegalNoticePage /> : null}
+        {path === "/privacy" ? <PrivacyPolicyPage /> : null}
+        {path === `/games/${gameLanding.slug}` ? <GameLandingPage game={gameLanding} /> : null}
+        {path === `/games/${gameLanding.slug}/privacy` ? (
+          <GameLegalPage game={gameLanding} type="privacy" />
+        ) : null}
+        {path === `/games/${gameLanding.slug}/terms` ? <GameLegalPage game={gameLanding} type="terms" /> : null}
+        {path === `/games/${gameLanding.slug}/support` ? <GameSupportPage game={gameLanding} /> : null}
         <Footer />
         <ScrollTopButton />
       </main>
@@ -983,6 +1047,522 @@ function PrivacyPolicyPage() {
   );
 }
 
+function GameLandingPage({ game }) {
+  if (game.isDraft) {
+    return <GameComingSoonPage game={game} />;
+  }
+
+  return (
+    <section className="game-page section">
+      <div className="section-inner">
+        <div className="game-hero">
+          <div className="game-icon" aria-hidden="true">
+            {game.iconLabel}
+          </div>
+          <div className="game-hero-copy">
+            <p className="eyebrow">{game.category}</p>
+            <h1>{game.title}</h1>
+            <p className="role-line">{game.tagline}</p>
+            <p>{game.summary}</p>
+            <div className="game-actions">
+              {game.storeLinks.map((link) => (
+                <a className="button primary" href={link.href} key={link.label}>
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="game-screenshot-grid" aria-label={`${game.title} screenshots`}>
+          <div className="game-screenshot-placeholder is-wide">
+            <span>Screenshot 1</span>
+          </div>
+          <div className="game-screenshot-placeholder">
+            <span>Screenshot 2</span>
+          </div>
+          <div className="game-screenshot-placeholder">
+            <span>Screenshot 3</span>
+          </div>
+        </div>
+
+        <div className="game-info-grid">
+          <section className="game-info-panel">
+            <h2>Highlights</h2>
+            <ul>
+              {game.highlights.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </section>
+          <section className="game-info-panel">
+            <h2>Links</h2>
+            <div className="game-link-list">
+              {[...game.storeLinks, ...game.legalLinks].map((link) => (
+                <a href={link.href} key={link.label}>
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function GameLegalPage({ game, type }) {
+  const isPrivacy = type === "privacy";
+  const title = isPrivacy ? `${game.title} Privacy Policy` : `${game.title} Terms of Use`;
+
+  if (game.isDraft) {
+    return (
+      <GameComingSoonPage
+        game={game}
+        title={title}
+        message={`The final ${isPrivacy ? "privacy policy" : "terms of use"} will be published here before the game is released.`}
+      />
+    );
+  }
+
+  return (
+    <section className="legal-page section">
+      <div className="section-inner">
+        <div className="legal-shell legal-shell-wide">
+          <p className="eyebrow">{isPrivacy ? "Game Privacy" : "Game Terms"}</p>
+          <h1>{title}</h1>
+          {isPrivacy ? <GamePrivacyPolicyContent game={game} /> : <GameTermsContent game={game} />}
+          <a className="button secondary legal-back" href={`/games/${game.slug}`}>
+            Back to game page
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function GameComingSoonPage({ game, title = "Game page coming soon", message }) {
+  return (
+    <section className="legal-page section">
+      <div className="section-inner">
+        <div className="legal-shell">
+          <p className="eyebrow">Coming soon</p>
+          <h1>{title}</h1>
+          <p className="legal-intro">
+            {message ||
+              "This game page is prepared, but it is not public yet. Final screenshots, store links, privacy policy, and terms will be added before release."}
+          </p>
+          <a className="button secondary legal-back" href="/">
+            Back to portfolio
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function GamePrivacyPolicyContent({ game }) {
+  return (
+    <>
+      <p className="legal-intro">Last updated: May 25, 2026</p>
+      <div className="privacy-content">
+        <section>
+          <h2>1. Controller</h2>
+          <p>The controller responsible for the processing of personal data in connection with {game.title} is:</p>
+          <address>
+            <strong>{privacyContact.name}</strong>
+            <br />
+            {privacyContact.address}
+            <br />
+            Email: <a href={`mailto:${privacyContact.email}`}>{privacyContact.email}</a>
+          </address>
+        </section>
+
+        <section>
+          <h2>2. About the Game</h2>
+          <p>
+            {game.title} is a puzzle game. The game can be used offline, does not require account registration, and
+            does not ask you to create a profile. The game is monetized through advertising provided by Google AdMob
+            and may offer an optional in-app purchase to remove ads.
+          </p>
+          <p>
+            The name of the game may be updated before release. This Privacy Policy will apply to the final game
+            name once it is published.
+          </p>
+        </section>
+
+        <section>
+          <h2>3. Data We Do Not Collect Directly</h2>
+          <p>
+            We do not directly collect your name, email address, phone number, postal address, account login, photos,
+            contacts, precise location, or user-generated content through the game. We do not use Firebase, custom
+            analytics tools, or our own user account system in the game.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. Advertising through Google AdMob</h2>
+          <p>
+            The game uses Google AdMob to display ads. Google and its advertising partners may process data such as
+            device information, IP address, advertising identifiers, app interactions, approximate location derived
+            from technical data, diagnostic information, and ad interaction data. This data may be used to deliver
+            ads, limit ad frequency, prevent fraud and abuse, measure ad performance, and, where permitted, show
+            personalized ads.
+          </p>
+          <p>
+            Google&apos;s processing of data in advertising services is governed by Google&apos;s own terms and
+            privacy documentation. You can learn more about how Google uses information from apps and sites that use
+            its services at{" "}
+            <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noreferrer">
+              policies.google.com/technologies/partner-sites
+            </a>
+            .
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Consent for Ads in the EEA, UK, and Switzerland</h2>
+          <p>
+            For users in the European Economic Area, the United Kingdom, and Switzerland, consent may be requested
+            before personalized ads or legally regulated local storage and identifiers are used. Where required, the
+            game will use a Google-certified consent management solution, such as Google&apos;s User Messaging
+            Platform, to collect and manage ad consent choices.
+          </p>
+          <p>
+            If you do not consent to personalized advertising, the game may still show non-personalized ads where
+            available and legally permitted.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. In-App Purchase to Remove Ads</h2>
+          <p>
+            The game may offer an optional in-app purchase that removes ads. Purchases are processed by the relevant
+            app store provider, such as Apple App Store or Google Play. We do not receive your full payment card
+            details. The app store may provide transaction-related information needed to confirm purchase status,
+            restore purchases, provide the purchased feature, prevent fraud, and comply with legal obligations.
+          </p>
+        </section>
+
+        <section>
+          <h2>7. Offline Use</h2>
+          <p>
+            The game is available offline. When used offline, features that require a network connection, such as
+            loading ads, completing in-app purchases, restoring purchases, or opening support and legal links, may
+            not be available until the device is online again.
+          </p>
+        </section>
+
+        <section>
+          <h2>8. Legal Bases for Processing</h2>
+          <p>
+            Where the GDPR applies, the legal bases may include performance of a contract under Article 6(1)(b) GDPR
+            for providing the game and purchased features, consent under Article 6(1)(a) GDPR for personalized ads
+            or similar technologies where required, legitimate interests under Article 6(1)(f) GDPR for security,
+            fraud prevention, basic operation, support, and non-personalized advertising, and legal obligations under
+            Article 6(1)(c) GDPR where applicable.
+          </p>
+        </section>
+
+        <section>
+          <h2>9. Third-Party Providers</h2>
+          <p>The game may interact with the following third-party providers:</p>
+          <ul>
+            <li>Google AdMob for advertising and ad measurement.</li>
+            <li>Apple App Store for iOS app distribution and in-app purchases.</li>
+            <li>Google Play for Android app distribution and in-app purchases.</li>
+          </ul>
+          <p>
+            These providers may process personal data under their own privacy policies and terms. Their practices
+            are outside our direct control.
+          </p>
+        </section>
+
+        <section>
+          <h2>10. Retention</h2>
+          <p>
+            We do not maintain our own user account database for the game. Data processed by third-party providers
+            is retained according to their retention policies. Support emails are retained for as long as necessary
+            to respond to the request, handle follow-up questions, comply with legal obligations, or establish,
+            exercise, or defend legal claims.
+          </p>
+        </section>
+
+        <section>
+          <h2>11. Your Choices</h2>
+          <p>
+            You can limit ad tracking or reset advertising identifiers in your device settings where supported by
+            your operating system. You can also manage consent choices through the consent message shown in the game
+            where required. If you purchase the ad removal option, ads should no longer be shown in the game after
+            the purchase is active and restored on the relevant platform.
+          </p>
+        </section>
+
+        <section>
+          <h2>12. Your GDPR Rights</h2>
+          <p>
+            Subject to legal requirements, you may have the right to access, rectification, erasure, restriction of
+            processing, data portability, and objection. If processing is based on consent, you may withdraw that
+            consent at any time with effect for the future.
+          </p>
+          <p>
+            To exercise your rights, please contact{" "}
+            <a href={`mailto:${privacyContact.email}`}>{privacyContact.email}</a>. For data processed directly by
+            app stores or Google AdMob, you may also need to contact the relevant provider directly.
+          </p>
+        </section>
+
+        <section>
+          <h2>13. Children&apos;s Privacy</h2>
+          <p>
+            The game does not intentionally ask users to provide personal contact details or create an account. If
+            the final release is configured or marketed as child-directed, the advertising setup and this Privacy
+            Policy will be reviewed and updated before publication to reflect the applicable children&apos;s privacy
+            and advertising requirements.
+          </p>
+        </section>
+
+        <section>
+          <h2>14. Right to Lodge a Complaint</h2>
+          <p>
+            You have the right to lodge a complaint with a supervisory authority. In Austria, the competent authority
+            is the Austrian Data Protection Authority:
+          </p>
+          <p>
+            Österreichische Datenschutzbehörde, Barichgasse 40-42, 1030 Vienna, Austria,{" "}
+            <a href="https://www.dsb.gv.at/" target="_blank" rel="noreferrer">
+              www.dsb.gv.at
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h2>15. Changes to this Privacy Policy</h2>
+          <p>
+            This Privacy Policy may be updated before or after release if the game name, features, SDKs,
+            advertising setup, in-app purchase setup, store requirements, or legal requirements change. The current
+            version will be available on this page.
+          </p>
+        </section>
+      </div>
+    </>
+  );
+}
+
+function GameTermsContent({ game }) {
+  return (
+    <>
+      <p className="legal-intro">Last updated: May 25, 2026</p>
+      <div className="privacy-content">
+        <section>
+          <h2>1. Agreement to these Terms</h2>
+          <p>
+            These Terms of Use apply to your download, access, and use of {game.title}, a puzzle game published by
+            {privacyContact.name}. By installing, accessing, or using the game, you agree to these Terms. If you do
+            not agree, please do not use the game.
+          </p>
+        </section>
+
+        <section>
+          <h2>2. About the Game</h2>
+          <p>
+            {game.title} is a puzzle game that can be used offline. The game does not require account registration.
+            Some features, including ads, in-app purchases, purchase restoration, support links, and legal links,
+            may require an internet connection.
+          </p>
+          <p>
+            The name of the game may be updated before release. These Terms will apply to the final game name once
+            it is published.
+          </p>
+        </section>
+
+        <section>
+          <h2>3. License to Use the Game</h2>
+          <p>
+            Subject to your compliance with these Terms and the applicable app store terms, you are granted a
+            limited, personal, non-exclusive, non-transferable, revocable license to download and use the game on a
+            device that you own or control, solely for personal and non-commercial entertainment purposes.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. App Store Terms</h2>
+          <p>
+            If you download the game from Apple App Store or Google Play, your use of the game is also subject to
+            the terms, policies, and rules of the relevant app store. In the event of a conflict between these Terms
+            and mandatory app store rules, the applicable app store rules may apply to the extent required.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Advertising</h2>
+          <p>
+            The game may display advertising through Google AdMob. Ads may require an internet connection. Ad
+            availability, format, frequency, and personalization may vary depending on your device, location,
+            consent choices, ad provider availability, and applicable law.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. In-App Purchase to Remove Ads</h2>
+          <p>
+            The game may offer an optional in-app purchase to remove ads. Purchases are processed by the app store
+            provider from which you downloaded the game, such as Apple App Store or Google Play. Payment, billing,
+            refunds, family sharing availability, purchase restoration, and related purchase issues are handled
+            according to the rules of the relevant app store.
+          </p>
+          <p>
+            After a valid remove-ads purchase is active and restored on the relevant platform, ads should no longer
+            be shown in the game. Some store, consent, support, or legal screens may still use an internet
+            connection.
+          </p>
+        </section>
+
+        <section>
+          <h2>7. Refunds</h2>
+          <p>
+            Refund requests for in-app purchases must be submitted through the app store provider that processed the
+            purchase. We do not directly process payment card details and cannot independently issue app store
+            refunds outside the mechanisms provided by Apple App Store or Google Play.
+          </p>
+        </section>
+
+        <section>
+          <h2>8. Acceptable Use</h2>
+          <p>You agree not to:</p>
+          <ul>
+            <li>copy, modify, reverse engineer, decompile, or attempt to extract the source code of the game;</li>
+            <li>use the game for unlawful, fraudulent, harmful, or abusive purposes;</li>
+            <li>interfere with the operation, security, advertising, purchase, or store systems of the game;</li>
+            <li>use bots, automation, exploits, or unauthorized tools to manipulate the game;</li>
+            <li>remove copyright, trademark, or other proprietary notices from the game.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>9. Intellectual Property</h2>
+          <p>
+            The game, including its design, code, gameplay elements, text, graphics, icons, audio, visual assets,
+            and other content, is protected by intellectual property laws. Except for the limited license granted in
+            these Terms, no rights are transferred to you.
+          </p>
+        </section>
+
+        <section>
+          <h2>10. Updates and Changes</h2>
+          <p>
+            The game may be updated, changed, interrupted, or discontinued at any time. Updates may add, modify, or
+            remove features, levels, ads, purchase handling, compatibility, visual content, or technical
+            functionality. Some updates may be required for continued use.
+          </p>
+        </section>
+
+        <section>
+          <h2>11. Availability and Offline Use</h2>
+          <p>
+            The game is provided as a mobile app and can be used offline, but uninterrupted or error-free operation
+            is not guaranteed. Online features may be unavailable because of network issues, app store services,
+            ad provider availability, device settings, operating system changes, maintenance, or other technical
+            reasons.
+          </p>
+        </section>
+
+        <section>
+          <h2>12. Privacy</h2>
+          <p>
+            Information about data processing in connection with the game is available in the{" "}
+            <a href={`/games/${game.slug}/privacy`}>{game.title} Privacy Policy</a>. By using the game, you
+            acknowledge that personal data may be processed as described there.
+          </p>
+        </section>
+
+        <section>
+          <h2>13. No Warranty</h2>
+          <p>
+            To the maximum extent permitted by applicable law, the game is provided on an &quot;as is&quot; and
+            &quot;as available&quot; basis without warranties of any kind. This does not limit any mandatory rights
+            you may have under applicable consumer protection law.
+          </p>
+        </section>
+
+        <section>
+          <h2>14. Limitation of Liability</h2>
+          <p>
+            To the maximum extent permitted by applicable law, we are not liable for indirect, incidental,
+            consequential, special, or punitive damages, loss of data, loss of profits, device issues, service
+            interruptions, ad provider behavior, store provider behavior, or inability to access online features.
+            Nothing in these Terms limits liability where such limitation is not permitted by law.
+          </p>
+        </section>
+
+        <section>
+          <h2>15. Termination</h2>
+          <p>
+            Your right to use the game may terminate if you violate these Terms. After termination, you must stop
+            using the game and delete it from your device if requested. Any provisions that by their nature should
+            survive termination will continue to apply.
+          </p>
+        </section>
+
+        <section>
+          <h2>16. Changes to these Terms</h2>
+          <p>
+            These Terms may be updated before or after release if the game name, features, purchase model, platform
+            requirements, app store rules, or legal requirements change. The current version will be available on
+            this page.
+          </p>
+        </section>
+
+        <section>
+          <h2>17. Governing Law</h2>
+          <p>
+            These Terms are governed by the laws of Austria, without prejudice to mandatory consumer protection
+            rights that may apply in your country of residence.
+          </p>
+        </section>
+
+        <section>
+          <h2>18. Contact</h2>
+          <p>
+            Questions about these Terms can be sent to{" "}
+            <a href={`mailto:${privacyContact.email}`}>{privacyContact.email}</a>.
+          </p>
+        </section>
+      </div>
+    </>
+  );
+}
+
+function GameSupportPage({ game }) {
+  if (game.isDraft) {
+    return (
+      <GameComingSoonPage
+        game={game}
+        title={`${game.title} Support`}
+        message="The support page will be published here before the game is released."
+      />
+    );
+  }
+
+  return (
+    <section className="legal-page section">
+      <div className="section-inner">
+        <div className="legal-shell">
+          <p className="eyebrow">Support</p>
+          <h1>{game.title} Support</h1>
+          <p className="legal-intro">
+            Need help with {game.title}? Please contact{" "}
+            <a href={`mailto:${privacyContact.email}`}>{privacyContact.email}</a>.
+          </p>
+          <a className="button secondary legal-back" href={`/games/${game.slug}`}>
+            Back to game page
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Hero() {
   return (
     <section className="hero section" id="top">
@@ -1182,46 +1762,55 @@ function StoreLaunches() {
       intro="Compact launch support across puzzle, kids, and utility apps — focused on store presentation, listing packaging, and publisher-side execution."
     >
       <div className="launch-grid">
-        {storeLaunches.map((item, index) => (
-          <article className="launch-card reveal" key={item.title} style={{ "--reveal-delay": `${index * 60}ms` }}>
-            {item.links?.find((link) => link.label === "Web") ? (
-              <a
-                className="launch-mark launch-mark-link"
-                href={item.links.find((link) => link.label === "Web").href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`Open ${item.title} website`}
-              >
-                <img src={item.icon} alt="" />
-              </a>
-            ) : (
-              <div className="launch-mark" aria-hidden="true">
-                <img src={item.icon} alt="" />
-              </div>
-            )}
-            <div className="launch-copy">
-              <div className="launch-meta">
-                <span className="launch-category">{item.category}</span>
-                <span className="launch-period">{item.period}</span>
-              </div>
-              <h3>{item.title}</h3>
-              <p>{item.note}</p>
-              {item.links?.length ? (
-                <div className="launch-links">
-                  {item.links.map((link) => (
-                    <a href={link.href} key={link.href} target="_blank" rel="noreferrer">
-                      {link.label}
-                    </a>
-                  ))}
+        {storeLaunches.map((item, index) => {
+          const markLink = item.links?.find((link) => link.label === "Web" || link.label === "Learn more");
+
+          return (
+            <article className="launch-card reveal" key={item.title} style={{ "--reveal-delay": `${index * 60}ms` }}>
+              {markLink ? (
+                <a
+                  className="launch-mark launch-mark-link"
+                  href={markLink.href}
+                  target={markLink.href.startsWith("http") ? "_blank" : undefined}
+                  rel={markLink.href.startsWith("http") ? "noreferrer" : undefined}
+                  aria-label={`Open ${item.title} website`}
+                >
+                  {item.icon ? <img src={item.icon} alt="" /> : <span>{item.iconLabel}</span>}
+                </a>
+              ) : (
+                <div className="launch-mark" aria-hidden="true">
+                  {item.icon ? <img src={item.icon} alt="" /> : <span>{item.iconLabel}</span>}
                 </div>
-              ) : item.comingSoon ? (
-                <div className="launch-links">
-                  <span className="launch-soon">Coming soon</span>
+              )}
+              <div className="launch-copy">
+                <div className="launch-meta">
+                  <span className="launch-category">{item.category}</span>
+                  <span className="launch-period">{item.period}</span>
                 </div>
-              ) : null}
-            </div>
-          </article>
-        ))}
+                <h3>{item.title}</h3>
+                <p>{item.note}</p>
+                {item.links?.length ? (
+                  <div className="launch-links">
+                    {item.links.map((link) => (
+                      <a
+                        href={link.href}
+                        key={`${item.title}-${link.label}`}
+                        target={link.href.startsWith("http") ? "_blank" : undefined}
+                        rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
+                ) : item.comingSoon ? (
+                  <div className="launch-links">
+                    <span className="launch-soon">Coming soon</span>
+                  </div>
+                ) : null}
+              </div>
+            </article>
+          );
+        })}
       </div>
     </Section>
   );
