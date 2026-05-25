@@ -830,7 +830,11 @@ function Header() {
   return (
     <header className="site-header" aria-label="Primary navigation">
       <div className="header-inner">
-        <a className="brand" href="#top" aria-label="Nadya Yashchuk home">
+        <a
+          className="brand"
+          href={window.location.pathname === "/" ? "#top" : "/"}
+          aria-label="Nadya Yashchuk home"
+        >
           <span>by</span>
           Nadya Yashchuk
         </a>
