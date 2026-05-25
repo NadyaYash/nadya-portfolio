@@ -1077,6 +1077,13 @@ p {
   padding: 20px;
 }
 
+.project-card-draft {
+  border-color: rgba(15, 111, 104, 0.18);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(237, 248, 246, 0.82)),
+    var(--surface);
+}
+
 .project-card-no-thumb,
 .project-card-no-thumb.is-featured {
   grid-template-columns: 1fr;
@@ -1172,6 +1179,8 @@ p {
   background: rgba(255, 255, 255, 0.82);
   color: var(--accent-dark);
   font-weight: 860;
+  font-size: 0.82rem;
+  text-transform: uppercase;
 }
 
 .project-card-launch .project-content h3 {

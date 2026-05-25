@@ -90,15 +90,15 @@ const privacyContact = {
 };
 
 const gameLanding = {
-  title: "New Game",
+  title: "Puzzle Game",
   slug: "puzzle-game",
   isDraft: true,
-  category: "Mobile game",
+  category: "Puzzle game",
   period: "2026",
   tagline: "A focused mobile game landing page scaffold, ready for final copy, screenshots, and store links.",
   summary:
     "This page is prepared as the public home for a new game that does not need a separate standalone website.",
-  iconLabel: "NG",
+  iconLabel: "Soon",
   storeLinks: [
     {
       label: "App Store",
@@ -1661,7 +1661,30 @@ function About() {
 function Projects() {
   const whmcsProject = projects.find((project) => project.name === "WHMCS migration / optimization");
   const featuredProjects = projects.filter((project) => project.name !== "WHMCS migration / optimization");
+  const draftGameItem = gameLanding.isDraft
+    ? [
+        {
+          name: gameLanding.title,
+          category: gameLanding.category,
+          period: "Coming soon",
+          role: "Launch preparation",
+          summary: "Upcoming puzzle game with store links, support, privacy, and terms prepared before release.",
+          impact: ["Prepared legal and support structure before app release."],
+          links: [
+            {
+              label: "Learn more",
+              href: `/games/${gameLanding.slug}`,
+            },
+            ...gameLanding.legalLinks,
+          ],
+          iconLabel: gameLanding.iconLabel,
+          type: "launch",
+          isDraft: true,
+        },
+      ]
+    : [];
   const workItems = [
+    ...draftGameItem,
     ...featuredProjects,
     ...storeLaunches.map((item) => ({
       name: item.title,
@@ -1690,7 +1713,7 @@ function Projects() {
           <article
             className={`project-card project-card-compact reveal ${project.featured ? "is-featured" : ""} ${
               project.type === "launch" ? "project-card-launch" : ""
-            } ${project.hideThumbnail ? "project-card-no-thumb" : ""}`}
+            } ${project.hideThumbnail ? "project-card-no-thumb" : ""} ${project.isDraft ? "project-card-draft" : ""}`}
             key={project.name}
             style={{ "--reveal-delay": `${Math.min(index, 8) * 45}ms` }}
           >
