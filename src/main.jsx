@@ -4,10 +4,13 @@ import "./styles.css";
 import profilePhoto from "../1701113988652.jpeg";
 import flowblocksStore from "./assets/flowblocks-store.jpg";
 import flowblocksTablet from "./assets/flowblocks-tablet.jpg";
+import flowblocksIcon from "./assets/flowblocks-icon.png";
 import puzzleFreeWeb from "./assets/puzzlefree-web.jpg";
 import puzzleFreeDaily from "./assets/puzzlefree-daily.jpg";
 import puzzleFreeGrid from "./assets/puzzlefree-grid.jpg";
 import puzzleFreeMobile from "./assets/puzzlefree-mobile.jpg";
+import puzzleFreeIcon from "./assets/puzzlefree-icon.png";
+import puzzleFreeKidsIcon from "./assets/puzzlefree-kids-icon.png";
 import jigsawKidsPuzzles from "./assets/jigsaw-kids-puzzles.jpg";
 import jigsawKidsPacks from "./assets/jigsaw-kids-packs.jpg";
 import jigsawKidsPlay from "./assets/jigsaw-kids-play.jpg";
@@ -29,8 +32,7 @@ import morseIcon from "../icon/morse.png";
 
 const navItems = [
   { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Games", href: "#launches" },
+  { label: "Work", href: "#projects" },
   { label: "How I help", href: "#help" },
   { label: "Contact", href: "#contact" },
 ];
@@ -89,7 +91,7 @@ const privacyContact = {
 
 const gameLanding = {
   title: "New Game",
-  slug: "new-game",
+  slug: "puzzle-game",
   isDraft: true,
   category: "Mobile game",
   period: "2026",
@@ -110,15 +112,15 @@ const gameLanding = {
   legalLinks: [
     {
       label: "Privacy Policy",
-      href: "/games/new-game/privacy",
+      href: "/games/puzzle-game/privacy",
     },
     {
       label: "Terms of Use",
-      href: "/games/new-game/terms",
+      href: "/games/puzzle-game/terms",
     },
     {
       label: "Support",
-      href: "/games/new-game/support",
+      href: "/games/puzzle-game/support",
     },
   ],
   highlights: ["Simple public game page", "Store-ready link structure", "Dedicated legal pages"],
@@ -413,6 +415,7 @@ const projects = [
     impact: [
       "Turned an original puzzle concept into a polished launch-ready mobile product with a distinct visual identity and clear gameplay proposition.",
     ],
+    icon: flowblocksIcon,
     images: [
       {
         src: flowblocksTablet,
@@ -454,6 +457,7 @@ const projects = [
     impact: [
       "Clear path from concept to launch, with delivery and early growth aligned.",
     ],
+    icon: puzzleFreeIcon,
     links: [
       {
         label: "Web",
@@ -491,7 +495,7 @@ const projects = [
     featured: true,
   },
   {
-    name: "Jigsaw Kids Puzzles PuzzleFree",
+    name: "Kids Jigsaw Puzzles: Toddler",
     category: "Kids mobile product",
     period: "2026",
     role: "Co-founder & Product Lead",
@@ -506,6 +510,7 @@ const projects = [
     impact: [
       "Extended the PuzzleFree product line into a clearer child-friendly experience with focused content and mobile-first positioning.",
     ],
+    icon: puzzleFreeKidsIcon,
     links: [
       {
         label: "Web",
@@ -563,6 +568,7 @@ const projects = [
     impact: [
       "Stronger operating base for platform services, integrations, and future improvements.",
     ],
+    hideThumbnail: true,
     systemSummary: {
       from: "Custom panel",
       to: "WHMCS",
@@ -710,7 +716,6 @@ function App() {
       <Hero />
       <About />
       <Projects />
-      <StoreLaunches />
       <Help />
       <Team />
       <Contact />
@@ -1654,23 +1659,42 @@ function About() {
 }
 
 function Projects() {
+  const whmcsProject = projects.find((project) => project.name === "WHMCS migration / optimization");
+  const featuredProjects = projects.filter((project) => project.name !== "WHMCS migration / optimization");
+  const workItems = [
+    ...featuredProjects,
+    ...storeLaunches.map((item) => ({
+      name: item.title,
+      category: item.category,
+      period: item.period,
+      role: item.note,
+      summary: `${item.category} where I supported publishing, store presence, launch packaging, and release readiness.`,
+      impact: ["Supported a clearer store presence and publisher-side launch execution."],
+      links: item.links,
+      icon: item.icon,
+      iconLabel: item.iconLabel,
+      type: "launch",
+    })),
+    ...(whmcsProject ? [whmcsProject] : []),
+  ];
+
   return (
     <Section
       id="projects"
-      eyebrow="Selected Projects"
-      title="Product leadership from concept to release."
-      intro="Real cases across mobile, web, launch, migration, growth, and app store presence — shaped through product direction, delivery ownership, and hands-on execution."
+      eyebrow="Selected Work"
+      title="Product work, launches, and store presence in one view."
+      intro="A compact catalog of larger product work and smaller publishing launches, with the role made explicit on every card."
     >
       <div className="project-stack">
-        {projects.map((project, index) => (
+        {workItems.map((project, index) => (
           <article
-            className={`project-card reveal ${project.featured ? "is-featured" : ""} ${
-              project.images?.length || project.systemSummary ? "has-media" : "no-media"
-            }`}
+            className={`project-card project-card-compact reveal ${project.featured ? "is-featured" : ""} ${
+              project.type === "launch" ? "project-card-launch" : ""
+            } ${project.hideThumbnail ? "project-card-no-thumb" : ""}`}
             key={project.name}
-            style={{ "--reveal-delay": `${index * 80}ms` }}
+            style={{ "--reveal-delay": `${Math.min(index, 8) * 45}ms` }}
           >
-            <ProjectMedia project={project} />
+            <ProjectThumbnail project={project} />
             <div className="project-content">
               <div className="project-heading-row">
                 <span className="project-label">{project.category}</span>
@@ -1686,47 +1710,64 @@ function Projects() {
               ) : null}
               <p>{project.summary}</p>
 
-              <dl className="project-details">
-                <div>
-                  <dt>Role</dt>
-                  <dd>{project.role}</dd>
+              <div className="project-compact-meta">
+                <span>{project.role}</span>
+                <span>{project.impact[0]}</span>
+              </div>
+              {project.links?.length ? (
+                <div className="project-links">
+                  {project.links.map((link) => (
+                    <a href={link.href} key={link.href} target="_blank" rel="noreferrer">
+                      {link.label}
+                    </a>
+                  ))}
                 </div>
-                {project.scope?.length ? (
-                  <div className="project-scope-block">
-                    <dt>Focus</dt>
-                    <dd>
-                      <ul>
-                        {project.scope.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                    </dd>
-                  </div>
-                ) : null}
-                <div>
-                  <dt>Impact</dt>
-                  <dd>{project.impact[0]}</dd>
-                </div>
-                {project.links?.length ? (
-                  <div>
-                    <dt>Links</dt>
-                    <dd className="project-links">
-                      {project.links.map((link) => (
-                        <a href={link.href} key={link.href} target="_blank" rel="noreferrer">
-                          {link.label}
-                        </a>
-                      ))}
-                    </dd>
-                  </div>
-                ) : null}
-              </dl>
+              ) : null}
             </div>
-            <span className="project-index">0{index + 1}</span>
+            <span className="project-index">{String(index + 1).padStart(2, "0")}</span>
           </article>
         ))}
       </div>
     </Section>
   );
+}
+
+function ProjectThumbnail({ project }) {
+  if (project.hideThumbnail) {
+    return null;
+  }
+
+  const thumbnail = project.images?.[0] || project.backdropImages?.[0];
+
+  if (project.icon || project.iconLabel) {
+    return (
+      <figure className="project-thumb project-thumb-icon">
+        {project.icon ? <img src={project.icon} alt="" loading="lazy" decoding="async" /> : <span>{project.iconLabel}</span>}
+      </figure>
+    );
+  }
+
+  if (thumbnail) {
+    return (
+      <figure
+        className={`project-thumb project-thumb-image ${project.visualVariant ? `project-thumb-${project.visualVariant}` : ""}`}
+      >
+        <img src={thumbnail.src} alt={thumbnail.alt} loading="lazy" decoding="async" />
+      </figure>
+    );
+  }
+
+  if (project.systemSummary) {
+    return (
+      <div className="project-thumb project-thumb-summary" aria-hidden="true">
+        <span>{project.systemSummary.from}</span>
+        <IconArrow size={18} />
+        <span>{project.systemSummary.to}</span>
+      </div>
+    );
+  }
+
+  return null;
 }
 
 function Help() {
