@@ -90,7 +90,7 @@ const privacyContact = {
 };
 
 const gameLanding = {
-  title: "Puzzle Game",
+  title: "Easy Jigsaw Puzzles",
   slug: "puzzle-game",
   isDraft: true,
   legalPublished: true,
