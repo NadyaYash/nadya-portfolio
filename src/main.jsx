@@ -34,6 +34,58 @@ const navItems = [
   { label: "Contact", href: "#contact" },
 ];
 
+const legalNotice = [
+  {
+    label: "Business Owner",
+    value: "Nadzeya Yashchuk",
+  },
+  {
+    label: "Business Type",
+    value: "Sole Proprietor (Einzelunternehmer)",
+  },
+  {
+    label: "Business Activity (Gewerbewortlaut)",
+    value: "Services in automated data processing and information technology",
+  },
+  {
+    label: "GISA Registration Number",
+    value: "38969065",
+  },
+  {
+    label: "Address",
+    value: "Käferheimerstraße 153b / Tür 12, 5071 Wals-Siezenheim, Austria",
+  },
+  {
+    label: "Email",
+    value: "contact@nadzeyayashchuk.com",
+    href: "mailto:contact@nadzeyayashchuk.com",
+  },
+  {
+    label: "Phone",
+    value: "+43 660 1212508",
+    href: "tel:+436601212508",
+  },
+  {
+    label: "Registered at",
+    value: "Bezirkshauptmannschaft Salzburg-Umgebung",
+  },
+  {
+    label: "Member of",
+    value: "Austrian Economic Chamber (WKO)",
+    href: "https://www.wko.at/",
+  },
+  {
+    label: "VAT ID",
+    value: "Not applicable (Kleinunternehmer regulation)",
+  },
+];
+
+const privacyContact = {
+  name: "Nadzeya Yashchuk",
+  address: "Käferheimerstraße 153b / Tür 12, 5071 Wals-Siezenheim, Austria",
+  email: "contact@nadzeyayashchuk.com",
+};
+
 const helpAreas = [
   {
     title: "Turn messy input into a clear plan",
@@ -532,6 +584,8 @@ const teamMembers = [
 ];
 
 function App() {
+  const [path, setPath] = useState(() => window.location.pathname);
+
   useEffect(() => {
     const revealElements = document.querySelectorAll(".reveal");
 
@@ -561,6 +615,30 @@ function App() {
       observer.disconnect();
     };
   }, []);
+
+  useEffect(() => {
+    const handleNavigation = () => {
+      setPath(window.location.pathname);
+      window.scrollTo({ top: 0 });
+    };
+
+    window.addEventListener("popstate", handleNavigation);
+
+    return () => {
+      window.removeEventListener("popstate", handleNavigation);
+    };
+  }, []);
+
+  if (path === "/impressum" || path === "/privacy") {
+    return (
+      <main>
+        <Header />
+        {path === "/impressum" ? <LegalNoticePage /> : <PrivacyPolicyPage />}
+        <Footer />
+        <ScrollTopButton />
+      </main>
+    );
+  }
 
   return (
     <main>
@@ -697,7 +775,7 @@ function Header() {
           {navItems.map((item) => (
             <a
               key={item.href}
-              href={item.href}
+              href={window.location.pathname === "/" ? item.href : `/${item.href}`}
               aria-current={activeHash === item.href ? "page" : undefined}
               onClick={() => handleNavClick(item.href)}
             >
@@ -710,6 +788,198 @@ function Header() {
         </a>
       </div>
     </header>
+  );
+}
+
+function LegalNoticePage() {
+  return (
+    <section className="legal-page section">
+      <div className="section-inner">
+        <div className="legal-shell">
+          <p className="eyebrow">Impressum</p>
+          <h1>Impressum / Legal Notice</h1>
+          <p className="legal-intro">
+            Information according to Austrian legal disclosure requirements for this website.
+          </p>
+
+          <dl className="legal-list">
+            {legalNotice.map((item) => (
+              <div className="legal-row" key={item.label}>
+                <dt>{item.label}</dt>
+                <dd>
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      target={item.href.startsWith("http") ? "_blank" : undefined}
+                      rel={item.href.startsWith("http") ? "noreferrer" : undefined}
+                    >
+                      {item.value}
+                    </a>
+                  ) : (
+                    item.value
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+
+          <div className="legal-note">
+            <h2>Responsible for Content</h2>
+            <p>Nadzeya Yashchuk</p>
+          </div>
+
+          <a className="button secondary legal-back" href="/">
+            Back to portfolio
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PrivacyPolicyPage() {
+  return (
+    <section className="legal-page section">
+      <div className="section-inner">
+        <div className="legal-shell legal-shell-wide">
+          <p className="eyebrow">Privacy Policy</p>
+          <h1>Privacy Policy</h1>
+          <p className="legal-intro">Last updated: May 25, 2026</p>
+
+          <div className="privacy-content">
+            <section>
+              <h2>1. Controller</h2>
+              <p>
+                The controller responsible for the processing of personal data on this website is:
+              </p>
+              <address>
+                <strong>{privacyContact.name}</strong>
+                <br />
+                {privacyContact.address}
+                <br />
+                Email:{" "}
+                <a href={`mailto:${privacyContact.email}`}>{privacyContact.email}</a>
+              </address>
+            </section>
+
+            <section>
+              <h2>2. Scope of this Privacy Policy</h2>
+              <p>
+                This Privacy Policy applies to the website operated under nadyeyayashchuk.com and to the
+                information made available through this portfolio website. Separate privacy policies may apply to
+                individual games, mobile apps, or third-party platforms linked from this website.
+              </p>
+            </section>
+
+            <section>
+              <h2>3. Access Data and Server Log Files</h2>
+              <p>
+                When you visit this website, technical access data may be processed automatically by the hosting
+                provider in server log files. This may include the IP address, date and time of access, requested
+                page or file, browser type and version, operating system, referrer URL, transferred data volume,
+                and status codes.
+              </p>
+              <p>
+                This processing is necessary to make the website available, maintain technical security, detect
+                misuse, and ensure stable operation. The legal basis is the legitimate interest under Article
+                6(1)(f) GDPR.
+              </p>
+            </section>
+
+            <section>
+              <h2>4. Contact by Email or Phone</h2>
+              <p>
+                If you contact me by email or phone, the personal data you provide, such as your name, email
+                address, phone number, message content, and any related communication details, will be processed
+                to respond to your request and handle the communication.
+              </p>
+              <p>
+                Depending on the nature of your request, the legal basis is Article 6(1)(b) GDPR for pre-contractual
+                or contractual communication, or Article 6(1)(f) GDPR for the legitimate interest in responding to
+                inquiries.
+              </p>
+            </section>
+
+            <section>
+              <h2>5. Cookies, Analytics, and Tracking</h2>
+              <p>
+                This website does not currently use analytics tools, advertising trackers, or non-essential cookies
+                intentionally placed by the website operator. If this changes, this Privacy Policy will be updated
+                and, where legally required, consent will be requested before such technologies are used.
+              </p>
+            </section>
+
+            <section>
+              <h2>6. Links to Third-Party Websites and Stores</h2>
+              <p>
+                This website contains links to third-party websites and app stores, including Apple App Store,
+                Google Play, LinkedIn, Contra, WKO, and project websites. When you open these links, the privacy
+                policies and data processing practices of the respective providers apply. I have no control over
+                their processing of personal data.
+              </p>
+            </section>
+
+            <section>
+              <h2>7. Recipients and Processors</h2>
+              <p>
+                Personal data may be processed by technical service providers that are necessary for operating this
+                website, in particular hosting and infrastructure providers. Such providers process data only to the
+                extent necessary for website operation and security.
+              </p>
+            </section>
+
+            <section>
+              <h2>8. Retention</h2>
+              <p>
+                Server log files are retained only for as long as necessary for technical operation, security, and
+                troubleshooting. Communication data is retained for as long as necessary to process the request and
+                to comply with applicable statutory retention obligations or to establish, exercise, or defend legal
+                claims.
+              </p>
+            </section>
+
+            <section>
+              <h2>9. Your Rights under the GDPR</h2>
+              <p>
+                Subject to the legal requirements, you have the right to access, rectification, erasure, restriction
+                of processing, data portability, and objection to processing based on legitimate interests. If
+                processing is based on consent, you may withdraw that consent at any time with effect for the future.
+              </p>
+              <p>
+                To exercise your rights, please contact{" "}
+                <a href={`mailto:${privacyContact.email}`}>{privacyContact.email}</a>.
+              </p>
+            </section>
+
+            <section>
+              <h2>10. Right to Lodge a Complaint</h2>
+              <p>
+                You also have the right to lodge a complaint with a supervisory authority. In Austria, the competent
+                authority is the Austrian Data Protection Authority:
+              </p>
+              <p>
+                Österreichische Datenschutzbehörde, Barichgasse 40-42, 1030 Vienna, Austria,{" "}
+                <a href="https://www.dsb.gv.at/" target="_blank" rel="noreferrer">
+                  www.dsb.gv.at
+                </a>
+              </p>
+            </section>
+
+            <section>
+              <h2>11. Updates to this Privacy Policy</h2>
+              <p>
+                This Privacy Policy may be updated if the website, the technologies used, or legal requirements
+                change. The current version is available on this page.
+              </p>
+            </section>
+          </div>
+
+          <a className="button secondary legal-back" href="/">
+            Back to portfolio
+          </a>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -1056,10 +1326,14 @@ function Team() {
 function Footer() {
   return (
     <footer className="site-footer">
-      <div className="section-inner">
+      <div className="section-inner footer-inner">
         <p>
           © {new Date().getFullYear()} <strong>Nadya Yashchuk.</strong> Product work with clearer direction.
         </p>
+        <div className="footer-links">
+          <a href="/impressum">Impressum / Legal Notice</a>
+          <a href="/privacy">Privacy Policy</a>
+        </div>
       </div>
     </footer>
   );
