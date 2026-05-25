@@ -93,6 +93,8 @@ const gameLanding = {
   title: "Puzzle Game",
   slug: "puzzle-game",
   isDraft: true,
+  legalPublished: true,
+  supportPublished: true,
   category: "Puzzle game",
   period: "2026",
   tagline: "A focused mobile game landing page scaffold, ready for final copy, screenshots, and store links.",
@@ -1124,7 +1126,7 @@ function GameLegalPage({ game, type }) {
   const isPrivacy = type === "privacy";
   const title = isPrivacy ? `${game.title} Privacy Policy` : `${game.title} Terms of Use`;
 
-  if (game.isDraft) {
+  if (game.isDraft && !game.legalPublished) {
     return (
       <GameComingSoonPage
         game={game}
@@ -1543,7 +1545,7 @@ function GameTermsContent({ game }) {
 }
 
 function GameSupportPage({ game }) {
-  if (game.isDraft) {
+  if (game.isDraft && !game.supportPublished) {
     return (
       <GameComingSoonPage
         game={game}
