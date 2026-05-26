@@ -29,6 +29,8 @@ import sudokuJustPlayIcon from "../icon/SudokuJustPlay.png";
 import sudokuByPuzzleFreeIcon from "../icon/SudokubyPuzzlefree.png";
 import kidsSudokuIcon from "../icon/kidsSudoku.png";
 import morseIcon from "../icon/morse.png";
+import nomadFlowMoneyIcon from "./assets/nomad-flow-money-icon.png";
+import clockWidgetsIcon from "./assets/clock-widgets-icon.png";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -181,6 +183,41 @@ const storeLaunches = [
           ],
         },
       ]),
+  {
+    title: "Nomad Flow: Money",
+    category: "Money tracking app",
+    period: "2026",
+    icon: nomadFlowMoneyIcon,
+    note: "Publisher",
+    summary:
+      "Private money tracking for nomads living between countries, currencies, cash, cards, and bases — no account, no cloud ledger, no ads.",
+    impact: ["Publisher-side positioning for a private, no-account finance utility."],
+    links: [
+      {
+        label: "Web",
+        href: "https://nomadflow.money/",
+      },
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/nomad-flow-money/id6770238544",
+      },
+    ],
+  },
+  {
+    title: "Clock Widgets: Flip & Digital",
+    category: "Clock widgets app",
+    period: "2026",
+    icon: clockWidgetsIcon,
+    note: "Publisher",
+    summary: "Clock widgets app where I supported publisher-side positioning and web presence.",
+    impact: ["Publisher-side support for the app website and public presence."],
+    links: [
+      {
+        label: "Web",
+        href: "https://clockwidgets.com/",
+      },
+    ],
+  },
   {
     title: "Kids Sudoku: Just Play",
     category: "Kids puzzle",
@@ -1693,8 +1730,10 @@ function Projects() {
       category: item.category,
       period: item.period,
       role: item.note,
-      summary: `${item.category} where I supported publishing, store presence, launch packaging, and release readiness.`,
-      impact: ["Supported a clearer store presence and publisher-side launch execution."],
+      summary:
+        item.summary ||
+        `${item.category} where I supported publishing, store presence, launch packaging, and release readiness.`,
+      impact: item.impact || ["Supported a clearer store presence and publisher-side launch execution."],
       links: item.links,
       icon: item.icon,
       iconLabel: item.iconLabel,
