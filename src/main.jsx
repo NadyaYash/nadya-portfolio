@@ -163,6 +163,15 @@ const helpAreas = [
   },
 ];
 
+const getLaunchSlug = (item) =>
+  item.title
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+const getLaunchPath = (item) => `/apps/${getLaunchSlug(item)}`;
+
 const storeLaunches = [
   ...(gameLanding.isDraft
     ? []
@@ -687,6 +696,8 @@ const teamMembers = [
 
 function App() {
   const [path, setPath] = useState(() => window.location.pathname);
+  const launchSlug = path.startsWith("/apps/") ? path.replace(/^\/apps\//, "").replace(/\/$/, "") : "";
+  const launchPage = launchSlug ? storeLaunches.find((item) => getLaunchSlug(item) === launchSlug) : null;
 
   useEffect(() => {
     const revealElements = document.querySelectorAll(".reveal");
@@ -731,12 +742,18 @@ function App() {
     };
   }, []);
 
-  if (path === "/impressum" || path === "/privacy" || path.startsWith(`/games/${gameLanding.slug}`)) {
+  if (
+    path === "/impressum" ||
+    path === "/privacy" ||
+    path.startsWith(`/games/${gameLanding.slug}`) ||
+    path.startsWith("/apps/")
+  ) {
     return (
       <main>
         <Header />
         {path === "/impressum" ? <LegalNoticePage /> : null}
         {path === "/privacy" ? <PrivacyPolicyPage /> : null}
+        {path.startsWith("/apps/") ? <AppLandingPage app={launchPage} /> : null}
         {path === `/games/${gameLanding.slug}` ? <GameLandingPage game={gameLanding} /> : null}
         {path === `/games/${gameLanding.slug}/privacy` ? (
           <GameLegalPage game={gameLanding} type="privacy" />
@@ -1151,6 +1168,76 @@ function GameLandingPage({ game }) {
                   {link.label}
                 </a>
               ))}
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AppLandingPage({ app }) {
+  if (!app) {
+    return (
+      <GameComingSoonPage
+        title="App page not found"
+        message="This app page is not available. Please return to the work section."
+      />
+    );
+  }
+
+  const summary =
+    app.summary || `${app.category} where I supported publishing, store presence, launch packaging, and release readiness.`;
+  const impact = app.impact || ["Supported a clearer store presence and publisher-side launch execution."];
+  const appLinks = app.links || [];
+
+  return (
+    <section className="game-page section">
+      <div className="section-inner">
+        <div className="game-hero">
+          <div className="game-icon game-icon-image" aria-hidden="true">
+            {app.icon ? <img src={app.icon} alt="" /> : <span>{app.iconLabel}</span>}
+          </div>
+          <div className="game-hero-copy">
+            <p className="eyebrow">{app.category}</p>
+            <h1>{app.title}</h1>
+            <p className="role-line">{app.note}</p>
+            <p>{summary}</p>
+            {appLinks.length ? (
+              <div className="game-actions">
+                {appLinks.map((link) => (
+                  <a className="button primary" href={link.href} key={link.href} target="_blank" rel="noreferrer">
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        </div>
+
+        <div className="game-info-grid">
+          <section className="game-info-panel">
+            <h2>Role</h2>
+            <ul>
+              <li>{app.note}</li>
+              {impact.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </section>
+          <section className="game-info-panel">
+            <h2>Links</h2>
+            <div className="game-link-list">
+              {appLinks.length ? (
+                appLinks.map((link) => (
+                  <a href={link.href} key={link.href} target="_blank" rel="noreferrer">
+                    {link.label}
+                  </a>
+                ))
+              ) : (
+                <span className="game-link-note">Links will be added when available.</span>
+              )}
+              <a href="/#projects">Back to Work</a>
             </div>
           </section>
         </div>
@@ -1734,7 +1821,13 @@ function Projects() {
         item.summary ||
         `${item.category} where I supported publishing, store presence, launch packaging, and release readiness.`,
       impact: item.impact || ["Supported a clearer store presence and publisher-side launch execution."],
-      links: item.links,
+      links: [
+        {
+          label: "Learn more",
+          href: getLaunchPath(item),
+        },
+        ...(item.links || []),
+      ],
       icon: item.icon,
       iconLabel: item.iconLabel,
       type: "launch",
@@ -1781,7 +1874,12 @@ function Projects() {
               {project.links?.length ? (
                 <div className="project-links">
                   {project.links.map((link) => (
-                    <a href={link.href} key={link.href} target="_blank" rel="noreferrer">
+                    <a
+                      href={link.href}
+                      key={link.href}
+                      target={link.href.startsWith("http") ? "_blank" : undefined}
+                      rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                    >
                       {link.label}
                     </a>
                   ))}
