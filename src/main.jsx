@@ -486,6 +486,12 @@ const projects = [
       },
     ],
     visualVariant: "flowblocks",
+    links: [
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/flowblocks-puzzle-game/id6762732976",
+      },
+    ],
     featured: true,
   },
   {
