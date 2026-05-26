@@ -153,7 +153,7 @@ const helpAreas = [
   },
   {
     title: "Shape app store presence",
-    text: "I help prepare apps for launch with clearer store structure, visuals, listing presentation, and release readiness that support conversion.",
+    text: "I help prepare apps for launch with clearer store structure, QA testing, listing presentation, and release readiness that support conversion.",
     icon: "pulse",
   },
   {
@@ -204,10 +204,10 @@ const storeLaunches = [
     category: "Money tracking app",
     period: "2026",
     icon: nomadFlowMoneyIcon,
-    note: "Publisher",
+    note: "Publisher & QA",
     summary:
       "Private money tracking for nomads living between countries, currencies, cash, cards, and bases — no account, no cloud ledger, no ads.",
-    impact: ["Publisher-side positioning for a private, no-account finance utility."],
+    impact: ["Publisher-side positioning, QA testing, and release readiness for a private finance utility."],
     links: [
       {
         label: "Web",
@@ -224,9 +224,9 @@ const storeLaunches = [
     category: "Clock widgets app",
     period: "2026",
     icon: clockWidgetsIcon,
-    note: "Publisher",
-    summary: "Clock widgets app where I supported publisher-side positioning and web presence.",
-    impact: ["Publisher-side support for the app website and public presence."],
+    note: "Publisher & QA",
+    summary: "Clock widgets app where I handled publisher-side positioning, QA testing, and web presence.",
+    impact: ["Publisher-side positioning, QA testing, and public launch presence."],
     links: [
       {
         label: "Web",
@@ -243,7 +243,7 @@ const storeLaunches = [
     category: "Kids puzzle",
     period: "2026",
     icon: kidsSudokuIcon,
-    note: "Store launch support",
+    note: "Publisher & QA",
     links: [
       {
         label: "Web",
@@ -264,7 +264,7 @@ const storeLaunches = [
     category: "Math game",
     period: "2026",
     icon: calcSprintIcon,
-    note: "Store presentation",
+    note: "Publisher & QA",
     links: [
       {
         label: "Web",
@@ -285,7 +285,7 @@ const storeLaunches = [
     category: "Puzzle",
     period: "2026",
     icon: sudokuJustPlayIcon,
-    note: "Publisher-side execution",
+    note: "Publisher & QA",
     links: [
       {
         label: "Web",
@@ -306,7 +306,7 @@ const storeLaunches = [
     category: "Puzzle",
     period: "2026",
     icon: sudokuByPuzzleFreeIcon,
-    note: "Publishing support",
+    note: "Publisher & QA",
     links: [
       {
         label: "Google Play",
@@ -319,7 +319,7 @@ const storeLaunches = [
     category: "Utility app",
     period: "2026",
     icon: morseIcon,
-    note: "Store packaging support",
+    note: "Publisher & QA",
     links: [
       {
         label: "Web",
@@ -336,7 +336,7 @@ const storeLaunches = [
     category: "Kids coloring app",
     period: "2026",
     icon: colorfulHeartsIcon,
-    note: "Store launch support",
+    note: "Publisher & QA",
     links: [
       {
         label: "Web",
@@ -353,7 +353,7 @@ const storeLaunches = [
     category: "Coloring app",
     period: "2026",
     icon: pixelPaintIcon,
-    note: "Store launch support",
+    note: "Publisher & QA",
     links: [
       {
         label: "Web",
@@ -370,7 +370,7 @@ const storeLaunches = [
     category: "Creative app",
     period: "2026",
     icon: beadArtIcon,
-    note: "Store launch support",
+    note: "Publisher & QA",
     links: [
       {
         label: "Web",
@@ -387,7 +387,7 @@ const storeLaunches = [
     category: "City game",
     period: "2026",
     icon: gorodaOnlineIcon,
-    note: "Publishing support",
+    note: "Publisher & QA",
     links: [
       {
         label: "Web",
@@ -408,7 +408,7 @@ const storeLaunches = [
     category: "Utility app",
     period: "2026",
     icon: howLoudIcon,
-    note: "Publishing support",
+    note: "Publisher & QA",
     links: [
       {
         label: "Web",
@@ -425,7 +425,7 @@ const storeLaunches = [
     category: "Relationship app",
     period: "2026",
     icon: wiseHusbandIcon,
-    note: "Publishing support",
+    note: "Publisher & QA",
     links: [
       {
         label: "Web",
@@ -442,7 +442,7 @@ const storeLaunches = [
     category: "Puzzle app",
     period: "2026",
     icon: slidePuzzleIcon,
-    note: "Publishing support",
+    note: "Publisher & QA",
     links: [
       {
         label: "Web",
@@ -1202,8 +1202,9 @@ function AppLandingPage({ app }) {
   }
 
   const summary =
-    app.summary || `${app.category} where I supported publishing, store presence, launch packaging, and release readiness.`;
-  const impact = app.impact || ["Supported a clearer store presence and publisher-side launch execution."];
+    app.summary ||
+    `${app.category} where I handled publishing, QA testing, store presence, launch packaging, and release readiness.`;
+  const impact = app.impact || ["Handled publisher-side launch execution, QA testing, and store readiness."];
   const appLinks = app.links || [];
 
   return (
@@ -1926,7 +1927,7 @@ function Projects() {
       period: item.period,
       role: item.note,
       summary: getLaunchCardSummary(item),
-      impact: item.impact || ["Supported a clearer store presence and publisher-side launch execution."],
+      impact: item.impact || ["Handled publisher-side launch execution, QA testing, and store readiness."],
       links: [
         {
           label: "Learn more",
@@ -2100,8 +2101,8 @@ function StoreLaunches() {
     <Section
       id="launches"
       eyebrow="Publishing & Store Launches"
-      title="Additional mobile titles where I supported publishing and store presence."
-      intro="Compact launch support across puzzle, kids, and utility apps — focused on store presentation, listing packaging, and publisher-side execution."
+      title="Additional mobile titles where I handled publishing, QA testing, and store presence."
+      intro="Compact launch support across puzzle, kids, and utility apps — focused on QA testing, store presentation, listing packaging, and publisher-side execution."
     >
       <div className="launch-grid">
         {storeLaunches.map((item, index) => {
