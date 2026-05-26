@@ -232,6 +232,10 @@ const storeLaunches = [
         label: "Web",
         href: "https://clockwidgets.com/",
       },
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/clock-widgets-flip-digital/id6772222315",
+      },
     ],
   },
   {
