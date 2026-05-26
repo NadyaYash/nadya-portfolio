@@ -163,14 +163,21 @@ const helpAreas = [
   },
 ];
 
-const getLaunchSlug = (item) =>
-  item.title
+const getTitleSlug = (title) =>
+  title
     .toLowerCase()
     .replace(/&/g, "and")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
+const getLaunchSlug = (item) => getTitleSlug(item.title);
 const getLaunchPath = (item) => `/apps/${getLaunchSlug(item)}`;
+const getProjectSlug = (project) => getTitleSlug(project.name);
+const getProjectPath = (project) => `/work/${getProjectSlug(project)}`;
+const getFirstSentence = (text) => {
+  const firstSentence = text?.split(/[.!?]/).find(Boolean)?.trim();
+  return firstSentence ? `${firstSentence.replace(/,$/, "")}.` : "";
+};
 
 const storeLaunches = [
   ...(gameLanding.isDraft
@@ -698,6 +705,8 @@ function App() {
   const [path, setPath] = useState(() => window.location.pathname);
   const launchSlug = path.startsWith("/apps/") ? path.replace(/^\/apps\//, "").replace(/\/$/, "") : "";
   const launchPage = launchSlug ? storeLaunches.find((item) => getLaunchSlug(item) === launchSlug) : null;
+  const projectSlug = path.startsWith("/work/") ? path.replace(/^\/work\//, "").replace(/\/$/, "") : "";
+  const projectPage = projectSlug ? projects.find((item) => getProjectSlug(item) === projectSlug) : null;
 
   useEffect(() => {
     const revealElements = document.querySelectorAll(".reveal");
@@ -746,7 +755,8 @@ function App() {
     path === "/impressum" ||
     path === "/privacy" ||
     path.startsWith(`/games/${gameLanding.slug}`) ||
-    path.startsWith("/apps/")
+    path.startsWith("/apps/") ||
+    path.startsWith("/work/")
   ) {
     return (
       <main>
@@ -754,6 +764,7 @@ function App() {
         {path === "/impressum" ? <LegalNoticePage /> : null}
         {path === "/privacy" ? <PrivacyPolicyPage /> : null}
         {path.startsWith("/apps/") ? <AppLandingPage app={launchPage} /> : null}
+        {path.startsWith("/work/") ? <WorkLandingPage project={projectPage} /> : null}
         {path === `/games/${gameLanding.slug}` ? <GameLandingPage game={gameLanding} /> : null}
         {path === `/games/${gameLanding.slug}/privacy` ? (
           <GameLegalPage game={gameLanding} type="privacy" />
@@ -1236,6 +1247,86 @@ function AppLandingPage({ app }) {
                 ))
               ) : (
                 <span className="game-link-note">Links will be added when available.</span>
+              )}
+              <a href="/#projects">Back to Work</a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WorkLandingPage({ project }) {
+  if (!project) {
+    return (
+      <GameComingSoonPage
+        title="Work page not found"
+        message="This work page is not available. Please return to the work section."
+      />
+    );
+  }
+
+  const details = project.scope || project.workedOn || project.keyPoints || [];
+  const images = project.images || project.backdropImages || [];
+
+  return (
+    <section className="game-page section">
+      <div className="section-inner">
+        <div className="game-hero">
+          <div className="game-icon game-icon-image" aria-hidden="true">
+            {project.icon ? <img src={project.icon} alt="" /> : <span>{project.iconLabel}</span>}
+          </div>
+          <div className="game-hero-copy">
+            <p className="eyebrow">{project.category}</p>
+            <h1>{project.name}</h1>
+            <p className="role-line">{project.role}</p>
+            <p>{project.summary}</p>
+            {project.links?.length ? (
+              <div className="game-actions">
+                {project.links.map((link) => (
+                  <a className="button primary" href={link.href} key={link.href} target="_blank" rel="noreferrer">
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        </div>
+
+        {images.length ? (
+          <div className="game-screenshot-grid" aria-label={`${project.name} visuals`}>
+            {images.slice(0, 3).map((image, index) => (
+              <figure className={`game-screenshot-image ${index === 0 ? "is-wide" : ""}`} key={image.src}>
+                <img src={image.src} alt={image.alt} />
+              </figure>
+            ))}
+          </div>
+        ) : null}
+
+        <div className="game-info-grid">
+          <section className="game-info-panel">
+            <h2>What I did</h2>
+            <ul>
+              {details.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+              {(project.impact || []).map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </section>
+          <section className="game-info-panel">
+            <h2>Links</h2>
+            <div className="game-link-list">
+              {project.links?.length ? (
+                project.links.map((link) => (
+                  <a href={link.href} key={link.href} target="_blank" rel="noreferrer">
+                    {link.label}
+                  </a>
+                ))
+              ) : (
+                <span className="game-link-note">Public links will be added when available.</span>
               )}
               <a href="/#projects">Back to Work</a>
             </div>
@@ -1787,6 +1878,9 @@ function About() {
 function Projects() {
   const whmcsProject = projects.find((project) => project.name === "WHMCS migration / optimization");
   const featuredProjects = projects.filter((project) => project.name !== "WHMCS migration / optimization");
+  const getProjectCardSummary = (project) => project.cardSummary || getFirstSentence(project.summary);
+  const getLaunchCardSummary = (item) =>
+    item.cardSummary || getFirstSentence(item.summary) || `${item.category} publishing support.`;
   const draftGameItem = gameLanding.isDraft
     ? [
         {
@@ -1811,15 +1905,23 @@ function Projects() {
     : [];
   const workItems = [
     ...draftGameItem,
-    ...featuredProjects,
+    ...featuredProjects.map((project) => ({
+      ...project,
+      summary: getProjectCardSummary(project),
+      links: [
+        {
+          label: "Learn more",
+          href: getProjectPath(project),
+        },
+        ...(project.links || []),
+      ],
+    })),
     ...storeLaunches.map((item) => ({
       name: item.title,
       category: item.category,
       period: item.period,
       role: item.note,
-      summary:
-        item.summary ||
-        `${item.category} where I supported publishing, store presence, launch packaging, and release readiness.`,
+      summary: getLaunchCardSummary(item),
       impact: item.impact || ["Supported a clearer store presence and publisher-side launch execution."],
       links: [
         {
@@ -1832,7 +1934,21 @@ function Projects() {
       iconLabel: item.iconLabel,
       type: "launch",
     })),
-    ...(whmcsProject ? [whmcsProject] : []),
+    ...(whmcsProject
+      ? [
+          {
+            ...whmcsProject,
+            summary: getProjectCardSummary(whmcsProject),
+            links: [
+              {
+                label: "Learn more",
+                href: getProjectPath(whmcsProject),
+              },
+              ...(whmcsProject.links || []),
+            ],
+          },
+        ]
+      : []),
   ];
 
   return (
