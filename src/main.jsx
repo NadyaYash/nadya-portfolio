@@ -1969,6 +1969,18 @@ function Projects() {
               project.type === "launch" ? "project-card-launch" : ""
             } ${project.hideThumbnail ? "project-card-no-thumb" : ""} ${project.isDraft ? "project-card-draft" : ""}`}
             key={project.name}
+            role="link"
+            tabIndex={0}
+            aria-label={`Learn more about ${project.name}`}
+            onClick={() => {
+              window.location.href = project.links[0].href;
+            }}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                window.location.href = project.links[0].href;
+              }
+            }}
             style={{ "--reveal-delay": `${Math.min(index, 8) * 45}ms` }}
           >
             <ProjectThumbnail project={project} />
@@ -1999,6 +2011,9 @@ function Projects() {
                       key={link.href}
                       target={link.href.startsWith("http") ? "_blank" : undefined}
                       rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                      }}
                     >
                       {link.label}
                     </a>
