@@ -1298,6 +1298,39 @@ function AppLandingPage({ app }) {
 }
 
 function WorkLandingPage({ project }) {
+  const [activeImageIndex, setActiveImageIndex] = useState(null);
+  const details = project?.scope || project?.workedOn || project?.keyPoints || [];
+  const images = project?.images || project?.backdropImages || [];
+  const activeImage = activeImageIndex !== null ? images[activeImageIndex] : null;
+
+  useEffect(() => {
+    if (!activeImage) {
+      return undefined;
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setActiveImageIndex(null);
+      }
+
+      if (event.key === "ArrowRight") {
+        setActiveImageIndex((currentIndex) => (currentIndex + 1) % images.length);
+      }
+
+      if (event.key === "ArrowLeft") {
+        setActiveImageIndex((currentIndex) => (currentIndex - 1 + images.length) % images.length);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    document.body.classList.add("has-lightbox");
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.classList.remove("has-lightbox");
+    };
+  }, [activeImage, images.length]);
+
   if (!project) {
     return (
       <GameComingSoonPage
@@ -1306,9 +1339,6 @@ function WorkLandingPage({ project }) {
       />
     );
   }
-
-  const details = project.scope || project.workedOn || project.keyPoints || [];
-  const images = project.images || project.backdropImages || [];
 
   return (
     <section className="game-page section">
@@ -1337,9 +1367,14 @@ function WorkLandingPage({ project }) {
         {images.length ? (
           <div className="game-screenshot-grid" aria-label={`${project.name} visuals`}>
             {images.map((image, index) => (
-              <figure className={`game-screenshot-image ${index === 0 ? "is-wide" : ""}`} key={image.src}>
+              <button
+                className="game-screenshot-thumb"
+                key={image.src}
+                type="button"
+                onClick={() => setActiveImageIndex(index)}
+              >
                 <img src={image.src} alt={image.alt} />
-              </figure>
+              </button>
             ))}
           </div>
         ) : null}
@@ -1373,6 +1408,48 @@ function WorkLandingPage({ project }) {
           </section>
         </div>
       </div>
+
+      {activeImage ? (
+        <div
+          className="image-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${project.name} screenshot viewer`}
+          onClick={() => setActiveImageIndex(null)}
+        >
+          <button className="lightbox-close" type="button" onClick={() => setActiveImageIndex(null)}>
+            Close
+          </button>
+          <button
+            className="lightbox-nav lightbox-nav-prev"
+            type="button"
+            aria-label="Previous screenshot"
+            onClick={(event) => {
+              event.stopPropagation();
+              setActiveImageIndex((currentIndex) => (currentIndex - 1 + images.length) % images.length);
+            }}
+          >
+            ‹
+          </button>
+          <figure className="lightbox-figure" onClick={(event) => event.stopPropagation()}>
+            <img src={activeImage.src} alt={activeImage.alt} />
+            <figcaption>
+              {activeImageIndex + 1} / {images.length}
+            </figcaption>
+          </figure>
+          <button
+            className="lightbox-nav lightbox-nav-next"
+            type="button"
+            aria-label="Next screenshot"
+            onClick={(event) => {
+              event.stopPropagation();
+              setActiveImageIndex((currentIndex) => (currentIndex + 1) % images.length);
+            }}
+          >
+            ›
+          </button>
+        </div>
+      ) : null}
     </section>
   );
 }
