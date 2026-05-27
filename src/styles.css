@@ -2214,9 +2214,7 @@ p {
   display: grid;
   place-items: center;
   flex: 0 0 auto;
-  width: clamp(108px, 11vw, 150px);
-  height: clamp(190px, 20vw, 270px);
-  overflow: hidden;
+  overflow: visible;
   min-height: 0;
   margin: 0;
   padding: 8px;
@@ -2238,9 +2236,9 @@ p {
 .game-screenshot-thumb img {
   display: block;
   width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
+  height: clamp(180px, 22vw, 300px);
+  max-width: min(26vw, 190px);
+  max-height: none;
   object-fit: contain;
 }
 
@@ -2717,8 +2715,12 @@ p {
   }
 
   .game-screenshot-thumb {
-    width: 104px;
-    height: 184px;
+    padding: 6px;
+  }
+
+  .game-screenshot-thumb img {
+    height: 190px;
+    max-width: 128px;
   }
 
   .image-lightbox {
