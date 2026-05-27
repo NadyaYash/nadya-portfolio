@@ -491,6 +491,10 @@ const projects = [
         label: "App Store",
         href: "https://apps.apple.com/us/app/flowblocks-puzzle-game/id6762732976",
       },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.flowblocks&pli=1",
+      },
     ],
     featured: true,
   },
