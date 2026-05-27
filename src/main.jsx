@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import "./styles.css";
 import profilePhoto from "../1701113988652.jpeg";
 import flowblocksStore from "./assets/flowblocks-store.jpg";
-import flowblocksTablet from "./assets/flowblocks-tablet.jpg";
 import flowblocksIcon from "./assets/flowblocks-icon.png";
 import flowblocksScreen01 from "./assets/flowblocks-screen-01.jpg";
 import flowblocksScreen02 from "./assets/flowblocks-screen-02.jpg";
@@ -481,10 +480,6 @@ const projects = [
     ],
     icon: flowblocksIcon,
     images: [
-      {
-        src: flowblocksTablet,
-        alt: "FlowBlocks gameplay shown across large-screen layouts",
-      },
       {
         src: flowblocksStore,
         alt: "FlowBlocks App Store product page and visual identity",
