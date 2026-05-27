@@ -5,6 +5,11 @@ import profilePhoto from "../1701113988652.jpeg";
 import flowblocksStore from "./assets/flowblocks-store.jpg";
 import flowblocksTablet from "./assets/flowblocks-tablet.jpg";
 import flowblocksIcon from "./assets/flowblocks-icon.png";
+import flowblocksScreen01 from "./assets/flowblocks-screen-01.jpg";
+import flowblocksScreen02 from "./assets/flowblocks-screen-02.jpg";
+import flowblocksScreen04 from "./assets/flowblocks-screen-04.jpg";
+import flowblocksScreen05 from "./assets/flowblocks-screen-05.jpg";
+import flowblocksScreen06 from "./assets/flowblocks-screen-06.jpg";
 import puzzleFreeWeb from "./assets/puzzlefree-web.jpg";
 import puzzleFreeDaily from "./assets/puzzlefree-daily.jpg";
 import puzzleFreeGrid from "./assets/puzzlefree-grid.jpg";
@@ -483,6 +488,26 @@ const projects = [
       {
         src: flowblocksStore,
         alt: "FlowBlocks App Store product page and visual identity",
+      },
+      {
+        src: flowblocksScreen06,
+        alt: "FlowBlocks gameplay screenshot with the message Easy to start. Hard to put down.",
+      },
+      {
+        src: flowblocksScreen02,
+        alt: "FlowBlocks gameplay screenshot with the message Simple rules. Endless depth.",
+      },
+      {
+        src: flowblocksScreen05,
+        alt: "FlowBlocks gameplay screenshot with the message Even the blocks approve.",
+      },
+      {
+        src: flowblocksScreen01,
+        alt: "FlowBlocks gameplay screenshot with the message Find your flow.",
+      },
+      {
+        src: flowblocksScreen04,
+        alt: "FlowBlocks high score gameplay screenshot with the message Beat your best.",
       },
     ],
     visualVariant: "flowblocks",
@@ -1311,7 +1336,7 @@ function WorkLandingPage({ project }) {
 
         {images.length ? (
           <div className="game-screenshot-grid" aria-label={`${project.name} visuals`}>
-            {images.slice(0, 3).map((image, index) => (
+            {images.map((image, index) => (
               <figure className={`game-screenshot-image ${index === 0 ? "is-wide" : ""}`} key={image.src}>
                 <img src={image.src} alt={image.alt} />
               </figure>
