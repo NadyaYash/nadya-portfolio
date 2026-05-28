@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 import profilePhoto from "../1701113988652.jpeg";
+import easyJigsawPuzzlesIcon from "./assets/easy-jigsaw-puzzles-icon.png";
 import flowblocksStore from "./assets/flowblocks-store.jpg";
 import flowblocksIcon from "./assets/flowblocks-icon.png";
 import flowblocksScreen01 from "./assets/flowblocks-screen-01.jpg";
@@ -98,23 +99,20 @@ const privacyContact = {
 const gameLanding = {
   title: "Easy Jigsaw Puzzles",
   slug: "puzzle-game",
-  isDraft: true,
+  isDraft: false,
   legalPublished: true,
   supportPublished: true,
   category: "Puzzle game",
   period: "2026",
-  tagline: "A focused mobile game landing page scaffold, ready for final copy, screenshots, and store links.",
+  tagline: "A calm jigsaw puzzle game for relaxing play.",
   summary:
-    "This page is prepared as the public home for a new game that does not need a separate standalone website.",
-  iconLabel: "Soon",
+    "Easy Jigsaw Puzzles brings classic picture puzzles to mobile with simple controls, offline play, and an easy path into a quiet puzzle session.",
+  icon: easyJigsawPuzzlesIcon,
+  iconLabel: "Puzzle",
   storeLinks: [
     {
       label: "App Store",
-      href: "#app-store-coming-soon",
-    },
-    {
-      label: "Google Play",
-      href: "#google-play-coming-soon",
+      href: "https://apps.apple.com/us/app/easy-jigsaw-puzzles/id6772980224",
     },
   ],
   legalLinks: [
@@ -131,7 +129,7 @@ const gameLanding = {
       href: "/games/puzzle-game/support",
     },
   ],
-  highlights: ["Simple public game page", "Store-ready link structure", "Dedicated legal pages"],
+  highlights: ["Relaxed jigsaw puzzle play", "Offline availability", "Privacy, terms, and support pages ready for App Store review"],
 };
 
 const helpAreas = [
@@ -191,8 +189,11 @@ const storeLaunches = [
           title: gameLanding.title,
           category: gameLanding.category,
           period: gameLanding.period,
+          icon: gameLanding.icon,
           iconLabel: gameLanding.iconLabel,
-          note: "Game page scaffold ready for screenshots, store links, privacy, and terms.",
+          note: "Publisher & QA",
+          summary: gameLanding.summary,
+          impact: ["Published with App Store presence, support, privacy, and terms ready for launch."],
           links: [
             {
               label: "Learn more",
@@ -1166,8 +1167,8 @@ function GameLandingPage({ game }) {
     <section className="game-page section">
       <div className="section-inner">
         <div className="game-hero">
-          <div className="game-icon" aria-hidden="true">
-            {game.iconLabel}
+          <div className="game-icon game-icon-image" aria-hidden="true">
+            {game.icon ? <img src={game.icon} alt="" /> : <span>{game.iconLabel}</span>}
           </div>
           <div className="game-hero-copy">
             <p className="eyebrow">{game.category}</p>
@@ -1176,7 +1177,7 @@ function GameLandingPage({ game }) {
             <p>{game.summary}</p>
             <div className="game-actions">
               {game.storeLinks.map((link) => (
-                <a className="button primary" href={link.href} key={link.label}>
+                <a className="button primary" href={link.href} key={link.label} target="_blank" rel="noreferrer">
                   {link.label}
                 </a>
               ))}
@@ -1209,7 +1210,12 @@ function GameLandingPage({ game }) {
             <h2>Links</h2>
             <div className="game-link-list">
               {[...game.storeLinks, ...game.legalLinks].map((link) => (
-                <a href={link.href} key={link.label}>
+                <a
+                  href={link.href}
+                  key={link.label}
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                >
                   {link.label}
                 </a>
               ))}
