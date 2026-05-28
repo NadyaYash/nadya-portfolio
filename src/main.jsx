@@ -169,6 +169,39 @@ const gameLanding = {
   ],
 };
 
+const wordSpinGame = {
+  title: "WordSpin: Crossword Puzzle",
+  slug: "wordspin-crossword-puzzle",
+  isDraft: false,
+  legalPublished: true,
+  supportPublished: true,
+  category: "Word game",
+  period: "2026",
+  tagline: "A crossword puzzle game for focused wordplay.",
+  summary:
+    "WordSpin: Crossword Puzzle is prepared with a public game page, support, privacy policy, and terms so the app has a complete review-ready link structure.",
+  iconLabel: "Word",
+  storeLinks: [],
+  legalLinks: [
+    {
+      label: "Privacy Policy",
+      href: "/games/wordspin-crossword-puzzle/privacy",
+    },
+    {
+      label: "Terms of Use",
+      href: "/games/wordspin-crossword-puzzle/terms",
+    },
+    {
+      label: "Support",
+      href: "/games/wordspin-crossword-puzzle/support",
+    },
+  ],
+  highlights: ["Crossword puzzle game", "Support page ready", "Privacy and terms links ready for app review"],
+  images: [],
+};
+
+const gameLandings = [gameLanding, wordSpinGame];
+
 const helpAreas = [
   {
     title: "Turn messy input into a clear plan",
@@ -211,6 +244,7 @@ const getTitleSlug = (title) =>
 
 const getLaunchSlug = (item) => getTitleSlug(item.title);
 const getLaunchPath = (item) => `/apps/${getLaunchSlug(item)}`;
+const getGamePath = (game) => `/games/${game.slug}`;
 const getProjectSlug = (project) => getTitleSlug(project.name);
 const getProjectPath = (project) => `/work/${getProjectSlug(project)}`;
 const getFirstSentence = (text) => {
@@ -219,28 +253,26 @@ const getFirstSentence = (text) => {
 };
 
 const storeLaunches = [
-  ...(gameLanding.isDraft
-    ? []
-    : [
+  ...gameLandings
+    .filter((game) => !game.isDraft)
+    .map((game) => ({
+      title: game.title,
+      category: game.category,
+      period: game.period,
+      icon: game.icon,
+      iconLabel: game.iconLabel,
+      note: "Publisher & QA",
+      summary: game.summary,
+      impact: ["Published with support, privacy, and terms ready for launch and app review."],
+      links: [
         {
-          title: gameLanding.title,
-          category: gameLanding.category,
-          period: gameLanding.period,
-          icon: gameLanding.icon,
-          iconLabel: gameLanding.iconLabel,
-          note: "Publisher & QA",
-          summary: gameLanding.summary,
-          impact: ["Published with App Store presence, support, privacy, and terms ready for launch."],
-          links: [
-            {
-              label: "Learn more",
-              href: `/games/${gameLanding.slug}`,
-            },
-            ...gameLanding.storeLinks,
-            ...gameLanding.legalLinks.slice(0, 2),
-          ],
+          label: "Learn more",
+          href: getGamePath(game),
         },
-      ]),
+        ...game.storeLinks,
+        ...game.legalLinks.slice(0, 2),
+      ],
+    })),
   {
     title: "Nomad Flow: Money",
     category: "Money tracking app",
@@ -779,6 +811,7 @@ function App() {
   const launchPage = launchSlug ? storeLaunches.find((item) => getLaunchSlug(item) === launchSlug) : null;
   const projectSlug = path.startsWith("/work/") ? path.replace(/^\/work\//, "").replace(/\/$/, "") : "";
   const projectPage = projectSlug ? projects.find((item) => getProjectSlug(item) === projectSlug) : null;
+  const gamePage = gameLandings.find((game) => path === getGamePath(game) || path.startsWith(`${getGamePath(game)}/`));
 
   useEffect(() => {
     const revealElements = document.querySelectorAll(".reveal");
@@ -826,7 +859,7 @@ function App() {
   if (
     path === "/impressum" ||
     path === "/privacy" ||
-    path.startsWith(`/games/${gameLanding.slug}`) ||
+    path.startsWith("/games/") ||
     path.startsWith("/apps/") ||
     path.startsWith("/work/")
   ) {
@@ -837,12 +870,15 @@ function App() {
         {path === "/privacy" ? <PrivacyPolicyPage /> : null}
         {path.startsWith("/apps/") ? <AppLandingPage app={launchPage} /> : null}
         {path.startsWith("/work/") ? <WorkLandingPage project={projectPage} /> : null}
-        {path === `/games/${gameLanding.slug}` ? <GameLandingPage game={gameLanding} /> : null}
-        {path === `/games/${gameLanding.slug}/privacy` ? (
-          <GameLegalPage game={gameLanding} type="privacy" />
+        {gamePage && path === getGamePath(gamePage) ? <GameLandingPage game={gamePage} /> : null}
+        {gamePage && path === `${getGamePath(gamePage)}/privacy` ? (
+          <GameLegalPage game={gamePage} type="privacy" />
         ) : null}
-        {path === `/games/${gameLanding.slug}/terms` ? <GameLegalPage game={gameLanding} type="terms" /> : null}
-        {path === `/games/${gameLanding.slug}/support` ? <GameSupportPage game={gameLanding} /> : null}
+        {gamePage && path === `${getGamePath(gamePage)}/terms` ? <GameLegalPage game={gamePage} type="terms" /> : null}
+        {gamePage && path === `${getGamePath(gamePage)}/support` ? <GameSupportPage game={gamePage} /> : null}
+        {!gamePage && path.startsWith("/games/") ? (
+          <GameComingSoonPage title="Game page not found" message="This game page is not available. Please return to the work section." />
+        ) : null}
         <Footer />
         <ScrollTopButton />
       </main>
@@ -2038,28 +2074,27 @@ function Projects() {
   const getProjectCardSummary = (project) => project.cardSummary || getFirstSentence(project.summary);
   const getLaunchCardSummary = (item) =>
     item.cardSummary || getFirstSentence(item.summary) || `${item.category} publishing support.`;
-  const draftGameItem = gameLanding.isDraft
-    ? [
+  const draftGameItem = gameLandings
+    .filter((game) => game.isDraft)
+    .map((game) => ({
+      name: game.title,
+      category: game.category,
+      period: "Coming soon",
+      role: "Launch preparation",
+      summary: "Upcoming game with store links, support, privacy, and terms prepared before release.",
+      impact: ["Prepared legal and support structure before app release."],
+      links: [
         {
-          name: gameLanding.title,
-          category: gameLanding.category,
-          period: "Coming soon",
-          role: "Launch preparation",
-          summary: "Upcoming puzzle game with store links, support, privacy, and terms prepared before release.",
-          impact: ["Prepared legal and support structure before app release."],
-          links: [
-            {
-              label: "Learn more",
-              href: `/games/${gameLanding.slug}`,
-            },
-            ...gameLanding.legalLinks,
-          ],
-          iconLabel: gameLanding.iconLabel,
-          type: "launch",
-          isDraft: true,
+          label: "Learn more",
+          href: getGamePath(game),
         },
-      ]
-    : [];
+        ...game.legalLinks,
+      ],
+      icon: game.icon,
+      iconLabel: game.iconLabel,
+      type: "launch",
+      isDraft: true,
+    }));
   const workItems = [
     ...draftGameItem,
     ...featuredProjects.map((project) => ({
