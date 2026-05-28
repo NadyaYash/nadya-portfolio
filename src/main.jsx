@@ -3,6 +3,13 @@ import { createRoot } from "react-dom/client";
 import "./styles.css";
 import profilePhoto from "../1701113988652.jpeg";
 import easyJigsawPuzzlesIcon from "./assets/easy-jigsaw-puzzles-icon.png";
+import easyJigsawScreen01 from "./assets/easy-jigsaw-screen-01.jpg";
+import easyJigsawScreen02 from "./assets/easy-jigsaw-screen-02.jpg";
+import easyJigsawScreen03 from "./assets/easy-jigsaw-screen-03.jpg";
+import easyJigsawScreen04 from "./assets/easy-jigsaw-screen-04.jpg";
+import easyJigsawScreen05 from "./assets/easy-jigsaw-screen-05.jpg";
+import easyJigsawScreen06 from "./assets/easy-jigsaw-screen-06.jpg";
+import easyJigsawScreen07 from "./assets/easy-jigsaw-screen-07.jpg";
 import flowblocksStore from "./assets/flowblocks-store.jpg";
 import flowblocksIcon from "./assets/flowblocks-icon.png";
 import flowblocksScreen01 from "./assets/flowblocks-screen-01.jpg";
@@ -130,6 +137,36 @@ const gameLanding = {
     },
   ],
   highlights: ["Relaxed jigsaw puzzle play", "Offline availability", "Privacy, terms, and support pages ready for App Store review"],
+  images: [
+    {
+      src: easyJigsawScreen01,
+      alt: "Easy Jigsaw Puzzles home screen with the message Ten worlds to wander.",
+    },
+    {
+      src: easyJigsawScreen02,
+      alt: "Easy Jigsaw Puzzles gameplay screen with the message Piece by piece.",
+    },
+    {
+      src: easyJigsawScreen03,
+      alt: "Easy Jigsaw Puzzles completion screen with the message Your best, your time.",
+    },
+    {
+      src: easyJigsawScreen04,
+      alt: "Easy Jigsaw Puzzles nature collection screen with quiet landscapes.",
+    },
+    {
+      src: easyJigsawScreen05,
+      alt: "Easy Jigsaw Puzzles flora collection screen with the message An unhurried bloom.",
+    },
+    {
+      src: easyJigsawScreen06,
+      alt: "Easy Jigsaw Puzzles cartoon collection screen with the message Drawn to smile.",
+    },
+    {
+      src: easyJigsawScreen07,
+      alt: "Easy Jigsaw Puzzles food collection screen with the message Slow plates.",
+    },
+  ],
 };
 
 const helpAreas = [
@@ -1158,6 +1195,102 @@ function PrivacyPolicyPage() {
   );
 }
 
+function ScreenshotGallery({ title, images }) {
+  const [activeImageIndex, setActiveImageIndex] = useState(null);
+  const activeImage = activeImageIndex !== null ? images[activeImageIndex] : null;
+
+  useEffect(() => {
+    if (!activeImage) {
+      return undefined;
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setActiveImageIndex(null);
+      }
+
+      if (event.key === "ArrowRight") {
+        setActiveImageIndex((currentIndex) => (currentIndex + 1) % images.length);
+      }
+
+      if (event.key === "ArrowLeft") {
+        setActiveImageIndex((currentIndex) => (currentIndex - 1 + images.length) % images.length);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    document.body.classList.add("has-lightbox");
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.classList.remove("has-lightbox");
+    };
+  }, [activeImage, images.length]);
+
+  if (!images.length) {
+    return null;
+  }
+
+  return (
+    <>
+      <div className="game-screenshot-grid" aria-label={`${title} visuals`}>
+        {images.map((image, index) => (
+          <button
+            className="game-screenshot-thumb"
+            key={image.src}
+            type="button"
+            onClick={() => setActiveImageIndex(index)}
+          >
+            <img src={image.src} alt={image.alt} />
+          </button>
+        ))}
+      </div>
+
+      {activeImage ? (
+        <div
+          className="image-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${title} screenshot viewer`}
+          onClick={() => setActiveImageIndex(null)}
+        >
+          <button className="lightbox-close" type="button" onClick={() => setActiveImageIndex(null)}>
+            Close
+          </button>
+          <button
+            className="lightbox-nav lightbox-nav-prev"
+            type="button"
+            aria-label="Previous screenshot"
+            onClick={(event) => {
+              event.stopPropagation();
+              setActiveImageIndex((currentIndex) => (currentIndex - 1 + images.length) % images.length);
+            }}
+          >
+            ‹
+          </button>
+          <figure className="lightbox-figure" onClick={(event) => event.stopPropagation()}>
+            <img src={activeImage.src} alt={activeImage.alt} />
+            <figcaption>
+              {activeImageIndex + 1} / {images.length}
+            </figcaption>
+          </figure>
+          <button
+            className="lightbox-nav lightbox-nav-next"
+            type="button"
+            aria-label="Next screenshot"
+            onClick={(event) => {
+              event.stopPropagation();
+              setActiveImageIndex((currentIndex) => (currentIndex + 1) % images.length);
+            }}
+          >
+            ›
+          </button>
+        </div>
+      ) : null}
+    </>
+  );
+}
+
 function GameLandingPage({ game }) {
   if (game.isDraft) {
     return <GameComingSoonPage game={game} />;
@@ -1185,17 +1318,7 @@ function GameLandingPage({ game }) {
           </div>
         </div>
 
-        <div className="game-screenshot-grid" aria-label={`${game.title} screenshots`}>
-          <div className="game-screenshot-placeholder is-wide">
-            <span>Screenshot 1</span>
-          </div>
-          <div className="game-screenshot-placeholder">
-            <span>Screenshot 2</span>
-          </div>
-          <div className="game-screenshot-placeholder">
-            <span>Screenshot 3</span>
-          </div>
-        </div>
+        <ScreenshotGallery title={game.title} images={game.images || []} />
 
         <div className="game-info-grid">
           <section className="game-info-panel">
@@ -1299,38 +1422,8 @@ function AppLandingPage({ app }) {
 }
 
 function WorkLandingPage({ project }) {
-  const [activeImageIndex, setActiveImageIndex] = useState(null);
   const details = project?.scope || project?.workedOn || project?.keyPoints || [];
   const images = project?.images || project?.backdropImages || [];
-  const activeImage = activeImageIndex !== null ? images[activeImageIndex] : null;
-
-  useEffect(() => {
-    if (!activeImage) {
-      return undefined;
-    }
-
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        setActiveImageIndex(null);
-      }
-
-      if (event.key === "ArrowRight") {
-        setActiveImageIndex((currentIndex) => (currentIndex + 1) % images.length);
-      }
-
-      if (event.key === "ArrowLeft") {
-        setActiveImageIndex((currentIndex) => (currentIndex - 1 + images.length) % images.length);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    document.body.classList.add("has-lightbox");
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.body.classList.remove("has-lightbox");
-    };
-  }, [activeImage, images.length]);
 
   if (!project) {
     return (
@@ -1365,20 +1458,7 @@ function WorkLandingPage({ project }) {
           </div>
         </div>
 
-        {images.length ? (
-          <div className="game-screenshot-grid" aria-label={`${project.name} visuals`}>
-            {images.map((image, index) => (
-              <button
-                className="game-screenshot-thumb"
-                key={image.src}
-                type="button"
-                onClick={() => setActiveImageIndex(index)}
-              >
-                <img src={image.src} alt={image.alt} />
-              </button>
-            ))}
-          </div>
-        ) : null}
+        <ScreenshotGallery title={project.name} images={images} />
 
         <div className="game-info-grid">
           <section className="game-info-panel">
@@ -1410,47 +1490,6 @@ function WorkLandingPage({ project }) {
         </div>
       </div>
 
-      {activeImage ? (
-        <div
-          className="image-lightbox"
-          role="dialog"
-          aria-modal="true"
-          aria-label={`${project.name} screenshot viewer`}
-          onClick={() => setActiveImageIndex(null)}
-        >
-          <button className="lightbox-close" type="button" onClick={() => setActiveImageIndex(null)}>
-            Close
-          </button>
-          <button
-            className="lightbox-nav lightbox-nav-prev"
-            type="button"
-            aria-label="Previous screenshot"
-            onClick={(event) => {
-              event.stopPropagation();
-              setActiveImageIndex((currentIndex) => (currentIndex - 1 + images.length) % images.length);
-            }}
-          >
-            ‹
-          </button>
-          <figure className="lightbox-figure" onClick={(event) => event.stopPropagation()}>
-            <img src={activeImage.src} alt={activeImage.alt} />
-            <figcaption>
-              {activeImageIndex + 1} / {images.length}
-            </figcaption>
-          </figure>
-          <button
-            className="lightbox-nav lightbox-nav-next"
-            type="button"
-            aria-label="Next screenshot"
-            onClick={(event) => {
-              event.stopPropagation();
-              setActiveImageIndex((currentIndex) => (currentIndex + 1) % images.length);
-            }}
-          >
-            ›
-          </button>
-        </div>
-      ) : null}
     </section>
   );
 }
