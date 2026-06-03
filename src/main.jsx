@@ -121,6 +121,10 @@ const gameLanding = {
       label: "App Store",
       href: "https://apps.apple.com/us/app/easy-jigsaw-puzzles/id6772980224",
     },
+    {
+      label: "Google Play",
+      href: "https://play.google.com/store/apps/details?id=com.enidev.easypuzzle",
+    },
   ],
   legalLinks: [
     {
