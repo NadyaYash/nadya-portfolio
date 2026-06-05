@@ -295,6 +295,10 @@ const storeLaunches = [
         label: "App Store",
         href: "https://apps.apple.com/us/app/nomad-flow-money/id6770238544",
       },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.nomadflowmoney",
+      },
     ],
   },
   {
