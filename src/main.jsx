@@ -337,7 +337,7 @@ const storeLaunches = [
       },
       {
         label: "Google Play",
-        href: "https://play.google.com/store/apps/details?id=com.enidev.kidssudoku",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.goroda",
       },
     ],
   },
