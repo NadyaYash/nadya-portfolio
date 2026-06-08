@@ -185,7 +185,12 @@ const wordSpinGame = {
   summary:
     "WordSpin: Crossword Puzzle is prepared with a public game page, support, privacy policy, and terms so the app has a complete review-ready link structure.",
   iconLabel: "Word",
-  storeLinks: [],
+  storeLinks: [
+    {
+      label: "App Store",
+      href: "https://apps.apple.com/us/app/word-chain-chat/id6775745201",
+    },
+  ],
   legalLinks: [
     {
       label: "Privacy Policy",
