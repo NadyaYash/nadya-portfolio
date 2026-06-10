@@ -43,6 +43,7 @@ import kidsSudokuIcon from "../icon/kidsSudoku.png";
 import morseIcon from "../icon/morse.png";
 import nomadFlowMoneyIcon from "./assets/nomad-flow-money-icon.png";
 import clockWidgetsIcon from "./assets/clock-widgets-icon.png";
+import pullMeWormsIcon from "./assets/pull-me-worms-icon.png";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -322,6 +323,25 @@ const storeLaunches = [
       {
         label: "App Store",
         href: "https://apps.apple.com/us/app/clock-widgets-flip-digital/id6772222315",
+      },
+    ],
+  },
+  {
+    title: "Pull me: Freedom for the worms",
+    category: "Puzzle game",
+    period: "2026",
+    icon: pullMeWormsIcon,
+    note: "Publisher & QA",
+    summary: "Puzzle game where I supported publisher-side setup, QA testing, store links, and release readiness.",
+    impact: ["Publisher-side support, QA testing, and store readiness for a puzzle game launch."],
+    links: [
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.ropes&pcampaignid=web_share",
+      },
+      {
+        label: "App Store Connect",
+        href: "https://appstoreconnect.apple.com/apps/6775017077/distribution/ios/version/deliverable",
       },
     ],
   },
