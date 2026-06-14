@@ -49,6 +49,11 @@ import garminWatchFacesDomestique from "./assets/garmin-watch-faces-domestique.j
 import garminWatchFacesWeatherDial from "./assets/garmin-watch-faces-weather-dial.jpg";
 import garminWatchFacesRetroLcd from "./assets/garmin-watch-faces-retro-lcd.jpg";
 import garminWatchFacesFillDrain from "./assets/garmin-watch-faces-fill-drain.jpg";
+import garminWatchFacesInsideWatch from "./assets/garmin-watch-faces-inside-watch.jpg";
+import garminWatchFacesJsonFace from "./assets/garmin-watch-faces-json-face.jpg";
+import garminWatchFacesDiamondLady from "./assets/garmin-watch-faces-diamond-lady.jpg";
+import garminWatchFaces1989SportLcd from "./assets/garmin-watch-faces-1989-sport-lcd.jpg";
+import garminWatchFacesLuxuryChronometer from "./assets/garmin-watch-faces-luxury-chronometer.jpg";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -609,7 +614,83 @@ const projects = [
         alt: "Fill or Drain Garmin watch face screenshot",
       },
     ],
+    watchFaces: [
+      {
+        name: "Domestique",
+        image: garminWatchFacesDomestique,
+        status: "Approved",
+        rating: "5.0",
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Lumen",
+        image: garminWatchFacesCover,
+        status: "Approved",
+        rating: "5.0",
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Inside Watch",
+        image: garminWatchFacesInsideWatch,
+        status: "Pending",
+        rating: "0.0",
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "JSON Face",
+        image: garminWatchFacesJsonFace,
+        status: "Pending",
+        rating: "0.0",
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Diamond for Lady",
+        image: garminWatchFacesDiamondLady,
+        status: "Pending",
+        rating: "0.0",
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "1989 Sport LCD",
+        image: garminWatchFaces1989SportLcd,
+        status: "Pending",
+        rating: "0.0",
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Luxury Chronometer",
+        image: garminWatchFacesLuxuryChronometer,
+        status: "Pending",
+        rating: "0.0",
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Retro Digital LCD",
+        image: garminWatchFacesRetroLcd,
+        status: "Pending",
+        rating: "0.0",
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Fill or Drain",
+        image: garminWatchFacesFillDrain,
+        status: "Pending",
+        rating: "0.0",
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Weather Dial",
+        image: garminWatchFacesWeatherDial,
+        status: "Pending",
+        rating: "0.0",
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+    ],
     links: [
+      {
+        label: "WatchFaceKit",
+        href: "https://watchfacekit.com/",
+      },
       {
         label: "Connect IQ Dashboard",
         href: "https://apps.garmin.com/developer/dashboard?",
@@ -1413,6 +1494,44 @@ function ScreenshotGallery({ title, images }) {
   );
 }
 
+function WatchFaceCatalog({ faces }) {
+  if (!faces?.length) {
+    return null;
+  }
+
+  return (
+    <section className="watch-face-section">
+      <div className="watch-face-heading">
+        <p className="eyebrow">Garmin Connect IQ</p>
+        <h2>Watch face catalog</h2>
+      </div>
+      <div className="watch-face-grid" aria-label="Garmin watch face catalog">
+        {faces.map((face) => (
+          <article className="watch-face-card" key={face.name}>
+            <div className="watch-face-media">
+              <img src={face.image} alt={`${face.name} watch face preview`} />
+            </div>
+            <div className="watch-face-copy">
+              <h3>{face.name}</h3>
+              <p>Nadzeya</p>
+              <div className="watch-face-meta">
+                <span>Rating {face.rating}</span>
+                <span>Free</span>
+              </div>
+              <div className="watch-face-footer">
+                <span className={`watch-face-status is-${face.status.toLowerCase()}`}>Status: {face.status}</span>
+                <a href={face.link} target="_blank" rel="noreferrer">
+                  Open
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function GameLandingPage({ game }) {
   if (game.isDraft) {
     return <GameComingSoonPage game={game} />;
@@ -1581,6 +1700,8 @@ function WorkLandingPage({ project }) {
         </div>
 
         <ScreenshotGallery title={project.name} images={images} />
+
+        <WatchFaceCatalog faces={project.watchFaces} />
 
         <div className="game-info-grid">
           <section className="game-info-panel">

@@ -2321,6 +2321,123 @@ p {
   right: max(18px, 4vw);
 }
 
+.watch-face-section {
+  margin-top: 28px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: var(--shadow-soft);
+}
+
+.watch-face-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 16px;
+}
+
+.watch-face-heading h2 {
+  margin: 0;
+  font-size: clamp(1.5rem, 3vw, 2.35rem);
+  line-height: 1;
+}
+
+.watch-face-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 18px;
+}
+
+.watch-face-card {
+  display: grid;
+  grid-template-rows: 180px 1fr;
+  min-height: 360px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.watch-face-media {
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: linear-gradient(140deg, #fbfdfc, #eef7f4);
+}
+
+.watch-face-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.watch-face-copy {
+  display: grid;
+  align-content: start;
+  gap: 9px;
+  padding: 18px;
+}
+
+.watch-face-copy h3 {
+  margin: 0;
+  color: #15191d;
+  font-size: 1.18rem;
+  line-height: 1.15;
+}
+
+.watch-face-copy p,
+.watch-face-meta,
+.watch-face-status {
+  color: #69737b;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.watch-face-copy p {
+  margin: 0;
+}
+
+.watch-face-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.watch-face-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.watch-face-status {
+  line-height: 1.2;
+}
+
+.watch-face-status.is-approved {
+  color: var(--accent);
+}
+
+.watch-face-footer a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  border: 1px solid rgba(32, 84, 78, 0.2);
+  border-radius: 999px;
+  padding: 0 14px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  font-size: 0.86rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
 .game-info-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(280px, 0.55fr);
@@ -2602,6 +2719,19 @@ p {
   .game-hero,
   .game-info-grid {
     grid-template-columns: 1fr;
+  }
+
+  .watch-face-section {
+    padding: 20px;
+  }
+
+  .watch-face-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .watch-face-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   }
 
   .game-screenshot-placeholder.is-wide {
