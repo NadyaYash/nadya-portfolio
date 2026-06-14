@@ -1699,7 +1699,7 @@ function WorkLandingPage({ project }) {
           </div>
         </div>
 
-        <ScreenshotGallery title={project.name} images={images} />
+        {project.watchFaces?.length ? null : <ScreenshotGallery title={project.name} images={images} />}
 
         <WatchFaceCatalog faces={project.watchFaces} />
 
