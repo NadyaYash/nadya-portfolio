@@ -44,6 +44,11 @@ import morseIcon from "../icon/morse.png";
 import nomadFlowMoneyIcon from "./assets/nomad-flow-money-icon.png";
 import clockWidgetsIcon from "./assets/clock-widgets-icon.png";
 import pullMeWormsIcon from "./assets/pull-me-worms-icon.png";
+import garminWatchFacesCover from "./assets/garmin-watch-faces-lumen-cover.jpg";
+import garminWatchFacesDomestique from "./assets/garmin-watch-faces-domestique.jpg";
+import garminWatchFacesWeatherDial from "./assets/garmin-watch-faces-weather-dial.jpg";
+import garminWatchFacesRetroLcd from "./assets/garmin-watch-faces-retro-lcd.jpg";
+import garminWatchFacesFillDrain from "./assets/garmin-watch-faces-fill-drain.jpg";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -564,6 +569,54 @@ const storeLaunches = [
 ];
 
 const projects = [
+  {
+    name: "Garmin Connect IQ Watch Faces",
+    category: "Wearable product / watch faces",
+    period: "2026",
+    role: "Creator, Designer & Publisher",
+    summary:
+      "A growing collection of Garmin Connect IQ watch faces where I shape the screen concepts, prepare store-ready visuals and copy, test device variants, and publish through Garmin Connect IQ.",
+    scope: [
+      "Watch face concept and visual direction",
+      "Screen layouts for AMOLED and different Garmin device sizes",
+      "Store listing copy, screenshots, upload packages, and publishing in Garmin Connect IQ",
+      "QA across simulator/device variants before release",
+    ],
+    tags: ["Garmin Connect IQ", "Watch faces", "Wearables", "Publishing"],
+    impact: [
+      "Turned a set of wearable interface ideas into packaged Connect IQ releases with clear visuals, descriptions, screenshots, and upload-ready builds.",
+    ],
+    icon: garminWatchFacesCover,
+    images: [
+      {
+        src: garminWatchFacesCover,
+        alt: "Lumen Garmin watch face store cover",
+      },
+      {
+        src: garminWatchFacesDomestique,
+        alt: "Domestique Garmin watch face cover",
+      },
+      {
+        src: garminWatchFacesWeatherDial,
+        alt: "Weather Dial Garmin watch face screenshot",
+      },
+      {
+        src: garminWatchFacesRetroLcd,
+        alt: "Retro Digital LCD Garmin watch face screenshot",
+      },
+      {
+        src: garminWatchFacesFillDrain,
+        alt: "Fill or Drain Garmin watch face screenshot",
+      },
+    ],
+    links: [
+      {
+        label: "Connect IQ Dashboard",
+        href: "https://apps.garmin.com/developer/dashboard?",
+      },
+    ],
+    featured: true,
+  },
   {
     name: "FlowBlocks: Puzzle Game",
     category: "Puzzle game / mobile product",
