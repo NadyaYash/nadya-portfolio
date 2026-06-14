@@ -573,18 +573,18 @@ const projects = [
     name: "Garmin Connect IQ Watch Faces",
     category: "Wearable product / watch faces",
     period: "2026",
-    role: "Creator, Designer & Publisher",
+    role: "Publisher & Store Presentation",
     summary:
-      "A growing collection of Garmin Connect IQ watch faces where I shape the screen concepts, prepare store-ready visuals and copy, test device variants, and publish through Garmin Connect IQ.",
+      "A growing collection of Garmin Connect IQ watch faces where I prepare store presentation, listing materials, screenshots, QA checks, and publishing through Garmin Connect IQ.",
     scope: [
-      "Watch face concept and visual direction",
-      "Screen layouts for AMOLED and different Garmin device sizes",
+      "Store presentation and listing structure",
+      "Screenshot selection and upload-ready visual materials",
       "Store listing copy, screenshots, upload packages, and publishing in Garmin Connect IQ",
       "QA across simulator/device variants before release",
     ],
     tags: ["Garmin Connect IQ", "Watch faces", "Wearables", "Publishing"],
     impact: [
-      "Turned a set of wearable interface ideas into packaged Connect IQ releases with clear visuals, descriptions, screenshots, and upload-ready builds.",
+      "Prepared wearable releases for Connect IQ with clear store pages, screenshots, descriptions, QA checks, and upload-ready packages.",
     ],
     icon: garminWatchFacesCover,
     images: [
