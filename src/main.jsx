@@ -48,10 +48,11 @@ import garminWatchFacesCover from "./assets/garmin-watch-faces-lumen-cover.jpg";
 import garminWatchFacesDomestique from "./assets/garmin-watch-faces-domestique.jpg";
 import garminWatchFacesWeatherDial from "./assets/garmin-watch-faces-weather-dial.jpg";
 import garminWatchFacesRetroLcd from "./assets/garmin-watch-faces-retro-lcd.jpg";
-import garminWatchFacesFillDrain from "./assets/garmin-watch-faces-fill-drain.jpg";
+import garminWatchFacesLumenRound from "./assets/garmin-watch-faces-lumen-round.png";
 import garminWatchFacesInsideWatch from "./assets/garmin-watch-faces-inside-watch.jpg";
 import garminWatchFacesJsonFace from "./assets/garmin-watch-faces-json-face.jpg";
-import garminWatchFacesDiamondLady from "./assets/garmin-watch-faces-diamond-lady.jpg";
+import garminWatchFacesDiamondRound from "./assets/garmin-watch-faces-diamond-round.png";
+import garminWatchFacesFillDrainRound from "./assets/garmin-watch-faces-fill-drain-round.png";
 import garminWatchFaces1989SportLcd from "./assets/garmin-watch-faces-1989-sport-lcd.jpg";
 import garminWatchFacesLuxuryChronometer from "./assets/garmin-watch-faces-luxury-chronometer.jpg";
 
@@ -592,28 +593,6 @@ const projects = [
       "Prepared wearable releases for Connect IQ with clear store pages, screenshots, descriptions, QA checks, and upload-ready packages.",
     ],
     icon: garminWatchFacesCover,
-    images: [
-      {
-        src: garminWatchFacesCover,
-        alt: "Lumen Garmin watch face store cover",
-      },
-      {
-        src: garminWatchFacesDomestique,
-        alt: "Domestique Garmin watch face cover",
-      },
-      {
-        src: garminWatchFacesWeatherDial,
-        alt: "Weather Dial Garmin watch face screenshot",
-      },
-      {
-        src: garminWatchFacesRetroLcd,
-        alt: "Retro Digital LCD Garmin watch face screenshot",
-      },
-      {
-        src: garminWatchFacesFillDrain,
-        alt: "Fill or Drain Garmin watch face screenshot",
-      },
-    ],
     watchFaces: [
       {
         name: "Domestique",
@@ -624,7 +603,7 @@ const projects = [
       },
       {
         name: "Lumen",
-        image: garminWatchFacesCover,
+        image: garminWatchFacesLumenRound,
         status: "Approved",
         rating: "5.0",
         link: "https://apps.garmin.com/developer/dashboard?",
@@ -645,7 +624,7 @@ const projects = [
       },
       {
         name: "Diamond for Lady",
-        image: garminWatchFacesDiamondLady,
+        image: garminWatchFacesDiamondRound,
         status: "Pending",
         rating: "0.0",
         link: "https://apps.garmin.com/developer/dashboard?",
@@ -673,7 +652,7 @@ const projects = [
       },
       {
         name: "Fill or Drain",
-        image: garminWatchFacesFillDrain,
+        image: garminWatchFacesFillDrainRound,
         status: "Pending",
         rating: "0.0",
         link: "https://apps.garmin.com/developer/dashboard?",
