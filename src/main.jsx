@@ -44,6 +44,7 @@ import morseIcon from "../icon/morse.png";
 import nomadFlowMoneyIcon from "./assets/nomad-flow-money-icon.png";
 import clockWidgetsIcon from "./assets/clock-widgets-icon.png";
 import pullMeWormsIcon from "./assets/pull-me-worms-icon.png";
+import arrowsPuzzleNeonGameIcon from "./assets/arrows-puzzle-neon-game-icon.jpg";
 import garminWatchFacesCover from "./assets/garmin-watch-faces-lumen-cover.jpg";
 import garminWatchFacesDomestique from "./assets/garmin-watch-faces-domestique.jpg";
 import garminWatchFacesWeatherDial from "./assets/garmin-watch-faces-weather-dial.jpg";
@@ -357,6 +358,22 @@ const storeLaunches = [
     ],
   },
   {
+    title: "Arrows Puzzle - Neon Game",
+    category: "Puzzle game",
+    period: "2026",
+    icon: arrowsPuzzleNeonGameIcon,
+    note: "Publisher & QA",
+    summary:
+      "A clean and relaxing arrow puzzle game where I supported publisher-side positioning, QA testing, and App Store release readiness.",
+    impact: ["Publisher-side positioning, QA testing, and launch readiness for a calm neon puzzle release."],
+    links: [
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/arrows-puzzle-neon-game/id6777918234",
+      },
+    ],
+  },
+  {
     title: "Kids Sudoku: Just Play",
     category: "Kids puzzle",
     period: "2026",
@@ -535,6 +552,10 @@ const storeLaunches = [
       {
         label: "App Store",
         href: "https://apps.apple.com/us/app/howloud-decibel-meter/id6767616413",
+      },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.decibelmeter&pcampaignid=web_share",
       },
     ],
   },
