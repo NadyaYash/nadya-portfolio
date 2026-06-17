@@ -222,7 +222,34 @@ const wordSpinGame = {
   images: [],
 };
 
-const gameLandings = [gameLanding, wordSpinGame];
+const tapMeArrowsFreedomGame = {
+  title: "Tap me: arrows freedom",
+  slug: "tap-me-arrows-freedom",
+  isDraft: true,
+  legalPublished: true,
+  supportPublished: false,
+  category: "Puzzle game",
+  period: "2026",
+  tagline: "A new arrow puzzle game prepared for release.",
+  summary:
+    "Tap me: arrows freedom is set up with a public game page, privacy policy, and terms so the app has review-ready legal links before launch.",
+  iconLabel: "Tap",
+  storeLinks: [],
+  legalLinks: [
+    {
+      label: "Privacy Policy",
+      href: "/games/tap-me-arrows-freedom/privacy",
+    },
+    {
+      label: "Terms of Use",
+      href: "/games/tap-me-arrows-freedom/terms",
+    },
+  ],
+  highlights: ["Upcoming puzzle game", "Privacy link ready", "Terms link ready for app review"],
+  images: [],
+};
+
+const gameLandings = [gameLanding, wordSpinGame, tapMeArrowsFreedomGame];
 
 const helpAreas = [
   {
