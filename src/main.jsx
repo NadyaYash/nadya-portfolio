@@ -187,7 +187,7 @@ const gameLanding = {
 };
 
 const wordSpinGame = {
-  title: "WordSpin: Crossword Puzzle",
+  title: "WORDSPIN: Crossword Puzzle",
   slug: "wordspin-crossword-puzzle",
   isDraft: false,
   legalPublished: true,
@@ -196,12 +196,16 @@ const wordSpinGame = {
   period: "2026",
   tagline: "A crossword puzzle game for focused wordplay.",
   summary:
-    "WordSpin: Crossword Puzzle is prepared with a public game page, support, privacy policy, and terms so the app has a complete review-ready link structure.",
+    "WORDSPIN: Crossword Puzzle is a calm crossword puzzle game with drag-to-spell wordplay, handcrafted levels, and a quiet, focused pace.",
   iconLabel: "Word",
   storeLinks: [
     {
       label: "App Store",
-      href: "https://apps.apple.com/us/app/word-chain-chat/id6775745201",
+      href: "https://apps.apple.com/us/app/wordspin-crossword-puzzle/id6774131462",
+    },
+    {
+      label: "Google Play",
+      href: "https://play.google.com/store/apps/details?id=com.enidev.wordspin",
     },
   ],
   legalLinks: [
@@ -381,8 +385,28 @@ const storeLaunches = [
         href: "https://play.google.com/store/apps/details?id=com.enidev.ropes&pcampaignid=web_share",
       },
       {
-        label: "App Store Connect",
-        href: "https://appstoreconnect.apple.com/apps/6775017077/distribution/ios/version/deliverable",
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/pull-me-freedom-for-the-worms/id6775017077",
+      },
+    ],
+  },
+  {
+    title: "Word Chain Chat",
+    category: "Word game",
+    period: "2026",
+    iconLabel: "Word",
+    note: "Publisher & QA",
+    summary:
+      "Fast head-to-head word game where I supported publisher-side positioning, QA testing, and App Store release readiness.",
+    impact: ["Publisher-side positioning, QA testing, and launch readiness for a competitive word game release."],
+    links: [
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/word-chain-chat/id6775745201",
+      },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.wordchain",
       },
     ],
   },
@@ -419,7 +443,7 @@ const storeLaunches = [
       },
       {
         label: "Google Play",
-        href: "https://play.google.com/store/apps/details?id=com.enidev.goroda",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.kidssudoku",
       },
     ],
   },
@@ -493,6 +517,10 @@ const storeLaunches = [
         label: "App Store",
         href: "https://apps.apple.com/us/app/morse-learn-translate/id6764839522",
       },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.morse",
+      },
     ],
   },
   {
@@ -544,6 +572,10 @@ const storeLaunches = [
         label: "App Store",
         href: "https://apps.apple.com/us/app/bead-art/id6766010170",
       },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.beadart",
+      },
     ],
   },
   {
@@ -563,7 +595,7 @@ const storeLaunches = [
       },
       {
         label: "Google Play",
-        href: "https://play.google.com/store/apps/details?id=com.enidev.kidssudoku",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.goroda",
       },
     ],
   },
@@ -619,6 +651,10 @@ const storeLaunches = [
       {
         label: "App Store",
         href: "https://apps.apple.com/us/app/slide-puzzle-8-15-24-35/id6770205599",
+      },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.slidepuzzle",
       },
     ],
   },
@@ -2714,13 +2750,16 @@ function Projects() {
       role: item.note,
       summary: getLaunchCardSummary(item),
       impact: item.impact || ["Handled publisher-side launch execution, QA testing, and store readiness."],
-      links: [
-        {
-          label: "Learn more",
-          href: getLaunchPath(item),
-        },
-        ...(item.links || []),
-      ],
+      links:
+        item.links?.some((link) => link.label === "Learn more")
+          ? item.links
+          : [
+              {
+                label: "Learn more",
+                href: getLaunchPath(item),
+              },
+              ...(item.links || []),
+            ],
       icon: item.icon,
       iconLabel: item.iconLabel,
       type: "launch",
