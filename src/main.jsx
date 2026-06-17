@@ -224,6 +224,7 @@ const wordSpinGame = {
 
 const tapMeArrowsFreedomGame = {
   title: "Tap me: arrows freedom",
+  legalTitle: "Tap me: Freedom for the arrows",
   slug: "tap-me-arrows-freedom",
   isDraft: true,
   legalPublished: true,
@@ -294,6 +295,7 @@ const getTitleSlug = (title) =>
 const getLaunchSlug = (item) => getTitleSlug(item.title);
 const getLaunchPath = (item) => `/apps/${getLaunchSlug(item)}`;
 const getGamePath = (game) => `/games/${game.slug}`;
+const getGameLegalName = (game) => game.legalTitle || game.title;
 const getProjectSlug = (project) => getTitleSlug(project.name);
 const getProjectPath = (project) => `/work/${getProjectSlug(project)}`;
 const getFirstSentence = (text) => {
@@ -1766,7 +1768,8 @@ function WorkLandingPage({ project }) {
 
 function GameLegalPage({ game, type }) {
   const isPrivacy = type === "privacy";
-  const title = isPrivacy ? `${game.title} Privacy Policy` : `${game.title} Terms of Use`;
+  const legalName = getGameLegalName(game);
+  const title = isPrivacy ? `${legalName} Privacy Policy` : `${legalName} Terms of Use`;
 
   if (game.isDraft && !game.legalPublished) {
     return (
@@ -1815,6 +1818,205 @@ function GameComingSoonPage({ game, title = "Game page coming soon", message }) 
 }
 
 function GamePrivacyPolicyContent({ game }) {
+  const legalName = getGameLegalName(game);
+
+  if (game.slug === "tap-me-arrows-freedom") {
+    return (
+      <>
+        <p className="legal-intro">Effective date: June 17, 2026</p>
+        <div className="privacy-content">
+          <section>
+            <h2>1. Summary</h2>
+            <ul>
+              <li>We do not require an account and do not ask for your name, email, or other direct identifiers.</li>
+              <li>Your progress, settings, and unlocked collection stay only on your device.</li>
+              <li>The App shows ads through Google AdMob, which may process device and usage information.</li>
+              <li>On Apple devices, the App asks for permission before any IDFA-based tracking.</li>
+              <li>Optional Remove Ads subscriptions are processed by Apple, not by us.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>2. Who Is Responsible</h2>
+            <p>
+              The publisher of {legalName} is <strong>Nadzeya Yashchuk</strong>. Contact:{" "}
+              <a href={`mailto:${privacyContact.email}`}>{privacyContact.email}</a>.
+            </p>
+            <p>
+              For the limited processing described in this policy, the Developer acts as the controller. Where ads
+              are displayed, Google LLC and its AdMob services process advertising-related data under their own
+              privacy terms.
+            </p>
+          </section>
+
+          <section>
+            <h2>3. Information Processed</h2>
+            <h3>3.1 Stored only on your device</h3>
+            <p>The following is stored locally using Apple UserDefaults and is not transmitted to us:</p>
+            <ul>
+              <li>level progress and completed levels;</li>
+              <li>stars, achievements, or collection items unlocked;</li>
+              <li>app settings such as sound on/off;</li>
+              <li>local entitlement state showing whether ads were removed.</li>
+            </ul>
+            <p>This data is removed when you delete the App.</p>
+
+            <h3>3.2 Google AdMob advertising data</h3>
+            <p>To serve and measure ads, Google AdMob may automatically process:</p>
+            <ul>
+              <li>device advertising identifiers, including IDFA only if you consent through ATT;</li>
+              <li>IP address and coarse IP-derived location;</li>
+              <li>device information such as model, OS version, language, screen, and network type;</li>
+              <li>ad interaction data such as shown, viewed, clicked, or rewarded ads;</li>
+              <li>app identifiers and event timestamps.</li>
+            </ul>
+            <p>
+              Google uses this information to deliver personalized ads where permitted, non-personalized ads where
+              required, frequency capping, fraud prevention, and performance measurement. See{" "}
+              <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">
+                Google Privacy Policy
+              </a>{" "}
+              and{" "}
+              <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noreferrer">
+                How Google uses information from sites or apps that use our services
+              </a>
+              .
+            </p>
+
+            <h3>3.3 Apple purchase data</h3>
+            <p>
+              Optional Remove Ads subscriptions are processed through Apple App Store. Apple handles payment data, and
+              we receive only anonymous confirmation that the entitlement is active. See{" "}
+              <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noreferrer">
+                Apple Privacy Policy
+              </a>
+              .
+            </p>
+
+            <h3>3.4 What we do not do</h3>
+            <ul>
+              <li>We do not use third-party analytics, crash-reporting, or social-media SDKs.</li>
+              <li>We do not collect contacts, photos, microphone, camera, or precise GPS location.</li>
+              <li>We do not sell personal information for money.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>4. App Tracking Transparency</h2>
+            <p>
+              On Apple devices, before any tracking that relies on IDFA, the App presents Apple&apos;s App Tracking
+              Transparency prompt.
+            </p>
+            <ul>
+              <li>If you allow tracking, AdMob may use IDFA for more relevant ads.</li>
+              <li>If you decline, the App continues to work and only non-personalized or contextual ads are served.</li>
+            </ul>
+            <p>
+              You can change this at any time in Settings → Privacy &amp; Security → Tracking on your device.
+            </p>
+          </section>
+
+          <section>
+            <h2>5. Legal Bases for Processing</h2>
+            <p>Where GDPR or UK GDPR applies, the following legal bases are used:</p>
+            <ul>
+              <li>Consent for personalized advertising and IDFA-based tracking;</li>
+              <li>Legitimate interests for non-personalized ads, frequency capping, and fraud prevention;</li>
+              <li>Performance of a contract to deliver subscriptions you buy and provide the App.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>6. How Information Is Used</h2>
+            <ul>
+              <li>to run the Game and remember progress and settings on your device;</li>
+              <li>to display and measure advertising and cap ad frequency;</li>
+              <li>to provide and validate Remove Ads subscriptions;</li>
+              <li>to prevent fraud, abuse, and technical errors;</li>
+              <li>to comply with legal obligations.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>7. Sharing and Disclosure</h2>
+            <p>We do not sell personal data. Data is shared only with:</p>
+            <ul>
+              <li>Google AdMob for advertising;</li>
+              <li>Apple for purchases and subscription management;</li>
+              <li>authorities or third parties where required by law or necessary to protect rights and security.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>8. Retention</h2>
+            <ul>
+              <li>On-device data persists until you delete the App.</li>
+              <li>Google and Apple retain their own collected data under their own policies.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>9. Children&apos;s Privacy</h2>
+            <p>
+              The App is a general-audience game and is not directed to children under 13, or the equivalent minimum
+              age in your country. It is not submitted to Apple&apos;s Kids category. Because it contains third-party
+              advertising, it is not intended for young children.
+            </p>
+          </section>
+
+          <section>
+            <h2>10. Your Rights</h2>
+            <p>
+              Depending on your jurisdiction, you may have rights to access, correct, delete, restrict, object to
+              processing, request portability, or withdraw consent. California residents may also have rights under
+              CCPA/CPRA related to disclosure, deletion, correction, and opting out of sharing for cross-context
+              behavioral advertising.
+            </p>
+            <p>
+              To exercise rights, contact <a href={`mailto:${privacyContact.email}`}>{privacyContact.email}</a>. Some
+              advertising and purchase-related requests may need to be directed to Google or Apple.
+            </p>
+          </section>
+
+          <section>
+            <h2>11. International Transfers</h2>
+            <p>
+              Google and Apple may process data outside your country, including in the United States, using safeguards
+              described in their own privacy policies, such as Standard Contractual Clauses where applicable.
+            </p>
+          </section>
+
+          <section>
+            <h2>12. Security</h2>
+            <p>
+              We rely on the security of Apple&apos;s platform and the protections provided by Apple and Google as
+              service providers. No method of transmission or storage is completely secure.
+            </p>
+          </section>
+
+          <section>
+            <h2>13. Changes</h2>
+            <p>
+              We may update this Privacy Policy from time to time. The latest version will be reflected by the Last
+              updated date on this page and at this URL.
+            </p>
+          </section>
+
+          <section>
+            <h2>14. Contact</h2>
+            <address>
+              <strong>Nadzeya Yashchuk</strong>
+              <br />
+              Email: <a href={`mailto:${privacyContact.email}`}>{privacyContact.email}</a>
+              <br />
+              Privacy Policy URL: https://nadzeyayashchuk.com/games/tap-me-arrows-freedom/privacy
+            </address>
+          </section>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <p className="legal-intro">Last updated: May 25, 2026</p>
@@ -2003,6 +2205,169 @@ function GamePrivacyPolicyContent({ game }) {
 }
 
 function GameTermsContent({ game }) {
+  const legalName = getGameLegalName(game);
+
+  if (game.slug === "tap-me-arrows-freedom") {
+    return (
+      <>
+        <p className="legal-intro">Effective date: June 17, 2026</p>
+        <div className="privacy-content">
+          <section>
+            <h2>1. License</h2>
+            <p>
+              We grant you a limited, non-exclusive, non-transferable, revocable license to download and use{" "}
+              {legalName} on Apple-branded devices you own or control, as permitted by Apple&apos;s Usage Rules and
+              Apple&apos;s standard Licensed Application End User License Agreement.
+            </p>
+          </section>
+
+          <section>
+            <h2>2. Restrictions</h2>
+            <p>You agree not to:</p>
+            <ul>
+              <li>copy, modify, or create derivative works of the App;</li>
+              <li>reverse engineer, decompile, or disassemble the App except where law permits;</li>
+              <li>rent, lease, lend, sell, redistribute, or sublicense the App;</li>
+              <li>remove or alter proprietary notices;</li>
+              <li>use the App unlawfully or interfere with gameplay, ads, or purchases.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>3. Advertising</h2>
+            <p>
+              The App is free to download and is supported by third-party advertising served through Google AdMob,
+              including banner-style, interstitial, and optional rewarded ads. Rewarded ads are optional and grant
+              in-game benefits only if you choose to watch them.
+            </p>
+          </section>
+
+          <section>
+            <h2>4. Subscriptions and Auto-Renewal</h2>
+            <p>The App offers optional auto-renewable Remove Ads subscriptions.</p>
+            <ul>
+              <li>1 Month — billed monthly;</li>
+              <li>6 Months — billed every six months;</li>
+              <li>1 Year — billed yearly, with a 3-day free trial for eligible new subscribers.</li>
+            </ul>
+            <p>
+              Prices are shown in the App at purchase. Payment is charged to your Apple ID account on confirmation.
+              Subscriptions renew automatically unless canceled at least 24 hours before the end of the current period.
+              Renewal is charged within 24 hours before the current period ends. You can manage or cancel
+              subscriptions in your App Store account settings. Any unused part of a free trial is forfeited when you
+              purchase the subscription where applicable.
+            </p>
+            <p>
+              Billing, refunds, and subscription management are handled by Apple under{" "}
+              <a href="https://www.apple.com/legal/internet-services/itunes/" target="_blank" rel="noreferrer">
+                Apple Media Services Terms and Conditions
+              </a>
+              .
+            </p>
+          </section>
+
+          <section>
+            <h2>5. Intellectual Property</h2>
+            <p>
+              The App and its design, graphics, code, trademarks, and related content are owned by the Developer or
+              its licensors and are protected by intellectual-property laws.
+            </p>
+          </section>
+
+          <section>
+            <h2>6. User Conduct and Eligibility</h2>
+            <p>
+              You must be old enough to form a binding contract and use the App under the laws of your country and at
+              least the minimum age described in the Privacy Policy.
+            </p>
+          </section>
+
+          <section>
+            <h2>7. Disclaimer of Warranties</h2>
+            <p>
+              To the maximum extent permitted by law, the App is provided as is and as available, without warranties of
+              any kind, whether express or implied, including merchantability, fitness for a particular purpose, and
+              non-infringement.
+            </p>
+          </section>
+
+          <section>
+            <h2>8. Limitation of Liability</h2>
+            <p>
+              To the maximum extent permitted by law, the Developer is not liable for indirect, incidental, special,
+              consequential, or punitive damages, or loss of data, profits, or goodwill arising out of your use of the
+              App. Total aggregate liability shall not exceed the greater of the amount you paid in the twelve months
+              before the claim or USD 10, except where such limitation is prohibited by law.
+            </p>
+          </section>
+
+          <section>
+            <h2>9. Indemnification</h2>
+            <p>
+              You agree to indemnify and hold harmless the Developer from claims, damages, or expenses arising from
+              your misuse of the App or violation of these Terms.
+            </p>
+          </section>
+
+          <section>
+            <h2>10. Termination</h2>
+            <p>
+              This license remains effective until terminated. It terminates automatically if you breach these Terms.
+              On termination, you must stop using and delete the App.
+            </p>
+          </section>
+
+          <section>
+            <h2>11. Apple-Specific Terms</h2>
+            <ul>
+              <li>These Terms are concluded between you and the Developer, not with Apple.</li>
+              <li>The Developer, not Apple, is responsible for maintenance and support.</li>
+              <li>
+                Apple has no obligation to furnish maintenance or support services and may refund the purchase price, if
+                any, for warranty failures.
+              </li>
+              <li>
+                The Developer is responsible for product claims, legal compliance claims, privacy claims, and
+                intellectual-property claims related to the App.
+              </li>
+              <li>
+                Apple and its subsidiaries are third-party beneficiaries of these Terms and may enforce them against
+                you.
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>12. Governing Law</h2>
+            <p>
+              These Terms are governed by the laws of Austria, without regard to conflict-of-laws rules, except that
+              mandatory consumer-protection laws of your country of residence continue to apply.
+            </p>
+          </section>
+
+          <section>
+            <h2>13. Changes</h2>
+            <p>
+              We may modify these Terms from time to time. The Last updated date reflects the current version, and
+              continued use after changes take effect constitutes acceptance.
+            </p>
+          </section>
+
+          <section>
+            <h2>14. Contact</h2>
+            <address>
+              <strong>Nadzeya Yashchuk</strong>
+              <br />
+              Email: <a href={`mailto:${privacyContact.email}`}>{privacyContact.email}</a>
+              <br />
+              Terms URL: https://nadzeyayashchuk.com/games/tap-me-arrows-freedom/terms
+            </address>
+          </section>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <p className="legal-intro">Last updated: May 25, 2026</p>
