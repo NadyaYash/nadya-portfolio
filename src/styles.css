@@ -1920,6 +1920,16 @@ p {
   margin-top: 20px;
 }
 
+.contact-profile-block {
+  margin-top: 28px;
+}
+
+.contact-profile-heading p:last-child {
+  margin: 8px 0 0;
+  max-width: 640px;
+  color: #55616a;
+}
+
 .contact-card {
   display: flex;
   gap: 14px;

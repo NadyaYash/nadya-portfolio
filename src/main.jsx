@@ -10,6 +10,7 @@ import easyJigsawScreen04 from "./assets/easy-jigsaw-screen-04.jpg";
 import easyJigsawScreen05 from "./assets/easy-jigsaw-screen-05.jpg";
 import easyJigsawScreen06 from "./assets/easy-jigsaw-screen-06.jpg";
 import easyJigsawScreen07 from "./assets/easy-jigsaw-screen-07.jpg";
+import wordSpinCrosswordPuzzleIcon from "./assets/wordspin-crossword-puzzle-icon.png";
 import flowblocksStore from "./assets/flowblocks-store.jpg";
 import flowblocksIcon from "./assets/flowblocks-icon.png";
 import flowblocksScreen01 from "./assets/flowblocks-screen-01.jpg";
@@ -197,6 +198,7 @@ const wordSpinGame = {
   tagline: "A crossword puzzle game for focused wordplay.",
   summary:
     "WORDSPIN: Crossword Puzzle is a calm crossword puzzle game with drag-to-spell wordplay, handcrafted levels, and a quiet, focused pace.",
+  icon: wordSpinCrosswordPuzzleIcon,
   iconLabel: "Word",
   storeLinks: [
     {
@@ -490,12 +492,16 @@ const storeLaunches = [
     ],
   },
   {
-    title: "Sudoku by PuzzleFree",
+    title: "SUDOKU: Daily Logic",
     category: "Puzzle",
     period: "2026",
     icon: sudokuByPuzzleFreeIcon,
     note: "Publisher & QA",
     links: [
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/sudoku-daily-logic/id6763001039",
+      },
       {
         label: "Google Play",
         href: "https://play.google.com/store/apps/details?id=com.enidev.sudoku",
@@ -993,6 +999,27 @@ const contactMethods = [
     text: "View freelance profile",
     href: "https://contra.com/nadzeya_yashchuk_by5wcspl/work?r=nadzeya_yashchuk_by5wcspl",
     icon: "briefcase",
+  },
+];
+
+const developerProfiles = [
+  {
+    label: "Apple Developer",
+    text: "Published iPhone and iPad apps",
+    href: "https://apps.apple.com/us/iphone/search?term=Nadzeya%20Yashchuk",
+    icon: "apple",
+  },
+  {
+    label: "Google Play",
+    text: "Android releases under my developer profile",
+    href: "https://play.google.com/store/apps/developer?id=Nadzeya+Yashchuk",
+    icon: "play",
+  },
+  {
+    label: "Garmin Connect IQ",
+    text: "Watch faces published in the Garmin catalog",
+    href: "https://apps.garmin.com/developer/99d754d0-1b13-4e24-b3af-833f50bc1ad1/apps",
+    icon: "watch",
   },
 ];
 
@@ -3042,6 +3069,25 @@ function Contact() {
             ),
           )}
         </div>
+        <div className="contact-profile-block reveal reveal-delay-2">
+          <div className="contact-profile-heading">
+            <p className="eyebrow">Developer profiles</p>
+            <p>Public storefronts and publishing profiles where my released apps and watch faces are listed.</p>
+          </div>
+          <div className="contact-card-grid" aria-label="Developer profile links">
+            {developerProfiles.map((profile) => (
+              <a className="contact-card" href={profile.href} key={profile.label} target="_blank" rel="noreferrer">
+                <span className="contact-card-icon" aria-hidden="true">
+                  <ContactIcon name={profile.icon} size={22} />
+                </span>
+                <span>
+                  <strong>{profile.label}</strong>
+                  <small>{profile.text}</small>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -3308,6 +3354,27 @@ function ContactIcon({ name, ...props }) {
       <>
         <path d="M12 21s-6-5.27-6-11a6 6 0 1 1 12 0c0 5.73-6 11-6 11Z" />
         <circle cx="12" cy="10" r="2.5" />
+      </>
+    ),
+    apple: (
+      <>
+        <path d="M15.2 4.5c-.8.1-1.8.6-2.4 1.4-.6.7-1.1 1.8-1 2.8.9.1 1.9-.4 2.5-1.1.7-.8 1.1-1.8.9-3.1Z" />
+        <path d="M18.4 12.8c0-2.1 1.7-3.2 1.8-3.3-1-1.5-2.6-1.7-3.1-1.7-1.3-.1-2.5.7-3.2.7-.7 0-1.7-.7-2.8-.7-1.4 0-2.8.8-3.5 2-.8 1.4-.2 3.5.6 5 .8 1.5 1.8 3.1 3.1 3 .8 0 1.1-.5 2.1-.5s1.3.5 2.1.5c1.4 0 2.2-1.5 3-2.9.5-1 .8-1.9.9-1.9-.1 0-1-.4-1-.2Z" />
+      </>
+    ),
+    play: (
+      <>
+        <path d="M7 5.5v13l10-6.5Z" />
+        <path d="M7 5.5 14.8 10" />
+        <path d="M7 18.5 14.8 14" />
+      </>
+    ),
+    watch: (
+      <>
+        <rect x="8" y="3" width="8" height="4" rx="1.5" />
+        <rect x="8" y="17" width="8" height="4" rx="1.5" />
+        <rect x="5" y="6.5" width="14" height="11" rx="3" />
+        <circle cx="12" cy="12" r="2.5" />
       </>
     ),
   };
