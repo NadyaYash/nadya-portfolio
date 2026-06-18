@@ -200,6 +200,7 @@ const wordSpinGame = {
   summary:
     "WORDSPIN: Crossword Puzzle is a calm crossword puzzle game with drag-to-spell wordplay, handcrafted levels, and a quiet, focused pace.",
   icon: wordSpinCrosswordPuzzleIcon,
+  iconClass: "launch-icon--word-app",
   iconLabel: "Word",
   storeLinks: [
     {
@@ -318,6 +319,7 @@ const storeLaunches = [
       category: game.category,
       period: game.period,
       icon: game.icon,
+      iconClass: game.iconClass,
       iconLabel: game.iconLabel,
       note: "Publisher & QA",
       summary: game.summary,
@@ -398,6 +400,7 @@ const storeLaunches = [
     category: "Word game",
     period: "2026",
     icon: wordChainChatIcon,
+    iconClass: "launch-icon--word-app",
     note: "Publisher & QA",
     summary:
       "Fast head-to-head word game where I supported publisher-side positioning, QA testing, and App Store release readiness.",
@@ -2971,11 +2974,11 @@ function StoreLaunches() {
                   rel={markLink.href.startsWith("http") ? "noreferrer" : undefined}
                   aria-label={`Open ${item.title} website`}
                 >
-                  {item.icon ? <img src={item.icon} alt="" /> : <span>{item.iconLabel}</span>}
+                  {item.icon ? <img className={item.iconClass} src={item.icon} alt="" /> : <span>{item.iconLabel}</span>}
                 </a>
               ) : (
                 <div className="launch-mark" aria-hidden="true">
-                  {item.icon ? <img src={item.icon} alt="" /> : <span>{item.iconLabel}</span>}
+                  {item.icon ? <img className={item.iconClass} src={item.icon} alt="" /> : <span>{item.iconLabel}</span>}
                 </div>
               )}
               <div className="launch-copy">

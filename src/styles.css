@@ -810,6 +810,11 @@ p {
   object-fit: cover;
 }
 
+.launch-mark img.launch-icon--word-app {
+  transform: scale(1.16);
+  transform-origin: center;
+}
+
 .launch-mark span,
 .game-icon {
   display: grid;
