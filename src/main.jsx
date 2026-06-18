@@ -10,7 +10,8 @@ import easyJigsawScreen04 from "./assets/easy-jigsaw-screen-04.jpg";
 import easyJigsawScreen05 from "./assets/easy-jigsaw-screen-05.jpg";
 import easyJigsawScreen06 from "./assets/easy-jigsaw-screen-06.jpg";
 import easyJigsawScreen07 from "./assets/easy-jigsaw-screen-07.jpg";
-import wordSpinCrosswordPuzzleIcon from "./assets/wordspin-crossword-puzzle-icon.png";
+import wordSpinCrosswordPuzzleIcon from "../icon/wordspin-crossword-puzzle-icon.png";
+import wordChainChatIcon from "../icon/word-chain-chat-icon.png";
 import flowblocksStore from "./assets/flowblocks-store.jpg";
 import flowblocksIcon from "./assets/flowblocks-icon.png";
 import flowblocksScreen01 from "./assets/flowblocks-screen-01.jpg";
@@ -396,7 +397,7 @@ const storeLaunches = [
     title: "Word Chain Chat",
     category: "Word game",
     period: "2026",
-    iconLabel: "Word",
+    icon: wordChainChatIcon,
     note: "Publisher & QA",
     summary:
       "Fast head-to-head word game where I supported publisher-side positioning, QA testing, and App Store release readiness.",
@@ -3136,6 +3137,19 @@ function Footer() {
         <div className="footer-links">
           <a href="/impressum">Impressum / Legal Notice</a>
           <a href="/privacy">Privacy Policy</a>
+          <a href="https://apps.apple.com/us/iphone/search?term=Nadzeya%20Yashchuk" target="_blank" rel="noreferrer">
+            Apple Developer
+          </a>
+          <a href="https://play.google.com/store/apps/developer?id=Nadzeya+Yashchuk" target="_blank" rel="noreferrer">
+            Google Play
+          </a>
+          <a
+            href="https://apps.garmin.com/developer/99d754d0-1b13-4e24-b3af-833f50bc1ad1/apps"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Garmin Connect IQ
+          </a>
         </div>
       </div>
     </footer>
