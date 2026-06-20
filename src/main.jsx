@@ -54,10 +54,17 @@ import garminWatchFacesRetroLcd from "./assets/garmin-watch-faces-retro-lcd.jpg"
 import garminWatchFacesLumenRound from "./assets/garmin-watch-faces-lumen-round.png";
 import garminWatchFacesInsideWatch from "./assets/garmin-watch-faces-inside-watch.jpg";
 import garminWatchFacesJsonFace from "./assets/garmin-watch-faces-json-face.jpg";
-import garminWatchFacesDiamondRound from "./assets/garmin-watch-faces-diamond-round.png";
-import garminWatchFacesFillDrainRound from "./assets/garmin-watch-faces-fill-drain-round.png";
+import garminWatchFacesDiamondLady from "./assets/garmin-watch-faces-diamond-lady.jpg";
+import garminWatchFacesFillDrain from "./assets/garmin-watch-faces-fill-drain.jpg";
 import garminWatchFaces1989SportLcd from "./assets/garmin-watch-faces-1989-sport-lcd.jpg";
 import garminWatchFacesLuxuryChronometer from "./assets/garmin-watch-faces-luxury-chronometer.jpg";
+import garminWatchFacesFootball2026 from "./assets/garmin-watch-faces-football-2026.jpg";
+import garminWatchFacesLagun from "./assets/garmin-watch-faces-lagun.jpg";
+import garminWatchFacesMemphis from "./assets/garmin-watch-faces-memphis.jpg";
+import garminWatchFacesMetricRings from "./assets/garmin-watch-faces-metric-rings.jpg";
+import garminWatchFacesMorseSos from "./assets/garmin-watch-faces-morse-sos.jpg";
+import garminWatchFacesProgressArcs from "./assets/garmin-watch-faces-progress-arcs.jpg";
+import garminWatchFacesZulu from "./assets/garmin-watch-faces-zulu.jpg";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -718,7 +725,7 @@ const projects = [
       },
       {
         name: "Diamond for Lady",
-        image: garminWatchFacesDiamondRound,
+        image: garminWatchFacesDiamondLady,
         status: "Pending",
         rating: "0.0",
         link: "https://apps.garmin.com/developer/dashboard?",
@@ -746,7 +753,7 @@ const projects = [
       },
       {
         name: "Fill or Drain",
-        image: garminWatchFacesFillDrainRound,
+        image: garminWatchFacesFillDrain,
         status: "Pending",
         rating: "0.0",
         link: "https://apps.garmin.com/developer/dashboard?",
@@ -754,6 +761,55 @@ const projects = [
       {
         name: "Weather Dial",
         image: garminWatchFacesWeatherDial,
+        status: "Pending",
+        rating: "0.0",
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Football 2026",
+        image: garminWatchFacesFootball2026,
+        status: "Pending",
+        rating: "0.0",
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Lagun",
+        image: garminWatchFacesLagun,
+        status: "Pending",
+        rating: "0.0",
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Memphis",
+        image: garminWatchFacesMemphis,
+        status: "Pending",
+        rating: "0.0",
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Metric Rings",
+        image: garminWatchFacesMetricRings,
+        status: "Pending",
+        rating: "0.0",
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Morse SOS",
+        image: garminWatchFacesMorseSos,
+        status: "Pending",
+        rating: "0.0",
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Progress Arcs",
+        image: garminWatchFacesProgressArcs,
+        status: "Pending",
+        rating: "0.0",
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Zulu",
+        image: garminWatchFacesZulu,
         status: "Pending",
         rating: "0.0",
         link: "https://apps.garmin.com/developer/dashboard?",
