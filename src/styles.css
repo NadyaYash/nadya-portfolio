@@ -2435,6 +2435,10 @@ p {
   line-height: 1.2;
 }
 
+.watch-face-status-empty {
+  min-height: 1.2em;
+}
+
 .watch-face-status.is-approved {
   color: var(--accent);
 }

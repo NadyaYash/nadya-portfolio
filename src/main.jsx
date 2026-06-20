@@ -48,23 +48,19 @@ import clockWidgetsIcon from "./assets/clock-widgets-icon.png";
 import pullMeWormsIcon from "./assets/pull-me-worms-icon.png";
 import arrowsPuzzleNeonGameIcon from "./assets/arrows-puzzle-neon-game-icon.jpg";
 import garminWatchFacesCover from "./assets/garmin-watch-faces-lumen-cover.jpg";
-import garminWatchFacesDomestique from "./assets/garmin-watch-faces-domestique.jpg";
-import garminWatchFacesWeatherDial from "./assets/garmin-watch-faces-weather-dial.jpg";
-import garminWatchFacesRetroLcd from "./assets/garmin-watch-faces-retro-lcd.jpg";
-import garminWatchFacesLumenRound from "./assets/garmin-watch-faces-lumen-round.png";
-import garminWatchFacesInsideWatch from "./assets/garmin-watch-faces-inside-watch.jpg";
-import garminWatchFacesJsonFace from "./assets/garmin-watch-faces-json-face.jpg";
-import garminWatchFacesDiamondLady from "./assets/garmin-watch-faces-diamond-lady.jpg";
-import garminWatchFacesFillDrain from "./assets/garmin-watch-faces-fill-drain.jpg";
-import garminWatchFaces1989SportLcd from "./assets/garmin-watch-faces-1989-sport-lcd.jpg";
-import garminWatchFacesLuxuryChronometer from "./assets/garmin-watch-faces-luxury-chronometer.jpg";
-import garminWatchFacesFootball2026 from "./assets/garmin-watch-faces-football-2026.jpg";
-import garminWatchFacesLagun from "./assets/garmin-watch-faces-lagun.jpg";
-import garminWatchFacesMemphis from "./assets/garmin-watch-faces-memphis.jpg";
-import garminWatchFacesMetricRings from "./assets/garmin-watch-faces-metric-rings.jpg";
-import garminWatchFacesMorseSos from "./assets/garmin-watch-faces-morse-sos.jpg";
-import garminWatchFacesProgressArcs from "./assets/garmin-watch-faces-progress-arcs.jpg";
-import garminWatchFacesZulu from "./assets/garmin-watch-faces-zulu.jpg";
+import garminWatchFacesDomestiqueScreen from "./assets/garmin-watch-faces-domestique-screen.jpg";
+import garminWatchFacesWeatherDialScreen from "./assets/garmin-watch-faces-weather-dial-screen.jpg";
+import garminWatchFacesRetroLcdScreen from "./assets/garmin-watch-faces-retro-lcd-screen.jpg";
+import garminWatchFacesLumenScreen from "./assets/garmin-watch-faces-lumen-screen.jpg";
+import garminWatchFacesFillDrainScreen from "./assets/garmin-watch-faces-fill-drain-screen.jpg";
+import garminWatchFaces1989SportLcdScreen from "./assets/garmin-watch-faces-1989-sport-lcd-screen.jpg";
+import garminWatchFacesLuxuryChronometerScreen from "./assets/garmin-watch-faces-luxury-chronometer-screen.jpg";
+import garminWatchFacesFootball2026Screen from "./assets/garmin-watch-faces-football-2026-screen.jpg";
+import garminWatchFacesLagunScreen from "./assets/garmin-watch-faces-lagun-screen.jpg";
+import garminWatchFacesMemphisScreen from "./assets/garmin-watch-faces-memphis-screen.jpg";
+import garminWatchFacesMetricRingsScreen from "./assets/garmin-watch-faces-metric-rings-screen.jpg";
+import garminWatchFacesProgressArcsScreen from "./assets/garmin-watch-faces-progress-arcs-screen.jpg";
+import garminWatchFacesZuluScreen from "./assets/garmin-watch-faces-zulu-screen.jpg";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -697,121 +693,71 @@ const projects = [
     watchFaces: [
       {
         name: "Domestique",
-        image: garminWatchFacesDomestique,
+        image: garminWatchFacesDomestiqueScreen,
         status: "Approved",
         rating: "5.0",
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
         name: "Lumen",
-        image: garminWatchFacesLumenRound,
+        image: garminWatchFacesLumenScreen,
         status: "Approved",
         rating: "5.0",
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
-        name: "Inside Watch",
-        image: garminWatchFacesInsideWatch,
-        status: "Pending",
-        rating: "0.0",
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "JSON Face",
-        image: garminWatchFacesJsonFace,
-        status: "Pending",
-        rating: "0.0",
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Diamond for Lady",
-        image: garminWatchFacesDiamondLady,
-        status: "Pending",
-        rating: "0.0",
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
         name: "1989 Sport LCD",
-        image: garminWatchFaces1989SportLcd,
-        status: "Pending",
-        rating: "0.0",
+        image: garminWatchFaces1989SportLcdScreen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
         name: "Luxury Chronometer",
-        image: garminWatchFacesLuxuryChronometer,
-        status: "Pending",
-        rating: "0.0",
+        image: garminWatchFacesLuxuryChronometerScreen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
         name: "Retro Digital LCD",
-        image: garminWatchFacesRetroLcd,
-        status: "Pending",
-        rating: "0.0",
+        image: garminWatchFacesRetroLcdScreen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
         name: "Fill or Drain",
-        image: garminWatchFacesFillDrain,
-        status: "Pending",
-        rating: "0.0",
+        image: garminWatchFacesFillDrainScreen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
         name: "Weather Dial",
-        image: garminWatchFacesWeatherDial,
-        status: "Pending",
-        rating: "0.0",
+        image: garminWatchFacesWeatherDialScreen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
         name: "Football 2026",
-        image: garminWatchFacesFootball2026,
-        status: "Pending",
-        rating: "0.0",
+        image: garminWatchFacesFootball2026Screen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
         name: "Lagun",
-        image: garminWatchFacesLagun,
-        status: "Pending",
-        rating: "0.0",
+        image: garminWatchFacesLagunScreen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
         name: "Memphis",
-        image: garminWatchFacesMemphis,
-        status: "Pending",
-        rating: "0.0",
+        image: garminWatchFacesMemphisScreen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
         name: "Metric Rings",
-        image: garminWatchFacesMetricRings,
-        status: "Pending",
-        rating: "0.0",
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Morse SOS",
-        image: garminWatchFacesMorseSos,
-        status: "Pending",
-        rating: "0.0",
+        image: garminWatchFacesMetricRingsScreen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
         name: "Progress Arcs",
-        image: garminWatchFacesProgressArcs,
-        status: "Pending",
-        rating: "0.0",
+        image: garminWatchFacesProgressArcsScreen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
         name: "Zulu",
-        image: garminWatchFacesZulu,
-        status: "Pending",
-        rating: "0.0",
+        image: garminWatchFacesZuluScreen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
     ],
@@ -1665,11 +1611,15 @@ function WatchFaceCatalog({ faces }) {
               <h3>{face.name}</h3>
               <p>Nadzeya</p>
               <div className="watch-face-meta">
-                <span>Rating {face.rating}</span>
+                {face.rating ? <span>Rating {face.rating}</span> : null}
                 <span>Free</span>
               </div>
               <div className="watch-face-footer">
-                <span className={`watch-face-status is-${face.status.toLowerCase()}`}>Status: {face.status}</span>
+                {face.status ? (
+                  <span className={`watch-face-status is-${face.status.toLowerCase()}`}>Status: {face.status}</span>
+                ) : (
+                  <span className="watch-face-status watch-face-status-empty" aria-hidden="true" />
+                )}
                 <a href={face.link} target="_blank" rel="noreferrer">
                   Open
                 </a>
