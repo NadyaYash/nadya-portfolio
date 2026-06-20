@@ -10,7 +10,7 @@ import easyJigsawScreen04 from "./assets/easy-jigsaw-screen-04.jpg";
 import easyJigsawScreen05 from "./assets/easy-jigsaw-screen-05.jpg";
 import easyJigsawScreen06 from "./assets/easy-jigsaw-screen-06.jpg";
 import easyJigsawScreen07 from "./assets/easy-jigsaw-screen-07.jpg";
-import wordSpinCrosswordPuzzleIcon from "../icon/wordspin-crossword-puzzle-icon.jpg";
+import wordSpinCrosswordPuzzleIcon from "../icon/wordspin-crossword-puzzle-icon.png";
 import wordChainChatIcon from "../icon/word-chain-chat-icon.jpg";
 import flowblocksStore from "./assets/flowblocks-store.jpg";
 import flowblocksIcon from "./assets/flowblocks-icon.png";
@@ -1615,11 +1615,6 @@ function WatchFaceCatalog({ faces }) {
                 <span>Free</span>
               </div>
               <div className="watch-face-footer">
-                {face.status ? (
-                  <span className={`watch-face-status is-${face.status.toLowerCase()}`}>Status: {face.status}</span>
-                ) : (
-                  <span className="watch-face-status watch-face-status-empty" aria-hidden="true" />
-                )}
                 <a href={face.link} target="_blank" rel="noreferrer">
                   Open
                 </a>

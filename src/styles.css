@@ -2406,8 +2406,7 @@ p {
 }
 
 .watch-face-copy p,
-.watch-face-meta,
-.watch-face-status {
+.watch-face-meta {
   color: #69737b;
   font-size: 0.9rem;
   font-weight: 700;
@@ -2426,21 +2425,9 @@ p {
 .watch-face-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 12px;
   margin-top: 8px;
-}
-
-.watch-face-status {
-  line-height: 1.2;
-}
-
-.watch-face-status-empty {
-  min-height: 1.2em;
-}
-
-.watch-face-status.is-approved {
-  color: var(--accent);
 }
 
 .watch-face-footer a {
