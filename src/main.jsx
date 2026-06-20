@@ -10,8 +10,8 @@ import easyJigsawScreen04 from "./assets/easy-jigsaw-screen-04.jpg";
 import easyJigsawScreen05 from "./assets/easy-jigsaw-screen-05.jpg";
 import easyJigsawScreen06 from "./assets/easy-jigsaw-screen-06.jpg";
 import easyJigsawScreen07 from "./assets/easy-jigsaw-screen-07.jpg";
-import wordSpinCrosswordPuzzleIcon from "../icon/wordspin-crossword-puzzle-icon.png";
-import wordChainChatIcon from "../icon/word-chain-chat-icon.png";
+import wordSpinCrosswordPuzzleIcon from "../icon/wordspin-crossword-puzzle-icon.jpg";
+import wordChainChatIcon from "../icon/word-chain-chat-icon.jpg";
 import flowblocksStore from "./assets/flowblocks-store.jpg";
 import flowblocksIcon from "./assets/flowblocks-icon.png";
 import flowblocksScreen01 from "./assets/flowblocks-screen-01.jpg";
@@ -200,7 +200,6 @@ const wordSpinGame = {
   summary:
     "WORDSPIN: Crossword Puzzle is a calm crossword puzzle game with drag-to-spell wordplay, handcrafted levels, and a quiet, focused pace.",
   icon: wordSpinCrosswordPuzzleIcon,
-  iconClass: "launch-icon--word-app",
   iconLabel: "Word",
   storeLinks: [
     {
@@ -400,7 +399,6 @@ const storeLaunches = [
     category: "Word game",
     period: "2026",
     icon: wordChainChatIcon,
-    iconClass: "launch-icon--word-app",
     note: "Publisher & QA",
     summary:
       "Fast head-to-head word game where I supported publisher-side positioning, QA testing, and App Store release readiness.",
