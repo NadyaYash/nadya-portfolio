@@ -54,6 +54,11 @@ import headphoneSoundCheckScreen03 from "./assets/headphone-sound-check-03-stere
 import headphoneSoundCheckScreen04 from "./assets/headphone-sound-check-04-spatial-3d.jpg";
 import headphoneSoundCheckScreen05 from "./assets/headphone-sound-check-05-mic-check.jpg";
 import headphoneSoundCheckScreen06 from "./assets/headphone-sound-check-06-report.jpg";
+import tapMeArrowsIcon from "./assets/tap-me-arrows-icon.jpg";
+import tapMeArrowsScreen01 from "./assets/tap-me-arrows-screen-01.jpg";
+import tapMeArrowsScreen02 from "./assets/tap-me-arrows-screen-02.jpg";
+import tapMeArrowsScreen03 from "./assets/tap-me-arrows-screen-03.jpg";
+import tapMeArrowsScreen04 from "./assets/tap-me-arrows-screen-04.jpg";
 import garminWatchFacesCover from "./assets/garmin-watch-faces-lumen-cover.jpg";
 import garminWatchFacesDomestiqueScreen from "./assets/garmin-watch-faces-domestique-screen.jpg";
 import garminWatchFacesWeatherDialScreen from "./assets/garmin-watch-faces-weather-dial-screen.jpg";
@@ -240,19 +245,25 @@ const wordSpinGame = {
 };
 
 const tapMeArrowsFreedomGame = {
-  title: "Tap me: arrows freedom",
-  legalTitle: "Tap me: Freedom for the arrows",
+  title: "Tap Me: Freedom for the Arrows",
+  legalTitle: "Tap Me: Freedom for the Arrows",
   slug: "tap-me-arrows-freedom",
-  isDraft: true,
+  isDraft: false,
   legalPublished: true,
-  supportPublished: false,
+  supportPublished: true,
   category: "Puzzle game",
   period: "2026",
-  tagline: "A new arrow puzzle game prepared for release.",
+  tagline: "A colorful arrow puzzle game about clearing the path.",
   summary:
-    "Tap me: arrows freedom is set up with a public game page, privacy policy, and terms so the app has review-ready legal links before launch.",
-  iconLabel: "Tap",
-  storeLinks: [],
+    "Tap Me: Freedom for the Arrows is a calm tap-to-clear puzzle game where each move opens space for the next arrow, with simple rules, bright boards, and short mobile-friendly levels.",
+  icon: tapMeArrowsIcon,
+  iconLabel: "Arrow",
+  storeLinks: [
+    {
+      label: "App Store",
+      href: "https://apps.apple.com/us/app/tap-me-freedom-for-the-arrows/id6778717993",
+    },
+  ],
   legalLinks: [
     {
       label: "Privacy Policy",
@@ -262,9 +273,34 @@ const tapMeArrowsFreedomGame = {
       label: "Terms of Use",
       href: "/games/tap-me-arrows-freedom/terms",
     },
+    {
+      label: "Support",
+      href: "/games/tap-me-arrows-freedom/support",
+    },
   ],
-  highlights: ["Upcoming puzzle game", "Privacy link ready", "Terms link ready for app review"],
-  images: [],
+  highlights: [
+    "Tap-to-clear arrow puzzle gameplay",
+    "Short mobile-friendly levels with combo moments",
+    "Privacy, terms, and support pages ready for store review",
+  ],
+  images: [
+    {
+      src: tapMeArrowsScreen01,
+      alt: "Tap Me: Freedom for the Arrows first level gameplay screen.",
+    },
+    {
+      src: tapMeArrowsScreen02,
+      alt: "Tap Me: Freedom for the Arrows second level gameplay screen with blocked paths.",
+    },
+    {
+      src: tapMeArrowsScreen03,
+      alt: "Tap Me: Freedom for the Arrows combo moment during level two.",
+    },
+    {
+      src: tapMeArrowsScreen04,
+      alt: "Tap Me: Freedom for the Arrows win screen with collectible reward.",
+    },
+  ],
 };
 
 const gameLandings = [gameLanding, wordSpinGame, tapMeArrowsFreedomGame];
