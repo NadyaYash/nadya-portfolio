@@ -47,6 +47,13 @@ import nomadFlowMoneyIcon from "./assets/nomad-flow-money-icon.png";
 import clockWidgetsIcon from "./assets/clock-widgets-icon.png";
 import pullMeWormsIcon from "./assets/pull-me-worms-icon.png";
 import arrowsPuzzleNeonGameIcon from "./assets/arrows-puzzle-neon-game-icon.jpg";
+import headphoneSoundCheckIcon from "./assets/headphone-sound-check-icon.jpg";
+import headphoneSoundCheckScreen01 from "./assets/headphone-sound-check-01-home.jpg";
+import headphoneSoundCheckScreen02 from "./assets/headphone-sound-check-02-lr-mono.jpg";
+import headphoneSoundCheckScreen03 from "./assets/headphone-sound-check-03-stereo.jpg";
+import headphoneSoundCheckScreen04 from "./assets/headphone-sound-check-04-spatial-3d.jpg";
+import headphoneSoundCheckScreen05 from "./assets/headphone-sound-check-05-mic-check.jpg";
+import headphoneSoundCheckScreen06 from "./assets/headphone-sound-check-06-report.jpg";
 import garminWatchFacesCover from "./assets/garmin-watch-faces-lumen-cover.jpg";
 import garminWatchFacesDomestiqueScreen from "./assets/garmin-watch-faces-domestique-screen.jpg";
 import garminWatchFacesWeatherDialScreen from "./assets/garmin-watch-faces-weather-dial-screen.jpg";
@@ -302,7 +309,7 @@ const getTitleSlug = (title) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-const getLaunchSlug = (item) => getTitleSlug(item.title);
+const getLaunchSlug = (item) => item.slug || getTitleSlug(item.title);
 const getLaunchPath = (item) => `/apps/${getLaunchSlug(item)}`;
 const getGamePath = (game) => `/games/${game.slug}`;
 const getGameLegalName = (game) => game.legalTitle || game.title;
@@ -628,6 +635,43 @@ const storeLaunches = [
       {
         label: "Google Play",
         href: "https://play.google.com/store/apps/details?id=com.enidev.decibelmeter&pcampaignid=web_share",
+      },
+    ],
+  },
+  {
+    title: "Headphone Sound Check",
+    slug: "headphone-sound-check",
+    category: "Utility app",
+    period: "2026",
+    icon: headphoneSoundCheckIcon,
+    note: "Publisher & QA",
+    summary:
+      "Audio testing utility for quickly checking headphones, earbuds, speakers, stereo balance, microphone input, bass response, and spatial sound.",
+    cardSummary: "Audio testing utility for headphones, earbuds, speakers, and microphones.",
+    impact: [
+      "Publisher-side positioning, QA testing, and release readiness for a practical headphone diagnostics app.",
+      "Prepared store presentation, support links, and launch materials around real device checks and quick reporting.",
+    ],
+    images: [
+      { src: headphoneSoundCheckScreen01, alt: "Headphone Sound Check home screen with available audio tests." },
+      { src: headphoneSoundCheckScreen02, alt: "Headphone Sound Check left and right channel check screen." },
+      { src: headphoneSoundCheckScreen03, alt: "Headphone Sound Check stereo sound test screen." },
+      { src: headphoneSoundCheckScreen04, alt: "Headphone Sound Check spatial sound test screen." },
+      { src: headphoneSoundCheckScreen05, alt: "Headphone Sound Check microphone check screen." },
+      { src: headphoneSoundCheckScreen06, alt: "Headphone Sound Check results report screen." },
+    ],
+    links: [
+      {
+        label: "Web",
+        href: "https://pickheadphones.com/",
+      },
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/headphone-sound-check/id6771039438",
+      },
+      {
+        label: "Privacy Policy",
+        href: "https://pickheadphones.com/privacy-policy/",
       },
     ],
   },
@@ -1725,6 +1769,8 @@ function AppLandingPage({ app }) {
             ) : null}
           </div>
         </div>
+
+        <ScreenshotGallery title={app.title} images={app.images || []} />
 
         <div className="game-info-grid">
           <section className="game-info-panel">
