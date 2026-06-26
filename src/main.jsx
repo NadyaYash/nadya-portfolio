@@ -478,6 +478,10 @@ const storeLaunches = [
         label: "App Store",
         href: "https://apps.apple.com/us/app/arrows-puzzle-neon-game/id6777918234",
       },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.puzzlearrow",
+      },
     ],
   },
   {
