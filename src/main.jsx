@@ -263,6 +263,10 @@ const tapMeArrowsFreedomGame = {
       label: "App Store",
       href: "https://apps.apple.com/us/app/tap-me-freedom-for-the-arrows/id6778717993",
     },
+    {
+      label: "Google Play",
+      href: "https://play.google.com/store/apps/details?id=com.enidev.tapme",
+    },
   ],
   legalLinks: [
     {
