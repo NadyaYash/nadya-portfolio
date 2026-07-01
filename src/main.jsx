@@ -54,6 +54,12 @@ import headphoneSoundCheckScreen03 from "./assets/headphone-sound-check-03-stere
 import headphoneSoundCheckScreen04 from "./assets/headphone-sound-check-04-spatial-3d.jpg";
 import headphoneSoundCheckScreen05 from "./assets/headphone-sound-check-05-mic-check.jpg";
 import headphoneSoundCheckScreen06 from "./assets/headphone-sound-check-06-report.jpg";
+import coffeelineBaristaIcon from "./assets/coffeeline-barista-icon.jpg";
+import coffeelineBaristaScreen01 from "./assets/coffeeline-barista-screen-01.jpg";
+import coffeelineBaristaScreen02 from "./assets/coffeeline-barista-screen-02.jpg";
+import coffeelineBaristaScreen03 from "./assets/coffeeline-barista-screen-03.jpg";
+import coffeelineBaristaScreen04 from "./assets/coffeeline-barista-screen-04.jpg";
+import coffeelineBaristaScreen05 from "./assets/coffeeline-barista-screen-05.jpg";
 import tapMeArrowsIcon from "./assets/tap-me-arrows-icon.jpg";
 import tapMeArrowsScreen01 from "./assets/tap-me-arrows-screen-01.jpg";
 import tapMeArrowsScreen02 from "./assets/tap-me-arrows-screen-02.jpg";
@@ -716,6 +722,46 @@ const storeLaunches = [
       {
         label: "Privacy Policy",
         href: "https://pickheadphones.com/privacy-policy/",
+      },
+    ],
+  },
+  {
+    title: "CoffeeLine: Barista",
+    slug: "coffeeline-barista",
+    category: "Casual game",
+    period: "2026",
+    icon: coffeelineBaristaIcon,
+    note: "Publisher & QA",
+    summary:
+      "Cozy barista arcade game built around satisfying pour-to-the-line play, short daily shifts, and a warm cafe rhythm.",
+    cardSummary: "Cozy barista arcade game with precise pours, short daily shifts, and a calm cafe feel.",
+    impact: [
+      "Publisher-side positioning, QA testing, and release readiness for a cozy coffee-serving arcade game with light progression and premium upsell.",
+      "Prepared store-facing presentation, support structure, and launch materials around the game's calm tone, pour precision, and daily-return loop.",
+    ],
+    images: [
+      { src: coffeelineBaristaScreen01, alt: "CoffeeLine: Barista hero screen introducing the cozy cafe shift." },
+      { src: coffeelineBaristaScreen02, alt: "CoffeeLine: Barista gameplay screen with two drink orders in queue." },
+      { src: coffeelineBaristaScreen03, alt: "CoffeeLine: Barista close-up gameplay screen showing a precise coffee pour." },
+      { src: coffeelineBaristaScreen04, alt: "CoffeeLine: Barista gameplay screen focused on racing the clock during service." },
+      { src: coffeelineBaristaScreen05, alt: "CoffeeLine: Barista premium screen describing ad removal and unlimited daily play." },
+    ],
+    links: [
+      {
+        label: "Web",
+        href: "https://coffeeline.app/",
+      },
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/coffeeline-barista/id6784132379",
+      },
+      {
+        label: "Privacy Policy",
+        href: "https://coffeeline.app/privacy",
+      },
+      {
+        label: "Terms of Use",
+        href: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/",
       },
     ],
   },
