@@ -429,6 +429,10 @@ const storeLaunches = [
         label: "App Store",
         href: "https://apps.apple.com/us/app/clock-widgets-flip-digital/id6772222315",
       },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.clockwidgets&pcampaignid=web_share",
+      },
     ],
   },
   {
@@ -779,6 +783,10 @@ const storeLaunches = [
       {
         label: "App Store",
         href: "https://apps.apple.com/us/app/wise-husband/id6767145321",
+      },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.wisehusband&pcampaignid=web_share",
       },
     ],
   },
