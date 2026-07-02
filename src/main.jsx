@@ -1183,6 +1183,7 @@ const productSignals = [
 const teamMembers = [
   {
     name: "Ivan Lukichev",
+    partnerLabel: "Strategic partner",
     role: "Growth Strategy, Product Development & Strategic Backing",
     summary: "Supports search visibility, product growth, app development, and strategic backing across active products.",
     links: [
@@ -3231,6 +3232,8 @@ function Contact() {
 }
 
 function Team() {
+  const isSinglePartner = teamMembers.length === 1;
+
   return (
     <Section
       id="team"
@@ -3238,13 +3241,18 @@ function Team() {
       title="People I work closely with on active products."
       intro="The people I stay in close touch with as we build, grow, and support current products together."
     >
-      <div className="team-grid">
+      <div className={`team-grid${isSinglePartner ? " team-grid-solo" : ""}`}>
         {teamMembers.map((member, index) => (
-          <article className="team-card reveal" key={member.name} style={{ "--reveal-delay": `${index * 70}ms` }}>
+          <article
+            className={`team-card reveal${member.partnerLabel ? " team-card-featured" : ""}`}
+            key={member.name}
+            style={{ "--reveal-delay": `${index * 70}ms` }}
+          >
             <div className={`team-mark ${member.photoClass || ""}`} aria-hidden="true">
               <img src={member.photo} alt="" />
             </div>
             <div className="team-copy">
+              {member.partnerLabel ? <span className="team-badge">{member.partnerLabel}</span> : null}
               <h3>{member.name}</h3>
               <span className="team-role">{member.role}</span>
               <p>{member.summary}</p>
