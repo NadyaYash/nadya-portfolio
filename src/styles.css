@@ -1920,6 +1920,10 @@ p {
   margin-top: 20px;
 }
 
+.contact-card-grid-profiles {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .contact-profile-block {
   margin-top: 28px;
 }

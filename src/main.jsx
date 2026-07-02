@@ -3211,7 +3211,7 @@ function Contact() {
             <p className="eyebrow">Developer profiles</p>
             <p>Public storefronts and publishing profiles where my released apps and watch faces are listed.</p>
           </div>
-          <div className="contact-card-grid" aria-label="Developer profile links">
+          <div className="contact-card-grid contact-card-grid-profiles" aria-label="Developer profile links">
             {developerProfiles.map((profile) => (
               <a className="contact-card" href={profile.href} key={profile.label} target="_blank" rel="noreferrer">
                 <span className="contact-card-icon" aria-hidden="true">
