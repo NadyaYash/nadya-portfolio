@@ -30,7 +30,6 @@ import jigsawKidsPacks from "./assets/jigsaw-kids-packs.jpg";
 import jigsawKidsPlay from "./assets/jigsaw-kids-play.jpg";
 import jigsawKidsMobile from "./assets/jigsaw-kids-mobile.jpg";
 import teamIvanPhoto from "./assets/team-ivan.png";
-import teamEgorPhoto from "./assets/team-egor.png";
 import calcSprintIcon from "../icon/CalcSprint.png";
 import beadArtIcon from "../icon/BeadArt.png";
 import colorfulHeartsIcon from "../icon/ColorfulHearts.png";
@@ -627,6 +626,10 @@ const storeLaunches = [
         label: "App Store",
         href: "https://apps.apple.com/us/app/pixel-paint-color-relax/id6765738643",
       },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.pixelcolor&pcampaignid=web_share",
+      },
     ],
   },
   {
@@ -1194,19 +1197,6 @@ const teamMembers = [
     ],
     photo: teamIvanPhoto,
     photoClass: "team-mark--ivan",
-  },
-  {
-    name: "Egor Danilov",
-    role: "Software Development",
-    summary: "Supports implementation and delivery when products need stronger technical execution.",
-    links: [
-      {
-        href: "https://www.linkedin.com/in/egor-danilov-5907332b8",
-        label: "LinkedIn",
-      },
-    ],
-    photo: teamEgorPhoto,
-    photoClass: "team-mark--egor",
   },
 ];
 
@@ -3283,19 +3273,6 @@ function Footer() {
         <div className="footer-links">
           <a href="/impressum">Impressum / Legal Notice</a>
           <a href="/privacy">Privacy Policy</a>
-          <a href="https://apps.apple.com/us/iphone/search?term=Nadzeya%20Yashchuk" target="_blank" rel="noreferrer">
-            Apple Developer
-          </a>
-          <a href="https://play.google.com/store/apps/developer?id=Nadzeya+Yashchuk" target="_blank" rel="noreferrer">
-            Google Play
-          </a>
-          <a
-            href="https://apps.garmin.com/developer/99d754d0-1b13-4e24-b3af-833f50bc1ad1/apps"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Garmin Connect IQ
-          </a>
         </div>
       </div>
     </footer>
