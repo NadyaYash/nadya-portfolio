@@ -256,8 +256,8 @@ const wordSpinGame = {
 };
 
 const tapMeArrowsFreedomGame = {
-  title: "Tap Me: Freedom for the Arrows",
-  legalTitle: "Tap Me: Freedom for the Arrows",
+  title: "Arrow Puzzle: Tap & Escape",
+  legalTitle: "Arrow Puzzle: Tap & Escape",
   slug: "tap-me-arrows-freedom",
   isDraft: false,
   legalPublished: true,
@@ -266,7 +266,7 @@ const tapMeArrowsFreedomGame = {
   period: "2026",
   tagline: "A colorful arrow puzzle game about clearing the path.",
   summary:
-    "Tap Me: Freedom for the Arrows is a calm tap-to-clear puzzle game where each move opens space for the next arrow, with simple rules, bright boards, and short mobile-friendly levels.",
+    "Arrow Puzzle: Tap & Escape is a calm tap-to-clear puzzle game where each move opens space for the next arrow, with simple rules, handcrafted levels, and a light, no-pressure flow.",
   icon: tapMeArrowsIcon,
   iconLabel: "Arrow",
   storeLinks: [
@@ -295,25 +295,25 @@ const tapMeArrowsFreedomGame = {
   ],
   highlights: [
     "Tap-to-clear arrow puzzle gameplay",
-    "Short mobile-friendly levels with combo moments",
+    "Handcrafted levels with easy-to-grasp but tricky layouts",
     "Privacy, terms, and support pages ready for store review",
   ],
   images: [
     {
       src: tapMeArrowsScreen01,
-      alt: "Tap Me: Freedom for the Arrows first level gameplay screen.",
+      alt: "Arrow Puzzle: Tap & Escape screenshot with the message Set it free.",
     },
     {
       src: tapMeArrowsScreen02,
-      alt: "Tap Me: Freedom for the Arrows second level gameplay screen with blocked paths.",
+      alt: "Arrow Puzzle: Tap & Escape screenshot highlighting a calm no-pressure puzzle setup.",
     },
     {
       src: tapMeArrowsScreen03,
-      alt: "Tap Me: Freedom for the Arrows combo moment during level two.",
+      alt: "Arrow Puzzle: Tap & Escape screenshot showing an easy-to-learn but tricky level layout.",
     },
     {
       src: tapMeArrowsScreen04,
-      alt: "Tap Me: Freedom for the Arrows win screen with collectible reward.",
+      alt: "Arrow Puzzle: Tap & Escape screenshot focused on handcrafted puzzle progression.",
     },
   ],
 };
@@ -364,7 +364,7 @@ const getLaunchSlug = (item) => item.slug || getTitleSlug(item.title);
 const getLaunchPath = (item) => `/apps/${getLaunchSlug(item)}`;
 const getGamePath = (game) => `/games/${game.slug}`;
 const getGameLegalName = (game) => game.legalTitle || game.title;
-const getProjectSlug = (project) => getTitleSlug(project.name);
+const getProjectSlug = (project) => project.slug || getTitleSlug(project.name);
 const getProjectPath = (project) => `/work/${getProjectSlug(project)}`;
 const getFirstSentence = (text) => {
   const firstSentence = text?.split(/[.!?]/).find(Boolean)?.trim();
@@ -441,7 +441,8 @@ const storeLaunches = [
     ],
   },
   {
-    title: "Pull me: Freedom for the worms",
+    title: "Untangle Worms: Knot Puzzle",
+    slug: "pull-me-freedom-for-the-worms",
     category: "Puzzle game",
     period: "2026",
     icon: pullMeWormsIcon,
@@ -620,7 +621,8 @@ const storeLaunches = [
     ],
   },
   {
-    title: "Morse: Learn & Translate",
+    title: "Morse Code: Learn & Translate",
+    slug: "morse-learn-translate",
     category: "Utility app",
     period: "2026",
     icon: morseIcon,
@@ -641,7 +643,7 @@ const storeLaunches = [
     ],
   },
   {
-    title: "Colorful Hearts Paint Fun",
+    title: "Colorful Hearts: Paint Fun",
     category: "Kids coloring app",
     period: "2026",
     icon: colorfulHeartsIcon,
@@ -658,7 +660,7 @@ const storeLaunches = [
     ],
   },
   {
-    title: "Pixel Paint Color Relax",
+    title: "Pixel Paint: Color & Relax",
     category: "Coloring app",
     period: "2026",
     icon: pixelPaintIcon,
@@ -721,7 +723,7 @@ const storeLaunches = [
     ],
   },
   {
-    title: "HowLoud - Decibel Meter",
+    title: "HowLoud – Decibel Meter",
     category: "Utility app",
     period: "2026",
     icon: howLoudIcon,
@@ -965,7 +967,8 @@ const projects = [
     featured: true,
   },
   {
-    name: "FlowBlocks: Puzzle Game",
+    name: "Block Puzzle Blast: FlowBlocks",
+    slug: "flowblocks-puzzle-game",
     category: "Puzzle game / mobile product",
     period: "2026",
     role: "Creator & Product Lead",
@@ -985,27 +988,27 @@ const projects = [
     images: [
       {
         src: flowblocksStore,
-        alt: "FlowBlocks App Store product page and visual identity",
+        alt: "Block Puzzle Blast: FlowBlocks gameplay screenshot about never getting stuck.",
       },
       {
         src: flowblocksScreen06,
-        alt: "FlowBlocks gameplay screenshot with the message Easy to start. Hard to put down.",
+        alt: "Block Puzzle Blast: FlowBlocks screenshot showing pick-it-up-anytime gameplay.",
       },
       {
         src: flowblocksScreen02,
-        alt: "FlowBlocks gameplay screenshot with the message Simple rules. Endless depth.",
+        alt: "Block Puzzle Blast: FlowBlocks screenshot with the message Endless depth.",
       },
       {
         src: flowblocksScreen05,
-        alt: "FlowBlocks gameplay screenshot with the message Even the blocks approve.",
+        alt: "Block Puzzle Blast: FlowBlocks screenshot introducing special blocks.",
       },
       {
         src: flowblocksScreen01,
-        alt: "FlowBlocks gameplay screenshot with the message Find your flow.",
+        alt: "Block Puzzle Blast: FlowBlocks screenshot with the message Find your flow.",
       },
       {
         src: flowblocksScreen04,
-        alt: "FlowBlocks high score gameplay screenshot with the message Beat your best.",
+        alt: "Block Puzzle Blast: FlowBlocks screenshot with the message Beat your best.",
       },
     ],
     visualVariant: "flowblocks",
