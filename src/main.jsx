@@ -59,6 +59,12 @@ import coffeelineBaristaScreen02 from "./assets/coffeeline-barista-screen-02.jpg
 import coffeelineBaristaScreen03 from "./assets/coffeeline-barista-screen-03.jpg";
 import coffeelineBaristaScreen04 from "./assets/coffeeline-barista-screen-04.jpg";
 import coffeelineBaristaScreen05 from "./assets/coffeeline-barista-screen-05.jpg";
+import kidsMathCountAddIcon from "./assets/kids-math-count-add-icon.jpg";
+import kidsMathCountAddScreen01 from "./assets/kids-math-count-add-screen-01.jpg";
+import kidsMathCountAddScreen02 from "./assets/kids-math-count-add-screen-02.jpg";
+import kidsMathCountAddScreen03 from "./assets/kids-math-count-add-screen-03.jpg";
+import kidsMathCountAddScreen04 from "./assets/kids-math-count-add-screen-04.jpg";
+import kidsMathCountAddScreen05 from "./assets/kids-math-count-add-screen-05.jpg";
 import tapMeArrowsIcon from "./assets/tap-me-arrows-icon.jpg";
 import tapMeArrowsScreen01 from "./assets/tap-me-arrows-screen-01.jpg";
 import tapMeArrowsScreen02 from "./assets/tap-me-arrows-screen-02.jpg";
@@ -532,6 +538,46 @@ const storeLaunches = [
       {
         label: "Google Play",
         href: "https://play.google.com/store/apps/details?id=com.enidev.calcsprint",
+      },
+    ],
+  },
+  {
+    title: "Kids Math: Count & Add",
+    slug: "kids-math-count-add",
+    category: "Kids math app",
+    period: "2026",
+    icon: kidsMathCountAddIcon,
+    note: "Publisher & QA",
+    summary:
+      "Gentle preschool math app that helps children explore counting, adding, subtracting, and early number sense through picture-based play with no reading required.",
+    cardSummary: "Gentle preschool math app with picture-based counting and sums for early learners.",
+    impact: [
+      "Publisher-side positioning, QA testing, and release readiness for a family-focused early math app designed around calm, no-pressure play.",
+      "Prepared store-facing presentation, support structure, and launch materials around child-friendly UX, multilingual access, and a simple one-time unlock.",
+    ],
+    images: [
+      { src: kidsMathCountAddScreen01, alt: "Kids Math: Count & Add home screen with colorful preschool learning paths." },
+      { src: kidsMathCountAddScreen02, alt: "Kids Math: Count & Add gameplay screen showing picture-based answer choices." },
+      { src: kidsMathCountAddScreen03, alt: "Kids Math: Count & Add progress screen with stars earned after completing tasks." },
+      { src: kidsMathCountAddScreen04, alt: "Kids Math: Count & Add animal-themed math exercises for young children." },
+      { src: kidsMathCountAddScreen05, alt: "Kids Math: Count & Add cute animal level selection screen for preschool players." },
+    ],
+    links: [
+      {
+        label: "Web",
+        href: "https://calcsprint.com/kids/",
+      },
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/kids-math-count-add/id6784570701",
+      },
+      {
+        label: "Privacy Policy",
+        href: "https://calcsprint.com/kids/privacy-policy",
+      },
+      {
+        label: "Terms of Use",
+        href: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/",
       },
     ],
   },
