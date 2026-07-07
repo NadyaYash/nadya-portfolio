@@ -781,7 +781,7 @@ const storeLaunches = [
     ],
   },
   {
-    title: "CoffeeLine: Barista",
+    title: "Barista Coffee: CoffeeLine",
     slug: "coffeeline-barista",
     category: "Casual game",
     period: "2026",
@@ -795,11 +795,11 @@ const storeLaunches = [
       "Prepared store-facing presentation, support structure, and launch materials around the game's calm tone, pour precision, and daily-return loop.",
     ],
     images: [
-      { src: coffeelineBaristaScreen01, alt: "CoffeeLine: Barista hero screen introducing the cozy cafe shift." },
-      { src: coffeelineBaristaScreen02, alt: "CoffeeLine: Barista gameplay screen with two drink orders in queue." },
-      { src: coffeelineBaristaScreen03, alt: "CoffeeLine: Barista close-up gameplay screen showing a precise coffee pour." },
-      { src: coffeelineBaristaScreen04, alt: "CoffeeLine: Barista gameplay screen focused on racing the clock during service." },
-      { src: coffeelineBaristaScreen05, alt: "CoffeeLine: Barista premium screen describing ad removal and unlimited daily play." },
+      { src: coffeelineBaristaScreen01, alt: "Barista Coffee: CoffeeLine hero screen introducing the cozy cafe shift." },
+      { src: coffeelineBaristaScreen02, alt: "Barista Coffee: CoffeeLine gameplay screen with two drink orders in queue." },
+      { src: coffeelineBaristaScreen03, alt: "Barista Coffee: CoffeeLine close-up gameplay screen showing a precise coffee pour." },
+      { src: coffeelineBaristaScreen04, alt: "Barista Coffee: CoffeeLine gameplay screen focused on racing the clock during service." },
+      { src: coffeelineBaristaScreen05, alt: "Barista Coffee: CoffeeLine premium screen describing ad removal and unlimited daily play." },
     ],
     links: [
       {
