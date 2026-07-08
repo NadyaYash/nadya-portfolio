@@ -359,6 +359,28 @@ const getTitleSlug = (title) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
+const stripTrailingSlash = (path) => {
+  if (!path || path === "/") {
+    return "/";
+  }
+
+  return path.replace(/\/+$/, "") || "/";
+};
+
+const normalizeInternalHref = (href) => {
+  if (!href || href === "/" || href.startsWith("#") || !href.startsWith("/")) {
+    return href;
+  }
+
+  const [pathWithoutHash, hash = ""] = href.split("#");
+  const [pathname, query = ""] = pathWithoutHash.split("?");
+  const normalizedPath = pathname.endsWith("/") ? pathname : `${pathname}/`;
+  const queryPart = query ? `?${query}` : "";
+  const hashPart = hash ? `#${hash}` : "";
+
+  return `${normalizedPath}${queryPart}${hashPart}`;
+};
+
 const assetUrl = (asset) => {
   if (typeof asset === "string") {
     return asset;
@@ -1262,7 +1284,9 @@ const teamMembers = [
 ];
 
 export function getPageSeo(pathname = "/") {
-  if (pathname === "/") {
+  const normalizedPathname = stripTrailingSlash(pathname);
+
+  if (normalizedPathname === "/") {
     return {
       title: "Nadya Yashchuk | Product & Project Lead in Austria",
       description:
@@ -1270,22 +1294,22 @@ export function getPageSeo(pathname = "/") {
     };
   }
 
-  if (pathname === "/impressum") {
+  if (normalizedPathname === "/impressum") {
     return {
       title: "Impressum / Legal Notice | Nadya Yashchuk",
       description: "Legal notice and business disclosure for nadzeyayashchuk.com.",
     };
   }
 
-  if (pathname === "/privacy") {
+  if (normalizedPathname === "/privacy") {
     return {
       title: "Privacy Policy | Nadya Yashchuk",
       description: "Privacy policy for nadzeyayashchuk.com and related portfolio content.",
     };
   }
 
-  if (pathname.startsWith("/apps/")) {
-    const slug = pathname.replace(/^\/apps\//, "").replace(/\/$/, "");
+  if (normalizedPathname.startsWith("/apps/")) {
+    const slug = normalizedPathname.replace(/^\/apps\//, "").replace(/\/$/, "");
     const app = storeLaunches.find((item) => getLaunchSlug(item) === slug);
 
     return {
@@ -1296,8 +1320,8 @@ export function getPageSeo(pathname = "/") {
     };
   }
 
-  if (pathname.startsWith("/work/")) {
-    const slug = pathname.replace(/^\/work\//, "").replace(/\/$/, "");
+  if (normalizedPathname.startsWith("/work/")) {
+    const slug = normalizedPathname.replace(/^\/work\//, "").replace(/\/$/, "");
     const project = projects.find((item) => getProjectSlug(item) === slug);
 
     return {
@@ -1308,25 +1332,29 @@ export function getPageSeo(pathname = "/") {
     };
   }
 
-  if (pathname.startsWith("/games/")) {
-    const game = gameLandings.find((item) => pathname === getGamePath(item) || pathname.startsWith(`${getGamePath(item)}/`));
+  if (normalizedPathname.startsWith("/games/")) {
+    const game = gameLandings.find(
+      (item) =>
+        normalizedPathname === getGamePath(item) ||
+        normalizedPathname.startsWith(`${getGamePath(item)}/`)
+    );
     const legalName = game ? getGameLegalName(game) : "Game";
 
-    if (pathname.endsWith("/privacy")) {
+    if (normalizedPathname.endsWith("/privacy")) {
       return {
         title: `${legalName} Privacy Policy | Nadya Yashchuk`,
         description: `Privacy policy for ${legalName}.`,
       };
     }
 
-    if (pathname.endsWith("/terms")) {
+    if (normalizedPathname.endsWith("/terms")) {
       return {
         title: `${legalName} Terms of Use | Nadya Yashchuk`,
         description: `Terms of use for ${legalName}.`,
       };
     }
 
-    if (pathname.endsWith("/support")) {
+    if (normalizedPathname.endsWith("/support")) {
       return {
         title: `${legalName} Support | Nadya Yashchuk`,
         description: `Support page for ${legalName}.`,
@@ -1349,11 +1377,14 @@ export function getPageSeo(pathname = "/") {
 
 export default function App({ initialPath = "/" }) {
   const [path, setPath] = useState(() => (typeof window !== "undefined" ? window.location.pathname : initialPath));
-  const launchSlug = path.startsWith("/apps/") ? path.replace(/^\/apps\//, "").replace(/\/$/, "") : "";
+  const normalizedPath = stripTrailingSlash(path);
+  const launchSlug = normalizedPath.startsWith("/apps/") ? normalizedPath.replace(/^\/apps\//, "").replace(/\/$/, "") : "";
   const launchPage = launchSlug ? storeLaunches.find((item) => getLaunchSlug(item) === launchSlug) : null;
-  const projectSlug = path.startsWith("/work/") ? path.replace(/^\/work\//, "").replace(/\/$/, "") : "";
+  const projectSlug = normalizedPath.startsWith("/work/") ? normalizedPath.replace(/^\/work\//, "").replace(/\/$/, "") : "";
   const projectPage = projectSlug ? projects.find((item) => getProjectSlug(item) === projectSlug) : null;
-  const gamePage = gameLandings.find((game) => path === getGamePath(game) || path.startsWith(`${getGamePath(game)}/`));
+  const gamePage = gameLandings.find(
+    (game) => normalizedPath === getGamePath(game) || normalizedPath.startsWith(`${getGamePath(game)}/`)
+  );
 
   useEffect(() => {
     const revealElements = document.querySelectorAll(".reveal");
@@ -1399,26 +1430,26 @@ export default function App({ initialPath = "/" }) {
   }, []);
 
   if (
-    path === "/impressum" ||
-    path === "/privacy" ||
-    path.startsWith("/games/") ||
-    path.startsWith("/apps/") ||
-    path.startsWith("/work/")
+    normalizedPath === "/impressum" ||
+    normalizedPath === "/privacy" ||
+    normalizedPath.startsWith("/games/") ||
+    normalizedPath.startsWith("/apps/") ||
+    normalizedPath.startsWith("/work/")
   ) {
     return (
       <main>
-        <Header path={path} />
-        {path === "/impressum" ? <LegalNoticePage /> : null}
-        {path === "/privacy" ? <PrivacyPolicyPage /> : null}
-        {path.startsWith("/apps/") ? <AppLandingPage app={launchPage} /> : null}
-        {path.startsWith("/work/") ? <WorkLandingPage project={projectPage} /> : null}
-        {gamePage && path === getGamePath(gamePage) ? <GameLandingPage game={gamePage} /> : null}
-        {gamePage && path === `${getGamePath(gamePage)}/privacy` ? (
+        <Header path={normalizedPath} />
+        {normalizedPath === "/impressum" ? <LegalNoticePage /> : null}
+        {normalizedPath === "/privacy" ? <PrivacyPolicyPage /> : null}
+        {normalizedPath.startsWith("/apps/") ? <AppLandingPage app={launchPage} /> : null}
+        {normalizedPath.startsWith("/work/") ? <WorkLandingPage project={projectPage} /> : null}
+        {gamePage && normalizedPath === getGamePath(gamePage) ? <GameLandingPage game={gamePage} /> : null}
+        {gamePage && normalizedPath === `${getGamePath(gamePage)}/privacy` ? (
           <GameLegalPage game={gamePage} type="privacy" />
         ) : null}
-        {gamePage && path === `${getGamePath(gamePage)}/terms` ? <GameLegalPage game={gamePage} type="terms" /> : null}
-        {gamePage && path === `${getGamePath(gamePage)}/support` ? <GameSupportPage game={gamePage} /> : null}
-        {!gamePage && path.startsWith("/games/") ? (
+        {gamePage && normalizedPath === `${getGamePath(gamePage)}/terms` ? <GameLegalPage game={gamePage} type="terms" /> : null}
+        {gamePage && normalizedPath === `${getGamePath(gamePage)}/support` ? <GameSupportPage game={gamePage} /> : null}
+        {!gamePage && normalizedPath.startsWith("/games/") ? (
           <GameComingSoonPage title="Game page not found" message="This game page is not available. Please return to the work section." />
         ) : null}
         <Footer />
@@ -1429,7 +1460,7 @@ export default function App({ initialPath = "/" }) {
 
   return (
     <main>
-      <Header path={path} />
+      <Header path={normalizedPath} />
       <Hero />
       <About />
       <Projects />
@@ -1566,7 +1597,7 @@ function Header({ path }) {
           {navItems.map((item) => (
             <a
               key={item.href}
-              href={isHomePath ? item.href : `/${item.href}`}
+              href={isHomePath ? item.href : normalizeInternalHref(`/${item.href}`)}
               aria-current={activeHash === item.href ? "page" : undefined}
               onClick={() => handleNavClick(item.href)}
             >
@@ -1574,7 +1605,7 @@ function Header({ path }) {
             </a>
           ))}
         </nav>
-        <a className="nav-cta" href={isHomePath ? "#contact" : "/#contact"}>
+        <a className="nav-cta" href={isHomePath ? "#contact" : normalizeInternalHref("/#contact")}>
           Say hello
         </a>
       </div>
@@ -1600,7 +1631,7 @@ function LegalNoticePage() {
                 <dd>
                   {item.href ? (
                     <a
-                      href={item.href}
+                      href={item.href.startsWith("http") ? item.href : normalizeInternalHref(item.href)}
                       target={item.href.startsWith("http") ? "_blank" : undefined}
                       rel={item.href.startsWith("http") ? "noreferrer" : undefined}
                     >
@@ -1926,7 +1957,13 @@ function GameLandingPage({ game }) {
             <p>{game.summary}</p>
             <div className="game-actions">
               {game.storeLinks.map((link) => (
-                <a className="button primary" href={link.href} key={link.label} target="_blank" rel="noreferrer">
+                <a
+                  className="button primary"
+                  href={link.href.startsWith("http") ? link.href : normalizeInternalHref(link.href)}
+                  key={link.label}
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                >
                   {link.label}
                 </a>
               ))}
@@ -1950,7 +1987,7 @@ function GameLandingPage({ game }) {
             <div className="game-link-list">
               {[...game.storeLinks, ...game.legalLinks].map((link) => (
                 <a
-                  href={link.href}
+                  href={link.href.startsWith("http") ? link.href : normalizeInternalHref(link.href)}
                   key={link.label}
                   target={link.href.startsWith("http") ? "_blank" : undefined}
                   rel={link.href.startsWith("http") ? "noreferrer" : undefined}
@@ -1997,7 +2034,13 @@ function AppLandingPage({ app }) {
             {appLinks.length ? (
               <div className="game-actions">
                 {appLinks.map((link) => (
-                  <a className="button primary" href={link.href} key={link.href} target="_blank" rel="noreferrer">
+                  <a
+                    className="button primary"
+                    href={link.href.startsWith("http") ? link.href : normalizeInternalHref(link.href)}
+                    key={link.href}
+                    target={link.href.startsWith("http") ? "_blank" : undefined}
+                    rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                  >
                     {link.label}
                   </a>
                 ))}
@@ -2023,14 +2066,19 @@ function AppLandingPage({ app }) {
             <div className="game-link-list">
               {appLinks.length ? (
                 appLinks.map((link) => (
-                  <a href={link.href} key={link.href} target="_blank" rel="noreferrer">
+                  <a
+                    href={link.href.startsWith("http") ? link.href : normalizeInternalHref(link.href)}
+                    key={link.href}
+                    target={link.href.startsWith("http") ? "_blank" : undefined}
+                    rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                  >
                     {link.label}
                   </a>
                 ))
               ) : (
                 <span className="game-link-note">Links will be added when available.</span>
               )}
-              <a href="/#projects">Back to Work</a>
+              <a href={normalizeInternalHref("/#projects")}>Back to Work</a>
             </div>
           </section>
         </div>
@@ -2067,7 +2115,13 @@ function WorkLandingPage({ project }) {
             {project.links?.length ? (
               <div className="game-actions">
                 {project.links.map((link) => (
-                  <a className="button primary" href={link.href} key={link.href} target="_blank" rel="noreferrer">
+                  <a
+                    className="button primary"
+                    href={link.href.startsWith("http") ? link.href : normalizeInternalHref(link.href)}
+                    key={link.href}
+                    target={link.href.startsWith("http") ? "_blank" : undefined}
+                    rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                  >
                     {link.label}
                   </a>
                 ))}
@@ -2097,14 +2151,19 @@ function WorkLandingPage({ project }) {
             <div className="game-link-list">
               {project.links?.length ? (
                 project.links.map((link) => (
-                  <a href={link.href} key={link.href} target="_blank" rel="noreferrer">
+                  <a
+                    href={link.href.startsWith("http") ? link.href : normalizeInternalHref(link.href)}
+                    key={link.href}
+                    target={link.href.startsWith("http") ? "_blank" : undefined}
+                    rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                  >
                     {link.label}
                   </a>
                 ))
               ) : (
                 <span className="game-link-note">Public links will be added when available.</span>
               )}
-              <a href="/#projects">Back to Work</a>
+              <a href={normalizeInternalHref("/#projects")}>Back to Work</a>
             </div>
           </section>
         </div>
@@ -2136,7 +2195,7 @@ function GameLegalPage({ game, type }) {
           <p className="eyebrow">{isPrivacy ? "Game Privacy" : "Game Terms"}</p>
           <h1>{title}</h1>
           {isPrivacy ? <GamePrivacyPolicyContent game={game} /> : <GameTermsContent game={game} />}
-          <a className="button secondary legal-back" href={`/games/${game.slug}`}>
+          <a className="button secondary legal-back" href={normalizeInternalHref(`/games/${game.slug}`)}>
             Back to game page
           </a>
         </div>
@@ -2837,7 +2896,7 @@ function GameTermsContent({ game }) {
           <h2>12. Privacy</h2>
           <p>
             Information about data processing in connection with the game is available in the{" "}
-            <a href={`/games/${game.slug}/privacy`}>{game.title} Privacy Policy</a>. By using the game, you
+            <a href={normalizeInternalHref(`/games/${game.slug}/privacy`)}>{game.title} Privacy Policy</a>. By using the game, you
             acknowledge that personal data may be processed as described there.
           </p>
         </section>
@@ -2920,7 +2979,7 @@ function GameSupportPage({ game }) {
             Need help with {game.title}? Please contact{" "}
             <a href={`mailto:${privacyContact.email}`}>{privacyContact.email}</a>.
           </p>
-          <a className="button secondary legal-back" href={`/games/${game.slug}`}>
+          <a className="button secondary legal-back" href={normalizeInternalHref(`/games/${game.slug}`)}>
             Back to game page
           </a>
         </div>
@@ -3111,12 +3170,18 @@ function Projects() {
             tabIndex={0}
             aria-label={`Learn more about ${project.name}`}
             onClick={() => {
-              window.location.href = project.links[0].href;
+              const targetHref = project.links[0].href.startsWith("http")
+                ? project.links[0].href
+                : normalizeInternalHref(project.links[0].href);
+              window.location.href = targetHref;
             }}
             onKeyDown={(event) => {
               if (event.key === "Enter" || event.key === " ") {
                 event.preventDefault();
-                window.location.href = project.links[0].href;
+                const targetHref = project.links[0].href.startsWith("http")
+                  ? project.links[0].href
+                  : normalizeInternalHref(project.links[0].href);
+                window.location.href = targetHref;
               }
             }}
             style={{ "--reveal-delay": `${Math.min(index, 8) * 45}ms` }}
@@ -3145,7 +3210,7 @@ function Projects() {
                 <div className="project-links">
                   {project.links.map((link) => (
                     <a
-                      href={link.href}
+                      href={link.href.startsWith("http") ? link.href : normalizeInternalHref(link.href)}
                       key={link.href}
                       target={link.href.startsWith("http") ? "_blank" : undefined}
                       rel={link.href.startsWith("http") ? "noreferrer" : undefined}
@@ -3250,7 +3315,7 @@ function StoreLaunches() {
               {markLink ? (
                 <a
                   className="launch-mark launch-mark-link"
-                  href={markLink.href}
+                  href={markLink.href.startsWith("http") ? markLink.href : normalizeInternalHref(markLink.href)}
                   target={markLink.href.startsWith("http") ? "_blank" : undefined}
                   rel={markLink.href.startsWith("http") ? "noreferrer" : undefined}
                   aria-label={`Open ${item.title} website`}
@@ -3273,7 +3338,7 @@ function StoreLaunches() {
                   <div className="launch-links">
                     {item.links.map((link) => (
                       <a
-                        href={link.href}
+                        href={link.href.startsWith("http") ? link.href : normalizeInternalHref(link.href)}
                         key={`${item.title}-${link.label}`}
                         target={link.href.startsWith("http") ? "_blank" : undefined}
                         rel={link.href.startsWith("http") ? "noreferrer" : undefined}
@@ -3426,8 +3491,8 @@ function Footer() {
           © {new Date().getFullYear()} <strong>Nadya Yashchuk.</strong> Product work with clearer direction.
         </p>
         <div className="footer-links">
-          <a href="/impressum">Impressum / Legal Notice</a>
-          <a href="/privacy">Privacy Policy</a>
+          <a href={normalizeInternalHref("/impressum")}>Impressum / Legal Notice</a>
+          <a href={normalizeInternalHref("/privacy")}>Privacy Policy</a>
         </div>
       </div>
     </footer>

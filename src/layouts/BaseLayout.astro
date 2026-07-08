@@ -8,7 +8,15 @@ const {
 } = Astro.props;
 
 const site = Astro.site || new URL("https://nadzeyayashchuk.com");
-const canonicalUrl = new URL(canonicalPath, site).toString();
+const normalizeCanonicalPath = (path) => {
+  if (!path || path === "/") {
+    return "/";
+  }
+
+  return path.endsWith("/") ? path : `${path}/`;
+};
+
+const canonicalUrl = new URL(normalizeCanonicalPath(canonicalPath), site).toString();
 const imageUrl = image.startsWith("http") ? image : new URL(image, site).toString();
 ---
 

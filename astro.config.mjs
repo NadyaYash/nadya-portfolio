@@ -4,5 +4,6 @@ import react from "@astrojs/react";
 export default defineConfig({
   site: "https://nadzeyayashchuk.com",
   output: "static",
+  trailingSlash: "always",
   integrations: [react()],
 });
