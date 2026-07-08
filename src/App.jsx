@@ -381,6 +381,21 @@ const normalizeInternalHref = (href) => {
   return `${normalizedPath}${queryPart}${hashPart}`;
 };
 
+const siteUrl = "https://nadzeyayashchuk.com";
+const personId = `${siteUrl}/#person`;
+const websiteId = `${siteUrl}/#website`;
+
+const toAbsoluteUrl = (href = "/") => {
+  if (href.startsWith("http")) {
+    return href;
+  }
+
+  const looksLikeFile = /\.[a-z0-9]+($|[?#])/i.test(href);
+  const normalizedHref = looksLikeFile ? href : normalizeInternalHref(href) || "/";
+
+  return new URL(normalizedHref, siteUrl).toString();
+};
+
 const assetUrl = (asset) => {
   if (typeof asset === "string") {
     return asset;
@@ -392,6 +407,162 @@ const assetUrl = (asset) => {
 
   return "";
 };
+
+const getEntityImage = (entity) =>
+  assetUrl(entity?.icon || entity?.images?.[0]?.src || entity?.backdropImages?.[0]?.src || profilePhoto) || "/favicon.svg";
+
+const getBreadcrumbGraph = (items) => ({
+  "@type": "BreadcrumbList",
+  itemListElement: items.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.name,
+    item: toAbsoluteUrl(item.path),
+  })),
+});
+
+const getHomeGraph = () => ({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: `${siteUrl}/`,
+      name: "Nadya Yashchuk",
+      inLanguage: "en",
+    },
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: "Nadya Yashchuk",
+      jobTitle: "Product & Project Lead",
+      url: `${siteUrl}/`,
+      image: toAbsoluteUrl(assetUrl(profilePhoto)),
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: "AT",
+        addressRegion: "Austria",
+      },
+      homeLocation: {
+        "@type": "Place",
+        name: "Austria",
+      },
+      sameAs: [
+        "https://www.linkedin.com/in/nadya-yashchuk/",
+        "https://contra.com/nadzeya_yashchuk_by5wcspl/work?r=nadzeya_yashchuk_by5wcspl",
+      ],
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${siteUrl}/#profile`,
+      url: `${siteUrl}/`,
+      name: "Nadya Yashchuk | Product & Project Lead in Austria",
+      description:
+        "Nadya Yashchuk is a Product & Project Lead based in Austria, working across mobile apps, SaaS, and web products.",
+      isPartOf: {
+        "@id": websiteId,
+      },
+      mainEntity: {
+        "@id": personId,
+      },
+    },
+  ],
+});
+
+const getGameGraph = (game) => ({
+  "@context": "https://schema.org",
+  "@graph": [
+    getBreadcrumbGraph([
+      { name: "Home", path: "/" },
+      { name: "Games", path: "/#projects" },
+      { name: game.title, path: getGamePath(game) },
+    ]),
+    {
+      "@type": "SoftwareApplication",
+      name: game.title,
+      description: game.summary,
+      url: toAbsoluteUrl(getGamePath(game)),
+      image: toAbsoluteUrl(getEntityImage(game)),
+      applicationCategory: "GameApplication",
+      operatingSystem: "iOS, Android",
+      sameAs: game.storeLinks.map((link) => link.href),
+    },
+  ],
+});
+
+const getGameLegalGraph = (game, suffix, label) => ({
+  "@context": "https://schema.org",
+  "@graph": [
+    getBreadcrumbGraph([
+      { name: "Home", path: "/" },
+      { name: "Games", path: "/#projects" },
+      { name: game.title, path: getGamePath(game) },
+      { name: label, path: `${getGamePath(game)}/${suffix}` },
+    ]),
+    {
+      "@type": "WebPage",
+      name: `${game.title} ${label}`,
+      url: toAbsoluteUrl(`${getGamePath(game)}/${suffix}`),
+      description: `${label} for ${getGameLegalName(game)}.`,
+      isPartOf: {
+        "@id": websiteId,
+      },
+      about: {
+        "@type": "SoftwareApplication",
+        name: game.title,
+      },
+    },
+  ],
+});
+
+const getAppGraph = (app) => ({
+  "@context": "https://schema.org",
+  "@graph": [
+    getBreadcrumbGraph([
+      { name: "Home", path: "/" },
+      { name: "Apps", path: "/#projects" },
+      { name: app.title, path: getLaunchPath(app) },
+    ]),
+    {
+      "@type": "SoftwareApplication",
+      name: app.title,
+      description:
+        app.summary ||
+        `${app.category} where I handled publishing, QA testing, store presence, launch packaging, and release readiness.`,
+      url: toAbsoluteUrl(getLaunchPath(app)),
+      image: toAbsoluteUrl(getEntityImage(app)),
+      applicationCategory: app.category,
+      operatingSystem: "iOS, Android",
+      sameAs: (app.links || []).filter((link) => link.href.startsWith("http")).map((link) => link.href),
+    },
+  ],
+});
+
+const getWorkGraph = (project) => ({
+  "@context": "https://schema.org",
+  "@graph": [
+    getBreadcrumbGraph([
+      { name: "Home", path: "/" },
+      { name: "Work", path: "/#projects" },
+      { name: project.name, path: getProjectPath(project) },
+    ]),
+    {
+      "@type": "WebPage",
+      name: project.name,
+      url: toAbsoluteUrl(getProjectPath(project)),
+      description: project.summary,
+      image: toAbsoluteUrl(getEntityImage(project)),
+      isPartOf: {
+        "@id": websiteId,
+      },
+      about: {
+        "@type": "CreativeWork",
+        name: project.name,
+        description: project.summary,
+      },
+    },
+  ],
+});
 
 export const getLaunchSlug = (item) => item.slug || getTitleSlug(item.title);
 export const getLaunchPath = (item) => `/apps/${getLaunchSlug(item)}`;
@@ -1291,6 +1462,8 @@ export function getPageSeo(pathname = "/") {
       title: "Nadya Yashchuk | Product & Project Lead in Austria",
       description:
         "Nadya Yashchuk is a Product & Project Lead based in Austria, working across mobile apps, SaaS, and web products.",
+      image: assetUrl(profilePhoto),
+      jsonLd: getHomeGraph(),
     };
   }
 
@@ -1298,6 +1471,16 @@ export function getPageSeo(pathname = "/") {
     return {
       title: "Impressum / Legal Notice | Nadya Yashchuk",
       description: "Legal notice and business disclosure for nadzeyayashchuk.com.",
+      image: assetUrl(profilePhoto),
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@graph": [
+          getBreadcrumbGraph([
+            { name: "Home", path: "/" },
+            { name: "Impressum / Legal Notice", path: "/impressum" },
+          ]),
+        ],
+      },
     };
   }
 
@@ -1305,6 +1488,16 @@ export function getPageSeo(pathname = "/") {
     return {
       title: "Privacy Policy | Nadya Yashchuk",
       description: "Privacy policy for nadzeyayashchuk.com and related portfolio content.",
+      image: assetUrl(profilePhoto),
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@graph": [
+          getBreadcrumbGraph([
+            { name: "Home", path: "/" },
+            { name: "Privacy Policy", path: "/privacy" },
+          ]),
+        ],
+      },
     };
   }
 
@@ -1317,6 +1510,8 @@ export function getPageSeo(pathname = "/") {
       description:
         app?.summary ||
         "Product publishing, QA testing, store presence, launch packaging, and release readiness.",
+      image: app ? getEntityImage(app) : assetUrl(profilePhoto),
+      jsonLd: app ? getAppGraph(app) : null,
     };
   }
 
@@ -1329,6 +1524,8 @@ export function getPageSeo(pathname = "/") {
       description:
         project?.summary ||
         "Product leadership, launch direction, and structured execution across apps and web products.",
+      image: project ? getEntityImage(project) : assetUrl(profilePhoto),
+      jsonLd: project ? getWorkGraph(project) : null,
     };
   }
 
@@ -1344,6 +1541,8 @@ export function getPageSeo(pathname = "/") {
       return {
         title: `${legalName} Privacy Policy | Nadya Yashchuk`,
         description: `Privacy policy for ${legalName}.`,
+        image: game ? getEntityImage(game) : assetUrl(profilePhoto),
+        jsonLd: game ? getGameLegalGraph(game, "privacy", "Privacy Policy") : null,
       };
     }
 
@@ -1351,6 +1550,8 @@ export function getPageSeo(pathname = "/") {
       return {
         title: `${legalName} Terms of Use | Nadya Yashchuk`,
         description: `Terms of use for ${legalName}.`,
+        image: game ? getEntityImage(game) : assetUrl(profilePhoto),
+        jsonLd: game ? getGameLegalGraph(game, "terms", "Terms of Use") : null,
       };
     }
 
@@ -1358,6 +1559,8 @@ export function getPageSeo(pathname = "/") {
       return {
         title: `${legalName} Support | Nadya Yashchuk`,
         description: `Support page for ${legalName}.`,
+        image: game ? getEntityImage(game) : assetUrl(profilePhoto),
+        jsonLd: game ? getGameLegalGraph(game, "support", "Support") : null,
       };
     }
 
@@ -1365,6 +1568,8 @@ export function getPageSeo(pathname = "/") {
       title: game ? `${game.title} | Nadya Yashchuk` : "Game page | Nadya Yashchuk",
       description:
         game?.summary || "Game launch page with screenshots, store links, and legal information.",
+      image: game ? getEntityImage(game) : assetUrl(profilePhoto),
+      jsonLd: game ? getGameGraph(game) : null,
     };
   }
 
@@ -1372,6 +1577,8 @@ export function getPageSeo(pathname = "/") {
     title: "Nadya Yashchuk | Product & Project Lead in Austria",
     description:
       "Nadya Yashchuk is a Product & Project Lead based in Austria, working across mobile apps, SaaS, and web products.",
+    image: assetUrl(profilePhoto),
+    jsonLd: getHomeGraph(),
   };
 }
 

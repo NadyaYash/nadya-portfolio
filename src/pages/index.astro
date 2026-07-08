@@ -3,29 +3,8 @@ import App, { getPageSeo } from "../App.jsx";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const seo = getPageSeo("/");
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Nadya Yashchuk",
-  jobTitle: "Product & Project Lead",
-  url: "https://nadzeyayashchuk.com/",
-  image: "https://nadzeyayashchuk.com/favicon.svg",
-  address: {
-    "@type": "PostalAddress",
-    addressCountry: "AT",
-    addressRegion: "Austria",
-  },
-  homeLocation: {
-    "@type": "Place",
-    name: "Austria",
-  },
-  sameAs: [
-    "https://www.linkedin.com/in/nadya-yashchuk/",
-    "https://contra.com/nadzeya_yashchuk_by5wcspl/work?r=nadzeya_yashchuk_by5wcspl",
-  ],
-};
 ---
 
-<BaseLayout title={seo.title} description={seo.description} canonicalPath="/" jsonLd={jsonLd}>
+<BaseLayout title={seo.title} description={seo.description} canonicalPath="/" image={seo.image} jsonLd={seo.jsonLd}>
   <App initialPath="/" client:load />
 </BaseLayout>

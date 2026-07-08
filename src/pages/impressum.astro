@@ -6,6 +6,6 @@ const path = "/impressum";
 const seo = getPageSeo(path);
 ---
 
-<BaseLayout title={seo.title} description={seo.description} canonicalPath={path}>
+<BaseLayout title={seo.title} description={seo.description} canonicalPath={path} image={seo.image} jsonLd={seo.jsonLd}>
   <App initialPath={path} client:load />
 </BaseLayout>
