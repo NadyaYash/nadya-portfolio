@@ -1,0 +1,21 @@
+---
+import App, { gameLandings, getGamePath, getPageSeo } from "../../../App.jsx";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  return gameLandings.map((game) => {
+    const path = `${getGamePath(game)}/privacy`;
+    return {
+      params: { slug: game.slug },
+      props: { path },
+    };
+  });
+}
+
+const { path } = Astro.props;
+const seo = getPageSeo(path);
+---
+
+<BaseLayout title={seo.title} description={seo.description} canonicalPath={path}>
+  <App initialPath={path} client:load />
+</BaseLayout>

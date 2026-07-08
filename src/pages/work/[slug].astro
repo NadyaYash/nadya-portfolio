@@ -1,0 +1,21 @@
+---
+import App, { getPageSeo, getProjectPath, getProjectSlug, projects } from "../../App.jsx";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  return projects.map((item) => {
+    const path = getProjectPath(item);
+    return {
+      params: { slug: getProjectSlug(item) },
+      props: { path },
+    };
+  });
+}
+
+const { path } = Astro.props;
+const seo = getPageSeo(path);
+---
+
+<BaseLayout title={seo.title} description={seo.description} canonicalPath={path}>
+  <App initialPath={path} client:load />
+</BaseLayout>

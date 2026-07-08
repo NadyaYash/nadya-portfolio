@@ -1,0 +1,11 @@
+---
+import App, { getPageSeo } from "../App.jsx";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const path = "/impressum";
+const seo = getPageSeo(path);
+---
+
+<BaseLayout title={seo.title} description={seo.description} canonicalPath={path}>
+  <App initialPath={path} client:load />
+</BaseLayout>

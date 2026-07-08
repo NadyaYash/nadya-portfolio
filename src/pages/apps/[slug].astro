@@ -1,0 +1,25 @@
+---
+import App, { gameLandings, getLaunchPath, getLaunchSlug, getPageSeo, storeLaunches } from "../../App.jsx";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  const gameTitles = new Set(gameLandings.map((game) => game.title));
+
+  return storeLaunches
+    .filter((item) => !gameTitles.has(item.title))
+    .map((item) => {
+    const path = getLaunchPath(item);
+    return {
+      params: { slug: getLaunchSlug(item) },
+      props: { path },
+    };
+  });
+}
+
+const { path } = Astro.props;
+const seo = getPageSeo(path);
+---
+
+<BaseLayout title={seo.title} description={seo.description} canonicalPath={path}>
+  <App initialPath={path} client:load />
+</BaseLayout>
