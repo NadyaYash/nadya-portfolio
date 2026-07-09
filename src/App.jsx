@@ -1456,13 +1456,14 @@ const teamMembers = [
 
 export function getPageSeo(pathname = "/") {
   const normalizedPathname = stripTrailingSlash(pathname);
+  const defaultOgImage = "/og-banner.png";
 
   if (normalizedPathname === "/") {
     return {
       title: "Nadya Yashchuk | Product & Project Lead in Austria",
       description:
         "Nadya Yashchuk is a Product & Project Lead based in Austria, working across mobile apps, SaaS, and web products.",
-      image: assetUrl(profilePhoto),
+      image: defaultOgImage,
       jsonLd: getHomeGraph(),
     };
   }
@@ -1471,7 +1472,7 @@ export function getPageSeo(pathname = "/") {
     return {
       title: "Impressum / Legal Notice | Nadya Yashchuk",
       description: "Legal notice and business disclosure for nadzeyayashchuk.com.",
-      image: assetUrl(profilePhoto),
+      image: defaultOgImage,
       jsonLd: {
         "@context": "https://schema.org",
         "@graph": [
@@ -1488,7 +1489,7 @@ export function getPageSeo(pathname = "/") {
     return {
       title: "Privacy Policy | Nadya Yashchuk",
       description: "Privacy policy for nadzeyayashchuk.com and related portfolio content.",
-      image: assetUrl(profilePhoto),
+      image: defaultOgImage,
       jsonLd: {
         "@context": "https://schema.org",
         "@graph": [
@@ -1577,7 +1578,7 @@ export function getPageSeo(pathname = "/") {
     title: "Nadya Yashchuk | Product & Project Lead in Austria",
     description:
       "Nadya Yashchuk is a Product & Project Lead based in Austria, working across mobile apps, SaaS, and web products.",
-    image: assetUrl(profilePhoto),
+    image: defaultOgImage,
     jsonLd: getHomeGraph(),
   };
 }
