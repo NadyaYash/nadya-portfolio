@@ -64,6 +64,8 @@ import kidsMathCountAddScreen02 from "./assets/kids-math-count-add-screen-02.jpg
 import kidsMathCountAddScreen03 from "./assets/kids-math-count-add-screen-03.jpg";
 import kidsMathCountAddScreen04 from "./assets/kids-math-count-add-screen-04.jpg";
 import kidsMathCountAddScreen05 from "./assets/kids-math-count-add-screen-05.jpg";
+import lullabyLunoBabySleepIcon from "./assets/lullaby-luno-baby-sleep-icon.jpg";
+import lullabyLunoBabySleepScreen01 from "./assets/lullaby-luno-baby-sleep-screen-01.jpg";
 import tapMeArrowsIcon from "./assets/tap-me-arrows-icon.jpg";
 import tapMeArrowsScreen01 from "./assets/tap-me-arrows-screen-01.jpg";
 import tapMeArrowsScreen02 from "./assets/tap-me-arrows-screen-02.jpg";
@@ -779,6 +781,49 @@ export const storeLaunches = [
       {
         label: "Privacy Policy",
         href: "https://calcsprint.com/kids/privacy-policy",
+      },
+      {
+        label: "Terms of Use",
+        href: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/",
+      },
+    ],
+  },
+  {
+    title: "Lullaby Luno: Baby Sleep",
+    slug: "lullaby-luno-baby-sleep",
+    category: "Baby sleep app",
+    period: "2026",
+    icon: lullabyLunoBabySleepIcon,
+    note: "Publisher & QA",
+    summary:
+      "Calm bedtime music app with gentle lullabies, nature sounds, favorites, and a simple sleep timer designed for babies and young children.",
+    cardSummary: "Gentle bedtime music app with lullabies, nature sounds, favorites, and a sleep timer.",
+    impact: [
+      "Publisher-side positioning, QA testing, and release readiness for a soft bedtime audio app built around calm routines, simple controls, and no-ad listening.",
+      "Prepared store-facing presentation around lullabies, repeat playback, sleep timer premium features, and a privacy-light setup with no data collected listed on the App Store.",
+    ],
+    images: [
+      {
+        src: lullabyLunoBabySleepScreen01,
+        alt: "Lullaby Luno: Baby Sleep App Store preview showing the moon-themed app artwork.",
+      },
+    ],
+    links: [
+      {
+        label: "Learn more",
+        href: "/apps/lullaby-luno-baby-sleep",
+      },
+      {
+        label: "Web",
+        href: "https://favoritelullaby.com/",
+      },
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/lullaby-luno-baby-sleep/id6787460650",
+      },
+      {
+        label: "Privacy Policy",
+        href: "https://favoritelullaby.com/privacy",
       },
       {
         label: "Terms of Use",
