@@ -955,7 +955,8 @@ export const storeLaunches = [
     ],
   },
   {
-    title: "Goroda Online",
+    title: "Города Онлайн: чат-игра",
+    slug: "goroda-online",
     category: "City game",
     period: "2026",
     icon: gorodaOnlineIcon,
@@ -967,7 +968,7 @@ export const storeLaunches = [
       },
       {
         label: "App Store",
-        href: "https://apps.apple.com/us/app/%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B0-%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD/id6769050447",
+        href: "https://apps.apple.com/us/app/%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B0-%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD-%D1%87%D0%B0%D1%82-%D0%B8%D0%B3%D1%80%D0%B0/id6769050447",
       },
       {
         label: "Google Play",
