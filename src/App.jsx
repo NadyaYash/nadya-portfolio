@@ -822,6 +822,10 @@ export const storeLaunches = [
         href: "https://apps.apple.com/us/app/lullaby-luno-baby-sleep/id6787460650",
       },
       {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.lullabyluno&pcampaignid=web_share",
+      },
+      {
         label: "Privacy Policy",
         href: "https://favoritelullaby.com/privacy",
       },
@@ -1058,6 +1062,10 @@ export const storeLaunches = [
       {
         label: "App Store",
         href: "https://apps.apple.com/us/app/coffeeline-barista/id6784132379",
+      },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.coffeelines",
       },
       {
         label: "Privacy Policy",
