@@ -1441,7 +1441,7 @@ const contactMethods = [
   {
     label: "Email",
     text: "Start the conversation",
-    href: "mailto:nadyash.work@gmail.com",
+    href: "mailto:contact@nadzeyayashchuk.com",
     icon: "mail",
   },
   {
@@ -3637,7 +3637,7 @@ function Contact() {
             </p>
           </div>
           <div className="contact-actions">
-            <a className="button primary" href="mailto:nadyash.work@gmail.com">
+            <a className="button primary" href="mailto:contact@nadzeyayashchuk.com">
               Email me
             </a>
             <a
