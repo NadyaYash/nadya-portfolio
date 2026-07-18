@@ -68,6 +68,12 @@ import kidsMathCountAddScreen04 from "./assets/kids-math-count-add-screen-04.jpg
 import kidsMathCountAddScreen05 from "./assets/kids-math-count-add-screen-05.jpg";
 import lullabyLunoBabySleepIcon from "./assets/lullaby-luno-baby-sleep-icon.jpg";
 import lullabyLunoBabySleepScreen01 from "./assets/lullaby-luno-baby-sleep-screen-01.jpg";
+import vertAltimeterIcon from "./assets/vert-altimeter-icon.png";
+import vertAltimeterScreen01 from "./assets/vert-altimeter-screen-01.webp";
+import vertAltimeterScreen02 from "./assets/vert-altimeter-screen-02.webp";
+import vertAltimeterScreen03 from "./assets/vert-altimeter-screen-03.webp";
+import vertAltimeterScreen04 from "./assets/vert-altimeter-screen-04.webp";
+import vertAltimeterScreen05 from "./assets/vert-altimeter-screen-05.webp";
 import tapMeArrowsIcon from "./assets/tap-me-arrows-icon.jpg";
 import tapMeArrowsScreen01 from "./assets/tap-me-arrows-screen-01.jpg";
 import tapMeArrowsScreen02 from "./assets/tap-me-arrows-screen-02.jpg";
@@ -583,6 +589,7 @@ const localizedCategoryMap = {
     "Creative app": "Kreativ-App",
     "City game": "Städtespiel",
     "Utility app": "Utility-App",
+    "Altimeter & ski tracker": "Höhenmesser & Ski-Tracker",
     "Relationship app": "Relationship-App",
     "Puzzle game / mobile product": "Puzzlespiel / Mobile-Produkt",
     "Platform migration / process optimization": "Plattformmigration / Prozessoptimierung",
@@ -598,6 +605,7 @@ const localizedRoleMap = {
     "Publisher & QA": "Publishing & QA",
     "Creator & Product Lead": "Creator & Product Lead",
     "Co-founder & Product Lead": "Co-Founder & Product Lead",
+    "Creator, Product, Design, Development & Publishing": "Konzept, Produkt, Design, Entwicklung & Publishing",
     "Project Lead (Platform & Integrations)": "Projektleitung (Plattform & Integrationen)",
     "Launch preparation": "Launch-Vorbereitung",
   },
@@ -894,6 +902,58 @@ export const storeLaunches = [
         ...game.legalLinks.slice(0, 2),
       ],
     })),
+  {
+    title: "VERT — Altimeter & Ski Tracker",
+    slug: "vert-altimeter",
+    category: "Altimeter & ski tracker",
+    period: "2026",
+    icon: vertAltimeterIcon,
+    note: "Creator, Product, Design, Development & Publishing",
+    summary:
+      "An honest altimeter and hike/ski tracker for iPhone. Works with no internet, never loses your day, and keeps everything on your phone.",
+    cardSummary: "Offline altimeter and hike/ski tracker for iPhone, built around reliable mountain days and local-only data.",
+    impact: [
+      "Built the product end to end: concept, positioning, UX direction, visual identity, website, development coordination, and release preparation.",
+      "Shaped the app around offline reliability, honest altitude readings, no-cloud storage, skiing and hiking use cases, and a calm one-time Pro upgrade model.",
+      "Prepared the launch structure, website, privacy and terms pages, and App Store review materials as a fully self-directed product.",
+    ],
+    images: [
+      {
+        src: vertAltimeterScreen01,
+        alt: "VERT hero screen showing the altimeter above a still lake and wooden jetty.",
+      },
+      {
+        src: vertAltimeterScreen02,
+        alt: "VERT recorded hiking day screen with stats, map, and elevation profile.",
+      },
+      {
+        src: vertAltimeterScreen03,
+        alt: "VERT season poster view showing every track of the year on one map.",
+      },
+      {
+        src: vertAltimeterScreen04,
+        alt: "VERT altimeter home screen with the compass shown.",
+      },
+      {
+        src: vertAltimeterScreen05,
+        alt: "VERT recorded ski day screen showing runs and vertical drop.",
+      },
+    ],
+    links: [
+      {
+        label: "Web",
+        href: "https://vertaltimeter.app/",
+      },
+      {
+        label: "Privacy Policy",
+        href: "https://vertaltimeter.app/privacy",
+      },
+      {
+        label: "Terms of Use",
+        href: "https://vertaltimeter.app/terms",
+      },
+    ],
+  },
   {
     title: "Nomad Flow: Money",
     category: "Money tracking app",
