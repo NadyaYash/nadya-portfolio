@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./styles.css";
+import "./styles-i18n.css";
+import { getAlternatePaths, getLocaleFromPath, stripLocaleFromPath, withLocalePath } from "./i18n.js";
 import profilePhoto from "../1701113988652.jpeg";
 import easyJigsawPuzzlesIcon from "./assets/easy-jigsaw-puzzles-icon.png";
 import easyJigsawScreen01 from "./assets/easy-jigsaw-screen-01.jpg";
@@ -91,6 +93,11 @@ const navItems = [
   { label: "Work", href: "#projects" },
   { label: "How I help", href: "#help" },
   { label: "Contact", href: "#contact" },
+];
+
+const languageOptions = [
+  { code: "en", label: "EN" },
+  { code: "de", label: "DE" },
 ];
 
 const legalNotice = [
@@ -354,6 +361,272 @@ const helpAreas = [
   },
 ];
 
+const copy = {
+  en: {
+    nav: navItems,
+    languageSwitcherLabel: "Language switcher",
+    homeAriaLabel: "Nadya Yashchuk home",
+    sayHello: "Say hello",
+    legalNoticeEyebrow: "Impressum",
+    legalNoticeTitle: "Impressum / Legal Notice",
+    legalNoticeIntro: "Information according to Austrian legal disclosure requirements for this website.",
+    legalResponsible: "Responsible for Content",
+    backToPortfolio: "Back to portfolio",
+    sitePrivacyEyebrow: "Privacy Policy",
+    sitePrivacyTitle: "Privacy Policy",
+    sitePrivacyLastUpdated: "Last updated: May 25, 2026",
+    homeTitle: "Nadya Yashchuk | Product & Project Lead in Austria",
+    homeDescription:
+      "Nadya Yashchuk is a Product & Project Lead based in Austria, working across mobile apps, SaaS, and web products.",
+    impressumDescription: "Legal notice and business disclosure for nadzeyayashchuk.com.",
+    privacyDescription: "Privacy policy for nadzeyayashchuk.com and related portfolio content.",
+    heroKicker: "Hello",
+    heroRole: "Product & Project Lead based in Austria",
+    heroAvailability: "Availability",
+    heroAvailabilityText: "Available for product & delivery clarity",
+    heroCopy:
+      "I make product work feel calmer, clearer, and easier to move across mobile apps, SaaS, and web products from Austria, across EU and remote teams.",
+    viewWork: "View work",
+    contactMe: "Contact me",
+    heroProofLabel: "Usually involved in",
+    aboutEyebrow: "About",
+    aboutTitle: "I help product work start stronger, scale cleaner, and get back on track when execution drifts.",
+    aboutIntro: "Based in Austria. Remote and EU-based teams.",
+    aboutParagraph1:
+      "I step in when direction is unclear, priorities are overloaded, or delivery keeps looping. I clarify ownership, structure the work, and move teams toward a real release — whether that means starting from scratch or resetting what's already stuck.",
+    aboutParagraph2:
+      "My background is hands-on: product ownership across web, iOS, and Android, from idea to launch. I also support app store presentation and launch packaging when products need to show up better in the store.",
+    ifThisSoundsFamiliar: "If this sounds familiar",
+    weShouldTalk: "We should talk",
+    projectsEyebrow: "Selected Work",
+    projectsTitle: "Product work, launches, and store presence in one view.",
+    projectsIntro:
+      "A compact catalog of larger product work and smaller publishing launches, with the role made explicit on every card.",
+    helpEyebrow: "What I help teams do",
+    helpTitle: "When product work gets messy, I help teams find the next right move.",
+    helpIntro:
+      "I work best where priorities are overloaded, decisions are slow, or delivery needs someone steady enough to turn complexity into progress.",
+    teamEyebrow: "Current collaborators",
+    teamTitle: "People I work closely with on active products.",
+    teamIntro: "The people I stay in close touch with as we build, grow, and support current products together.",
+    contactEyebrow: "Contact",
+    contactTitle: "Need someone to bring order to the product work?",
+    contactIntro:
+      "If your roadmap is messy, a launch is coming, or the team needs clearer priorities, send me a note. Based in Austria, I work with both EU-based and remote teams.",
+    emailMe: "Email me",
+    developerProfilesEyebrow: "Developer profiles",
+    developerProfilesIntro:
+      "Public storefronts and publishing profiles where my released apps and watch faces are listed.",
+    footerTagline: "Product work with clearer direction.",
+    privacyPolicy: "Privacy Policy",
+    termsOfUse: "Terms of Use",
+    learnMore: "Learn more",
+    support: "Support",
+    role: "Role",
+    links: "Links",
+    highlights: "Highlights",
+    whatIDid: "What I did",
+    backToWork: "Back to Work",
+    backToGamePage: "Back to game page",
+    linksAvailableLater: "Links will be added when available.",
+    publicLinksLater: "Public links will be added when available.",
+    gamePageNotFound: "Game page not found",
+    gamePageNotFoundMessage: "This game page is not available. Please return to the work section.",
+    appPageNotFound: "App page not found",
+    appPageNotFoundMessage: "This app page is not available. Please return to the work section.",
+    workPageNotFound: "Work page not found",
+    workPageNotFoundMessage: "This work page is not available. Please return to the work section.",
+    comingSoon: "Coming soon",
+    gamePageComingSoon: "Game page coming soon",
+    gamePagePreparedMessage:
+      "This game page is prepared, but it is not public yet. Final screenshots, store links, privacy policy, and terms will be added before release.",
+    launchPreparation: "Launch preparation",
+    upcomingGameSummary: "Upcoming game with store links, support, privacy, and terms prepared before release.",
+    upcomingGameImpact: "Prepared legal and support structure before app release.",
+    comingSoonPeriod: "Coming soon",
+    watchFaceEyebrow: "Garmin Connect IQ",
+    watchFaceTitle: "Watch face catalog",
+    watchFaceLabel: "Garmin watch face catalog",
+    free: "Free",
+    open: "Open",
+    rating: "Rating",
+    screenshotViewer: "screenshot viewer",
+    close: "Close",
+    previousScreenshot: "Previous screenshot",
+    nextScreenshot: "Next screenshot",
+    gamePrivacyEyebrow: "Game Privacy",
+    gameTermsEyebrow: "Game Terms",
+    supportEyebrow: "Support",
+    supportTitleSuffix: "Support",
+    supportIntroPrefix: "Need help with",
+    supportIntroSuffix: "Please contact",
+  },
+  de: {
+    nav: [
+      { label: "Über mich", href: "#about" },
+      { label: "Projekte", href: "#projects" },
+      { label: "Wie ich helfe", href: "#help" },
+      { label: "Kontakt", href: "#contact" },
+    ],
+    languageSwitcherLabel: "Sprachauswahl",
+    homeAriaLabel: "Startseite von Nadzeya Yashchuk",
+    sayHello: "Kontakt aufnehmen",
+    legalNoticeEyebrow: "Impressum",
+    legalNoticeTitle: "Impressum / Rechtliche Hinweise",
+    legalNoticeIntro: "Angaben gemäß den österreichischen Offenlegungspflichten für diese Website.",
+    legalResponsible: "Verantwortlich für den Inhalt",
+    backToPortfolio: "Zurück zum Portfolio",
+    sitePrivacyEyebrow: "Datenschutz",
+    sitePrivacyTitle: "Datenschutzerklärung",
+    sitePrivacyLastUpdated: "Stand: 25. Mai 2026",
+    homeTitle: "Nadya Yashchuk | Product & Project Lead in Österreich",
+    homeDescription:
+      "Nadya Yashchuk ist Product & Project Lead in Österreich und arbeitet an Mobile Apps, SaaS- und Web-Produkten.",
+    impressumDescription: "Impressum und rechtliche Angaben für nadzeyayashchuk.com.",
+    privacyDescription: "Datenschutzerklärung für nadzeyayashchuk.com und die Inhalte dieses Portfolios.",
+    heroKicker: "Hallo",
+    heroRole: "Product & Project Lead mit Sitz in Österreich",
+    heroAvailability: "Verfügbarkeit",
+    heroAvailabilityText: "Verfügbar für mehr Klarheit in Produkt und Delivery",
+    heroCopy:
+      "Ich mache Produktarbeit ruhiger, klarer und leichter umsetzbar — für Mobile Apps, SaaS und Web-Produkte aus Österreich, mit Teams in der EU und remote.",
+    viewWork: "Projekte ansehen",
+    contactMe: "Kontakt",
+    heroProofLabel: "Typischerweise dabei bei",
+    aboutEyebrow: "Über mich",
+    aboutTitle: "Ich helfe Produktarbeit, stärker zu starten, sauberer zu skalieren und wieder auf Kurs zu kommen, wenn die Umsetzung abdriftet.",
+    aboutIntro: "Standort Österreich. Zusammenarbeit mit Remote- und EU-Teams.",
+    aboutParagraph1:
+      "Ich steige ein, wenn die Richtung unklar ist, Prioritäten überladen sind oder Delivery in Schleifen hängen bleibt. Ich kläre Verantwortlichkeiten, strukturiere die Arbeit und bringe Teams wieder in Richtung echter Releases — egal ob ganz neu oder bei bereits festgefahrenen Themen.",
+    aboutParagraph2:
+      "Mein Hintergrund ist hands-on: Product Ownership über Web, iOS und Android hinweg — von der Idee bis zum Launch. Außerdem unterstütze ich bei Store-Auftritt und Launch-Paketierung, wenn Produkte im Store klarer und stärker wirken sollen.",
+    ifThisSoundsFamiliar: "Wenn dir das bekannt vorkommt",
+    weShouldTalk: "Dann sollten wir sprechen",
+    projectsEyebrow: "Ausgewählte Projekte",
+    projectsTitle: "Produktarbeit, Launches und Store-Präsenz in einer Übersicht.",
+    projectsIntro:
+      "Ein kompakter Katalog aus größeren Produktprojekten und kleineren Publishing-Launches, bei dem meine Rolle auf jeder Karte klar sichtbar ist.",
+    helpEyebrow: "Wobei ich Teams unterstütze",
+    helpTitle: "Wenn Produktarbeit unübersichtlich wird, helfe ich Teams, den nächsten richtigen Schritt zu finden.",
+    helpIntro:
+      "Ich arbeite am besten dort, wo Prioritäten überladen sind, Entscheidungen zu langsam fallen oder Delivery jemanden braucht, der Komplexität verlässlich in Fortschritt verwandelt.",
+    teamEyebrow: "Aktuelle Zusammenarbeit",
+    teamTitle: "Menschen, mit denen ich bei aktiven Produkten eng zusammenarbeite.",
+    teamIntro: "Mit diesen Menschen stehe ich eng im Austausch, während wir aktuelle Produkte gemeinsam aufbauen, weiterentwickeln und unterstützen.",
+    contactEyebrow: "Kontakt",
+    contactTitle: "Brauchst du jemanden, der Struktur in die Produktarbeit bringt?",
+    contactIntro:
+      "Wenn deine Roadmap unruhig ist, ein Launch bevorsteht oder dem Team klarere Prioritäten fehlen, schreib mir. Ich arbeite von Österreich aus mit EU-Teams und remote Teams.",
+    emailMe: "E-Mail schreiben",
+    developerProfilesEyebrow: "Developer-Profile",
+    developerProfilesIntro:
+      "Öffentliche Store- und Publishing-Profile, auf denen meine veröffentlichten Apps und Watchfaces gelistet sind.",
+    footerTagline: "Produktarbeit mit klarerer Richtung.",
+    privacyPolicy: "Datenschutz",
+    termsOfUse: "Nutzungsbedingungen",
+    learnMore: "Mehr erfahren",
+    support: "Support",
+    role: "Rolle",
+    links: "Links",
+    highlights: "Highlights",
+    whatIDid: "Mein Beitrag",
+    backToWork: "Zurück zur Übersicht",
+    backToGamePage: "Zurück zur Spielseite",
+    linksAvailableLater: "Links werden ergänzt, sobald sie verfügbar sind.",
+    publicLinksLater: "Öffentliche Links werden ergänzt, sobald sie verfügbar sind.",
+    gamePageNotFound: "Spielseite nicht gefunden",
+    gamePageNotFoundMessage: "Diese Spielseite ist nicht verfügbar. Bitte gehe zurück zur Projektübersicht.",
+    appPageNotFound: "App-Seite nicht gefunden",
+    appPageNotFoundMessage: "Diese App-Seite ist nicht verfügbar. Bitte gehe zurück zur Projektübersicht.",
+    workPageNotFound: "Projektseite nicht gefunden",
+    workPageNotFoundMessage: "Diese Projektseite ist nicht verfügbar. Bitte gehe zurück zur Projektübersicht.",
+    comingSoon: "Demnächst",
+    gamePageComingSoon: "Spielseite folgt bald",
+    gamePagePreparedMessage:
+      "Diese Spielseite ist vorbereitet, aber noch nicht öffentlich. Finale Screenshots, Store-Links, Datenschutz und Nutzungsbedingungen werden vor dem Release ergänzt.",
+    launchPreparation: "Launch-Vorbereitung",
+    upcomingGameSummary: "Kommendes Spiel mit vorbereiteten Store-Links, Support, Datenschutz und Nutzungsbedingungen.",
+    upcomingGameImpact: "Rechtliche und Support-Struktur bereits vor dem App-Release vorbereitet.",
+    comingSoonPeriod: "Demnächst",
+    watchFaceEyebrow: "Garmin Connect IQ",
+    watchFaceTitle: "Watchface-Katalog",
+    watchFaceLabel: "Garmin Watchface-Katalog",
+    free: "Kostenlos",
+    open: "Öffnen",
+    rating: "Bewertung",
+    screenshotViewer: "Screenshot-Ansicht",
+    close: "Schließen",
+    previousScreenshot: "Vorheriger Screenshot",
+    nextScreenshot: "Nächster Screenshot",
+    gamePrivacyEyebrow: "Datenschutz zum Spiel",
+    gameTermsEyebrow: "Nutzungsbedingungen zum Spiel",
+    supportEyebrow: "Support",
+    supportTitleSuffix: "Support",
+    supportIntroPrefix: "Brauchst du Hilfe mit",
+    supportIntroSuffix: "Bitte schreibe an",
+  },
+};
+
+const localizedCategoryMap = {
+  de: {
+    "Puzzle game": "Puzzlespiel",
+    "Word game": "Wortspiel",
+    "Kids math app": "Kinder-Mathe-App",
+    "Kids mobile product": "Kinder-App-Produkt",
+    "Mobile app / web product": "Mobile App / Web-Produkt",
+    "Math game": "Mathe-Spiel",
+    "Kids puzzle": "Kinder-Puzzle",
+    "Money tracking app": "Finanz-App",
+    "Clock widgets app": "Uhren-Widgets-App",
+    "Coloring app": "Mal-App",
+    "Kids coloring app": "Kinder-Mal-App",
+    "Creative app": "Kreativ-App",
+    "City game": "Städtespiel",
+    "Utility app": "Utility-App",
+    "Relationship app": "Relationship-App",
+    "Puzzle game / mobile product": "Puzzlespiel / Mobile-Produkt",
+    "Platform migration / process optimization": "Plattformmigration / Prozessoptimierung",
+    "Watch face system / publishing workflow": "Watchface-System / Publishing-Workflow",
+    "Sleep app": "Schlaf-App",
+    "Audio utility": "Audio-Utility",
+    "Coffee app": "Kaffee-App",
+  },
+};
+
+const localizedRoleMap = {
+  de: {
+    "Publisher & QA": "Publishing & QA",
+    "Creator & Product Lead": "Creator & Product Lead",
+    "Co-founder & Product Lead": "Co-Founder & Product Lead",
+    "Project Lead (Platform & Integrations)": "Projektleitung (Plattform & Integrationen)",
+    "Launch preparation": "Launch-Vorbereitung",
+  },
+};
+
+const localizedLinkLabels = {
+  de: {
+    "Learn more": "Mehr erfahren",
+    "Privacy Policy": "Datenschutz",
+    "Terms of Use": "Nutzungsbedingungen",
+    Support: "Support",
+  },
+};
+
+const localizedLegalLabels = {
+  de: {
+    "Business Owner": "Unternehmensinhaberin",
+    "Business Type": "Unternehmensform",
+    "Business Activity (Gewerbewortlaut)": "Unternehmensgegenstand (Gewerbewortlaut)",
+    "GISA Registration Number": "GISA-Nummer",
+    Address: "Adresse",
+    Email: "E-Mail",
+    Phone: "Telefon",
+    "Registered at": "Zuständige Behörde",
+    "Member of": "Mitglied bei",
+    "VAT ID": "Umsatzsteuer",
+  },
+};
+
 const getTitleSlug = (title) =>
   title
     .toLowerCase()
@@ -382,6 +655,28 @@ const normalizeInternalHref = (href) => {
 
   return `${normalizedPath}${queryPart}${hashPart}`;
 };
+
+const normalizeLocalizedInternalHref = (href, locale = "en") => {
+  if (!href || href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:")) {
+    return href;
+  }
+
+  if (href.startsWith("#")) {
+    return locale === "de" ? `/de/${href}` : href;
+  }
+
+  return normalizeInternalHref(withLocalePath(href, locale));
+};
+
+const getCopy = (locale = "en") => copy[locale] || copy.en;
+
+const localizeCategory = (value, locale = "en") => localizedCategoryMap[locale]?.[value] || value;
+
+const localizeRole = (value, locale = "en") => localizedRoleMap[locale]?.[value] || value;
+
+const localizeLinkLabel = (value, locale = "en") => localizedLinkLabels[locale]?.[value] || value;
+
+const localizeLegalLabel = (value, locale = "en") => localizedLegalLabels[locale]?.[value] || value;
 
 const siteUrl = "https://nadzeyayashchuk.com";
 const personId = `${siteUrl}/#person`;
@@ -1508,15 +1803,86 @@ const teamMembers = [
   },
 ];
 
+const localizedProofPoints = {
+  de: ["Mobile Apps", "SaaS", "Web-Produkte", "Launches", "Growth-Loops"],
+};
+
+const localizedProductSignals = {
+  de: [
+    "Die Roadmap ändert sich ständig",
+    "Entscheidungen halten nicht",
+    "Das Team ist beschäftigt, kommt aber nicht voran",
+    "Zu viele Meinungen verlangsamen Delivery",
+    "Es wird viel gearbeitet, aber nichts kommt live",
+  ],
+};
+
+const localizedHelpAreas = {
+  de: [
+    {
+      title: "Ungeordneten Input in einen klaren Plan verwandeln",
+      text: "Ich sortiere Ideen, Feedback, Einschränkungen und Business-Bedarf so, dass das Team weiß, was als Nächstes wirklich zählt.",
+    },
+    {
+      title: "Prioritäten belastbarer machen",
+      text: "Ich helfe dabei, Dringendes von Wichtigem zu trennen, Rauschen zu reduzieren und eine Roadmap zu formen, mit der man wirklich arbeiten kann.",
+    },
+    {
+      title: "Delivery in Bewegung halten",
+      text: "Ich halte Scope, Entscheidungen, Entwickler, QA und Timelines zusammen, damit die Arbeit nicht in der Mitte stecken bleibt.",
+    },
+    {
+      title: "Launches mit weniger Reibung vorbereiten",
+      text: "Ich bringe Struktur in Release-Details, Edge Cases, Feedback-Loops und die letzten Entscheidungen vor dem Launch.",
+    },
+    {
+      title: "Store-Präsenz schärfen",
+      text: "Ich unterstütze Launches mit klarerer Store-Struktur, QA, Listing-Präsentation und Release-Readiness, die Conversion besser unterstützt.",
+    },
+    {
+      title: "Produktarbeit mit Ergebnissen verbinden",
+      text: "Ich halte Usability, Wachstum, Retention und Teamkapazität in einem Gespräch, damit Produktarbeit das Business wirklich unterstützt.",
+    },
+  ],
+};
+
+const localizedContactMethods = {
+  de: [
+    { label: "Standort", text: "Österreich • EU- und Remote-Teams" },
+    { label: "E-Mail", text: "Gespräch starten" },
+    { label: "LinkedIn", text: "Beruflich vernetzen" },
+    { label: "Contra", text: "Freelance-Profil ansehen" },
+  ],
+};
+
+const localizedDeveloperProfiles = {
+  de: [
+    { text: "Veröffentlichte iPhone- und iPad-Apps" },
+    { text: "Android-Releases unter meinem Developer-Profil" },
+    { text: "Watchfaces im Garmin-Katalog veröffentlicht" },
+  ],
+};
+
+const localizedTeamMembers = {
+  de: [
+    {
+      partnerLabel: "Strategischer Partner",
+      role: "Growth Strategy, Product Development & Strategic Backing",
+      summary: "Unterstützt bei Sichtbarkeit in Search, Produktwachstum, App-Entwicklung und strategischer Begleitung über aktive Produkte hinweg.",
+    },
+  ],
+};
+
 export function getPageSeo(pathname = "/") {
-  const normalizedPathname = stripTrailingSlash(pathname);
+  const locale = getLocaleFromPath(pathname);
+  const strings = getCopy(locale);
+  const normalizedPathname = stripLocaleFromPath(pathname);
   const defaultOgImage = "/og-banner.png";
 
   if (normalizedPathname === "/") {
     return {
-      title: "Nadya Yashchuk | Product & Project Lead in Austria",
-      description:
-        "Nadya Yashchuk is a Product & Project Lead based in Austria, working across mobile apps, SaaS, and web products.",
+      title: strings.homeTitle,
+      description: strings.homeDescription,
       image: defaultOgImage,
       jsonLd: getHomeGraph(),
     };
@@ -1524,15 +1890,15 @@ export function getPageSeo(pathname = "/") {
 
   if (normalizedPathname === "/impressum") {
     return {
-      title: "Impressum / Legal Notice | Nadya Yashchuk",
-      description: "Legal notice and business disclosure for nadzeyayashchuk.com.",
+      title: `${strings.legalNoticeTitle} | Nadya Yashchuk`,
+      description: strings.impressumDescription,
       image: defaultOgImage,
       jsonLd: {
         "@context": "https://schema.org",
         "@graph": [
           getBreadcrumbGraph([
             { name: "Home", path: "/" },
-            { name: "Impressum / Legal Notice", path: "/impressum" },
+            { name: strings.legalNoticeTitle, path: "/impressum" },
           ]),
         ],
       },
@@ -1541,15 +1907,15 @@ export function getPageSeo(pathname = "/") {
 
   if (normalizedPathname === "/privacy") {
     return {
-      title: "Privacy Policy | Nadya Yashchuk",
-      description: "Privacy policy for nadzeyayashchuk.com and related portfolio content.",
+      title: `${strings.sitePrivacyTitle} | Nadya Yashchuk`,
+      description: strings.privacyDescription,
       image: defaultOgImage,
       jsonLd: {
         "@context": "https://schema.org",
         "@graph": [
           getBreadcrumbGraph([
             { name: "Home", path: "/" },
-            { name: "Privacy Policy", path: "/privacy" },
+            { name: strings.sitePrivacyTitle, path: "/privacy" },
           ]),
         ],
       },
@@ -1594,28 +1960,28 @@ export function getPageSeo(pathname = "/") {
 
     if (normalizedPathname.endsWith("/privacy")) {
       return {
-        title: `${legalName} Privacy Policy | Nadya Yashchuk`,
-        description: `Privacy policy for ${legalName}.`,
+        title: `${legalName} ${strings.privacyPolicy} | Nadya Yashchuk`,
+        description: `${strings.privacyPolicy} for ${legalName}.`,
         image: game ? getEntityImage(game) : assetUrl(profilePhoto),
-        jsonLd: game ? getGameLegalGraph(game, "privacy", "Privacy Policy") : null,
+        jsonLd: game ? getGameLegalGraph(game, "privacy", strings.privacyPolicy) : null,
       };
     }
 
     if (normalizedPathname.endsWith("/terms")) {
       return {
-        title: `${legalName} Terms of Use | Nadya Yashchuk`,
-        description: `Terms of use for ${legalName}.`,
+        title: `${legalName} ${strings.termsOfUse} | Nadya Yashchuk`,
+        description: `${strings.termsOfUse} for ${legalName}.`,
         image: game ? getEntityImage(game) : assetUrl(profilePhoto),
-        jsonLd: game ? getGameLegalGraph(game, "terms", "Terms of Use") : null,
+        jsonLd: game ? getGameLegalGraph(game, "terms", strings.termsOfUse) : null,
       };
     }
 
     if (normalizedPathname.endsWith("/support")) {
       return {
-        title: `${legalName} Support | Nadya Yashchuk`,
-        description: `Support page for ${legalName}.`,
+        title: `${legalName} ${strings.support} | Nadya Yashchuk`,
+        description: `${strings.support} page for ${legalName}.`,
         image: game ? getEntityImage(game) : assetUrl(profilePhoto),
-        jsonLd: game ? getGameLegalGraph(game, "support", "Support") : null,
+        jsonLd: game ? getGameLegalGraph(game, "support", strings.support) : null,
       };
     }
 
@@ -1629,9 +1995,8 @@ export function getPageSeo(pathname = "/") {
   }
 
   return {
-    title: "Nadya Yashchuk | Product & Project Lead in Austria",
-    description:
-      "Nadya Yashchuk is a Product & Project Lead based in Austria, working across mobile apps, SaaS, and web products.",
+    title: strings.homeTitle,
+    description: strings.homeDescription,
     image: defaultOgImage,
     jsonLd: getHomeGraph(),
   };
@@ -1639,7 +2004,9 @@ export function getPageSeo(pathname = "/") {
 
 export default function App({ initialPath = "/" }) {
   const [path, setPath] = useState(() => (typeof window !== "undefined" ? window.location.pathname : initialPath));
-  const normalizedPath = stripTrailingSlash(path);
+  const locale = getLocaleFromPath(path);
+  const strings = getCopy(locale);
+  const normalizedPath = stripLocaleFromPath(path);
   const launchSlug = normalizedPath.startsWith("/apps/") ? normalizedPath.replace(/^\/apps\//, "").replace(/\/$/, "") : "";
   const launchPage = launchSlug ? storeLaunches.find((item) => getLaunchSlug(item) === launchSlug) : null;
   const projectSlug = normalizedPath.startsWith("/work/") ? normalizedPath.replace(/^\/work\//, "").replace(/\/$/, "") : "";
@@ -1700,21 +2067,27 @@ export default function App({ initialPath = "/" }) {
   ) {
     return (
       <main>
-        <Header path={normalizedPath} />
-        {normalizedPath === "/impressum" ? <LegalNoticePage /> : null}
-        {normalizedPath === "/privacy" ? <PrivacyPolicyPage /> : null}
-        {normalizedPath.startsWith("/apps/") ? <AppLandingPage app={launchPage} /> : null}
-        {normalizedPath.startsWith("/work/") ? <WorkLandingPage project={projectPage} /> : null}
-        {gamePage && normalizedPath === getGamePath(gamePage) ? <GameLandingPage game={gamePage} /> : null}
+        <Header path={normalizedPath} locale={locale} strings={strings} />
+        {normalizedPath === "/impressum" ? <LegalNoticePage locale={locale} strings={strings} /> : null}
+        {normalizedPath === "/privacy" ? <PrivacyPolicyPage locale={locale} strings={strings} /> : null}
+        {normalizedPath.startsWith("/apps/") ? <AppLandingPage app={launchPage} locale={locale} strings={strings} /> : null}
+        {normalizedPath.startsWith("/work/") ? <WorkLandingPage project={projectPage} locale={locale} strings={strings} /> : null}
+        {gamePage && normalizedPath === getGamePath(gamePage) ? (
+          <GameLandingPage game={gamePage} locale={locale} strings={strings} />
+        ) : null}
         {gamePage && normalizedPath === `${getGamePath(gamePage)}/privacy` ? (
-          <GameLegalPage game={gamePage} type="privacy" />
+          <GameLegalPage game={gamePage} type="privacy" locale={locale} strings={strings} />
         ) : null}
-        {gamePage && normalizedPath === `${getGamePath(gamePage)}/terms` ? <GameLegalPage game={gamePage} type="terms" /> : null}
-        {gamePage && normalizedPath === `${getGamePath(gamePage)}/support` ? <GameSupportPage game={gamePage} /> : null}
+        {gamePage && normalizedPath === `${getGamePath(gamePage)}/terms` ? (
+          <GameLegalPage game={gamePage} type="terms" locale={locale} strings={strings} />
+        ) : null}
+        {gamePage && normalizedPath === `${getGamePath(gamePage)}/support` ? (
+          <GameSupportPage game={gamePage} locale={locale} strings={strings} />
+        ) : null}
         {!gamePage && normalizedPath.startsWith("/games/") ? (
-          <GameComingSoonPage title="Game page not found" message="This game page is not available. Please return to the work section." />
+          <GameComingSoonPage title={strings.gamePageNotFound} message={strings.gamePageNotFoundMessage} locale={locale} strings={strings} />
         ) : null}
-        <Footer />
+        <Footer locale={locale} strings={strings} />
         <ScrollTopButton />
       </main>
     );
@@ -1722,21 +2095,23 @@ export default function App({ initialPath = "/" }) {
 
   return (
     <main>
-      <Header path={normalizedPath} />
-      <Hero />
-      <About />
-      <Projects />
-      <Help />
-      <Team />
-      <Contact />
-      <Footer />
+      <Header path={normalizedPath} locale={locale} strings={strings} />
+      <Hero strings={strings} locale={locale} />
+      <About strings={strings} locale={locale} />
+      <Projects strings={strings} locale={locale} />
+      <Help strings={strings} locale={locale} />
+      <Team strings={strings} locale={locale} />
+      <Contact strings={strings} locale={locale} />
+      <Footer locale={locale} strings={strings} />
       <ScrollTopButton />
     </main>
   );
 }
 
-function Header({ path }) {
-  const [activeHash, setActiveHash] = useState(() => (typeof window !== "undefined" ? window.location.hash : navItems[0].href));
+function Header({ path, locale, strings }) {
+  const [activeHash, setActiveHash] = useState(() =>
+    typeof window !== "undefined" ? window.location.hash : strings.nav[0].href
+  );
   const [indicatorStyle, setIndicatorStyle] = useState({ opacity: 0 });
   const clickedHashRef = useRef(null);
   const clickedHashTimeoutRef = useRef(null);
@@ -1754,12 +2129,12 @@ function Header({ path }) {
       const documentHeight = document.documentElement.scrollHeight;
 
       if (documentHeight - scrollBottom < 8) {
-        setActiveHash(navItems[navItems.length - 1].href);
+        setActiveHash(strings.nav[strings.nav.length - 1].href);
         return;
       }
 
       const viewportHeight = window.innerHeight;
-      const sectionVisibility = navItems
+      const sectionVisibility = strings.nav
         .map((item) => {
           const section = document.querySelector(item.href);
           if (!section) {
@@ -1792,7 +2167,7 @@ function Header({ path }) {
         return;
       }
 
-      setActiveHash(window.location.hash || navItems[0].href);
+      setActiveHash(window.location.hash || strings.nav[0].href);
     };
 
     updateActiveHash();
@@ -1848,18 +2223,18 @@ function Header({ path }) {
       <div className="header-inner">
         <a
           className="brand"
-          href={isHomePath ? "#top" : "/"}
-          aria-label="Nadya Yashchuk home"
+          href={isHomePath ? "#top" : normalizeLocalizedInternalHref("/", locale)}
+          aria-label={strings.homeAriaLabel}
         >
           <span>by</span>
           Nadya Yashchuk
         </a>
         <nav ref={navRef}>
           <span className="nav-indicator" style={indicatorStyle} aria-hidden="true" />
-          {navItems.map((item) => (
+          {strings.nav.map((item) => (
             <a
               key={item.href}
-              href={isHomePath ? item.href : normalizeInternalHref(`/${item.href}`)}
+              href={isHomePath ? item.href : normalizeLocalizedInternalHref(`/${item.href}`, locale)}
               aria-current={activeHash === item.href ? "page" : undefined}
               onClick={() => handleNavClick(item.href)}
             >
@@ -1867,29 +2242,43 @@ function Header({ path }) {
             </a>
           ))}
         </nav>
-        <a className="nav-cta" href={isHomePath ? "#contact" : normalizeInternalHref("/#contact")}>
-          Say hello
-        </a>
+        <div className="header-tools">
+          <div className="language-switcher" aria-label={strings.languageSwitcherLabel}>
+            {languageOptions.map((option) => {
+              const targetPath = getAlternatePaths(typeof window !== "undefined" ? window.location.pathname : path)[option.code];
+              return (
+                <a
+                  key={option.code}
+                  href={normalizeInternalHref(targetPath)}
+                  aria-current={locale === option.code ? "true" : undefined}
+                >
+                  {option.label}
+                </a>
+              );
+            })}
+          </div>
+          <a className="nav-cta" href={isHomePath ? "#contact" : normalizeLocalizedInternalHref("/#contact", locale)}>
+            {strings.sayHello}
+          </a>
+        </div>
       </div>
     </header>
   );
 }
 
-function LegalNoticePage() {
+function LegalNoticePage({ locale, strings }) {
   return (
     <section className="legal-page section">
       <div className="section-inner">
         <div className="legal-shell">
-          <p className="eyebrow">Impressum</p>
-          <h1>Impressum / Legal Notice</h1>
-          <p className="legal-intro">
-            Information according to Austrian legal disclosure requirements for this website.
-          </p>
+          <p className="eyebrow">{strings.legalNoticeEyebrow}</p>
+          <h1>{strings.legalNoticeTitle}</h1>
+          <p className="legal-intro">{strings.legalNoticeIntro}</p>
 
           <dl className="legal-list">
             {legalNotice.map((item) => (
               <div className="legal-row" key={item.label}>
-                <dt>{item.label}</dt>
+                <dt>{localizeLegalLabel(item.label, locale)}</dt>
                 <dd>
                   {item.href ? (
                     <a
@@ -1908,12 +2297,12 @@ function LegalNoticePage() {
           </dl>
 
           <div className="legal-note">
-            <h2>Responsible for Content</h2>
+            <h2>{strings.legalResponsible}</h2>
             <p>Nadzeya Yashchuk</p>
           </div>
 
-          <a className="button secondary legal-back" href="/">
-            Back to portfolio
+          <a className="button secondary legal-back" href={normalizeLocalizedInternalHref("/", locale)}>
+            {strings.backToPortfolio}
           </a>
         </div>
       </div>
@@ -1921,17 +2310,148 @@ function LegalNoticePage() {
   );
 }
 
-function PrivacyPolicyPage() {
+function PrivacyPolicyPage({ locale, strings }) {
   return (
     <section className="legal-page section">
       <div className="section-inner">
         <div className="legal-shell legal-shell-wide">
-          <p className="eyebrow">Privacy Policy</p>
-          <h1>Privacy Policy</h1>
-          <p className="legal-intro">Last updated: May 25, 2026</p>
+          <p className="eyebrow">{strings.sitePrivacyEyebrow}</p>
+          <h1>{strings.sitePrivacyTitle}</h1>
+          <p className="legal-intro">{strings.sitePrivacyLastUpdated}</p>
 
           <div className="privacy-content">
-            <section>
+            {locale === "de" ? (
+              <>
+                <section>
+                  <h2>1. Verantwortliche</h2>
+                  <p>Verantwortlich für die Verarbeitung personenbezogener Daten auf dieser Website ist:</p>
+                  <address>
+                    <strong>{privacyContact.name}</strong>
+                    <br />
+                    {privacyContact.address}
+                    <br />
+                    E-Mail: <a href={`mailto:${privacyContact.email}`}>{privacyContact.email}</a>
+                  </address>
+                </section>
+
+                <section>
+                  <h2>2. Geltungsbereich</h2>
+                  <p>
+                    Diese Datenschutzerklärung gilt für die Website unter nadzeyayashchuk.com sowie für die
+                    Informationen, die über dieses Portfolio bereitgestellt werden. Für einzelne Spiele, mobile Apps
+                    oder verlinkte Drittplattformen können eigene Datenschutzhinweise gelten.
+                  </p>
+                </section>
+
+                <section>
+                  <h2>3. Zugriffsdaten und Server-Logfiles</h2>
+                  <p>
+                    Beim Besuch dieser Website können technische Zugriffsdaten durch den Hosting-Anbieter
+                    automatisch in Server-Logfiles verarbeitet werden. Dazu gehören insbesondere IP-Adresse, Datum
+                    und Uhrzeit des Zugriffs, angeforderte Seite oder Datei, Browsertyp und -version, Betriebssystem,
+                    Referrer-URL, übertragene Datenmenge sowie Statuscodes.
+                  </p>
+                  <p>
+                    Diese Verarbeitung ist erforderlich, um die Website bereitzustellen, die technische Sicherheit zu
+                    gewährleisten, Missbrauch zu erkennen und einen stabilen Betrieb sicherzustellen. Rechtsgrundlage
+                    ist das berechtigte Interesse gemäß Art. 6 Abs. 1 lit. f DSGVO.
+                  </p>
+                </section>
+
+                <section>
+                  <h2>4. Kontakt per E-Mail oder Telefon</h2>
+                  <p>
+                    Wenn du mich per E-Mail oder Telefon kontaktierst, werden die von dir bereitgestellten
+                    personenbezogenen Daten wie Name, E-Mail-Adresse, Telefonnummer, Nachrichteninhalt und damit
+                    verbundene Kommunikationsdaten verarbeitet, um deine Anfrage zu beantworten und die Kommunikation
+                    abzuwickeln.
+                  </p>
+                  <p>
+                    Je nach Art der Anfrage erfolgt die Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO
+                    für vorvertragliche oder vertragliche Kommunikation oder auf Grundlage von Art. 6 Abs. 1 lit. f
+                    DSGVO für das berechtigte Interesse an der Beantwortung von Anfragen.
+                  </p>
+                </section>
+
+                <section>
+                  <h2>5. Cookies, Analytics und Tracking</h2>
+                  <p>
+                    Diese Website verwendet derzeit keine Analyse-Tools, Werbetracker oder nicht erforderlichen
+                    Cookies, die absichtlich durch die Website-Betreiberin gesetzt werden. Falls sich das ändert,
+                    wird diese Datenschutzerklärung aktualisiert und, soweit rechtlich erforderlich, vorab eine
+                    Einwilligung eingeholt.
+                  </p>
+                </section>
+
+                <section>
+                  <h2>6. Links zu Drittseiten und Stores</h2>
+                  <p>
+                    Diese Website enthält Links zu Websites und App Stores Dritter, darunter Apple App Store, Google
+                    Play, LinkedIn, Contra, WKO und Projektseiten. Beim Öffnen dieser Links gelten die
+                    Datenschutzhinweise und Datenverarbeitungspraktiken der jeweiligen Anbieter. Auf deren
+                    Verarbeitung personenbezogener Daten habe ich keinen Einfluss.
+                  </p>
+                </section>
+
+                <section>
+                  <h2>7. Empfänger und Auftragsverarbeiter</h2>
+                  <p>
+                    Personenbezogene Daten können durch technische Dienstleister verarbeitet werden, die für den
+                    Betrieb dieser Website erforderlich sind, insbesondere Hosting- und Infrastruktur-Anbieter. Diese
+                    verarbeiten Daten nur insoweit, wie es für Betrieb und Sicherheit der Website notwendig ist.
+                  </p>
+                </section>
+
+                <section>
+                  <h2>8. Speicherdauer</h2>
+                  <p>
+                    Server-Logfiles werden nur so lange gespeichert, wie es für technischen Betrieb, Sicherheit und
+                    Fehleranalyse erforderlich ist. Kommunikationsdaten werden so lange aufbewahrt, wie es zur
+                    Bearbeitung der Anfrage, zur Erfüllung gesetzlicher Aufbewahrungspflichten oder zur Geltendmachung,
+                    Ausübung oder Verteidigung von Rechtsansprüchen notwendig ist.
+                  </p>
+                </section>
+
+                <section>
+                  <h2>9. Deine Rechte nach der DSGVO</h2>
+                  <p>
+                    Soweit die gesetzlichen Voraussetzungen vorliegen, hast du das Recht auf Auskunft, Berichtigung,
+                    Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch gegen
+                    Verarbeitungen auf Grundlage berechtigter Interessen. Beruht die Verarbeitung auf Einwilligung,
+                    kannst du diese jederzeit mit Wirkung für die Zukunft widerrufen.
+                  </p>
+                  <p>
+                    Zur Ausübung deiner Rechte kontaktiere bitte{" "}
+                    <a href={`mailto:${privacyContact.email}`}>{privacyContact.email}</a>.
+                  </p>
+                </section>
+
+                <section>
+                  <h2>10. Beschwerderecht</h2>
+                  <p>
+                    Du hast außerdem das Recht, eine Beschwerde bei einer Aufsichtsbehörde einzureichen. In
+                    Österreich ist zuständig:
+                  </p>
+                  <p>
+                    Österreichische Datenschutzbehörde, Barichgasse 40-42, 1030 Wien, Österreich,{" "}
+                    <a href="https://www.dsb.gv.at/" target="_blank" rel="noreferrer">
+                      www.dsb.gv.at
+                    </a>
+                  </p>
+                </section>
+
+                <section>
+                  <h2>11. Aktualisierungen dieser Datenschutzerklärung</h2>
+                  <p>
+                    Diese Datenschutzerklärung kann aktualisiert werden, wenn sich die Website, die eingesetzten
+                    Technologien oder rechtliche Anforderungen ändern. Die jeweils aktuelle Version ist auf dieser
+                    Seite verfügbar.
+                  </p>
+                </section>
+              </>
+            ) : (
+              <>
+                <section>
               <h2>1. Controller</h2>
               <p>
                 The controller responsible for the processing of personal data on this website is:
@@ -2056,10 +2576,12 @@ function PrivacyPolicyPage() {
                 change. The current version is available on this page.
               </p>
             </section>
+              </>
+            )}
           </div>
 
-          <a className="button secondary legal-back" href="/">
-            Back to portfolio
+          <a className="button secondary legal-back" href={normalizeLocalizedInternalHref("/", locale)}>
+            {strings.backToPortfolio}
           </a>
         </div>
       </div>
@@ -2067,7 +2589,7 @@ function PrivacyPolicyPage() {
   );
 }
 
-function ScreenshotGallery({ title, images }) {
+function ScreenshotGallery({ title, images, strings }) {
   const [activeImageIndex, setActiveImageIndex] = useState(null);
   const activeImage = activeImageIndex !== null ? images[activeImageIndex] : null;
 
@@ -2123,16 +2645,16 @@ function ScreenshotGallery({ title, images }) {
           className="image-lightbox"
           role="dialog"
           aria-modal="true"
-          aria-label={`${title} screenshot viewer`}
+          aria-label={`${title} ${strings.screenshotViewer}`}
           onClick={() => setActiveImageIndex(null)}
         >
           <button className="lightbox-close" type="button" onClick={() => setActiveImageIndex(null)}>
-            Close
+            {strings.close}
           </button>
           <button
             className="lightbox-nav lightbox-nav-prev"
             type="button"
-            aria-label="Previous screenshot"
+            aria-label={strings.previousScreenshot}
             onClick={(event) => {
               event.stopPropagation();
               setActiveImageIndex((currentIndex) => (currentIndex - 1 + images.length) % images.length);
@@ -2149,7 +2671,7 @@ function ScreenshotGallery({ title, images }) {
           <button
             className="lightbox-nav lightbox-nav-next"
             type="button"
-            aria-label="Next screenshot"
+            aria-label={strings.nextScreenshot}
             onClick={(event) => {
               event.stopPropagation();
               setActiveImageIndex((currentIndex) => (currentIndex + 1) % images.length);
@@ -2163,7 +2685,7 @@ function ScreenshotGallery({ title, images }) {
   );
 }
 
-function WatchFaceCatalog({ faces }) {
+function WatchFaceCatalog({ faces, strings }) {
   if (!faces?.length) {
     return null;
   }
@@ -2171,10 +2693,10 @@ function WatchFaceCatalog({ faces }) {
   return (
     <section className="watch-face-section">
       <div className="watch-face-heading">
-        <p className="eyebrow">Garmin Connect IQ</p>
-        <h2>Watch face catalog</h2>
+        <p className="eyebrow">{strings.watchFaceEyebrow}</p>
+        <h2>{strings.watchFaceTitle}</h2>
       </div>
-      <div className="watch-face-grid" aria-label="Garmin watch face catalog">
+      <div className="watch-face-grid" aria-label={strings.watchFaceLabel}>
         {faces.map((face) => (
           <article className="watch-face-card" key={face.name}>
             <div className="watch-face-media">
@@ -2184,12 +2706,12 @@ function WatchFaceCatalog({ faces }) {
               <h3>{face.name}</h3>
               <p>Nadzeya</p>
               <div className="watch-face-meta">
-                {face.rating ? <span>Rating {face.rating}</span> : null}
-                <span>Free</span>
+                {face.rating ? <span>{strings.rating} {face.rating}</span> : null}
+                <span>{strings.free}</span>
               </div>
               <div className="watch-face-footer">
                 <a href={face.link} target="_blank" rel="noreferrer">
-                  Open
+                  {strings.open}
                 </a>
               </div>
             </div>
@@ -2200,9 +2722,9 @@ function WatchFaceCatalog({ faces }) {
   );
 }
 
-function GameLandingPage({ game }) {
+function GameLandingPage({ game, locale, strings }) {
   if (game.isDraft) {
-    return <GameComingSoonPage game={game} />;
+    return <GameComingSoonPage game={game} locale={locale} strings={strings} />;
   }
 
   return (
@@ -2213,7 +2735,7 @@ function GameLandingPage({ game }) {
             {game.icon ? <img src={assetUrl(game.icon)} alt="" /> : <span>{game.iconLabel}</span>}
           </div>
           <div className="game-hero-copy">
-            <p className="eyebrow">{game.category}</p>
+            <p className="eyebrow">{localizeCategory(game.category, locale)}</p>
             <h1>{game.title}</h1>
             <p className="role-line">{game.tagline}</p>
             <p>{game.summary}</p>
@@ -2221,23 +2743,23 @@ function GameLandingPage({ game }) {
               {game.storeLinks.map((link) => (
                 <a
                   className="button primary"
-                  href={link.href.startsWith("http") ? link.href : normalizeInternalHref(link.href)}
+                  href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
                   key={link.label}
                   target={link.href.startsWith("http") ? "_blank" : undefined}
                   rel={link.href.startsWith("http") ? "noreferrer" : undefined}
                 >
-                  {link.label}
+                  {localizeLinkLabel(link.label, locale)}
                 </a>
               ))}
             </div>
           </div>
         </div>
 
-        <ScreenshotGallery title={game.title} images={game.images || []} />
+        <ScreenshotGallery title={game.title} images={game.images || []} strings={strings} />
 
         <div className="game-info-grid">
           <section className="game-info-panel">
-            <h2>Highlights</h2>
+            <h2>{strings.highlights}</h2>
             <ul>
               {game.highlights.map((item) => (
                 <li key={item}>{item}</li>
@@ -2245,16 +2767,16 @@ function GameLandingPage({ game }) {
             </ul>
           </section>
           <section className="game-info-panel">
-            <h2>Links</h2>
+            <h2>{strings.links}</h2>
             <div className="game-link-list">
               {[...game.storeLinks, ...game.legalLinks].map((link) => (
                 <a
-                  href={link.href.startsWith("http") ? link.href : normalizeInternalHref(link.href)}
+                  href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
                   key={link.label}
                   target={link.href.startsWith("http") ? "_blank" : undefined}
                   rel={link.href.startsWith("http") ? "noreferrer" : undefined}
                 >
-                  {link.label}
+                  {localizeLinkLabel(link.label, locale)}
                 </a>
               ))}
             </div>
@@ -2265,12 +2787,14 @@ function GameLandingPage({ game }) {
   );
 }
 
-function AppLandingPage({ app }) {
+function AppLandingPage({ app, locale, strings }) {
   if (!app) {
     return (
       <GameComingSoonPage
-        title="App page not found"
-        message="This app page is not available. Please return to the work section."
+        title={strings.appPageNotFound}
+        message={strings.appPageNotFoundMessage}
+        locale={locale}
+        strings={strings}
       />
     );
   }
@@ -2289,21 +2813,21 @@ function AppLandingPage({ app }) {
             {app.icon ? <img src={assetUrl(app.icon)} alt="" /> : <span>{app.iconLabel}</span>}
           </div>
           <div className="game-hero-copy">
-            <p className="eyebrow">{app.category}</p>
+            <p className="eyebrow">{localizeCategory(app.category, locale)}</p>
             <h1>{app.title}</h1>
-            <p className="role-line">{app.note}</p>
+            <p className="role-line">{localizeRole(app.note, locale)}</p>
             <p>{summary}</p>
             {appLinks.length ? (
               <div className="game-actions">
                 {appLinks.map((link) => (
                   <a
                     className="button primary"
-                    href={link.href.startsWith("http") ? link.href : normalizeInternalHref(link.href)}
+                    href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
                     key={link.href}
                     target={link.href.startsWith("http") ? "_blank" : undefined}
                     rel={link.href.startsWith("http") ? "noreferrer" : undefined}
                   >
-                    {link.label}
+                    {localizeLinkLabel(link.label, locale)}
                   </a>
                 ))}
               </div>
@@ -2311,36 +2835,36 @@ function AppLandingPage({ app }) {
           </div>
         </div>
 
-        <ScreenshotGallery title={app.title} images={app.images || []} />
+        <ScreenshotGallery title={app.title} images={app.images || []} strings={strings} />
 
         <div className="game-info-grid">
           <section className="game-info-panel">
-            <h2>Role</h2>
+            <h2>{strings.role}</h2>
             <ul>
-              <li>{app.note}</li>
+              <li>{localizeRole(app.note, locale)}</li>
               {impact.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
           </section>
           <section className="game-info-panel">
-            <h2>Links</h2>
+            <h2>{strings.links}</h2>
             <div className="game-link-list">
               {appLinks.length ? (
                 appLinks.map((link) => (
                   <a
-                    href={link.href.startsWith("http") ? link.href : normalizeInternalHref(link.href)}
+                    href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
                     key={link.href}
                     target={link.href.startsWith("http") ? "_blank" : undefined}
                     rel={link.href.startsWith("http") ? "noreferrer" : undefined}
                   >
-                    {link.label}
+                    {localizeLinkLabel(link.label, locale)}
                   </a>
                 ))
               ) : (
-                <span className="game-link-note">Links will be added when available.</span>
+                <span className="game-link-note">{strings.linksAvailableLater}</span>
               )}
-              <a href={normalizeInternalHref("/#projects")}>Back to Work</a>
+              <a href={normalizeLocalizedInternalHref("/#projects", locale)}>{strings.backToWork}</a>
             </div>
           </section>
         </div>
@@ -2349,15 +2873,17 @@ function AppLandingPage({ app }) {
   );
 }
 
-function WorkLandingPage({ project }) {
+function WorkLandingPage({ project, locale, strings }) {
   const details = project?.scope || project?.workedOn || project?.keyPoints || [];
   const images = project?.images || project?.backdropImages || [];
 
   if (!project) {
     return (
       <GameComingSoonPage
-        title="Work page not found"
-        message="This work page is not available. Please return to the work section."
+        title={strings.workPageNotFound}
+        message={strings.workPageNotFoundMessage}
+        locale={locale}
+        strings={strings}
       />
     );
   }
@@ -2370,21 +2896,21 @@ function WorkLandingPage({ project }) {
             {project.icon ? <img src={assetUrl(project.icon)} alt="" /> : <span>{project.iconLabel}</span>}
           </div>
           <div className="game-hero-copy">
-            <p className="eyebrow">{project.category}</p>
+            <p className="eyebrow">{localizeCategory(project.category, locale)}</p>
             <h1>{project.name}</h1>
-            <p className="role-line">{project.role}</p>
+            <p className="role-line">{localizeRole(project.role, locale)}</p>
             <p>{project.summary}</p>
             {project.links?.length ? (
               <div className="game-actions">
                 {project.links.map((link) => (
                   <a
                     className="button primary"
-                    href={link.href.startsWith("http") ? link.href : normalizeInternalHref(link.href)}
+                    href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
                     key={link.href}
                     target={link.href.startsWith("http") ? "_blank" : undefined}
                     rel={link.href.startsWith("http") ? "noreferrer" : undefined}
                   >
-                    {link.label}
+                    {localizeLinkLabel(link.label, locale)}
                   </a>
                 ))}
               </div>
@@ -2392,13 +2918,13 @@ function WorkLandingPage({ project }) {
           </div>
         </div>
 
-        {project.watchFaces?.length ? null : <ScreenshotGallery title={project.name} images={images} />}
+        {project.watchFaces?.length ? null : <ScreenshotGallery title={project.name} images={images} strings={strings} />}
 
-        <WatchFaceCatalog faces={project.watchFaces} />
+        <WatchFaceCatalog faces={project.watchFaces} strings={strings} />
 
         <div className="game-info-grid">
           <section className="game-info-panel">
-            <h2>What I did</h2>
+            <h2>{strings.whatIDid}</h2>
             <ul>
               {details.map((item) => (
                 <li key={item}>{item}</li>
@@ -2409,23 +2935,23 @@ function WorkLandingPage({ project }) {
             </ul>
           </section>
           <section className="game-info-panel">
-            <h2>Links</h2>
+            <h2>{strings.links}</h2>
             <div className="game-link-list">
               {project.links?.length ? (
                 project.links.map((link) => (
                   <a
-                    href={link.href.startsWith("http") ? link.href : normalizeInternalHref(link.href)}
+                    href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
                     key={link.href}
                     target={link.href.startsWith("http") ? "_blank" : undefined}
                     rel={link.href.startsWith("http") ? "noreferrer" : undefined}
                   >
-                    {link.label}
+                    {localizeLinkLabel(link.label, locale)}
                   </a>
                 ))
               ) : (
-                <span className="game-link-note">Public links will be added when available.</span>
+                <span className="game-link-note">{strings.publicLinksLater}</span>
               )}
-              <a href={normalizeInternalHref("/#projects")}>Back to Work</a>
+              <a href={normalizeLocalizedInternalHref("/#projects", locale)}>{strings.backToWork}</a>
             </div>
           </section>
         </div>
@@ -2435,10 +2961,10 @@ function WorkLandingPage({ project }) {
   );
 }
 
-function GameLegalPage({ game, type }) {
+function GameLegalPage({ game, type, locale, strings }) {
   const isPrivacy = type === "privacy";
   const legalName = getGameLegalName(game);
-  const title = isPrivacy ? `${legalName} Privacy Policy` : `${legalName} Terms of Use`;
+  const title = isPrivacy ? `${legalName} ${strings.privacyPolicy}` : `${legalName} ${strings.termsOfUse}`;
 
   if (game.isDraft && !game.legalPublished) {
     return (
@@ -2446,6 +2972,8 @@ function GameLegalPage({ game, type }) {
         game={game}
         title={title}
         message={`The final ${isPrivacy ? "privacy policy" : "terms of use"} will be published here before the game is released.`}
+        locale={locale}
+        strings={strings}
       />
     );
   }
@@ -2454,11 +2982,11 @@ function GameLegalPage({ game, type }) {
     <section className="legal-page section">
       <div className="section-inner">
         <div className="legal-shell legal-shell-wide">
-          <p className="eyebrow">{isPrivacy ? "Game Privacy" : "Game Terms"}</p>
+          <p className="eyebrow">{isPrivacy ? strings.gamePrivacyEyebrow : strings.gameTermsEyebrow}</p>
           <h1>{title}</h1>
-          {isPrivacy ? <GamePrivacyPolicyContent game={game} /> : <GameTermsContent game={game} />}
-          <a className="button secondary legal-back" href={normalizeInternalHref(`/games/${game.slug}`)}>
-            Back to game page
+          {isPrivacy ? <GamePrivacyPolicyContent game={game} locale={locale} /> : <GameTermsContent game={game} locale={locale} />}
+          <a className="button secondary legal-back" href={normalizeLocalizedInternalHref(`/games/${game.slug}`, locale)}>
+            {strings.backToGamePage}
           </a>
         </div>
       </div>
@@ -2466,19 +2994,18 @@ function GameLegalPage({ game, type }) {
   );
 }
 
-function GameComingSoonPage({ game, title = "Game page coming soon", message }) {
+function GameComingSoonPage({ game, title, message, locale = "en", strings = copy.en }) {
   return (
     <section className="legal-page section">
       <div className="section-inner">
         <div className="legal-shell">
-          <p className="eyebrow">Coming soon</p>
-          <h1>{title}</h1>
+          <p className="eyebrow">{strings.comingSoon}</p>
+          <h1>{title || strings.gamePageComingSoon}</h1>
           <p className="legal-intro">
-            {message ||
-              "This game page is prepared, but it is not public yet. Final screenshots, store links, privacy policy, and terms will be added before release."}
+            {message || strings.gamePagePreparedMessage}
           </p>
-          <a className="button secondary legal-back" href="/">
-            Back to portfolio
+          <a className="button secondary legal-back" href={normalizeLocalizedInternalHref("/", locale)}>
+            {strings.backToPortfolio}
           </a>
         </div>
       </div>
@@ -2486,7 +3013,7 @@ function GameComingSoonPage({ game, title = "Game page coming soon", message }) 
   );
 }
 
-function GamePrivacyPolicyContent({ game }) {
+function GamePrivacyPolicyContent({ game, locale }) {
   const legalName = getGameLegalName(game);
 
   if (game.slug === "tap-me-arrows-freedom") {
@@ -2873,7 +3400,7 @@ function GamePrivacyPolicyContent({ game }) {
   );
 }
 
-function GameTermsContent({ game }) {
+function GameTermsContent({ game, locale }) {
   const legalName = getGameLegalName(game);
 
   if (game.slug === "tap-me-arrows-freedom") {
@@ -3158,7 +3685,7 @@ function GameTermsContent({ game }) {
           <h2>12. Privacy</h2>
           <p>
             Information about data processing in connection with the game is available in the{" "}
-            <a href={normalizeInternalHref(`/games/${game.slug}/privacy`)}>{game.title} Privacy Policy</a>. By using the game, you
+            <a href={normalizeLocalizedInternalHref(`/games/${game.slug}/privacy`, locale)}>{game.title} Privacy Policy</a>. By using the game, you
             acknowledge that personal data may be processed as described there.
           </p>
         </section>
@@ -3220,13 +3747,15 @@ function GameTermsContent({ game }) {
   );
 }
 
-function GameSupportPage({ game }) {
+function GameSupportPage({ game, locale, strings }) {
   if (game.isDraft && !game.supportPublished) {
     return (
       <GameComingSoonPage
         game={game}
-        title={`${game.title} Support`}
-        message="The support page will be published here before the game is released."
+        title={`${game.title} ${strings.supportTitleSuffix}`}
+        message={locale === "de" ? "Die Support-Seite wird hier vor dem Release des Spiels veröffentlicht." : "The support page will be published here before the game is released."}
+        locale={locale}
+        strings={strings}
       />
     );
   }
@@ -3235,14 +3764,14 @@ function GameSupportPage({ game }) {
     <section className="legal-page section">
       <div className="section-inner">
         <div className="legal-shell">
-          <p className="eyebrow">Support</p>
-          <h1>{game.title} Support</h1>
+          <p className="eyebrow">{strings.supportEyebrow}</p>
+          <h1>{game.title} {strings.supportTitleSuffix}</h1>
           <p className="legal-intro">
-            Need help with {game.title}? Please contact{" "}
+            {strings.supportIntroPrefix} {game.title}? {strings.supportIntroSuffix}{" "}
             <a href={`mailto:${privacyContact.email}`}>{privacyContact.email}</a>.
           </p>
-          <a className="button secondary legal-back" href={normalizeInternalHref(`/games/${game.slug}`)}>
-            Back to game page
+          <a className="button secondary legal-back" href={normalizeLocalizedInternalHref(`/games/${game.slug}`, locale)}>
+            {strings.backToGamePage}
           </a>
         </div>
       </div>
@@ -3250,37 +3779,36 @@ function GameSupportPage({ game }) {
   );
 }
 
-function Hero() {
+function Hero({ strings, locale }) {
+  const proofItems = localizedProofPoints[locale] || proofPoints;
+
   return (
     <section className="hero section" id="top">
       <div className="section-inner hero-inner">
         <div className="hero-content">
-          <p className="template-kicker">Hello</p>
+          <p className="template-kicker">{strings.heroKicker}</p>
           <h1>
             <span>I&apos;m</span> Nadya Yashchuk
           </h1>
-          <p className="role-line">Product & Project Lead based in Austria</p>
-          <div className="hero-status" aria-label="Availability">
+          <p className="role-line">{strings.heroRole}</p>
+          <div className="hero-status" aria-label={strings.heroAvailability}>
             <span aria-hidden="true" />
-            Available for product & delivery clarity
+            {strings.heroAvailabilityText}
           </div>
-          <p className="hero-copy">
-            I make product work feel calmer, clearer, and easier to move across
-            mobile apps, SaaS, and web products from Austria, across EU and remote teams.
-          </p>
+          <p className="hero-copy">{strings.heroCopy}</p>
           <div className="hero-actions" aria-label="Portfolio actions">
-            <a className="button primary" href="#projects">
-              View work
+            <a className="button primary" href={normalizeLocalizedInternalHref("/#projects", locale)}>
+              {strings.viewWork}
               <IconArrow size={18} aria-hidden="true" />
             </a>
-            <a className="button secondary" href="#contact">
-              Contact me
+            <a className="button secondary" href={normalizeLocalizedInternalHref("/#contact", locale)}>
+              {strings.contactMe}
             </a>
           </div>
           <div className="hero-proof-wrap">
-            <span className="hero-proof-label">Usually involved in</span>
+            <span className="hero-proof-label">{strings.heroProofLabel}</span>
             <div className="hero-proof" aria-label="Product focus areas">
-              {proofPoints.map((item) => (
+              {proofItems.map((item) => (
                 <span key={item}>{item}</span>
               ))}
             </div>
@@ -3296,37 +3824,27 @@ function Hero() {
   );
 }
 
-function About() {
+function About({ strings, locale }) {
+  const signalItems = localizedProductSignals[locale] || productSignals;
+
   return (
     <Section
       id="about"
-      eyebrow="About"
-      title="I help product work start stronger, scale cleaner, and get back on track when execution drifts."
-      intro="Based in Austria. Remote and EU-based teams."
+      eyebrow={strings.aboutEyebrow}
+      title={strings.aboutTitle}
+      intro={strings.aboutIntro}
     >
       <div className="about-grid">
         <div className="about-lead reveal">
-          <p>
-            I step in when direction is unclear, priorities are overloaded, or
-            delivery keeps looping. I clarify ownership, structure the work, and
-            move teams toward a real release — whether that means starting from
-            scratch or resetting what's already stuck.
-          </p>
-          <p>
-            My background is hands-on: product ownership across web, iOS, and
-            Android, from idea to launch. I also support app store presentation
-            and launch packaging when products need to show up better in the
-            store.
-          </p>
-          <a className="nav-cta" href="#contact">
-            Say hello
-          </a>
+          <p>{strings.aboutParagraph1}</p>
+          <p>{strings.aboutParagraph2}</p>
+          <a className="nav-cta" href={normalizeLocalizedInternalHref("/#contact", locale)}>{strings.sayHello}</a>
         </div>
         <div className="signal-card reveal reveal-delay-1">
-          <span className="signal-kicker">If this sounds familiar</span>
-          <h3>We should talk</h3>
+          <span className="signal-kicker">{strings.ifThisSoundsFamiliar}</span>
+          <h3>{strings.weShouldTalk}</h3>
           <ul>
-            {productSignals.map((item) => (
+            {signalItems.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
@@ -3336,7 +3854,7 @@ function About() {
   );
 }
 
-function Projects() {
+function Projects({ strings, locale }) {
   const whmcsProject = projects.find((project) => project.name === "WHMCS migration / optimization");
   const featuredProjects = projects.filter((project) => project.name !== "WHMCS migration / optimization");
   const getProjectCardSummary = (project) => project.cardSummary || getFirstSentence(project.summary);
@@ -3346,17 +3864,17 @@ function Projects() {
     .filter((game) => game.isDraft)
     .map((game) => ({
       name: game.title,
-      category: game.category,
-      period: "Coming soon",
-      role: "Launch preparation",
-      summary: "Upcoming game with store links, support, privacy, and terms prepared before release.",
-      impact: ["Prepared legal and support structure before app release."],
+      category: localizeCategory(game.category, locale),
+      period: strings.comingSoonPeriod,
+      role: strings.launchPreparation,
+      summary: strings.upcomingGameSummary,
+      impact: [strings.upcomingGameImpact],
       links: [
         {
-          label: "Learn more",
+          label: strings.learnMore,
           href: getGamePath(game),
         },
-        ...game.legalLinks,
+        ...game.legalLinks.map((link) => ({ ...link, label: localizeLinkLabel(link.label, locale) })),
       ],
       icon: game.icon,
       iconLabel: game.iconLabel,
@@ -3365,33 +3883,35 @@ function Projects() {
     }));
   const workItems = [
     ...draftGameItem,
-    ...featuredProjects.map((project) => ({
-      ...project,
-      summary: getProjectCardSummary(project),
-      links: [
-        {
-          label: "Learn more",
-          href: getProjectPath(project),
-        },
-        ...(project.links || []),
-      ],
-    })),
+      ...featuredProjects.map((project) => ({
+        ...project,
+        category: localizeCategory(project.category, locale),
+        role: localizeRole(project.role, locale),
+        summary: getProjectCardSummary(project),
+        links: [
+          {
+            label: strings.learnMore,
+            href: getProjectPath(project),
+          },
+          ...(project.links || []).map((link) => ({ ...link, label: localizeLinkLabel(link.label, locale) })),
+        ],
+      })),
     ...storeLaunches.map((item) => ({
       name: item.title,
-      category: item.category,
+      category: localizeCategory(item.category, locale),
       period: item.period,
-      role: item.note,
+      role: localizeRole(item.note, locale),
       summary: getLaunchCardSummary(item),
       impact: item.impact || ["Handled publisher-side launch execution, QA testing, and store readiness."],
       links:
         item.links?.some((link) => link.label === "Learn more")
-          ? item.links
+          ? item.links.map((link) => ({ ...link, label: localizeLinkLabel(link.label, locale) }))
           : [
               {
-                label: "Learn more",
+                label: strings.learnMore,
                 href: getLaunchPath(item),
               },
-              ...(item.links || []),
+              ...(item.links || []).map((link) => ({ ...link, label: localizeLinkLabel(link.label, locale) })),
             ],
       icon: item.icon,
       iconLabel: item.iconLabel,
@@ -3401,13 +3921,15 @@ function Projects() {
       ? [
           {
             ...whmcsProject,
+            category: localizeCategory(whmcsProject.category, locale),
+            role: localizeRole(whmcsProject.role, locale),
             summary: getProjectCardSummary(whmcsProject),
             links: [
               {
-                label: "Learn more",
+                label: strings.learnMore,
                 href: getProjectPath(whmcsProject),
               },
-              ...(whmcsProject.links || []),
+              ...(whmcsProject.links || []).map((link) => ({ ...link, label: localizeLinkLabel(link.label, locale) })),
             ],
           },
         ]
@@ -3417,9 +3939,9 @@ function Projects() {
   return (
     <Section
       id="projects"
-      eyebrow="Selected Work"
-      title="Product work, launches, and store presence in one view."
-      intro="A compact catalog of larger product work and smaller publishing launches, with the role made explicit on every card."
+      eyebrow={strings.projectsEyebrow}
+      title={strings.projectsTitle}
+      intro={strings.projectsIntro}
     >
       <div className="project-stack">
         {workItems.map((project, index) => (
@@ -3430,11 +3952,11 @@ function Projects() {
             key={project.name}
             role="link"
             tabIndex={0}
-            aria-label={`Learn more about ${project.name}`}
+            aria-label={`${strings.learnMore} ${project.name}`}
             onClick={() => {
               const targetHref = project.links[0].href.startsWith("http")
                 ? project.links[0].href
-                : normalizeInternalHref(project.links[0].href);
+                : normalizeLocalizedInternalHref(project.links[0].href, locale);
               window.location.href = targetHref;
             }}
             onKeyDown={(event) => {
@@ -3442,7 +3964,7 @@ function Projects() {
                 event.preventDefault();
                 const targetHref = project.links[0].href.startsWith("http")
                   ? project.links[0].href
-                  : normalizeInternalHref(project.links[0].href);
+                  : normalizeLocalizedInternalHref(project.links[0].href, locale);
                 window.location.href = targetHref;
               }
             }}
@@ -3472,7 +3994,7 @@ function Projects() {
                 <div className="project-links">
                   {project.links.map((link) => (
                     <a
-                      href={link.href.startsWith("http") ? link.href : normalizeInternalHref(link.href)}
+                      href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
                       key={link.href}
                       target={link.href.startsWith("http") ? "_blank" : undefined}
                       rel={link.href.startsWith("http") ? "noreferrer" : undefined}
@@ -3532,16 +4054,20 @@ function ProjectThumbnail({ project }) {
   return null;
 }
 
-function Help() {
+function Help({ strings, locale }) {
+  const helpItems = localizedHelpAreas[locale]
+    ? helpAreas.map((item, index) => ({ ...item, ...localizedHelpAreas[locale][index] }))
+    : helpAreas;
+
   return (
     <Section
       id="help"
-      eyebrow="What I help teams do"
-      title="When product work gets messy, I help teams find the next right move."
-      intro="I work best where priorities are overloaded, decisions are slow, or delivery needs someone steady enough to turn complexity into progress."
+      eyebrow={strings.helpEyebrow}
+      title={strings.helpTitle}
+      intro={strings.helpIntro}
     >
       <div className="expertise-grid">
-        {helpAreas.map((item, index) => (
+        {helpItems.map((item, index) => (
           <article
             className="expertise-card"
             key={item.title}
@@ -3623,22 +4149,24 @@ function StoreLaunches() {
   );
 }
 
-function Contact() {
+function Contact({ strings, locale }) {
+  const methodOverrides = localizedContactMethods[locale] || [];
+  const profileOverrides = localizedDeveloperProfiles[locale] || [];
+  const methods = contactMethods.map((method, index) => ({ ...method, ...(methodOverrides[index] || {}) }));
+  const profiles = developerProfiles.map((profile, index) => ({ ...profile, ...(profileOverrides[index] || {}) }));
+
   return (
     <section className="contact section" id="contact">
       <div className="section-inner">
         <div className="contact-inner reveal">
           <div>
-            <p className="eyebrow">Contact</p>
-            <h2>Need someone to bring order to the product work?</h2>
-            <p>
-              If your roadmap is messy, a launch is coming, or the team needs
-              clearer priorities, send me a note. Based in Austria, I work with both EU-based and remote teams.
-            </p>
+            <p className="eyebrow">{strings.contactEyebrow}</p>
+            <h2>{strings.contactTitle}</h2>
+            <p>{strings.contactIntro}</p>
           </div>
           <div className="contact-actions">
             <a className="button primary" href="mailto:contact@nadzeyayashchuk.com">
-              Email me
+              {strings.emailMe}
             </a>
             <a
               className="button secondary"
@@ -3651,7 +4179,7 @@ function Contact() {
           </div>
         </div>
         <div className="contact-card-grid reveal reveal-delay-1" aria-label="Contact links">
-          {contactMethods.map((method) =>
+          {methods.map((method) =>
             method.href ? (
               <a
                 className="contact-card"
@@ -3683,11 +4211,11 @@ function Contact() {
         </div>
         <div className="contact-profile-block reveal reveal-delay-2">
           <div className="contact-profile-heading">
-            <p className="eyebrow">Developer profiles</p>
-            <p>Public storefronts and publishing profiles where my released apps and watch faces are listed.</p>
+            <p className="eyebrow">{strings.developerProfilesEyebrow}</p>
+            <p>{strings.developerProfilesIntro}</p>
           </div>
           <div className="contact-card-grid contact-card-grid-profiles" aria-label="Developer profile links">
-            {developerProfiles.map((profile) => (
+            {profiles.map((profile) => (
               <a className="contact-card" href={profile.href} key={profile.label} target="_blank" rel="noreferrer">
                 <span className="contact-card-icon" aria-hidden="true">
                   <ContactIcon name={profile.icon} size={22} />
@@ -3705,18 +4233,20 @@ function Contact() {
   );
 }
 
-function Team() {
+function Team({ strings, locale }) {
   const isSinglePartner = teamMembers.length === 1;
+  const memberOverrides = localizedTeamMembers[locale] || [];
+  const members = teamMembers.map((member, index) => ({ ...member, ...(memberOverrides[index] || {}) }));
 
   return (
     <Section
       id="team"
-      eyebrow="Current collaborators"
-      title="People I work closely with on active products."
-      intro="The people I stay in close touch with as we build, grow, and support current products together."
+      eyebrow={strings.teamEyebrow}
+      title={strings.teamTitle}
+      intro={strings.teamIntro}
     >
       <div className={`team-grid${isSinglePartner ? " team-grid-solo" : ""}`}>
-        {teamMembers.map((member, index) => (
+        {members.map((member, index) => (
           <article
             className={`team-card reveal${member.partnerLabel ? " team-card-featured" : ""}`}
             key={member.name}
@@ -3745,16 +4275,16 @@ function Team() {
   );
 }
 
-function Footer() {
+function Footer({ locale, strings }) {
   return (
     <footer className="site-footer">
       <div className="section-inner footer-inner">
         <p>
-          © {new Date().getFullYear()} <strong>Nadya Yashchuk.</strong> Product work with clearer direction.
+          © {new Date().getFullYear()} <strong>Nadya Yashchuk.</strong> {strings.footerTagline}
         </p>
         <div className="footer-links">
-          <a href={normalizeInternalHref("/impressum")}>Impressum / Legal Notice</a>
-          <a href={normalizeInternalHref("/privacy")}>Privacy Policy</a>
+          <a href={normalizeLocalizedInternalHref("/impressum", locale)}>{strings.legalNoticeTitle}</a>
+          <a href={normalizeLocalizedInternalHref("/privacy", locale)}>{strings.sitePrivacyTitle}</a>
         </div>
       </div>
     </footer>

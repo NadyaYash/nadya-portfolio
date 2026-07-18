@@ -5,6 +5,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const seo = getPageSeo("/");
 ---
 
-<BaseLayout title={seo.title} description={seo.description} canonicalPath="/" image={seo.image} jsonLd={seo.jsonLd}>
+<BaseLayout title={seo.title} description={seo.description} canonicalPath="/" image={seo.image} jsonLd={seo.jsonLd} lang="en">
   <App initialPath="/" client:load />
 </BaseLayout>

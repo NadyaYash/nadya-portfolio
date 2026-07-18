@@ -1,0 +1,11 @@
+---
+import App, { getPageSeo } from "../../App.jsx";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const path = "/de";
+const seo = getPageSeo(path);
+---
+
+<BaseLayout title={seo.title} description={seo.description} canonicalPath={path} image={seo.image} jsonLd={seo.jsonLd} lang="de">
+  <App initialPath={path} client:load />
+</BaseLayout>

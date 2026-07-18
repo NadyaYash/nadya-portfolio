@@ -1,10 +1,13 @@
 ---
+import { getAlternatePaths } from "../i18n.js";
+
 const {
   title,
   description,
   canonicalPath = "/",
   image = "/og-banner.png",
   jsonLd = null,
+  lang = "en",
 } = Astro.props;
 
 const site = Astro.site || new URL("https://nadzeyayashchuk.com");
@@ -18,10 +21,14 @@ const normalizeCanonicalPath = (path) => {
 
 const canonicalUrl = new URL(normalizeCanonicalPath(canonicalPath), site).toString();
 const imageUrl = image.startsWith("http") ? image : new URL(image, site).toString();
+const alternateUrls = Object.entries(getAlternatePaths(canonicalPath)).map(([locale, path]) => ({
+  locale,
+  href: new URL(normalizeCanonicalPath(path), site).toString(),
+}));
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,6 +36,7 @@ const imageUrl = image.startsWith("http") ? image : new URL(image, site).toStrin
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalUrl} />
+    {alternateUrls.map((item) => <link rel="alternate" hreflang={item.locale} href={item.href} />)}
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

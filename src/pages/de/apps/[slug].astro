@@ -1,0 +1,26 @@
+---
+import App, { gameLandings, getLaunchPath, getLaunchSlug, getPageSeo, storeLaunches } from "../../../App.jsx";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { withLocalePath } from "../../../i18n.js";
+
+export function getStaticPaths() {
+  const gameTitles = new Set(gameLandings.map((game) => game.title));
+
+  return storeLaunches
+    .filter((item) => !gameTitles.has(item.title))
+    .map((item) => {
+      const path = withLocalePath(getLaunchPath(item), "de");
+      return {
+        params: { slug: getLaunchSlug(item) },
+        props: { path },
+      };
+    });
+}
+
+const { path } = Astro.props;
+const seo = getPageSeo(path);
+---
+
+<BaseLayout title={seo.title} description={seo.description} canonicalPath={path} image={seo.image} jsonLd={seo.jsonLd} lang="de">
+  <App initialPath={path} client:load />
+</BaseLayout>

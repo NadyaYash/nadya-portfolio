@@ -6,6 +6,7 @@ import {
   projects,
   storeLaunches,
 } from "../App.jsx";
+import { withLocalePath } from "../i18n.js";
 
 export const prerender = true;
 
@@ -23,7 +24,7 @@ const buildUrl = (path: string) => `${site}${withTrailingSlash(path)}`;
 
 const gameTitles = new Set(gameLandings.map((game) => game.title));
 
-const urls = [
+const baseUrls = [
   "/",
   "/impressum/",
   "/privacy/",
@@ -36,6 +37,8 @@ const urls = [
     `${getGamePath(game)}/support`,
   ]),
 ].map(withTrailingSlash);
+
+const urls = [...baseUrls, ...baseUrls.map((path) => withTrailingSlash(withLocalePath(path, "de")))];
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
