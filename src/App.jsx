@@ -387,6 +387,7 @@ const copy = {
     impressumDescription: "Legal notice and business disclosure for nadzeyayashchuk.com.",
     privacyDescription: "Privacy policy for nadzeyayashchuk.com and related portfolio content.",
     heroKicker: "Hello",
+    heroNameLead: "I'm",
     heroRole: "Product & Project Lead based in Austria",
     heroAvailability: "Availability",
     heroAvailabilityText: "Available for product & delivery clarity",
@@ -394,7 +395,9 @@ const copy = {
       "I make product work feel calmer, clearer, and easier to move across mobile apps, SaaS, and web products from Austria, across EU and remote teams.",
     viewWork: "View work",
     contactMe: "Contact me",
+    portfolioActionsLabel: "Portfolio actions",
     heroProofLabel: "Usually involved in",
+    productFocusAreasLabel: "Product focus areas",
     aboutEyebrow: "About",
     aboutTitle: "I help product work start stronger, scale cleaner, and get back on track when execution drifts.",
     aboutIntro: "Based in Austria. Remote and EU-based teams.",
@@ -491,6 +494,7 @@ const copy = {
     impressumDescription: "Impressum und rechtliche Angaben für nadzeyayashchuk.com.",
     privacyDescription: "Datenschutzerklärung für nadzeyayashchuk.com und die Inhalte dieses Portfolios.",
     heroKicker: "Hallo",
+    heroNameLead: "Ich bin",
     heroRole: "Product & Project Lead mit Sitz in Österreich",
     heroAvailability: "Verfügbarkeit",
     heroAvailabilityText: "Verfügbar für mehr Klarheit in Produkt und Delivery",
@@ -498,7 +502,9 @@ const copy = {
       "Ich mache Produktarbeit ruhiger, klarer und leichter umsetzbar — für Mobile Apps, SaaS und Web-Produkte aus Österreich, mit Teams in der EU und remote.",
     viewWork: "Projekte ansehen",
     contactMe: "Kontakt",
+    portfolioActionsLabel: "Portfolio-Aktionen",
     heroProofLabel: "Typischerweise dabei bei",
+    productFocusAreasLabel: "Produkt-Schwerpunkte",
     aboutEyebrow: "Über mich",
     aboutTitle: "Ich helfe Produktarbeit, stärker zu starten, sauberer zu skalieren und wieder auf Kurs zu kommen, wenn die Umsetzung abdriftet.",
     aboutIntro: "Standort Österreich. Zusammenarbeit mit Remote- und EU-Teams.",
@@ -3848,7 +3854,7 @@ function Hero({ strings, locale }) {
         <div className="hero-content">
           <p className="template-kicker">{strings.heroKicker}</p>
           <h1>
-            <span>I&apos;m</span> Nadya Yashchuk
+            <span>{strings.heroNameLead}</span> Nadya Yashchuk
           </h1>
           <p className="role-line">{strings.heroRole}</p>
           <div className="hero-status" aria-label={strings.heroAvailability}>
@@ -3856,7 +3862,7 @@ function Hero({ strings, locale }) {
             {strings.heroAvailabilityText}
           </div>
           <p className="hero-copy">{strings.heroCopy}</p>
-          <div className="hero-actions" aria-label="Portfolio actions">
+          <div className="hero-actions" aria-label={strings.portfolioActionsLabel}>
             <a className="button primary" href={normalizeLocalizedInternalHref("/#projects", locale)}>
               {strings.viewWork}
               <IconArrow size={18} aria-hidden="true" />
@@ -3867,7 +3873,7 @@ function Hero({ strings, locale }) {
           </div>
           <div className="hero-proof-wrap">
             <span className="hero-proof-label">{strings.heroProofLabel}</span>
-            <div className="hero-proof" aria-label="Product focus areas">
+            <div className="hero-proof" aria-label={strings.productFocusAreasLabel}>
               {proofItems.map((item) => (
                 <span key={item}>{item}</span>
               ))}
