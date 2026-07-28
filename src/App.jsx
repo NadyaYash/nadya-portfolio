@@ -1140,6 +1140,10 @@ export const storeLaunches = [
         href: "https://apps.apple.com/us/app/kids-math-count-add/id6784570701",
       },
       {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.kidsmath",
+      },
+      {
         label: "Privacy Policy",
         href: "https://calcsprint.com/kids/privacy-policy",
       },
