@@ -947,6 +947,10 @@ export const storeLaunches = [
     ],
     links: [
       {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/vert-altimeter-ski-tracker/id6791539934",
+      },
+      {
         label: "Web",
         href: "https://vertaltimeter.app/",
       },
