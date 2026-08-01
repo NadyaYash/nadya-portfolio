@@ -56,6 +56,7 @@ const clientStrings = {
   older: t.older,
   pageOfTpl: lang === "de" ? "Seite {a} von {b}" : "Page {a} of {b}",
   locale: t.locale,
+  de: lang === "de",
 };
 ---
 
@@ -187,13 +188,14 @@ const clientStrings = {
         page = Math.min(page, total);
         const slice = all.slice((page - 1) * PER_PAGE, page * PER_PAGE);
         // Feed HTML is produced and escaped by our own worker (same studio) — safe to inject.
+        // On /de/ prefer the German version; fall back to English when a post has none yet.
         const posts = slice
           .map(
             (p) => `
         <article class="post" id="w${p.week_start}">
           <div class="week">${S.week} ${fmt(p.week_start)}</div>
-          <h2>${escText(p.title)}</h2>
-          <div class="body">${p.html}</div>
+          <h2>${escText((S.de && p.title_de) || p.title)}</h2>
+          <div class="body">${(S.de && p.html_de) || p.html}</div>
         </article>`
           )
           .join("");
