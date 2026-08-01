@@ -6,7 +6,7 @@
 // Client-side pagination: 5 posts per page via ?page=N (static hosting, so no per-page routes).
 const { lang = "en" } = Astro.props;
 const FEED = "https://lukichev.biz/devlog/feed-nadya.json";
-const PER_PAGE = 5;
+const PER_PAGE = 4; // a month of weekly digests per page
 
 const STRINGS = {
   en: {
