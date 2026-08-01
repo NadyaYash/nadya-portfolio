@@ -1,0 +1,153 @@
+---
+// Dev Log — weekly build-in-public digests about the apps Nadya publishes.
+// Posts are drafted and published from the studio panel; this page fetches the
+// published feed client-side (the data lives in another Cloudflare account, so a
+// static page + public JSON feed keeps this site build-free when a post goes live).
+export const prerender = true;
+const FEED = "https://lukichev.biz/devlog/feed-nadya.json";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dev Log — Nadya Yashchuk</title>
+    <meta
+      name="description"
+      content="Weekly build-in-public notes from Nadya Yashchuk: store releases, localizations and app updates across 25+ mobile apps."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href="https://nadzeyayashchuk.com/devlog/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Dev Log — Nadya Yashchuk" />
+    <meta
+      property="og:description"
+      content="Weekly build-in-public notes: store releases, localizations and app updates across 25+ mobile apps."
+    />
+    <meta property="og:url" content="https://nadzeyayashchuk.com/devlog/" />
+    <meta property="og:image" content="https://nadzeyayashchuk.com/og-banner.png" />
+    <meta property="og:site_name" content="Nadya Yashchuk" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <style>
+      :root {
+        --ink: #111214;
+        --muted: #626a73;
+        --surface-strong: #fffaf5;
+        --line: rgba(76, 58, 35, 0.1);
+        --accent: #0f6f68;
+        --accent-dark: #0a4b47;
+        --warm: #aa7a45;
+        --paper: #fffdfa;
+        --shadow-soft: 0 14px 42px rgba(53, 39, 24, 0.07);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.55;
+        background: linear-gradient(180deg, #fffdf9 0%, #f7efe6 46%, #fffdfa 100%), #fbf7f1;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: inherit; text-decoration: none; }
+      .wrap { max-width: 760px; margin: 0 auto; padding: 0 22px 90px; }
+      .top {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 26px 0 0; font-size: 14.5px;
+      }
+      .brand { font-weight: 650; letter-spacing: -0.01em; }
+      .back { color: var(--muted); transition: color 0.15s ease; }
+      .back:hover { color: var(--accent); }
+      .hero { padding: 54px 0 10px; }
+      .eyebrow {
+        font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+        color: var(--warm); font-weight: 600; margin-bottom: 12px;
+      }
+      h1 { font-size: clamp(38px, 7vw, 58px); line-height: 1.04; letter-spacing: -0.03em; margin: 0 0 14px; }
+      h1 em { font-style: normal; color: var(--accent); }
+      .lede { max-width: 540px; color: var(--muted); font-size: 16.5px; margin: 0; }
+      .post {
+        background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+        box-shadow: var(--shadow-soft); padding: 30px 34px; margin-top: 26px;
+      }
+      .post .week { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm); font-weight: 600; }
+      .post h2 { font-size: 26px; letter-spacing: -0.02em; line-height: 1.15; margin: 8px 0 4px; }
+      .body { color: #3a4048; font-size: 15.5px; }
+      .body p { margin: 13px 0; }
+      .body ul { margin: 13px 0; padding-left: 22px; }
+      .body li { margin: 6px 0; }
+      .body a { color: var(--accent); text-decoration: underline; text-decoration-color: rgba(15, 111, 104, 0.35); text-underline-offset: 3px; }
+      .body a:hover { color: var(--accent-dark); text-decoration-color: var(--accent-dark); }
+      .body strong { color: var(--ink); }
+      .body em { color: var(--muted); }
+      .body h3, .body h4, .body h5 { color: var(--ink); font-size: 17.5px; margin: 22px 0 4px; }
+      .note {
+        margin-top: 26px; background: var(--surface-strong); border: 1px dashed rgba(76, 58, 35, 0.22);
+        border-radius: 14px; padding: 38px 34px; color: var(--muted); font-size: 15.5px;
+      }
+      @media (max-width: 560px) { .post, .note { padding: 22px 18px; } }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="top">
+        <a class="brand" href="/">Nadya Yashchuk</a>
+        <a class="back" href="/">← Back to site</a>
+      </div>
+      <header class="hero">
+        <div class="eyebrow">Build in public</div>
+        <h1>Dev <em>Log</em></h1>
+        <p class="lede">
+          Weekly notes from the app-store side of our tiny two-person studio: releases,
+          localizations, store makeovers and the small decisions behind 25+ mobile apps.
+        </p>
+      </header>
+      <main id="devlog">
+        <div class="note" id="devlog-status">Loading the latest weeks…</div>
+      </main>
+    </div>
+    <script define:vars={{ FEED }}>
+      const mount = document.getElementById("devlog");
+      const fmt = (d) =>
+        new Date(d + "T00:00:00Z").toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+          timeZone: "UTC",
+        });
+      fetch(FEED)
+        .then((r) => {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return r.json();
+        })
+        .then(({ posts }) => {
+          if (!posts || !posts.length) {
+            mount.innerHTML =
+              '<div class="note">The first weekly digest is being written — check back soon.</div>';
+            return;
+          }
+          // Feed HTML is produced and escaped by our own worker (same studio) — safe to inject.
+          mount.innerHTML = posts
+            .map(
+              (p) => `
+        <article class="post" id="w${p.week_start}">
+          <div class="week">Week of ${fmt(p.week_start)}</div>
+          <h2>${p.title.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c])}</h2>
+          <div class="body">${p.html}</div>
+        </article>`
+            )
+            .join("");
+          if (location.hash) {
+            const el = document.querySelector(location.hash.replace(/[^#\w-]/g, ""));
+            if (el) el.scrollIntoView();
+          }
+        })
+        .catch(() => {
+          mount.innerHTML =
+            '<div class="note">Couldn’t load the dev log right now — please try again in a minute.</div>';
+        });
+    </script>
+  </body>
+</html>
