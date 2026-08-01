@@ -2317,6 +2317,9 @@ function Header({ path, locale, strings }) {
           ))}
         </nav>
         <div className="header-tools">
+          <a className="devlog-link" href={locale === "de" ? "/de/devlog/" : "/devlog/"}>
+            Dev Log
+          </a>
           <div className="language-switcher" aria-label={strings.languageSwitcherLabel}>
             {languageOptions.map((option) => {
               const targetPath = getAlternatePaths(typeof window !== "undefined" ? window.location.pathname : path)[option.code];
@@ -4357,6 +4360,7 @@ function Footer({ locale, strings }) {
           © {new Date().getFullYear()} <strong>Nadya Yashchuk.</strong> {strings.footerTagline}
         </p>
         <div className="footer-links">
+          <a href={locale === "de" ? "/de/devlog/" : "/devlog/"}>Dev Log</a>
           <a href={normalizeLocalizedInternalHref("/impressum", locale)}>{strings.legalNoticeTitle}</a>
           <a href={normalizeLocalizedInternalHref("/privacy", locale)}>{strings.sitePrivacyTitle}</a>
         </div>

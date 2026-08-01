@@ -38,8 +38,7 @@ const baseUrls = [
   ]),
 ].map(withTrailingSlash);
 
-// /devlog/ is English-only (no /de/ variant), so it joins after the locale duplication.
-const urls = [...baseUrls, ...baseUrls.map((path) => withTrailingSlash(withLocalePath(path, "de"))), "/devlog/"];
+const urls = [...baseUrls, ...baseUrls.map((path) => withTrailingSlash(withLocalePath(path, "de"))), "/devlog/", "/de/devlog/"];
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

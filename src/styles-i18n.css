@@ -5,6 +5,28 @@
   gap: 10px;
 }
 
+.devlog-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border: 1px solid rgba(15, 111, 104, 0.12);
+  border-radius: 999px;
+  background: rgba(245, 249, 248, 0.92);
+  color: #607077;
+  font-size: 0.82rem;
+  font-weight: 780;
+  letter-spacing: 0.02em;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.devlog-link:hover {
+  color: var(--accent-dark);
+  border-color: rgba(15, 111, 104, 0.3);
+}
+
 .language-switcher {
   display: inline-flex;
   align-items: center;

@@ -1,0 +1,249 @@
+---
+// Dev Log page (EN at /devlog/, DE at /de/devlog/) — weekly build-in-public digests about
+// the apps Nadya publishes. Posts are drafted and published from the studio panel; this page
+// fetches the published feed client-side (the data lives in another Cloudflare account, so a
+// static page + public JSON feed keeps this site build-free when a post goes live).
+// Client-side pagination: 5 posts per page via ?page=N (static hosting, so no per-page routes).
+const { lang = "en" } = Astro.props;
+const FEED = "https://lukichev.biz/devlog/feed-nadya.json";
+const PER_PAGE = 5;
+
+const STRINGS = {
+  en: {
+    title: "Dev Log — Nadya Yashchuk",
+    description:
+      "Weekly build-in-public notes from Nadya Yashchuk: store releases, localizations and app updates across 25+ mobile apps.",
+    back: "← Back to site",
+    eyebrow: "Build in public",
+    lede:
+      "Weekly notes from the app-store side of our tiny two-person studio: releases, localizations, store makeovers and the small decisions behind 25+ mobile apps.",
+    loading: "Loading the latest weeks…",
+    empty: "The first weekly digest is being written — check back soon.",
+    error: "Couldn’t load the dev log right now — please try again in a minute.",
+    week: "Week of",
+    newer: "← Newer",
+    older: "Older →",
+    pageOf: (a, b) => `Page ${a} of ${b}`,
+    locale: "en-US",
+  },
+  de: {
+    title: "Dev Log — Nadya Yashchuk",
+    description:
+      "Wöchentliche Build-in-Public-Notizen von Nadya Yashchuk: Store-Releases, Lokalisierungen und App-Updates für 25+ Apps.",
+    back: "← Zur Website",
+    eyebrow: "Build in public",
+    lede:
+      "Wöchentliche Notizen von der App-Store-Seite unseres kleinen Zwei-Personen-Studios: Releases, Lokalisierungen, Store-Makeover und die kleinen Entscheidungen hinter 25+ Apps. Die Posts selbst sind auf Englisch.",
+    loading: "Lade die letzten Wochen…",
+    empty: "Der erste Wochen-Digest entsteht gerade — schau bald wieder vorbei.",
+    error: "Das Dev Log konnte gerade nicht geladen werden — bitte versuch es gleich noch einmal.",
+    week: "Woche vom",
+    newer: "← Neuer",
+    older: "Älter →",
+    pageOf: (a, b) => `Seite ${a} von ${b}`,
+    locale: "de-DE",
+  },
+};
+const t = STRINGS[lang] || STRINGS.en;
+const home = lang === "de" ? "/de/" : "/";
+const canonical = lang === "de" ? "https://nadzeyayashchuk.com/de/devlog/" : "https://nadzeyayashchuk.com/devlog/";
+// Serializable subset for the client script (functions can't cross the island boundary).
+const clientStrings = {
+  empty: t.empty,
+  error: t.error,
+  week: t.week,
+  newer: t.newer,
+  older: t.older,
+  pageOfTpl: lang === "de" ? "Seite {a} von {b}" : "Page {a} of {b}",
+  locale: t.locale,
+};
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{t.title}</title>
+    <meta name="description" content={t.description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href="https://nadzeyayashchuk.com/devlog/" />
+    <link rel="alternate" hreflang="de" href="https://nadzeyayashchuk.com/de/devlog/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={t.title} />
+    <meta property="og:description" content={t.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://nadzeyayashchuk.com/og-banner.png" />
+    <meta property="og:site_name" content="Nadya Yashchuk" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <style>
+      :root {
+        --ink: #111214;
+        --muted: #626a73;
+        --surface-strong: #fffaf5;
+        --line: rgba(76, 58, 35, 0.1);
+        --accent: #0f6f68;
+        --accent-dark: #0a4b47;
+        --warm: #aa7a45;
+        --paper: #fffdfa;
+        --shadow-soft: 0 14px 42px rgba(53, 39, 24, 0.07);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.55;
+        background: linear-gradient(180deg, #fffdf9 0%, #f7efe6 46%, #fffdfa 100%), #fbf7f1;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: inherit; text-decoration: none; }
+      .wrap { max-width: 760px; margin: 0 auto; padding: 0 22px 90px; }
+      .top {
+        display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        padding: 26px 0 0; font-size: 14.5px;
+      }
+      .brand { font-weight: 650; letter-spacing: -0.01em; }
+      .top-right { display: flex; align-items: center; gap: 16px; }
+      .back { color: var(--muted); transition: color 0.15s ease; }
+      .back:hover { color: var(--accent); }
+      .lang a { color: var(--muted); font-size: 13px; padding: 2px 6px; border-radius: 6px; }
+      .lang a[aria-current="true"] { color: var(--accent-dark); background: rgba(15, 111, 104, 0.08); font-weight: 600; }
+      .hero { padding: 54px 0 10px; }
+      .eyebrow {
+        font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+        color: var(--warm); font-weight: 600; margin-bottom: 12px;
+      }
+      h1 { font-size: clamp(38px, 7vw, 58px); line-height: 1.04; letter-spacing: -0.03em; margin: 0 0 14px; }
+      h1 em { font-style: normal; color: var(--accent); }
+      .lede { max-width: 560px; color: var(--muted); font-size: 16.5px; margin: 0; }
+      .post {
+        background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+        box-shadow: var(--shadow-soft); padding: 30px 34px; margin-top: 26px;
+      }
+      .post .week { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm); font-weight: 600; }
+      .post h2 { font-size: 26px; letter-spacing: -0.02em; line-height: 1.15; margin: 8px 0 4px; }
+      .body { color: #3a4048; font-size: 15.5px; }
+      .body p { margin: 13px 0; }
+      .body ul { margin: 13px 0; padding-left: 22px; }
+      .body li { margin: 6px 0; }
+      .body a { color: var(--accent); text-decoration: underline; text-decoration-color: rgba(15, 111, 104, 0.35); text-underline-offset: 3px; }
+      .body a:hover { color: var(--accent-dark); text-decoration-color: var(--accent-dark); }
+      .body strong { color: var(--ink); }
+      .body em { color: var(--muted); }
+      .body h3, .body h4, .body h5 { color: var(--ink); font-size: 17.5px; margin: 22px 0 4px; }
+      .note {
+        margin-top: 26px; background: var(--surface-strong); border: 1px dashed rgba(76, 58, 35, 0.22);
+        border-radius: 14px; padding: 38px 34px; color: var(--muted); font-size: 15.5px;
+      }
+      .pager { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 26px; font-size: 14px; }
+      .pager .info { color: var(--muted); font-size: 13px; }
+      .pager a, .pager span.dis {
+        padding: 8px 16px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper);
+      }
+      .pager a { color: var(--accent-dark); font-weight: 550; transition: border-color 0.15s ease; }
+      .pager a:hover { border-color: var(--accent); }
+      .pager span.dis { color: rgba(98, 106, 115, 0.5); }
+      @media (max-width: 560px) { .post, .note { padding: 22px 18px; } }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="top">
+        <a class="brand" href={home}>Nadya Yashchuk</a>
+        <div class="top-right">
+          <span class="lang">
+            <a href="/devlog/" aria-current={lang === "en" ? "true" : undefined}>EN</a>
+            <a href="/de/devlog/" aria-current={lang === "de" ? "true" : undefined}>DE</a>
+          </span>
+          <a class="back" href={home}>{t.back}</a>
+        </div>
+      </div>
+      <header class="hero">
+        <div class="eyebrow">{t.eyebrow}</div>
+        <h1>Dev <em>Log</em></h1>
+        <p class="lede">{t.lede}</p>
+      </header>
+      <main id="devlog">
+        <div class="note">{t.loading}</div>
+      </main>
+    </div>
+    <script define:vars={{ FEED, PER_PAGE, S: clientStrings }}>
+      const mount = document.getElementById("devlog");
+      const escText = (s) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
+      const fmt = (d) =>
+        new Date(d + "T00:00:00Z").toLocaleDateString(S.locale, {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+          timeZone: "UTC",
+        });
+      let all = [];
+      const pageFromUrl = () => Math.max(1, parseInt(new URLSearchParams(location.search).get("page") || "1", 10) || 1);
+      function render(page) {
+        const total = Math.max(1, Math.ceil(all.length / PER_PAGE));
+        page = Math.min(page, total);
+        const slice = all.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+        // Feed HTML is produced and escaped by our own worker (same studio) — safe to inject.
+        const posts = slice
+          .map(
+            (p) => `
+        <article class="post" id="w${p.week_start}">
+          <div class="week">${S.week} ${fmt(p.week_start)}</div>
+          <h2>${escText(p.title)}</h2>
+          <div class="body">${p.html}</div>
+        </article>`
+          )
+          .join("");
+        const info = S.pageOfTpl.replace("{a}", page).replace("{b}", total);
+        const pager =
+          total > 1
+            ? `<div class="pager">
+          ${page > 1 ? `<a href="?page=${page - 1}" data-page="${page - 1}">${S.newer}</a>` : `<span class="dis">${S.newer}</span>`}
+          <span class="info">${info}</span>
+          ${page < total ? `<a href="?page=${page + 1}" data-page="${page + 1}">${S.older}</a>` : `<span class="dis">${S.older}</span>`}
+        </div>`
+            : "";
+        mount.innerHTML = posts + pager;
+        mount.querySelectorAll(".pager a[data-page]").forEach((a) => {
+          a.addEventListener("click", (e) => {
+            e.preventDefault();
+            const p = Number(a.dataset.page);
+            history.pushState(null, "", p === 1 ? location.pathname : `?page=${p}`);
+            render(p);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+        });
+      }
+      window.addEventListener("popstate", () => all.length && render(pageFromUrl()));
+      fetch(FEED)
+        .then((r) => {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return r.json();
+        })
+        .then(({ posts }) => {
+          all = posts || [];
+          if (!all.length) {
+            mount.innerHTML = `<div class="note">${S.empty}</div>`;
+            return;
+          }
+          // A #wYYYY-MM-DD deep link lands on whatever page holds that week.
+          let page = pageFromUrl();
+          if (location.hash) {
+            const i = all.findIndex((p) => "#w" + p.week_start === location.hash);
+            if (i >= 0) page = Math.floor(i / PER_PAGE) + 1;
+          }
+          render(page);
+          if (location.hash) {
+            const el = document.getElementById(location.hash.slice(1).replace(/[^\w-]/g, ""));
+            if (el) el.scrollIntoView();
+          }
+        })
+        .catch(() => {
+          mount.innerHTML = `<div class="note">${S.error}</div>`;
+        });
+    </script>
+  </body>
+</html>
