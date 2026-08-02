@@ -3126,3 +3126,6 @@ p {
 .service-icon { background: var(--accent-2-soft); color: var(--accent-2-ink); }
 .contact-card-icon { border-color: rgba(247, 104, 0, 0.18); color: var(--accent-2-ink); }
 .hero-proof span:hover { border-color: rgba(247, 104, 0, 0.4); color: var(--accent-2-ink); }
+.scroll-top { background: var(--accent-2); border-color: rgba(247, 104, 0, 0.2); box-shadow: 0 16px 36px rgba(247, 104, 0, 0.24); }
+.scroll-top:hover { box-shadow: 0 20px 42px rgba(247, 104, 0, 0.3); }
+.project-label { border-color: rgba(247, 104, 0, 0.2); background: var(--accent-2-soft); color: var(--accent-2-ink); }
