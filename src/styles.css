@@ -3116,11 +3116,6 @@ p {
 
 
 /* ---- ACCENT-2 (orange) system — green stays primary, orange is the second color ---- */
-.hero-content h1 .name-mark {
-  background: linear-gradient(transparent 58%, rgba(247, 104, 0, 0.28) 58%);
-  padding: 0 2px;
-  border-radius: 2px;
-}
 .eyebrow { color: var(--accent-2-ink); }
 .button.secondary { color: var(--accent-2-ink); border-color: rgba(247, 104, 0, 0.35); background: #fff; }
 .button.secondary:hover { border-color: var(--accent-2); background: var(--accent-2-soft); }

@@ -3865,7 +3865,7 @@ function Hero({ strings, locale }) {
         <div className="hero-content">
           <p className="template-kicker">{strings.heroKicker}</p>
           <h1>
-            <span>{strings.heroNameLead}</span> Nadya <span className="name-mark">Yashchuk</span>
+            <span>{strings.heroNameLead}</span> Nadya Yashchuk
           </h1>
           <p className="role-line">{strings.heroRole}</p>
           <div className="hero-status" aria-label={strings.heroAvailability}>
