@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./styles.css";
 import "./styles-i18n.css";
 import { getAlternatePaths, getLocaleFromPath, stripLocaleFromPath, withLocalePath } from "./i18n.js";
-import profilePhoto from "../1701113988652.jpeg";
+import profilePhoto from "../hero-portrait.jpg";
 import easyJigsawPuzzlesIcon from "./assets/easy-jigsaw-puzzles-icon.png";
 import easyJigsawScreen01 from "./assets/easy-jigsaw-screen-01.jpg";
 import easyJigsawScreen02 from "./assets/easy-jigsaw-screen-02.jpg";
