@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./styles.css";
 import "./styles-i18n.css";
 import { getAlternatePaths, getLocaleFromPath, stripLocaleFromPath, withLocalePath } from "./i18n.js";
-import profilePhoto from "../1701113988652.jpeg";
+import profilePhoto from "../hero-portrait.jpg";
 import easyJigsawPuzzlesIcon from "./assets/easy-jigsaw-puzzles-icon.png";
 import easyJigsawScreen01 from "./assets/easy-jigsaw-screen-01.jpg";
 import easyJigsawScreen02 from "./assets/easy-jigsaw-screen-02.jpg";
@@ -2379,6 +2379,9 @@ function Header({ path, locale, strings }) {
           ))}
         </nav>
         <div className="header-tools">
+          <a className="devlog-link" href={locale === "de" ? "/de/devlog/" : "/devlog/"}>
+            Dev Log
+          </a>
           <div className="language-switcher" aria-label={strings.languageSwitcherLabel}>
             {languageOptions.map((option) => {
               const targetPath = getAlternatePaths(typeof window !== "undefined" ? window.location.pathname : path)[option.code];
@@ -4419,6 +4422,7 @@ function Footer({ locale, strings }) {
           © {new Date().getFullYear()} <strong>Nadya Yashchuk.</strong> {strings.footerTagline}
         </p>
         <div className="footer-links">
+          <a href={locale === "de" ? "/de/devlog/" : "/devlog/"}>Dev Log</a>
           <a href={normalizeLocalizedInternalHref("/impressum", locale)}>{strings.legalNoticeTitle}</a>
           <a href={normalizeLocalizedInternalHref("/privacy", locale)}>{strings.sitePrivacyTitle}</a>
         </div>
