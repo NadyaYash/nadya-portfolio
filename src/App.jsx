@@ -423,6 +423,10 @@ const copy = {
     teamEyebrow: "Current collaborators",
     teamTitle: "People I work closely with on active products.",
     teamIntro: "The people I stay in close touch with as we build, grow, and support current products together.",
+    teamSoloEyebrow: "Strategic partner",
+    teamSoloTitle: "A close collaboration behind part of the product and growth work.",
+    teamSoloIntro:
+      "For some active products, I work in close partnership with Ivan Lukichev across growth visibility, product direction, and strategic support.",
     contactEyebrow: "Contact",
     contactTitle: "Need someone to bring order to the product work?",
     contactIntro:
@@ -530,6 +534,10 @@ const copy = {
     teamEyebrow: "Aktuelle Zusammenarbeit",
     teamTitle: "Menschen, mit denen ich bei aktiven Produkten eng zusammenarbeite.",
     teamIntro: "Mit diesen Menschen stehe ich eng im Austausch, während wir aktuelle Produkte gemeinsam aufbauen, weiterentwickeln und unterstützen.",
+    teamSoloEyebrow: "Strategischer Partner",
+    teamSoloTitle: "Eine enge Zusammenarbeit hinter einem Teil der Produkt- und Wachstumsarbeit.",
+    teamSoloIntro:
+      "Bei einigen aktiven Produkten arbeite ich eng mit Ivan Lukichev an Sichtbarkeit, Produktausrichtung und strategischer Begleitung zusammen.",
     contactEyebrow: "Kontakt",
     contactTitle: "Brauchst du jemanden, der Struktur in die Produktarbeit bringt?",
     contactIntro:
@@ -4376,6 +4384,38 @@ function Team({ strings, locale }) {
   const isSinglePartner = teamMembers.length === 1;
   const memberOverrides = localizedTeamMembers[locale] || [];
   const members = teamMembers.map((member, index) => ({ ...member, ...(memberOverrides[index] || {}) }));
+
+  if (isSinglePartner) {
+    const member = members[0];
+
+    return (
+      <Section
+        id="team"
+        eyebrow={strings.teamSoloEyebrow}
+        title={strings.teamSoloTitle}
+        intro={strings.teamSoloIntro}
+      >
+        <article className="team-spotlight reveal" style={{ "--reveal-delay": "0ms" }}>
+          <div className={`team-spotlight-mark ${member.photoClass || ""}`} aria-hidden="true">
+            <img src={assetUrl(member.photo)} alt="" />
+          </div>
+          <div className="team-spotlight-copy">
+            {member.partnerLabel ? <span className="team-badge">{member.partnerLabel}</span> : null}
+            <h3>{member.name}</h3>
+            <span className="team-role">{member.role}</span>
+            <p>{member.summary}</p>
+            <div className="team-links">
+              {member.links.map((link) => (
+                <a href={link.href} key={link.href} target="_blank" rel="noreferrer">
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </article>
+      </Section>
+    );
+  }
 
   return (
     <Section
