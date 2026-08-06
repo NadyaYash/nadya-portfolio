@@ -74,6 +74,11 @@ import vertAltimeterScreen02 from "./assets/vert-altimeter-screen-02.webp";
 import vertAltimeterScreen03 from "./assets/vert-altimeter-screen-03.webp";
 import vertAltimeterScreen04 from "./assets/vert-altimeter-screen-04.webp";
 import vertAltimeterScreen05 from "./assets/vert-altimeter-screen-05.webp";
+import mushTrailForestNavigatorIcon from "./assets/mushtrail-forest-navigator-icon.webp";
+import mushTrailForestNavigatorScreen01 from "./assets/mushtrail-forest-navigator-screen-01.webp";
+import mushTrailForestNavigatorScreen02 from "./assets/mushtrail-forest-navigator-screen-02.webp";
+import mushTrailForestNavigatorScreen03 from "./assets/mushtrail-forest-navigator-screen-03.webp";
+import mushTrailForestNavigatorScreen04 from "./assets/mushtrail-forest-navigator-screen-04.webp";
 import tapMeArrowsIcon from "./assets/tap-me-arrows-icon.jpg";
 import tapMeArrowsScreen01 from "./assets/tap-me-arrows-screen-01.jpg";
 import tapMeArrowsScreen02 from "./assets/tap-me-arrows-screen-02.jpg";
@@ -595,6 +600,7 @@ const localizedCategoryMap = {
     "Creative app": "Kreativ-App",
     "City game": "Städtespiel",
     "Utility app": "Utility-App",
+    "Navigation app": "Navigations-App",
     "Altimeter & ski tracker": "Höhenmesser & Ski-Tracker",
     "Relationship app": "Relationship-App",
     "Puzzle game / mobile product": "Puzzlespiel / Mobile-Produkt",
@@ -908,6 +914,62 @@ export const storeLaunches = [
         ...game.legalLinks.slice(0, 2),
       ],
     })),
+  {
+    title: "MushTrail: Forest Navigator",
+    slug: "mushtrail-forest-navigator",
+    category: "Navigation app",
+    period: "2026",
+    icon: mushTrailForestNavigatorIcon,
+    note: "Publisher & QA",
+    summary:
+      "Offline forest navigation app for mushroom picking that saves your entry point, points you back home, and lets you mark every find on the map.",
+    cardSummary:
+      "Offline forest navigation app for foraging with a home compass, saved spots, and trip recap.",
+    impact: [
+      "Publisher-side positioning, QA testing, and release readiness for a calm forest navigation app built around offline safety and simple mushroom-spot tracking.",
+      "Prepared store-facing presentation around no-signal guidance, saved entry point, offline maps, and private on-device use for foragers.",
+    ],
+    images: [
+      {
+        src: mushTrailForestNavigatorScreen01,
+        alt: "MushTrail home screen showing forest entry point saving and offline map readiness.",
+      },
+      {
+        src: mushTrailForestNavigatorScreen02,
+        alt: "MushTrail compass screen showing the direction and distance back to the entry point.",
+      },
+      {
+        src: mushTrailForestNavigatorScreen03,
+        alt: "MushTrail map screen showing saved mushroom markers and the return home action.",
+      },
+      {
+        src: mushTrailForestNavigatorScreen04,
+        alt: "MushTrail trip recap screen showing route distance, time in forest, and saved spots.",
+      },
+    ],
+    links: [
+      {
+        label: "Learn more",
+        href: "/apps/mushtrail-forest-navigator",
+      },
+      {
+        label: "Web",
+        href: "https://mushtrail.com/",
+      },
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/mushtrail-forest-navigator/id6792751719",
+      },
+      {
+        label: "Privacy Policy",
+        href: "https://mushtrail.com/privacy-policy/",
+      },
+      {
+        label: "Terms of Use",
+        href: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/",
+      },
+    ],
+  },
   {
     title: "VERT — Altimeter & Ski Tracker",
     slug: "vert-altimeter",
