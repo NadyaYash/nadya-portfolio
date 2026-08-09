@@ -2965,24 +2965,23 @@ function GameLandingPage({ game, locale, strings }) {
             <p className="role-line">{game.tagline}</p>
             <p>{game.summary}</p>
             <div className="store-actions">
-              <div className="game-actions">
-                {game.storeLinks.map((link) => (
+              {game.storeLinks.map((link) => (
+                <div className="store-action-item" key={link.label}>
                   <a
                     className="button primary"
                     href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
-                    key={link.label}
                     target={link.href.startsWith("http") ? "_blank" : undefined}
                     rel={link.href.startsWith("http") ? "noreferrer" : undefined}
                   >
                     {localizeLinkLabel(link.label, locale)}
                   </a>
-                ))}
-              </div>
-              {ratingAppId ? (
-                <div className="store-rating" aria-live="polite">
-                  <span data-app-rating={ratingAppId}></span>
+                  {link.label === APP_STORE_LABEL && ratingAppId ? (
+                    <div className="store-rating" aria-live="polite">
+                      <span data-app-rating={ratingAppId}></span>
+                    </div>
+                  ) : null}
                 </div>
-              ) : null}
+              ))}
             </div>
           </div>
         </div>
@@ -3052,24 +3051,23 @@ function AppLandingPage({ app, locale, strings }) {
             <p>{summary}</p>
             {appLinks.length ? (
               <div className="store-actions">
-                <div className="game-actions">
-                  {appLinks.map((link) => (
+                {appLinks.map((link) => (
+                  <div className="store-action-item" key={link.href}>
                     <a
                       className="button primary"
                       href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
-                      key={link.href}
                       target={link.href.startsWith("http") ? "_blank" : undefined}
                       rel={link.href.startsWith("http") ? "noreferrer" : undefined}
                     >
                       {localizeLinkLabel(link.label, locale)}
                     </a>
-                  ))}
-                </div>
-                {ratingAppId ? (
-                  <div className="store-rating" aria-live="polite">
-                    <span data-app-rating={ratingAppId}></span>
+                    {link.label === APP_STORE_LABEL && ratingAppId ? (
+                      <div className="store-rating" aria-live="polite">
+                        <span data-app-rating={ratingAppId}></span>
+                      </div>
+                    ) : null}
                   </div>
-                ) : null}
+                ))}
               </div>
             ) : null}
           </div>
@@ -3143,24 +3141,23 @@ function WorkLandingPage({ project, locale, strings }) {
             <p>{project.summary}</p>
             {project.links?.length ? (
               <div className="store-actions">
-                <div className="game-actions">
-                  {project.links.map((link) => (
+                {project.links.map((link) => (
+                  <div className="store-action-item" key={link.href}>
                     <a
                       className="button primary"
                       href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
-                      key={link.href}
                       target={link.href.startsWith("http") ? "_blank" : undefined}
                       rel={link.href.startsWith("http") ? "noreferrer" : undefined}
                     >
                       {localizeLinkLabel(link.label, locale)}
                     </a>
-                  ))}
-                </div>
-                {ratingAppId ? (
-                  <div className="store-rating" aria-live="polite">
-                    <span data-app-rating={ratingAppId}></span>
+                    {link.label === APP_STORE_LABEL && ratingAppId ? (
+                      <div className="store-rating" aria-live="polite">
+                        <span data-app-rating={ratingAppId}></span>
+                      </div>
+                    ) : null}
                   </div>
-                ) : null}
+                ))}
               </div>
             ) : null}
           </div>
