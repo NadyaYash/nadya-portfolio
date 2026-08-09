@@ -8,6 +8,7 @@ const {
   image = "/og-banner.png",
   jsonLd = null,
   lang = "en",
+  includeRatingsWidget = false,
 } = Astro.props;
 
 const site = Astro.site || new URL("https://nadzeyayashchuk.com");
@@ -50,6 +51,92 @@ const alternateUrls = Object.entries(getAlternatePaths(canonicalPath)).map(([loc
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
     {jsonLd ? <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} /> : null}
+    {includeRatingsWidget ? <script src="https://ratings.lukichev.biz/widget.js" defer></script> : null}
+    {includeRatingsWidget ? (
+      <script is:inline>
+        {`(() => {
+          const pickRatingData = (payload) => {
+            const app = payload && payload.app ? payload.app : null;
+            const hasCount = (entry) =>
+              entry &&
+              typeof entry.rating === "number" &&
+              typeof entry.count === "number" &&
+              entry.count > 0;
+
+            if (hasCount(app?.ios)) {
+              return app.ios;
+            }
+
+            if (hasCount(app?.play)) {
+              return app.play;
+            }
+
+            return null;
+          };
+
+          const injectRatingSchema = async () => {
+            const placeholder = document.querySelector("[data-app-rating]");
+            if (!placeholder) return;
+
+            const appId = placeholder.getAttribute("data-app-rating");
+            if (!appId) return;
+
+            try {
+              const response = await fetch("https://ratings.lukichev.biz/?app=" + encodeURIComponent(appId), {
+                credentials: "omit",
+              });
+
+              if (!response.ok) return;
+
+              const payload = await response.json();
+              const rating = pickRatingData(payload);
+              if (!rating) return;
+
+              const canonical = document.querySelector('link[rel="canonical"]')?.href || window.location.href;
+              const title = document.querySelector("h1")?.textContent?.trim() || payload?.app?.name || document.title;
+              const existing = document.querySelector('script[data-rating-schema="true"]');
+
+              if (existing) {
+                existing.remove();
+              }
+
+              const script = document.createElement("script");
+              script.type = "application/ld+json";
+              script.setAttribute("data-rating-schema", "true");
+              script.textContent = JSON.stringify({
+                "@context": "https://schema.org",
+                "@graph": [
+                  {
+                    "@type": "SoftwareApplication",
+                    "@id": canonical + "#app",
+                    name: title,
+                    url: canonical,
+                    aggregateRating: {
+                      "@type": "AggregateRating",
+                      ratingValue: rating.rating,
+                      ratingCount: rating.count,
+                      reviewCount: rating.count,
+                      bestRating: 5,
+                      worstRating: 1,
+                    },
+                  },
+                ],
+              });
+
+              document.head.appendChild(script);
+            } catch (error) {
+              // Ignore transient rating API failures; the page and base schema should still render normally.
+            }
+          };
+
+          if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", injectRatingSchema, { once: true });
+          } else {
+            injectRatingSchema();
+          }
+        })();`}
+      </script>
+    ) : null}
   </head>
   <body>
     <slot />

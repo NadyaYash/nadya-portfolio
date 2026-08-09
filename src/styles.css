@@ -2304,6 +2304,35 @@ p {
   margin-top: 24px;
 }
 
+.store-actions {
+  display: grid;
+  justify-items: flex-start;
+}
+
+.store-actions .game-actions {
+  margin-top: 24px;
+}
+
+.store-rating {
+  display: flex;
+  align-items: center;
+  min-height: 1lh;
+  margin-top: 10px;
+  color: #5f6971;
+  font-size: 0.92rem;
+  font-weight: 620;
+  line-height: 1.35;
+}
+
+.store-rating [data-app-rating] {
+  display: inline-flex;
+  align-items: center;
+}
+
+.store-rating [data-app-rating]:empty {
+  display: none;
+}
+
 .game-screenshot-grid {
   display: flex;
   align-items: flex-start;
@@ -2957,6 +2986,10 @@ p {
   .game-actions {
     display: grid;
     grid-template-columns: 1fr;
+  }
+
+  .store-actions {
+    width: 100%;
   }
 
   .game-screenshot-placeholder,

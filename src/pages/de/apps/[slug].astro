@@ -21,6 +21,14 @@ const { path } = Astro.props;
 const seo = getPageSeo(path);
 ---
 
-<BaseLayout title={seo.title} description={seo.description} canonicalPath={path} image={seo.image} jsonLd={seo.jsonLd} lang="de">
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  canonicalPath={path}
+  image={seo.image}
+  jsonLd={seo.jsonLd}
+  lang="de"
+  includeRatingsWidget={true}
+>
   <App initialPath={path} client:load />
 </BaseLayout>

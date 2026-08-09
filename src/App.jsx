@@ -710,15 +710,37 @@ const siteUrl = "https://nadzeyayashchuk.com";
 const personId = `${siteUrl}/#person`;
 const websiteId = `${siteUrl}/#website`;
 
+const normalizeAbsolutePath = (href = "/") => {
+  if (!href || href === "/") {
+    return "/";
+  }
+
+  if (href.startsWith("#")) {
+    return `/${href}`;
+  }
+
+  const [pathWithoutHash, hash = ""] = href.split("#");
+  const [pathname, query = ""] = pathWithoutHash.split("?");
+  const normalizedPathname = pathname === "/" ? "/" : pathname.replace(/\/+$/, "") || "/";
+  const queryPart = query ? `?${query}` : "";
+  const hashPart = hash ? `#${hash}` : "";
+
+  return `${normalizedPathname}${queryPart}${hashPart}`;
+};
+
 const toAbsoluteUrl = (href = "/") => {
   if (href.startsWith("http")) {
     return href;
   }
 
   const looksLikeFile = /\.[a-z0-9]+($|[?#])/i.test(href);
-  const normalizedHref = looksLikeFile ? href : normalizeInternalHref(href) || "/";
+  const normalizedHref = looksLikeFile ? href : normalizeAbsolutePath(href) || "/";
+  const hrefWithSlash =
+    looksLikeFile || normalizedHref === "/" || normalizedHref.includes("?") || normalizedHref.includes("#")
+      ? normalizedHref
+      : `${normalizedHref}/`;
 
-  return new URL(normalizedHref, siteUrl).toString();
+  return new URL(hrefWithSlash, siteUrl).toString();
 };
 
 const assetUrl = (asset) => {
@@ -732,6 +754,28 @@ const assetUrl = (asset) => {
 
   return "";
 };
+
+const APP_STORE_LABEL = "App Store";
+const GOOGLE_PLAY_LABEL = "Google Play";
+
+const getEntityLinks = (entity) => [
+  ...(Array.isArray(entity?.links) ? entity.links : []),
+  ...(Array.isArray(entity?.storeLinks) ? entity.storeLinks : []),
+].filter((link) => link && typeof link.href === "string");
+
+const getEntityAppStoreLink = (entity) =>
+  getEntityLinks(entity).find((link) => link.label === APP_STORE_LABEL);
+
+const getEntityStoreLinks = (entity) =>
+  getEntityLinks(entity).filter((link) => link.label === APP_STORE_LABEL || link.label === GOOGLE_PLAY_LABEL);
+
+const getEntityAppleAppId = (entity) => {
+  const href = getEntityAppStoreLink(entity)?.href || "";
+  const match = href.match(/\/id(\d+)(?:[/?]|$)/);
+  return match?.[1] || "";
+};
+
+const getSoftwareApplicationId = (path) => `${toAbsoluteUrl(path)}#app`;
 
 const getEntityImage = (entity) =>
   assetUrl(entity?.icon || entity?.images?.[0]?.src || entity?.backdropImages?.[0]?.src || profilePhoto) || "/favicon.svg";
@@ -794,40 +838,41 @@ const getHomeGraph = () => ({
   ],
 });
 
-const getGameGraph = (game) => ({
+const getGameGraph = (game, pagePath = getGamePath(game)) => ({
   "@context": "https://schema.org",
   "@graph": [
     getBreadcrumbGraph([
       { name: "Home", path: "/" },
       { name: "Games", path: "/#projects" },
-      { name: game.title, path: getGamePath(game) },
+      { name: game.title, path: pagePath },
     ]),
     {
       "@type": "SoftwareApplication",
+      "@id": getSoftwareApplicationId(pagePath),
       name: game.title,
       description: game.summary,
-      url: toAbsoluteUrl(getGamePath(game)),
+      url: toAbsoluteUrl(pagePath),
       image: toAbsoluteUrl(getEntityImage(game)),
       applicationCategory: "GameApplication",
       operatingSystem: "iOS, Android",
-      sameAs: game.storeLinks.map((link) => link.href),
+      sameAs: getEntityStoreLinks(game).map((link) => link.href),
     },
   ],
 });
 
-const getGameLegalGraph = (game, suffix, label) => ({
+const getGameLegalGraph = (game, suffix, label, pagePath = `${getGamePath(game)}/${suffix}`) => ({
   "@context": "https://schema.org",
   "@graph": [
     getBreadcrumbGraph([
       { name: "Home", path: "/" },
       { name: "Games", path: "/#projects" },
-      { name: game.title, path: getGamePath(game) },
-      { name: label, path: `${getGamePath(game)}/${suffix}` },
+      { name: game.title, path: pagePath.replace(new RegExp(`/${suffix}/?$`), "") },
+      { name: label, path: pagePath },
     ]),
     {
       "@type": "WebPage",
       name: `${game.title} ${label}`,
-      url: toAbsoluteUrl(`${getGamePath(game)}/${suffix}`),
+      url: toAbsoluteUrl(pagePath),
       description: `${label} for ${getGameLegalName(game)}.`,
       isPartOf: {
         "@id": websiteId,
@@ -840,21 +885,22 @@ const getGameLegalGraph = (game, suffix, label) => ({
   ],
 });
 
-const getAppGraph = (app) => ({
+const getAppGraph = (app, pagePath = getLaunchPath(app)) => ({
   "@context": "https://schema.org",
   "@graph": [
     getBreadcrumbGraph([
       { name: "Home", path: "/" },
       { name: "Apps", path: "/#projects" },
-      { name: app.title, path: getLaunchPath(app) },
+      { name: app.title, path: pagePath },
     ]),
     {
       "@type": "SoftwareApplication",
+      "@id": getSoftwareApplicationId(pagePath),
       name: app.title,
       description:
         app.summary ||
         `${app.category} where I handled publishing, QA testing, store presence, launch packaging, and release readiness.`,
-      url: toAbsoluteUrl(getLaunchPath(app)),
+      url: toAbsoluteUrl(pagePath),
       image: toAbsoluteUrl(getEntityImage(app)),
       applicationCategory: app.category,
       operatingSystem: "iOS, Android",
@@ -863,31 +909,61 @@ const getAppGraph = (app) => ({
   ],
 });
 
-const getWorkGraph = (project) => ({
-  "@context": "https://schema.org",
-  "@graph": [
-    getBreadcrumbGraph([
-      { name: "Home", path: "/" },
-      { name: "Work", path: "/#projects" },
-      { name: project.name, path: getProjectPath(project) },
-    ]),
-    {
-      "@type": "WebPage",
-      name: project.name,
-      url: toAbsoluteUrl(getProjectPath(project)),
-      description: project.summary,
-      image: toAbsoluteUrl(getEntityImage(project)),
-      isPartOf: {
-        "@id": websiteId,
-      },
-      about: {
-        "@type": "CreativeWork",
+const getProjectSoftwareApplicationGraph = (project) =>
+  getEntityStoreLinks(project).length
+    ? {
+        "@type": "SoftwareApplication",
+        "@id": getSoftwareApplicationId(getProjectPath(project)),
         name: project.name,
         description: project.summary,
+        url: toAbsoluteUrl(getProjectPath(project)),
+        image: toAbsoluteUrl(getEntityImage(project)),
+        applicationCategory: project.category,
+        operatingSystem: "iOS, Android",
+        sameAs: getEntityStoreLinks(project).map((link) => link.href),
+      }
+    : null;
+
+const getWorkGraph = (project, pagePath = getProjectPath(project)) => {
+  const softwareApplication = getEntityStoreLinks(project).length
+    ? {
+        ...getProjectSoftwareApplicationGraph(project),
+        "@id": getSoftwareApplicationId(pagePath),
+        url: toAbsoluteUrl(pagePath),
+      }
+    : null;
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      getBreadcrumbGraph([
+        { name: "Home", path: "/" },
+        { name: "Work", path: "/#projects" },
+        { name: project.name, path: pagePath },
+      ]),
+      {
+        "@type": "WebPage",
+        name: project.name,
+        url: toAbsoluteUrl(pagePath),
+        description: project.summary,
+        image: toAbsoluteUrl(getEntityImage(project)),
+        isPartOf: {
+          "@id": websiteId,
+        },
+        about: softwareApplication
+          ? {
+              "@id": getSoftwareApplicationId(pagePath),
+            }
+          : {
+              "@type": "CreativeWork",
+              name: project.name,
+              description: project.summary,
+            },
       },
-    },
-  ],
-});
+      ...(softwareApplication ? [softwareApplication] : []),
+    ],
+  };
+};
 
 export const getLaunchSlug = (item) => item.slug || getTitleSlug(item.title);
 export const getLaunchPath = (item) => `/apps/${getLaunchSlug(item)}`;
@@ -2076,7 +2152,7 @@ export function getPageSeo(pathname = "/") {
         app?.summary ||
         "Product publishing, QA testing, store presence, launch packaging, and release readiness.",
       image: app ? getEntityImage(app) : assetUrl(profilePhoto),
-      jsonLd: app ? getAppGraph(app) : null,
+      jsonLd: app ? getAppGraph(app, pathname) : null,
     };
   }
 
@@ -2090,7 +2166,7 @@ export function getPageSeo(pathname = "/") {
         project?.summary ||
         "Product leadership, launch direction, and structured execution across apps and web products.",
       image: project ? getEntityImage(project) : assetUrl(profilePhoto),
-      jsonLd: project ? getWorkGraph(project) : null,
+      jsonLd: project ? getWorkGraph(project, pathname) : null,
     };
   }
 
@@ -2107,7 +2183,7 @@ export function getPageSeo(pathname = "/") {
         title: `${legalName} ${strings.privacyPolicy} | Nadya Yashchuk`,
         description: `${strings.privacyPolicy} for ${legalName}.`,
         image: game ? getEntityImage(game) : assetUrl(profilePhoto),
-        jsonLd: game ? getGameLegalGraph(game, "privacy", strings.privacyPolicy) : null,
+        jsonLd: game ? getGameLegalGraph(game, "privacy", strings.privacyPolicy, pathname) : null,
       };
     }
 
@@ -2116,7 +2192,7 @@ export function getPageSeo(pathname = "/") {
         title: `${legalName} ${strings.termsOfUse} | Nadya Yashchuk`,
         description: `${strings.termsOfUse} for ${legalName}.`,
         image: game ? getEntityImage(game) : assetUrl(profilePhoto),
-        jsonLd: game ? getGameLegalGraph(game, "terms", strings.termsOfUse) : null,
+        jsonLd: game ? getGameLegalGraph(game, "terms", strings.termsOfUse, pathname) : null,
       };
     }
 
@@ -2125,7 +2201,7 @@ export function getPageSeo(pathname = "/") {
         title: `${legalName} ${strings.support} | Nadya Yashchuk`,
         description: `${strings.support} page for ${legalName}.`,
         image: game ? getEntityImage(game) : assetUrl(profilePhoto),
-        jsonLd: game ? getGameLegalGraph(game, "support", strings.support) : null,
+        jsonLd: game ? getGameLegalGraph(game, "support", strings.support, pathname) : null,
       };
     }
 
@@ -2134,7 +2210,7 @@ export function getPageSeo(pathname = "/") {
       description:
         game?.summary || "Game launch page with screenshots, store links, and legal information.",
       image: game ? getEntityImage(game) : assetUrl(profilePhoto),
-      jsonLd: game ? getGameGraph(game) : null,
+      jsonLd: game ? getGameGraph(game, pathname) : null,
     };
   }
 
@@ -2874,6 +2950,8 @@ function GameLandingPage({ game, locale, strings }) {
     return <GameComingSoonPage game={game} locale={locale} strings={strings} />;
   }
 
+  const ratingAppId = getEntityAppleAppId(game);
+
   return (
     <section className="game-page section">
       <div className="section-inner">
@@ -2886,18 +2964,25 @@ function GameLandingPage({ game, locale, strings }) {
             <h1>{game.title}</h1>
             <p className="role-line">{game.tagline}</p>
             <p>{game.summary}</p>
-            <div className="game-actions">
-              {game.storeLinks.map((link) => (
-                <a
-                  className="button primary"
-                  href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
-                  key={link.label}
-                  target={link.href.startsWith("http") ? "_blank" : undefined}
-                  rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                >
-                  {localizeLinkLabel(link.label, locale)}
-                </a>
-              ))}
+            <div className="store-actions">
+              <div className="game-actions">
+                {game.storeLinks.map((link) => (
+                  <a
+                    className="button primary"
+                    href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
+                    key={link.label}
+                    target={link.href.startsWith("http") ? "_blank" : undefined}
+                    rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                  >
+                    {localizeLinkLabel(link.label, locale)}
+                  </a>
+                ))}
+              </div>
+              {ratingAppId ? (
+                <div className="store-rating" aria-live="polite">
+                  <span data-app-rating={ratingAppId}></span>
+                </div>
+              ) : null}
             </div>
           </div>
         </div>
@@ -2951,6 +3036,7 @@ function AppLandingPage({ app, locale, strings }) {
     `${app.category} where I handled publishing, QA testing, store presence, launch packaging, and release readiness.`;
   const impact = app.impact || ["Handled publisher-side launch execution, QA testing, and store readiness."];
   const appLinks = app.links || [];
+  const ratingAppId = getEntityAppleAppId(app);
 
   return (
     <section className="game-page section">
@@ -2965,18 +3051,25 @@ function AppLandingPage({ app, locale, strings }) {
             <p className="role-line">{localizeRole(app.note, locale)}</p>
             <p>{summary}</p>
             {appLinks.length ? (
-              <div className="game-actions">
-                {appLinks.map((link) => (
-                  <a
-                    className="button primary"
-                    href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
-                    key={link.href}
-                    target={link.href.startsWith("http") ? "_blank" : undefined}
-                    rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                  >
-                    {localizeLinkLabel(link.label, locale)}
-                  </a>
-                ))}
+              <div className="store-actions">
+                <div className="game-actions">
+                  {appLinks.map((link) => (
+                    <a
+                      className="button primary"
+                      href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
+                      key={link.href}
+                      target={link.href.startsWith("http") ? "_blank" : undefined}
+                      rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                    >
+                      {localizeLinkLabel(link.label, locale)}
+                    </a>
+                  ))}
+                </div>
+                {ratingAppId ? (
+                  <div className="store-rating" aria-live="polite">
+                    <span data-app-rating={ratingAppId}></span>
+                  </div>
+                ) : null}
               </div>
             ) : null}
           </div>
@@ -3023,6 +3116,7 @@ function AppLandingPage({ app, locale, strings }) {
 function WorkLandingPage({ project, locale, strings }) {
   const details = project?.scope || project?.workedOn || project?.keyPoints || [];
   const images = project?.images || project?.backdropImages || [];
+  const ratingAppId = getEntityAppleAppId(project);
 
   if (!project) {
     return (
@@ -3048,18 +3142,25 @@ function WorkLandingPage({ project, locale, strings }) {
             <p className="role-line">{localizeRole(project.role, locale)}</p>
             <p>{project.summary}</p>
             {project.links?.length ? (
-              <div className="game-actions">
-                {project.links.map((link) => (
-                  <a
-                    className="button primary"
-                    href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
-                    key={link.href}
-                    target={link.href.startsWith("http") ? "_blank" : undefined}
-                    rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                  >
-                    {localizeLinkLabel(link.label, locale)}
-                  </a>
-                ))}
+              <div className="store-actions">
+                <div className="game-actions">
+                  {project.links.map((link) => (
+                    <a
+                      className="button primary"
+                      href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
+                      key={link.href}
+                      target={link.href.startsWith("http") ? "_blank" : undefined}
+                      rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                    >
+                      {localizeLinkLabel(link.label, locale)}
+                    </a>
+                  ))}
+                </div>
+                {ratingAppId ? (
+                  <div className="store-rating" aria-live="polite">
+                    <span data-app-rating={ratingAppId}></span>
+                  </div>
+                ) : null}
               </div>
             ) : null}
           </div>
