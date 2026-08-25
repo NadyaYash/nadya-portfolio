@@ -696,6 +696,36 @@ const normalizeLocalizedInternalHref = (href, locale = "en") => {
   return normalizeInternalHref(withLocalePath(href, locale));
 };
 
+const germanExternalHosts = new Set([
+  "calcsprint.com",
+  "clockwidgets.com",
+  "pickheadphones.com",
+  "slidepuzzle.app",
+  "sudoku-play.org",
+  "vertaltimeter.app",
+  "watchfacekit.com",
+]);
+
+const normalizeLocalizedHref = (href, locale = "en") => {
+  if (!href?.startsWith("http")) {
+    return normalizeLocalizedInternalHref(href, locale);
+  }
+
+  if (locale !== "de") {
+    return href;
+  }
+
+  const url = new URL(href);
+  const hostname = url.hostname.replace(/^www\./, "");
+
+  if (!germanExternalHosts.has(hostname) || url.pathname === "/de" || url.pathname.startsWith("/de/")) {
+    return href;
+  }
+
+  url.pathname = `/de${url.pathname.startsWith("/") ? url.pathname : `/${url.pathname}`}`;
+  return url.toString();
+};
+
 const getCopy = (locale = "en") => copy[locale] || copy.en;
 
 const localizeCategory = (value, locale = "en") => localizedCategoryMap[locale]?.[value] || value;
@@ -2969,7 +2999,7 @@ function GameLandingPage({ game, locale, strings }) {
                 <div className="store-action-item" key={link.label}>
                   <a
                     className="button primary"
-                    href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
+                    href={normalizeLocalizedHref(link.href, locale)}
                     target={link.href.startsWith("http") ? "_blank" : undefined}
                     rel={link.href.startsWith("http") ? "noreferrer" : undefined}
                   >
@@ -3002,7 +3032,7 @@ function GameLandingPage({ game, locale, strings }) {
             <div className="game-link-list">
               {[...game.storeLinks, ...game.legalLinks].map((link) => (
                 <a
-                  href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
+                  href={normalizeLocalizedHref(link.href, locale)}
                   key={link.label}
                   target={link.href.startsWith("http") ? "_blank" : undefined}
                   rel={link.href.startsWith("http") ? "noreferrer" : undefined}
@@ -3055,7 +3085,7 @@ function AppLandingPage({ app, locale, strings }) {
                   <div className="store-action-item" key={link.href}>
                     <a
                       className="button primary"
-                      href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
+                      href={normalizeLocalizedHref(link.href, locale)}
                       target={link.href.startsWith("http") ? "_blank" : undefined}
                       rel={link.href.startsWith("http") ? "noreferrer" : undefined}
                     >
@@ -3091,7 +3121,7 @@ function AppLandingPage({ app, locale, strings }) {
               {appLinks.length ? (
                 appLinks.map((link) => (
                   <a
-                    href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
+                    href={normalizeLocalizedHref(link.href, locale)}
                     key={link.href}
                     target={link.href.startsWith("http") ? "_blank" : undefined}
                     rel={link.href.startsWith("http") ? "noreferrer" : undefined}
@@ -3145,7 +3175,7 @@ function WorkLandingPage({ project, locale, strings }) {
                   <div className="store-action-item" key={link.href}>
                     <a
                       className="button primary"
-                      href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
+                      href={normalizeLocalizedHref(link.href, locale)}
                       target={link.href.startsWith("http") ? "_blank" : undefined}
                       rel={link.href.startsWith("http") ? "noreferrer" : undefined}
                     >
@@ -3185,7 +3215,7 @@ function WorkLandingPage({ project, locale, strings }) {
               {project.links?.length ? (
                 project.links.map((link) => (
                   <a
-                    href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
+                    href={normalizeLocalizedHref(link.href, locale)}
                     key={link.href}
                     target={link.href.startsWith("http") ? "_blank" : undefined}
                     rel={link.href.startsWith("http") ? "noreferrer" : undefined}
@@ -4199,17 +4229,13 @@ function Projects({ strings, locale }) {
             tabIndex={0}
             aria-label={`${strings.learnMore} ${project.name}`}
             onClick={() => {
-              const targetHref = project.links[0].href.startsWith("http")
-                ? project.links[0].href
-                : normalizeLocalizedInternalHref(project.links[0].href, locale);
+              const targetHref = normalizeLocalizedHref(project.links[0].href, locale);
               window.location.href = targetHref;
             }}
             onKeyDown={(event) => {
               if (event.key === "Enter" || event.key === " ") {
                 event.preventDefault();
-                const targetHref = project.links[0].href.startsWith("http")
-                  ? project.links[0].href
-                  : normalizeLocalizedInternalHref(project.links[0].href, locale);
+                const targetHref = normalizeLocalizedHref(project.links[0].href, locale);
                 window.location.href = targetHref;
               }
             }}
@@ -4239,7 +4265,7 @@ function Projects({ strings, locale }) {
                 <div className="project-links">
                   {project.links.map((link) => (
                     <a
-                      href={link.href.startsWith("http") ? link.href : normalizeLocalizedInternalHref(link.href, locale)}
+                      href={normalizeLocalizedHref(link.href, locale)}
                       key={link.href}
                       target={link.href.startsWith("http") ? "_blank" : undefined}
                       rel={link.href.startsWith("http") ? "noreferrer" : undefined}
