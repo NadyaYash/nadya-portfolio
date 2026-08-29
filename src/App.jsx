@@ -79,6 +79,11 @@ import mushTrailForestNavigatorScreen01 from "./assets/mushtrail-forest-navigato
 import mushTrailForestNavigatorScreen02 from "./assets/mushtrail-forest-navigator-screen-02.webp";
 import mushTrailForestNavigatorScreen03 from "./assets/mushtrail-forest-navigator-screen-03.webp";
 import mushTrailForestNavigatorScreen04 from "./assets/mushtrail-forest-navigator-screen-04.webp";
+import kreisPrivatePhotoGroupsIcon from "./assets/kreis-private-photo-groups-icon.png";
+import kreisPrivatePhotoGroupsScreen01 from "./assets/kreis-private-photo-groups-screen-01.png";
+import kreisPrivatePhotoGroupsScreen02 from "./assets/kreis-private-photo-groups-screen-02.png";
+import kreisPrivatePhotoGroupsScreen03 from "./assets/kreis-private-photo-groups-screen-03.png";
+import kreisPrivatePhotoGroupsScreen04 from "./assets/kreis-private-photo-groups-screen-04.png";
 import tapMeArrowsIcon from "./assets/tap-me-arrows-icon.jpg";
 import tapMeArrowsScreen01 from "./assets/tap-me-arrows-screen-01.jpg";
 import tapMeArrowsScreen02 from "./assets/tap-me-arrows-screen-02.jpg";
@@ -617,6 +622,7 @@ const localizedCategoryMap = {
     "Sleep app": "Schlaf-App",
     "Audio utility": "Audio-Utility",
     "Coffee app": "Kaffee-App",
+    "Photo sharing app": "Foto-Sharing-App",
   },
 };
 
@@ -1028,6 +1034,58 @@ export const storeLaunches = [
         ...game.legalLinks.slice(0, 2),
       ],
     })),
+  {
+    title: "Kreis: Private Photo Groups",
+    slug: "kreis-private-photo-groups",
+    category: "Photo sharing app",
+    period: "2026",
+    icon: kreisPrivatePhotoGroupsIcon,
+    note: "Creator, Product, Design, Development & Publishing",
+    summary:
+      "Private shared photo groups for families, friends, clubs, and teams, with invite-only albums, EU-hosted storage, comments, hearts, and group plans.",
+    cardSummary:
+      "Private photo groups for families, friends, clubs, and teams, built around invite-only shared albums and EU-hosted storage.",
+    impact: [
+      "Built the product end to end: concept, positioning, UX direction, app structure, publishing setup, and release readiness.",
+      "Prepared the Google Play launch around private group albums, easy photo uploads, guest links, EU-hosted storage, and optional group subscriptions.",
+    ],
+    images: [
+      {
+        src: kreisPrivatePhotoGroupsScreen01,
+        alt: "Kreis feed screen showing a private group photo album sorted by day.",
+      },
+      {
+        src: kreisPrivatePhotoGroupsScreen02,
+        alt: "Kreis photo upload screen for adding pictures to a private group.",
+      },
+      {
+        src: kreisPrivatePhotoGroupsScreen03,
+        alt: "Kreis management screen for private photo group members and settings.",
+      },
+      {
+        src: kreisPrivatePhotoGroupsScreen04,
+        alt: "Kreis sign-in screen for joining a private photo group with email.",
+      },
+    ],
+    links: [
+      {
+        label: "Web",
+        href: "https://meinkreis.app/",
+      },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.kreis&pcampaignid=web_share",
+      },
+      {
+        label: "Privacy Policy",
+        href: "https://meinkreis.app/privacy.html",
+      },
+      {
+        label: "Terms of Use",
+        href: "https://meinkreis.app/terms.html",
+      },
+    ],
+  },
   {
     title: "MushTrail: Forest Navigator",
     slug: "mushtrail-forest-navigator",
