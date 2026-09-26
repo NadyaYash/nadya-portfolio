@@ -79,6 +79,11 @@ import mushTrailForestNavigatorScreen01 from "./assets/mushtrail-forest-navigato
 import mushTrailForestNavigatorScreen02 from "./assets/mushtrail-forest-navigator-screen-02.webp";
 import mushTrailForestNavigatorScreen03 from "./assets/mushtrail-forest-navigator-screen-03.webp";
 import mushTrailForestNavigatorScreen04 from "./assets/mushtrail-forest-navigator-screen-04.webp";
+import backThereIcon from "./assets/backthere-icon.png";
+import backThereScreen01 from "./assets/backthere-screen-01.png";
+import backThereScreen02 from "./assets/backthere-screen-02.png";
+import backThereScreen03 from "./assets/backthere-screen-03.png";
+import backThereScreen04 from "./assets/backthere-screen-04.png";
 import kreisPrivatePhotoGroupsIcon from "./assets/kreis-private-photo-groups-icon.png";
 import kreisPrivatePhotoGroupsScreen01 from "./assets/kreis-private-photo-groups-screen-01.png";
 import kreisPrivatePhotoGroupsScreen02 from "./assets/kreis-private-photo-groups-screen-02.png";
@@ -103,6 +108,39 @@ import garminWatchFacesMemphisScreen from "./assets/garmin-watch-faces-memphis-s
 import garminWatchFacesMetricRingsScreen from "./assets/garmin-watch-faces-metric-rings-screen.jpg";
 import garminWatchFacesProgressArcsScreen from "./assets/garmin-watch-faces-progress-arcs-screen.jpg";
 import garminWatchFacesZuluScreen from "./assets/garmin-watch-faces-zulu-screen.jpg";
+import garminWatchFaces4NineScreen from "./assets/garmin-watch-faces-4nine-screen.jpg";
+import garminWatchFacesAlturaScreen from "./assets/garmin-watch-faces-altura-screen.jpg";
+import garminWatchFacesCamoTacticalScreen from "./assets/garmin-watch-faces-camo-tactical-screen.jpg";
+import garminWatchFacesChronoOrbitScreen from "./assets/garmin-watch-faces-chrono-orbit-screen.jpg";
+import garminWatchFacesChronoOrbitTrialScreen from "./assets/garmin-watch-faces-chrono-orbit-trial-screen.jpg";
+import garminWatchFacesClassicNineScreen from "./assets/garmin-watch-faces-classic-nine-screen.jpg";
+import garminWatchFacesDiamondForLadyScreen from "./assets/garmin-watch-faces-diamond-for-lady-screen.jpg";
+import garminWatchFacesDuoTimeScreen from "./assets/garmin-watch-faces-duotime-screen.jpg";
+import garminWatchFacesDuoTimeFreeScreen from "./assets/garmin-watch-faces-duotime-free-screen.jpg";
+import garminWatchFacesEmberMountainScreen from "./assets/garmin-watch-faces-ember-mountain-screen.jpg";
+import garminWatchFacesFieldworkScreen from "./assets/garmin-watch-faces-fieldwork-screen.jpg";
+import garminWatchFacesHallowtideScreen from "./assets/garmin-watch-faces-hallowtide-screen.jpg";
+import garminWatchFacesInsideWatchScreen from "./assets/garmin-watch-faces-inside-watch-screen.jpg";
+import garminWatchFacesJSONFaceScreen from "./assets/garmin-watch-faces-json-face-screen.jpg";
+import garminWatchFacesLittleCompanionsScreen from "./assets/garmin-watch-faces-little-companions-screen.jpg";
+import garminWatchFacesLoveItScreen from "./assets/garmin-watch-faces-love-it-screen.jpg";
+import garminWatchFacesLoveItFreeScreen from "./assets/garmin-watch-faces-love-it-free-screen.jpg";
+import garminWatchFacesManekiTimeScreen from "./assets/garmin-watch-faces-maneki-time-screen.jpg";
+import garminWatchFacesMoodMeterScreen from "./assets/garmin-watch-faces-mood-meter-screen.jpg";
+import garminWatchFacesMorseSOSScreen from "./assets/garmin-watch-faces-morse-sos-screen.jpg";
+import garminWatchFacesNightPatrolScreen from "./assets/garmin-watch-faces-night-patrol-screen.jpg";
+import garminWatchFacesPadelClubScreen from "./assets/garmin-watch-faces-padel-club-screen.jpg";
+import garminWatchFacesRavenmoorScreen from "./assets/garmin-watch-faces-ravenmoor-screen.jpg";
+import garminWatchFacesSamuraiStyleScreen from "./assets/garmin-watch-faces-samurai-style-screen.jpg";
+import garminWatchFacesSpectraScreen from "./assets/garmin-watch-faces-spectra-screen.jpg";
+import garminWatchFacesSportDashboardScreen from "./assets/garmin-watch-faces-sport-dashboard-screen.jpg";
+import garminWatchFacesSportDashboardFreeScreen from "./assets/garmin-watch-faces-sport-dashboard-free-screen.jpg";
+import garminWatchFacesSunsetSunriseScreen from "./assets/garmin-watch-faces-sunset-sunrise-screen.jpg";
+import garminWatchFacesTesseraScreen from "./assets/garmin-watch-faces-tessera-screen.jpg";
+import garminWatchFacesUpToMountScreen from "./assets/garmin-watch-faces-uptomount-screen.jpg";
+import garminWatchFacesWatchCheckScreen from "./assets/garmin-watch-faces-watch-check-screen.jpg";
+import garminWatchFacesWatchFaceKitCustomScreen from "./assets/garmin-watch-faces-watchfacekit-custom-screen.png";
+import garminWatchFacesZodiacScreen from "./assets/garmin-watch-faces-zodiac-screen.jpg";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -1035,6 +1073,58 @@ export const storeLaunches = [
       ],
     })),
   {
+    title: "BackThere",
+    slug: "backthere",
+    category: "Navigation app",
+    period: "2026",
+    icon: backThereIcon,
+    note: "Creator, Product, Design, Development & Publishing",
+    summary:
+      "A private, offline-friendly return app that saves a spot and guides you back with a clear arrow, distance, voice, vibration, and high-visibility modes.",
+    cardSummary:
+      "Save a spot, walk away, and find your way back with one clear arrow, distance, voice, vibration, and offline-first privacy.",
+    impact: [
+      "Shaped and rebuilt the product as a native iOS app with Eyes-Free guidance, High Visibility mode, Radar, Live Activity, and Apple Watch support.",
+      "Prepared the App Store presence around privacy, simple return navigation, accessibility, and a one-time Pro upgrade.",
+    ],
+    images: [
+      {
+        src: backThereScreen01,
+        alt: "BackThere navigation screen with a large return arrow and distance.",
+      },
+      {
+        src: backThereScreen02,
+        alt: "BackThere Eyes-Free guidance screen for voice and vibration return navigation.",
+      },
+      {
+        src: backThereScreen03,
+        alt: "BackThere high visibility mode with a large arrow for bright sunlight and low vision.",
+      },
+      {
+        src: backThereScreen04,
+        alt: "BackThere radar screen showing saved places around the user.",
+      },
+    ],
+    links: [
+      {
+        label: "Web",
+        href: "https://mushtrail.com/compass/",
+      },
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/backthere/id6810976310",
+      },
+      {
+        label: "Privacy Policy",
+        href: "https://mushtrail.com/compass/privacy-policy/",
+      },
+      {
+        label: "Terms of Use",
+        href: "https://mushtrail.com/compass/terms-of-use/",
+      },
+    ],
+  },
+  {
     title: "Kreis: Private Photo Groups",
     slug: "kreis-private-photo-groups",
     category: "Photo sharing app",
@@ -1812,6 +1902,171 @@ export const projects = [
       {
         name: "Zulu",
         image: garminWatchFacesZuluScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "4Nine",
+        image: garminWatchFaces4NineScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Altura",
+        image: garminWatchFacesAlturaScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Camo Tactical",
+        image: garminWatchFacesCamoTacticalScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Chrono Orbit",
+        image: garminWatchFacesChronoOrbitScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Chrono Orbit Trial",
+        image: garminWatchFacesChronoOrbitTrialScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Classic Nine",
+        image: garminWatchFacesClassicNineScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Diamond for Lady",
+        image: garminWatchFacesDiamondForLadyScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "DuoTime",
+        image: garminWatchFacesDuoTimeScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "DuoTime Free",
+        image: garminWatchFacesDuoTimeFreeScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Ember Mountain",
+        image: garminWatchFacesEmberMountainScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Fieldwork",
+        image: garminWatchFacesFieldworkScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Hallowtide",
+        image: garminWatchFacesHallowtideScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Inside Watch",
+        image: garminWatchFacesInsideWatchScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "JSON Face",
+        image: garminWatchFacesJSONFaceScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Little Companions",
+        image: garminWatchFacesLittleCompanionsScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Love It",
+        image: garminWatchFacesLoveItScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Love It Free",
+        image: garminWatchFacesLoveItFreeScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Maneki Time",
+        image: garminWatchFacesManekiTimeScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Mood Meter",
+        image: garminWatchFacesMoodMeterScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Morse SOS",
+        image: garminWatchFacesMorseSOSScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Night Patrol",
+        image: garminWatchFacesNightPatrolScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Padel Club",
+        image: garminWatchFacesPadelClubScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Ravenmoor",
+        image: garminWatchFacesRavenmoorScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Samurai Style",
+        image: garminWatchFacesSamuraiStyleScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Spectra",
+        image: garminWatchFacesSpectraScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Sport Dashboard",
+        image: garminWatchFacesSportDashboardScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Sport Dashboard Free",
+        image: garminWatchFacesSportDashboardFreeScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Sunset Sunrise",
+        image: garminWatchFacesSunsetSunriseScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Tessera",
+        image: garminWatchFacesTesseraScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "UpToMount",
+        image: garminWatchFacesUpToMountScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Watch Check",
+        image: garminWatchFacesWatchCheckScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "WatchFaceKit Custom",
+        image: garminWatchFacesWatchFaceKitCustomScreen,
+        link: "https://apps.garmin.com/developer/dashboard?",
+      },
+      {
+        name: "Zodiac",
+        image: garminWatchFacesZodiacScreen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
     ],
