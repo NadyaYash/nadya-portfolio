@@ -2512,14 +2512,30 @@ p {
 .watch-face-card {
   display: grid;
   grid-template-rows: 178px 1fr;
-  min-height: 374px;
+  min-height: 326px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fff;
+  color: inherit;
+  text-decoration: none;
   overflow: hidden;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.watch-face-card:hover,
+.watch-face-card:focus-visible {
+  border-color: rgba(32, 84, 78, 0.34);
+  box-shadow: 0 16px 34px rgba(27, 51, 46, 0.14);
+  transform: translateY(-3px);
+}
+
+.watch-face-card:focus-visible {
+  outline: 3px solid rgba(32, 84, 78, 0.2);
+  outline-offset: 3px;
 }
 
 .watch-face-media {
+  position: relative;
   display: grid;
   place-items: center;
   box-sizing: border-box;
@@ -2535,6 +2551,41 @@ p {
   width: min(100%, 168px);
   max-height: 146px;
   object-fit: contain;
+  transition: transform 180ms ease, filter 180ms ease;
+}
+
+.watch-face-card:hover .watch-face-media img,
+.watch-face-card:focus-visible .watch-face-media img {
+  filter: brightness(0.72);
+  transform: scale(1.035);
+}
+
+.watch-face-action {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 18px;
+  color: #fff;
+  background: rgba(11, 35, 31, 0.52);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.watch-face-action span {
+  font-size: 1.05rem;
+}
+
+.watch-face-card:hover .watch-face-action,
+.watch-face-card:focus-visible .watch-face-action {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .watch-face-copy {
@@ -2567,29 +2618,6 @@ p {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-}
-
-.watch-face-footer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 8px;
-}
-
-.watch-face-footer a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 34px;
-  border: 1px solid rgba(32, 84, 78, 0.2);
-  border-radius: 999px;
-  padding: 0 14px;
-  color: var(--accent);
-  background: var(--accent-soft);
-  font-size: 0.86rem;
-  font-weight: 660;
-  text-decoration: none;
 }
 
 .game-info-grid {

@@ -134,7 +134,7 @@ import garminWatchFacesSunsetSunriseScreen from "./assets/garmin-watch-faces-sun
 import garminWatchFacesTesseraScreen from "./assets/garmin-watch-faces-tessera-screen.jpg";
 import garminWatchFacesUpToMountScreen from "./assets/garmin-watch-faces-uptomount-screen.jpg";
 import garminWatchFacesWatchCheckScreen from "./assets/garmin-watch-faces-watch-check-screen.jpg";
-import garminWatchFacesWatchFaceKitCustomScreen from "./assets/garmin-watch-faces-watchfacekit-custom-screen.png";
+import garminWatchFacesWatchFaceKitCustomScreen from "./assets/garmin-watch-faces-watchfacekit-custom-screen.jpg";
 import garminWatchFacesZodiacScreen from "./assets/garmin-watch-faces-zodiac-screen.jpg";
 
 const navItems = [
@@ -503,6 +503,7 @@ const copy = {
     watchFaceEyebrow: "Garmin Connect IQ",
     watchFaceTitle: "Watch face catalog",
     watchFaceLabel: "Garmin watch face catalog",
+    viewWatchFace: "View in Connect IQ",
     free: "Free",
     open: "Open",
     rating: "Rating",
@@ -614,6 +615,7 @@ const copy = {
     watchFaceEyebrow: "Garmin Connect IQ",
     watchFaceTitle: "Watchface-Katalog",
     watchFaceLabel: "Garmin Watchface-Katalog",
+    viewWatchFace: "In Connect IQ ansehen",
     free: "Kostenlos",
     open: "Öffnen",
     rating: "Bewertung",
@@ -1758,6 +1760,54 @@ export const storeLaunches = [
   },
 ];
 
+const garminStoreLinks = {
+  Domestique: "https://apps.garmin.com/apps/8bea368d-87bf-4149-9fae-bc55015c3904",
+  Lumen: "https://apps.garmin.com/apps/c0f5ab7c-70e5-4dbd-a8d5-163f8758642b",
+  "1989 Sport LCD": "https://apps.garmin.com/apps/e640c8f4-4e06-47f9-9c79-8e19d4c464ef",
+  "Luxury Chronometer": "https://apps.garmin.com/apps/653cfda2-16f3-4f25-b26a-230afa8fd68e",
+  "Retro Digital LCD": "https://apps.garmin.com/apps/3ce91daf-d92b-4fdb-96e0-178fca7ceea3",
+  "Fill or Drain": "https://apps.garmin.com/apps/4906d74b-4165-49e5-911a-097d03dfbeec",
+  "Weather Dial": "https://apps.garmin.com/apps/1df99915-5c64-4394-b3cc-5cca0ebf1f29",
+  "FOOTBALL 2026": "https://apps.garmin.com/apps/73f60343-2276-4a5a-96cb-cc6f11c80abc",
+  Lagun: "https://apps.garmin.com/apps/fef10f82-1fec-488c-a367-0a912c09703d",
+  Memphis: "https://apps.garmin.com/apps/b18be0c5-0b12-4bc8-a761-301a88aad42a",
+  "Metric Rings": "https://apps.garmin.com/apps/31bd0fbd-081e-4fb4-93d0-e59d58ce8df6",
+  "Progress Arcs": "https://apps.garmin.com/apps/a9eca5e1-34ab-46aa-8ad6-9377e5d8f2eb",
+  "24-hour clock": "https://apps.garmin.com/apps/27808af0-d380-4c2b-8053-6663d7b7e5c2",
+  "4Nine": "https://apps.garmin.com/apps/9e9155ec-f175-455e-9e78-96c0334734a8",
+  Altura: "https://apps.garmin.com/apps/bf05d730-30a0-4ae2-b162-704ffe4cf07f",
+  "Camo Tactical": "https://apps.garmin.com/apps/d29b5116-d76a-43f9-9858-2296a53989ea",
+  "Chrono Orbit": "https://apps.garmin.com/apps/53268db5-e339-4e3e-9dc1-18e1f6e89155",
+  "Chrono Orbit Trial": "https://apps.garmin.com/apps/03d19a5b-605d-42ff-93fa-2727190abc93",
+  "Classic Nine": "https://apps.garmin.com/apps/a70a803a-6578-4bfe-9794-6b8db8303c68",
+  "Diamond for Lady": "https://apps.garmin.com/apps/5fa24ed5-7b15-4edb-92dd-af022dabe54c",
+  "Duo Time": "https://apps.garmin.com/apps/0a0e9640-874d-4184-8a92-56ff5b2b61e1",
+  "Duo Time Free": "https://apps.garmin.com/apps/9073ab74-a993-4d96-9fc1-a227bb3b8a2c",
+  "Ember Mountain": "https://apps.garmin.com/apps/5e650abf-7fcf-485a-a1ff-59456a81c56f",
+  Hallowtide: "https://apps.garmin.com/apps/075b6c4f-9408-46b3-bf79-10adfb6518bd",
+  "Inside Watch": "https://apps.garmin.com/apps/f209abd2-e39c-464d-9bd2-8fbb66d8c4a2",
+  "JSON Face": "https://apps.garmin.com/apps/8dd645f7-55a3-4c36-97d4-802aa06f8c0a",
+  "Little Companions": "https://apps.garmin.com/apps/8ea15e2c-395a-4e53-973d-c35a36f1bfd6",
+  "Love It": "https://apps.garmin.com/apps/40837b83-a558-4343-9196-ecfe1ab664e8",
+  "Love It Free": "https://apps.garmin.com/apps/839c7cd6-77c8-4870-bd18-f0008262f31f",
+  "Maneki Time": "https://apps.garmin.com/apps/b258f84a-966d-4307-9173-4adef48e5a40",
+  "Mood Meter": "https://apps.garmin.com/apps/89fbbdd9-ee88-4d93-9d26-5e517719a64a",
+  "Morse Codes": "https://apps.garmin.com/apps/7b1eaca8-41a8-435f-9091-a5b6c9f0a359",
+  "Night Patrol": "https://apps.garmin.com/apps/37b2b8f3-fd12-406c-a42b-ade3fba479aa",
+  "Padel Club": "https://apps.garmin.com/apps/bdf53ec6-153d-4649-8d16-08f757abaa99",
+  Ravenmoor: "https://apps.garmin.com/apps/cbae5fa7-3199-4766-837f-ad9fe5028602",
+  "Samurai Style": "https://apps.garmin.com/apps/327b4b5c-0eb8-492c-9798-28121b7ee3b4",
+  Spectra: "https://apps.garmin.com/apps/6672c81a-e253-4600-b796-dbd361dc2520",
+  "Sport Dashboard": "https://apps.garmin.com/apps/7e7c8386-dfcd-4173-abbe-f63a0cba819c",
+  "Sport Dashboard Free": "https://apps.garmin.com/apps/c8145eb9-c9d9-44f7-b2bb-577481df2996",
+  "Sunset Sunrise": "https://apps.garmin.com/apps/f1ea5b0d-d8b1-4d43-b9e6-5a4aad83593b",
+  Tessera: "https://apps.garmin.com/apps/d93cc1cd-1c86-45de-b160-c7d3e13053dc",
+  "Up to Mount": "https://apps.garmin.com/apps/b8886e80-65f8-4893-a8ba-d06c3c709b11",
+  "Watch Self-Test": "https://apps.garmin.com/apps/9bb4b606-9eae-4a75-a422-88dace06fcc3",
+  "WatchFaceKit Custom 1": "https://apps.garmin.com/apps/ad733c6d-c984-4ecd-9808-cc3dfbed0318",
+  "Zodiac Pro": "https://apps.garmin.com/apps/dce1b92a-8906-4bd0-9f07-495b8f7ab5ec",
+};
+
 export const projects = [
   {
     name: "Garmin Connect IQ Watch Faces",
@@ -1818,7 +1868,7 @@ export const projects = [
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
-        name: "Football 2026",
+        name: "FOOTBALL 2026",
         image: garminWatchFacesFootball2026Screen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
@@ -1843,7 +1893,7 @@ export const projects = [
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
-        name: "Zulu",
+        name: "24-hour clock",
         image: garminWatchFacesZuluScreen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
@@ -1883,12 +1933,12 @@ export const projects = [
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
-        name: "DuoTime",
+        name: "Duo Time",
         image: garminWatchFacesDuoTimeScreen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
-        name: "DuoTime Free",
+        name: "Duo Time Free",
         image: garminWatchFacesDuoTimeFreeScreen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
@@ -1943,7 +1993,7 @@ export const projects = [
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
-        name: "Morse SOS",
+        name: "Morse Codes",
         image: garminWatchFacesMorseSOSScreen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
@@ -1993,22 +2043,22 @@ export const projects = [
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
-        name: "UpToMount",
+        name: "Up to Mount",
         image: garminWatchFacesUpToMountScreen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
-        name: "Watch Check",
+        name: "Watch Self-Test",
         image: garminWatchFacesWatchCheckScreen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
-        name: "WatchFaceKit Custom",
+        name: "WatchFaceKit Custom 1",
         image: garminWatchFacesWatchFaceKitCustomScreen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
       {
-        name: "Zodiac",
+        name: "Zodiac Pro",
         image: garminWatchFacesZodiacScreen,
         link: "https://apps.garmin.com/developer/dashboard?",
       },
@@ -3206,26 +3256,35 @@ function WatchFaceCatalog({ faces, strings }) {
         <h2>{strings.watchFaceTitle}</h2>
       </div>
       <div className="watch-face-grid" aria-label={strings.watchFaceLabel}>
-        {faces.map((face) => (
-          <article className="watch-face-card" key={face.name}>
-            <div className="watch-face-media">
-              <img src={assetUrl(face.image)} alt={`${face.name} watch face preview`} />
-            </div>
-            <div className="watch-face-copy">
-              <h3>{face.name}</h3>
-              <p>Nadzeya</p>
-              <div className="watch-face-meta">
-                {face.rating ? <span>{strings.rating} {face.rating}</span> : null}
-                <span>{strings.free}</span>
+        {faces.map((face) => {
+          const storeLink = garminStoreLinks[face.name] || "https://apps.garmin.com/developer/99d754d0-1b13-4e24-b3af-833f50bc1ad1/apps";
+
+          return (
+            <a
+              className="watch-face-card"
+              href={storeLink}
+              key={face.name}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${strings.viewWatchFace}: ${face.name}`}
+            >
+              <div className="watch-face-media">
+                <img src={assetUrl(face.image)} alt={`${face.name} watch face preview`} />
+                <span className="watch-face-action" aria-hidden="true">
+                  {strings.viewWatchFace} <span>↗</span>
+                </span>
               </div>
-              <div className="watch-face-footer">
-                <a href={face.link} target="_blank" rel="noreferrer">
-                  {strings.open}
-                </a>
+              <div className="watch-face-copy">
+                <h3>{face.name}</h3>
+                <p>Nadzeya</p>
+                <div className="watch-face-meta">
+                  {face.rating ? <span>{strings.rating} {face.rating}</span> : null}
+                  <span>{strings.free}</span>
+                </div>
               </div>
-            </div>
-          </article>
-        ))}
+            </a>
+          );
+        })}
       </div>
     </section>
   );
