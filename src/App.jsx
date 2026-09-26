@@ -79,11 +79,6 @@ import mushTrailForestNavigatorScreen01 from "./assets/mushtrail-forest-navigato
 import mushTrailForestNavigatorScreen02 from "./assets/mushtrail-forest-navigator-screen-02.webp";
 import mushTrailForestNavigatorScreen03 from "./assets/mushtrail-forest-navigator-screen-03.webp";
 import mushTrailForestNavigatorScreen04 from "./assets/mushtrail-forest-navigator-screen-04.webp";
-import backThereIcon from "./assets/backthere-icon.png";
-import backThereScreen01 from "./assets/backthere-screen-01.png";
-import backThereScreen02 from "./assets/backthere-screen-02.png";
-import backThereScreen03 from "./assets/backthere-screen-03.png";
-import backThereScreen04 from "./assets/backthere-screen-04.png";
 import kreisPrivatePhotoGroupsIcon from "./assets/kreis-private-photo-groups-icon.png";
 import kreisPrivatePhotoGroupsScreen01 from "./assets/kreis-private-photo-groups-screen-01.png";
 import kreisPrivatePhotoGroupsScreen02 from "./assets/kreis-private-photo-groups-screen-02.png";
@@ -1072,58 +1067,6 @@ export const storeLaunches = [
         ...game.legalLinks.slice(0, 2),
       ],
     })),
-  {
-    title: "BackThere",
-    slug: "backthere",
-    category: "Navigation app",
-    period: "2026",
-    icon: backThereIcon,
-    note: "Creator, Product, Design, Development & Publishing",
-    summary:
-      "A private, offline-friendly return app that saves a spot and guides you back with a clear arrow, distance, voice, vibration, and high-visibility modes.",
-    cardSummary:
-      "Save a spot, walk away, and find your way back with one clear arrow, distance, voice, vibration, and offline-first privacy.",
-    impact: [
-      "Shaped and rebuilt the product as a native iOS app with Eyes-Free guidance, High Visibility mode, Radar, Live Activity, and Apple Watch support.",
-      "Prepared the App Store presence around privacy, simple return navigation, accessibility, and a one-time Pro upgrade.",
-    ],
-    images: [
-      {
-        src: backThereScreen01,
-        alt: "BackThere navigation screen with a large return arrow and distance.",
-      },
-      {
-        src: backThereScreen02,
-        alt: "BackThere Eyes-Free guidance screen for voice and vibration return navigation.",
-      },
-      {
-        src: backThereScreen03,
-        alt: "BackThere high visibility mode with a large arrow for bright sunlight and low vision.",
-      },
-      {
-        src: backThereScreen04,
-        alt: "BackThere radar screen showing saved places around the user.",
-      },
-    ],
-    links: [
-      {
-        label: "Web",
-        href: "https://mushtrail.com/compass/",
-      },
-      {
-        label: "App Store",
-        href: "https://apps.apple.com/us/app/backthere/id6810976310",
-      },
-      {
-        label: "Privacy Policy",
-        href: "https://mushtrail.com/compass/privacy-policy/",
-      },
-      {
-        label: "Terms of Use",
-        href: "https://mushtrail.com/compass/terms-of-use/",
-      },
-    ],
-  },
   {
     title: "Kreis: Private Photo Groups",
     slug: "kreis-private-photo-groups",
