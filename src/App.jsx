@@ -43,7 +43,6 @@ import sudokuJustPlayIcon from "../icon/SudokuJustPlay.png";
 import sudokuByPuzzleFreeIcon from "../icon/SudokubyPuzzlefree.png";
 import kidsSudokuIcon from "../icon/kidsSudoku.png";
 import morseIcon from "../icon/morse.png";
-import nomadFlowMoneyIcon from "./assets/nomad-flow-money-icon.png";
 import clockWidgetsIcon from "./assets/clock-widgets-icon.png";
 import pullMeWormsIcon from "./assets/pull-me-worms-icon.png";
 import arrowsPuzzleNeonGameIcon from "./assets/arrows-puzzle-neon-game-icon.jpg";
@@ -1231,30 +1230,6 @@ export const storeLaunches = [
       {
         label: "Terms of Use",
         href: "https://vertaltimeter.app/terms",
-      },
-    ],
-  },
-  {
-    title: "Nomad Flow: Money",
-    category: "Money tracking app",
-    period: "2026",
-    icon: nomadFlowMoneyIcon,
-    note: "Publisher & QA",
-    summary:
-      "Private money tracking for nomads living between countries, currencies, cash, cards, and bases — no account, no cloud ledger, no ads.",
-    impact: ["Publisher-side positioning, QA testing, and release readiness for a private finance utility."],
-    links: [
-      {
-        label: "Web",
-        href: "https://nomadflow.money/",
-      },
-      {
-        label: "App Store",
-        href: "https://apps.apple.com/us/app/nomad-flow-money/id6770238544",
-      },
-      {
-        label: "Google Play",
-        href: "https://play.google.com/store/apps/details?id=com.enidev.nomadflowmoney",
       },
     ],
   },
