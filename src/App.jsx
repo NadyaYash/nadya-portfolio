@@ -89,7 +89,7 @@ import tapMeArrowsScreen01 from "./assets/tap-me-arrows-screen-01.jpg";
 import tapMeArrowsScreen02 from "./assets/tap-me-arrows-screen-02.jpg";
 import tapMeArrowsScreen03 from "./assets/tap-me-arrows-screen-03.jpg";
 import tapMeArrowsScreen04 from "./assets/tap-me-arrows-screen-04.jpg";
-import garminWatchFacesCover from "./assets/garmin-watch-faces-lumen-cover.jpg";
+import garminWatchFacesCover from "./assets/garmin-watch-faces-domestique-screen.jpg";
 import garminWatchFacesDomestiqueScreen from "./assets/garmin-watch-faces-domestique-screen.jpg";
 import garminWatchFacesWeatherDialScreen from "./assets/garmin-watch-faces-weather-dial-screen.jpg";
 import garminWatchFacesRetroLcdScreen from "./assets/garmin-watch-faces-retro-lcd-screen.jpg";
