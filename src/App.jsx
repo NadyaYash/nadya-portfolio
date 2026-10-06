@@ -15,6 +15,7 @@ import wordSpinCrosswordPuzzleIcon from "../icon/wordspin-crossword-puzzle-icon.
 import wordChainChatIcon from "../icon/word-chain-chat-icon.jpg";
 import flowblocksStore from "./assets/flowblocks-store.jpg";
 import flowblocksIcon from "./assets/flowblocks-icon.png";
+import mathCrosswordIcon from "./assets/math-crossword-icon.png";
 import flowblocksScreen01 from "./assets/flowblocks-screen-01.jpg";
 import flowblocksScreen02 from "./assets/flowblocks-screen-02.jpg";
 import flowblocksScreen04 from "./assets/flowblocks-screen-04.jpg";
@@ -662,7 +663,7 @@ const localizedCategoryMap = {
 
 const localizedRoleMap = {
   de: {
-    "Publisher & QA": "Publishing & QA",
+    "Product Owner & Publisher": "Produktverantwortung & Publishing",
     "Creator & Product Lead": "Creator & Product Lead",
     "Co-founder & Product Lead": "Co-Founder & Product Lead",
     "Creator, Product, Design, Development & Publishing": "Konzept, Produkt, Design, Entwicklung & Publishing",
@@ -1057,7 +1058,7 @@ export const storeLaunches = [
       icon: game.icon,
       iconClass: game.iconClass,
       iconLabel: game.iconLabel,
-      note: "Publisher & QA",
+      note: "Product Owner & Publisher",
       summary: game.summary,
       impact: ["Published with support, privacy, and terms ready for launch and app review."],
       links: [
@@ -1127,13 +1128,13 @@ export const storeLaunches = [
     category: "Navigation app",
     period: "2026",
     icon: mushTrailForestNavigatorIcon,
-    note: "Publisher & QA",
+    note: "Product Owner & Publisher",
     summary:
       "Offline forest navigation app for mushroom picking that saves your entry point, points you back home, and lets you mark every find on the map.",
     cardSummary:
       "Offline forest navigation app for foraging with a home compass, saved spots, and trip recap.",
     impact: [
-      "Publisher-side positioning, QA testing, and release readiness for a calm forest navigation app built around offline safety and simple mushroom-spot tracking.",
+      "Product positioning, QA testing, and release readiness for a calm forest navigation app built around offline safety and simple mushroom-spot tracking.",
       "Prepared store-facing presentation around no-signal guidance, saved entry point, offline maps, and private on-device use for foragers.",
     ],
     images: [
@@ -1238,9 +1239,9 @@ export const storeLaunches = [
     category: "Clock widgets app",
     period: "2026",
     icon: clockWidgetsIcon,
-    note: "Publisher & QA",
-    summary: "Clock widgets app where I handled publisher-side positioning, QA testing, and web presence.",
-    impact: ["Publisher-side positioning, QA testing, and public launch presence."],
+    note: "Product Owner & Publisher",
+    summary: "Clock widgets app where I handled product positioning, QA testing, and web presence.",
+    impact: ["Product positioning, QA testing, and public launch presence."],
     links: [
       {
         label: "Web",
@@ -1262,9 +1263,9 @@ export const storeLaunches = [
     category: "Puzzle game",
     period: "2026",
     icon: pullMeWormsIcon,
-    note: "Publisher & QA",
-    summary: "Puzzle game where I supported publisher-side setup, QA testing, store links, and release readiness.",
-    impact: ["Publisher-side support, QA testing, and store readiness for a puzzle game launch."],
+    note: "Product Owner & Publisher",
+    summary: "Puzzle game where I led product setup, QA testing, store links, and release readiness.",
+    impact: ["Product direction, QA testing, and store readiness for a puzzle game launch."],
     links: [
       {
         label: "Google Play",
@@ -1281,10 +1282,10 @@ export const storeLaunches = [
     category: "Word game",
     period: "2026",
     icon: wordChainChatIcon,
-    note: "Publisher & QA",
+    note: "Product Owner & Publisher",
     summary:
-      "Fast head-to-head word game where I supported publisher-side positioning, QA testing, and App Store release readiness.",
-    impact: ["Publisher-side positioning, QA testing, and launch readiness for a competitive word game release."],
+      "Fast head-to-head word game where I led product positioning, QA testing, and App Store release readiness.",
+    impact: ["Product positioning, QA testing, and launch readiness for a competitive word game release."],
     links: [
       {
         label: "App Store",
@@ -1301,10 +1302,10 @@ export const storeLaunches = [
     category: "Puzzle game",
     period: "2026",
     icon: arrowsPuzzleNeonGameIcon,
-    note: "Publisher & QA",
+    note: "Product Owner & Publisher",
     summary:
-      "A clean and relaxing arrow puzzle game where I supported publisher-side positioning, QA testing, and App Store release readiness.",
-    impact: ["Publisher-side positioning, QA testing, and launch readiness for a calm neon puzzle release."],
+      "A clean and relaxing arrow puzzle game where I led product positioning, QA testing, and App Store release readiness.",
+    impact: ["Product positioning, QA testing, and launch readiness for a calm neon puzzle release."],
     links: [
       {
         label: "App Store",
@@ -1321,7 +1322,7 @@ export const storeLaunches = [
     category: "Kids puzzle",
     period: "2026",
     icon: kidsSudokuIcon,
-    note: "Publisher & QA",
+    note: "Product Owner & Publisher",
     links: [
       {
         label: "Web",
@@ -1342,7 +1343,7 @@ export const storeLaunches = [
     category: "Math game",
     period: "2026",
     icon: calcSprintIcon,
-    note: "Publisher & QA",
+    note: "Product Owner & Publisher",
     links: [
       {
         label: "Web",
@@ -1364,12 +1365,12 @@ export const storeLaunches = [
     category: "Kids math app",
     period: "2026",
     icon: kidsMathCountAddIcon,
-    note: "Publisher & QA",
+    note: "Product Owner & Publisher",
     summary:
       "Gentle preschool math app that helps children explore counting, adding, subtracting, and early number sense through picture-based play with no reading required.",
     cardSummary: "Gentle preschool math app with picture-based counting and sums for early learners.",
     impact: [
-      "Publisher-side positioning, QA testing, and release readiness for a family-focused early math app designed around calm, no-pressure play.",
+      "Product positioning, QA testing, and release readiness for a family-focused early math app designed around calm, no-pressure play.",
       "Prepared store-facing presentation, support structure, and launch materials around child-friendly UX, multilingual access, and a simple one-time unlock.",
     ],
     images: [
@@ -1408,12 +1409,12 @@ export const storeLaunches = [
     category: "Baby sleep app",
     period: "2026",
     icon: lullabyLunoBabySleepIcon,
-    note: "Publisher & QA",
+    note: "Product Owner & Publisher",
     summary:
       "Calm bedtime music app with gentle lullabies, nature sounds, favorites, and a simple sleep timer designed for babies and young children.",
     cardSummary: "Gentle bedtime music app with lullabies, nature sounds, favorites, and a sleep timer.",
     impact: [
-      "Publisher-side positioning, QA testing, and release readiness for a soft bedtime audio app built around calm routines, simple controls, and no-ad listening.",
+      "Product positioning, QA testing, and release readiness for a soft bedtime audio app built around calm routines, simple controls, and no-ad listening.",
       "Prepared store-facing presentation around lullabies, repeat playback, sleep timer premium features, and a privacy-light setup with no data collected listed on the App Store.",
     ],
     images: [
@@ -1454,7 +1455,7 @@ export const storeLaunches = [
     category: "Puzzle",
     period: "2026",
     icon: sudokuJustPlayIcon,
-    note: "Publisher & QA",
+    note: "Product Owner & Publisher",
     links: [
       {
         label: "Web",
@@ -1475,7 +1476,7 @@ export const storeLaunches = [
     category: "Puzzle",
     period: "2026",
     icon: sudokuByPuzzleFreeIcon,
-    note: "Publisher & QA",
+    note: "Product Owner & Publisher",
     links: [
       {
         label: "App Store",
@@ -1493,7 +1494,7 @@ export const storeLaunches = [
     category: "Utility app",
     period: "2026",
     icon: morseIcon,
-    note: "Publisher & QA",
+    note: "Product Owner & Publisher",
     links: [
       {
         label: "Web",
@@ -1514,7 +1515,7 @@ export const storeLaunches = [
     category: "Kids coloring app",
     period: "2026",
     icon: colorfulHeartsIcon,
-    note: "Publisher & QA",
+    note: "Product Owner & Publisher",
     links: [
       {
         label: "Web",
@@ -1531,7 +1532,7 @@ export const storeLaunches = [
     category: "Coloring app",
     period: "2026",
     icon: pixelPaintIcon,
-    note: "Publisher & QA",
+    note: "Product Owner & Publisher",
     links: [
       {
         label: "Web",
@@ -1552,7 +1553,7 @@ export const storeLaunches = [
     category: "Creative app",
     period: "2026",
     icon: beadArtIcon,
-    note: "Publisher & QA",
+    note: "Product Owner & Publisher",
     links: [
       {
         label: "Web",
@@ -1574,7 +1575,7 @@ export const storeLaunches = [
     category: "City game",
     period: "2026",
     icon: gorodaOnlineIcon,
-    note: "Publisher & QA",
+    note: "Product Owner & Publisher",
     links: [
       {
         label: "Web",
@@ -1595,7 +1596,7 @@ export const storeLaunches = [
     category: "Utility app",
     period: "2026",
     icon: howLoudIcon,
-    note: "Publisher & QA",
+    note: "Product Owner & Publisher",
     links: [
       {
         label: "Web",
@@ -1617,12 +1618,12 @@ export const storeLaunches = [
     category: "Utility app",
     period: "2026",
     icon: headphoneSoundCheckIcon,
-    note: "Publisher & QA",
+    note: "Product Owner & Publisher",
     summary:
       "Audio testing utility for quickly checking headphones, earbuds, speakers, stereo balance, microphone input, bass response, and spatial sound.",
     cardSummary: "Audio testing utility for headphones, earbuds, speakers, and microphones.",
     impact: [
-      "Publisher-side positioning, QA testing, and release readiness for a practical headphone diagnostics app.",
+      "Product positioning, QA testing, and release readiness for a practical headphone diagnostics app.",
       "Prepared store presentation, support links, and launch materials around real device checks and quick reporting.",
     ],
     images: [
@@ -1654,12 +1655,12 @@ export const storeLaunches = [
     category: "Casual game",
     period: "2026",
     icon: coffeelineBaristaIcon,
-    note: "Publisher & QA",
+    note: "Product Owner & Publisher",
     summary:
       "Cozy barista arcade game built around satisfying pour-to-the-line play, short daily shifts, and a warm cafe rhythm.",
     cardSummary: "Cozy barista arcade game with precise pours, short daily shifts, and a calm cafe feel.",
     impact: [
-      "Publisher-side positioning, QA testing, and release readiness for a cozy coffee-serving arcade game with light progression and premium upsell.",
+      "Product positioning, QA testing, and release readiness for a cozy coffee-serving arcade game with light progression and premium upsell.",
       "Prepared store-facing presentation, support structure, and launch materials around the game's calm tone, pour precision, and daily-return loop.",
     ],
     images: [
@@ -1697,7 +1698,7 @@ export const storeLaunches = [
     category: "Relationship app",
     period: "2026",
     icon: wiseHusbandIcon,
-    note: "Publisher & QA",
+    note: "Product Owner & Publisher",
     links: [
       {
         label: "Web",
@@ -1718,7 +1719,7 @@ export const storeLaunches = [
     category: "Puzzle app",
     period: "2026",
     icon: slidePuzzleIcon,
-    note: "Publisher & QA",
+    note: "Product Owner & Publisher",
     links: [
       {
         label: "Web",
@@ -2105,6 +2106,37 @@ export const projects = [
       {
         label: "Google Play",
         href: "https://play.google.com/store/apps/details?id=com.enidev.flowblocks&pli=1",
+      },
+    ],
+    featured: true,
+  },
+  {
+    name: "Math Crossword Puzzles",
+    slug: "math-crossword-puzzles",
+    category: "Puzzle game / web & mobile product",
+    period: "2026",
+    role: "Creator & Product Owner",
+    summary:
+      "My own puzzle product: a crossword where every clue is an equation. I run it as a website and as mobile apps, from the puzzle generator and the board library to the store presence.",
+    scope: [
+      "Original product concept and game rules",
+      "Puzzle generator and the 1,200-board library",
+      "Web product at playmathpuzzles.com, then the mobile apps",
+      "Store presentation, localisation into 14 languages, and monetisation",
+    ],
+    tags: ["Own product", "Web to mobile", "Puzzle design"],
+    impact: [
+      "Grew one puzzle format from a website into a cross-platform product with a shared daily board, 1,200 generated puzzles, and a localised store presence.",
+    ],
+    icon: mathCrosswordIcon,
+    links: [
+      {
+        label: "Web",
+        href: "https://playmathpuzzles.com/",
+      },
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.enidev.mathcrossword",
       },
     ],
     featured: true,
@@ -3354,7 +3386,7 @@ function AppLandingPage({ app, locale, strings }) {
   const summary =
     app.summary ||
     `${app.category} where I handled publishing, QA testing, store presence, launch packaging, and release readiness.`;
-  const impact = app.impact || ["Handled publisher-side launch execution, QA testing, and store readiness."];
+  const impact = app.impact || ["Handled launch execution, QA testing, and store readiness."];
   const appLinks = app.links || [];
   const ratingAppId = getEntityAppleAppId(app);
 
@@ -4468,7 +4500,7 @@ function Projects({ strings, locale }) {
       period: item.period,
       role: localizeRole(item.note, locale),
       summary: getLaunchCardSummary(item),
-      impact: item.impact || ["Handled publisher-side launch execution, QA testing, and store readiness."],
+      impact: item.impact || ["Handled launch execution, QA testing, and store readiness."],
       links:
         item.links?.some((link) => link.label === "Learn more")
           ? item.links.map((link) => ({ ...link, label: localizeLinkLabel(link.label, locale) }))
@@ -4654,7 +4686,7 @@ function StoreLaunches() {
       id="launches"
       eyebrow="Publishing & Store Launches"
       title="Additional mobile titles where I handled publishing, QA testing, and store presence."
-      intro="Compact launch support across puzzle, kids, and utility apps — focused on QA testing, store presentation, listing packaging, and publisher-side execution."
+      intro="Compact launch support across puzzle, kids, and utility apps — focused on QA testing, store presentation, listing packaging, and release execution."
     >
       <div className="launch-grid">
         {storeLaunches.map((item, index) => {
