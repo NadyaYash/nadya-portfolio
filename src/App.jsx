@@ -1,3 +1,4 @@
+import sawmillPlannerIcon from "./assets/sawmill-planner-icon.png";
 import React, { useEffect, useRef, useState } from "react";
 import "./styles.css";
 import "./styles-i18n.css";
@@ -1048,6 +1049,24 @@ const getFirstSentence = (text) => {
 };
 
 export const storeLaunches = [
+  {
+    title: "Sawmill Planner",
+    slug: "sawmill-planner",
+    category: "Sawmill planning tool",
+    period: "2026",
+    icon: sawmillPlannerIcon,
+    note: "Web & mobile product",
+    summary:
+      "A planning tool for band-sawmill operators: cutting patterns, blade heights, log volume calculations, production plans, and shift reports. The web version is available now; iOS and Android apps are coming soon.",
+    cardSummary:
+      "Plan log cutting patterns, blade heights, lumber yield, and production in the browser.",
+    impact: [
+      "Web version available now, with mobile apps in preparation.",
+      "Brings cutting patterns, log volume calculations, and production planning into one tool for sawmill operators.",
+    ],
+    mobileComingSoon: true,
+    links: [{ label: "Web", href: "https://sawmillplanner.com/" }],
+  },
   ...gameLandings
     .filter((game) => !game.isDraft)
     .map((game) => ({
@@ -3370,6 +3389,7 @@ function AppLandingPage({ app, locale, strings }) {
             <h1>{app.title}</h1>
             <p className="role-line">{localizeRole(app.note, locale)}</p>
             <p>{summary}</p>
+            {app.mobileComingSoon ? <p className="launch-soon">iOS &amp; Android — {strings.comingSoon}</p> : null}
             {appLinks.length ? (
               <div className="store-actions">
                 {appLinks.map((link) => (
@@ -4464,6 +4484,7 @@ function Projects({ strings, locale }) {
       })),
     ...storeLaunches.map((item) => ({
       name: item.title,
+      mobileComingSoon: item.mobileComingSoon,
       category: localizeCategory(item.category, locale),
       period: item.period,
       role: localizeRole(item.note, locale),
@@ -4547,6 +4568,7 @@ function Projects({ strings, locale }) {
                 </div>
               ) : null}
               <p>{project.summary}</p>
+              {project.mobileComingSoon ? <p className="launch-soon">iOS &amp; Android — {strings.comingSoon}</p> : null}
 
               <div className="project-compact-meta">
                 <span>{project.role}</span>
