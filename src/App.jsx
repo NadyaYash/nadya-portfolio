@@ -1,3 +1,10 @@
+import foldBreakerIcon from "./assets/fold-breaker-icon.png";
+import foldBreakerScreen1 from "./assets/fold-breaker-screen-1.png";
+import foldBreakerScreen2 from "./assets/fold-breaker-screen-2.png";
+import foldBreakerScreen3 from "./assets/fold-breaker-screen-3.png";
+import foldBreakerPrivacy from "./content/fold-breaker/privacy-policy.html?raw";
+import foldBreakerTerms from "./content/fold-breaker/terms-of-use.html?raw";
+
 import sawmillPlannerIcon from "./assets/sawmill-planner-icon.png";
 import React, { useEffect, useRef, useState } from "react";
 import "./styles.css";
@@ -376,7 +383,33 @@ const tapMeArrowsFreedomGame = {
   ],
 };
 
-export const gameLandings = [gameLanding, wordSpinGame, tapMeArrowsFreedomGame];
+const foldBreakerGame = {
+  title: "Fold Breaker",
+  slug: "fold-breaker",
+  isDraft: false,
+  legalPublished: true,
+  supportPublished: true,
+  category: "Arcade game",
+  period: "2026",
+  tagline: "Break every wave. Build your sticker collection.",
+  summary: "An iOS brick breaker with 30 levels, finite waves of blocks, sticker albums, and customizable paddles, balls, and trails.",
+  icon: foldBreakerIcon,
+  iconLabel: "Fold Breaker",
+  storeLinks: [],
+  legalLinks: [
+    { label: "Privacy Policy", href: "/games/fold-breaker/privacy" },
+    { label: "Terms of Use", href: "/games/fold-breaker/terms" },
+    { label: "Support", href: "/games/fold-breaker/support" },
+  ],
+  highlights: ["30 levels of brick-breaking play", "Collect stickers and customize your game", "iOS release in preparation"],
+  images: [
+    { src: foldBreakerScreen1, alt: "Fold Breaker iPhone preview 1" },
+    { src: foldBreakerScreen2, alt: "Fold Breaker iPhone preview 2" },
+    { src: foldBreakerScreen3, alt: "Fold Breaker iPhone preview 3" },
+  ],
+};
+
+export const gameLandings = [gameLanding, wordSpinGame, tapMeArrowsFreedomGame, foldBreakerGame];
 
 const helpAreas = [
   {
@@ -1079,7 +1112,7 @@ export const storeLaunches = [
       iconLabel: game.iconLabel,
       note: "Product Owner & Publisher",
       summary: game.summary,
-      impact: ["Published with support, privacy, and terms ready for launch and app review."],
+      impact: game.slug === "fold-breaker" ? game.highlights : ["Published with support, privacy, and terms ready for launch and app review."],
       links: [
         {
           label: "Learn more",
@@ -3583,6 +3616,24 @@ function GameLegalPage({ game, type, locale, strings }) {
   const isPrivacy = type === "privacy";
   const legalName = getGameLegalName(game);
   const title = isPrivacy ? `${legalName} ${strings.privacyPolicy}` : `${legalName} ${strings.termsOfUse}`;
+
+  if (game.slug === "fold-breaker") {
+    const document = isPrivacy ? foldBreakerPrivacy : foldBreakerTerms;
+    const body = document.match(/<body>([\s\S]*?)<\/body>/i)[1]
+      .replace('href="privacy-policy.html"', 'href="/games/fold-breaker/privacy/"');
+    return (
+      <section className="legal-page section">
+        <div className="section-inner">
+          <div className="legal-shell legal-shell-wide" lang="en">
+            <div className="privacy-content" dangerouslySetInnerHTML={{ __html: body }} />
+            <a className="button secondary legal-back" href={normalizeLocalizedInternalHref("/games/fold-breaker", locale)}>
+              {strings.backToGamePage}
+            </a>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   if (game.isDraft && !game.legalPublished) {
     return (
