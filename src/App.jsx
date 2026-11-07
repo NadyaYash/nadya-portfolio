@@ -1773,7 +1773,7 @@ export const projects = [
     impact: [
       "Prepared wearable releases for Connect IQ with clear store pages, screenshots, descriptions, QA checks, and upload-ready packages.",
     ],
-    icon: garminCatalog.entries.find((app) => app.id === "888c4c06-9e43-4f63-bc5d-6bd695ab5352").image,
+    icon: "/garmin/japan-park-cover.png",
     watchFaces: garminCatalog.entries,
     links: [
       {
