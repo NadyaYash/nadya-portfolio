@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "sync:garmin": "node scripts/sync-garmin.mjs",
     "build": "astro build",
     "preview": "astro preview"
   },

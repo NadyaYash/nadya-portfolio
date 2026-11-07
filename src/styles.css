@@ -3300,3 +3300,48 @@ p {
 .scroll-top { background: var(--accent-2); border-color: rgba(247, 104, 0, 0.2); box-shadow: 0 16px 36px rgba(247, 104, 0, 0.24); }
 .scroll-top:hover { box-shadow: 0 20px 42px rgba(247, 104, 0, 0.3); }
 .project-label { border-color: rgba(247, 104, 0, 0.2); background: var(--accent-2-soft); color: var(--accent-2-ink); }
+
+
+/* Portfolio figures sit with the introduction. */
+.hero-stats-wrap {
+  margin: 26px 0 28px;
+}
+
+.hero-stats-label {
+  margin: 0 0 12px;
+  color: #5c666d;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 32px;
+  margin: 0;
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.hero-stat dt {
+  color: #5c666d;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.hero-stat dd {
+  order: -1;
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.65rem;
+  font-weight: 650;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}

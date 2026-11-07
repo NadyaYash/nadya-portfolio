@@ -62,3 +62,11 @@ So: to change the text of a post, edit and re-publish it in the panel — not he
   is safe.
 - If the Dev Log ever shows “couldn't load”, the site is fine — it's the feed side
   (lukichev.biz worker); ping Ivan.
+
+
+## Garmin catalog
+
+Run `npm run sync:garmin` to refresh all approved public listings from the Garmin
+developer catalog. The importer follows every page, checks for duplicate IDs, and
+saves icons under `public/garmin/` and catalog data in `src/data/garmin.json`.
+The hero Garmin total and project catalog use this same data. Rebuild after syncing.

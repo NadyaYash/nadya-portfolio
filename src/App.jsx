@@ -1,3 +1,4 @@
+import garminCatalog from "./data/garmin.json";
 import foldBreakerIcon from "./assets/fold-breaker-icon.png";
 import foldBreakerScreen1 from "./assets/fold-breaker-screen-1.png";
 import foldBreakerScreen2 from "./assets/fold-breaker-screen-2.png";
@@ -98,52 +99,6 @@ import tapMeArrowsScreen02 from "./assets/tap-me-arrows-screen-02.jpg";
 import tapMeArrowsScreen03 from "./assets/tap-me-arrows-screen-03.jpg";
 import tapMeArrowsScreen04 from "./assets/tap-me-arrows-screen-04.jpg";
 import garminWatchFacesCover from "./assets/garmin-watch-faces-domestique-screen.jpg";
-import garminWatchFacesDomestiqueScreen from "./assets/garmin-watch-faces-domestique-screen.jpg";
-import garminWatchFacesWeatherDialScreen from "./assets/garmin-watch-faces-weather-dial-screen.jpg";
-import garminWatchFacesRetroLcdScreen from "./assets/garmin-watch-faces-retro-lcd-screen.jpg";
-import garminWatchFacesLumenScreen from "./assets/garmin-watch-faces-lumen-screen.jpg";
-import garminWatchFacesFillDrainScreen from "./assets/garmin-watch-faces-fill-drain-screen.jpg";
-import garminWatchFaces1989SportLcdScreen from "./assets/garmin-watch-faces-1989-sport-lcd-screen.jpg";
-import garminWatchFacesLuxuryChronometerScreen from "./assets/garmin-watch-faces-luxury-chronometer-screen.jpg";
-import garminWatchFacesFootball2026Screen from "./assets/garmin-watch-faces-football-2026-screen.jpg";
-import garminWatchFacesLagunScreen from "./assets/garmin-watch-faces-lagun-screen.jpg";
-import garminWatchFacesMemphisScreen from "./assets/garmin-watch-faces-memphis-screen.jpg";
-import garminWatchFacesMetricRingsScreen from "./assets/garmin-watch-faces-metric-rings-screen.jpg";
-import garminWatchFacesProgressArcsScreen from "./assets/garmin-watch-faces-progress-arcs-screen.jpg";
-import garminWatchFacesZuluScreen from "./assets/garmin-watch-faces-zulu-screen.jpg";
-import garminWatchFaces4NineScreen from "./assets/garmin-watch-faces-4nine-screen.jpg";
-import garminWatchFacesAlturaScreen from "./assets/garmin-watch-faces-altura-screen.jpg";
-import garminWatchFacesCamoTacticalScreen from "./assets/garmin-watch-faces-camo-tactical-screen.jpg";
-import garminWatchFacesChronoOrbitScreen from "./assets/garmin-watch-faces-chrono-orbit-screen.jpg";
-import garminWatchFacesChronoOrbitTrialScreen from "./assets/garmin-watch-faces-chrono-orbit-trial-screen.jpg";
-import garminWatchFacesClassicNineScreen from "./assets/garmin-watch-faces-classic-nine-screen.jpg";
-import garminWatchFacesDiamondForLadyScreen from "./assets/garmin-watch-faces-diamond-for-lady-screen.jpg";
-import garminWatchFacesDuoTimeScreen from "./assets/garmin-watch-faces-duotime-screen.jpg";
-import garminWatchFacesDuoTimeFreeScreen from "./assets/garmin-watch-faces-duotime-free-screen.jpg";
-import garminWatchFacesEmberMountainScreen from "./assets/garmin-watch-faces-ember-mountain-screen.jpg";
-import garminWatchFacesFieldworkScreen from "./assets/garmin-watch-faces-fieldwork-screen.jpg";
-import garminWatchFacesHallowtideScreen from "./assets/garmin-watch-faces-hallowtide-screen.jpg";
-import garminWatchFacesInsideWatchScreen from "./assets/garmin-watch-faces-inside-watch-screen.jpg";
-import garminWatchFacesJSONFaceScreen from "./assets/garmin-watch-faces-json-face-screen.jpg";
-import garminWatchFacesLittleCompanionsScreen from "./assets/garmin-watch-faces-little-companions-screen.jpg";
-import garminWatchFacesLoveItScreen from "./assets/garmin-watch-faces-love-it-screen.jpg";
-import garminWatchFacesLoveItFreeScreen from "./assets/garmin-watch-faces-love-it-free-screen.jpg";
-import garminWatchFacesManekiTimeScreen from "./assets/garmin-watch-faces-maneki-time-screen.jpg";
-import garminWatchFacesMoodMeterScreen from "./assets/garmin-watch-faces-mood-meter-screen.jpg";
-import garminWatchFacesMorseSOSScreen from "./assets/garmin-watch-faces-morse-sos-screen.jpg";
-import garminWatchFacesNightPatrolScreen from "./assets/garmin-watch-faces-night-patrol-screen.jpg";
-import garminWatchFacesPadelClubScreen from "./assets/garmin-watch-faces-padel-club-screen.jpg";
-import garminWatchFacesRavenmoorScreen from "./assets/garmin-watch-faces-ravenmoor-screen.jpg";
-import garminWatchFacesSamuraiStyleScreen from "./assets/garmin-watch-faces-samurai-style-screen.jpg";
-import garminWatchFacesSpectraScreen from "./assets/garmin-watch-faces-spectra-screen.jpg";
-import garminWatchFacesSportDashboardScreen from "./assets/garmin-watch-faces-sport-dashboard-screen.jpg";
-import garminWatchFacesSportDashboardFreeScreen from "./assets/garmin-watch-faces-sport-dashboard-free-screen.jpg";
-import garminWatchFacesSunsetSunriseScreen from "./assets/garmin-watch-faces-sunset-sunrise-screen.jpg";
-import garminWatchFacesTesseraScreen from "./assets/garmin-watch-faces-tessera-screen.jpg";
-import garminWatchFacesUpToMountScreen from "./assets/garmin-watch-faces-uptomount-screen.jpg";
-import garminWatchFacesWatchCheckScreen from "./assets/garmin-watch-faces-watch-check-screen.jpg";
-import garminWatchFacesWatchFaceKitCustomScreen from "./assets/garmin-watch-faces-watchfacekit-custom-screen.jpg";
-import garminWatchFacesZodiacScreen from "./assets/garmin-watch-faces-zodiac-screen.jpg";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -473,6 +428,10 @@ const copy = {
     viewWork: "View work",
     contactMe: "Contact me",
     portfolioActionsLabel: "Portfolio actions",
+    heroStatsLabel: "Own products",
+    heroStatApps: "Apps",
+    heroStatDownloads: "App downloads",
+    heroStatGarmin: "Watch faces",
     heroProofLabel: "Usually involved in",
     productFocusAreasLabel: "Product focus areas",
     aboutEyebrow: "About",
@@ -535,8 +494,8 @@ const copy = {
     upcomingGameImpact: "Prepared legal and support structure before app release.",
     comingSoonPeriod: "Coming soon",
     watchFaceEyebrow: "Garmin Connect IQ",
-    watchFaceTitle: "Watch face catalog",
-    watchFaceLabel: "Garmin watch face catalog",
+    watchFaceTitle: "Garmin catalog",
+    watchFaceLabel: "Garmin app and watch face catalog",
     viewWatchFace: "View in Connect IQ",
     free: "Free",
     open: "Open",
@@ -585,6 +544,10 @@ const copy = {
     viewWork: "Projekte ansehen",
     contactMe: "Kontakt",
     portfolioActionsLabel: "Portfolio-Aktionen",
+    heroStatsLabel: "Eigene Produkte",
+    heroStatApps: "Apps",
+    heroStatDownloads: "App-Downloads",
+    heroStatGarmin: "Zifferblätter",
     heroProofLabel: "Typischerweise dabei bei",
     productFocusAreasLabel: "Produkt-Schwerpunkte",
     aboutEyebrow: "Über mich",
@@ -647,8 +610,8 @@ const copy = {
     upcomingGameImpact: "Rechtliche und Support-Struktur bereits vor dem App-Release vorbereitet.",
     comingSoonPeriod: "Demnächst",
     watchFaceEyebrow: "Garmin Connect IQ",
-    watchFaceTitle: "Watchface-Katalog",
-    watchFaceLabel: "Garmin Watchface-Katalog",
+    watchFaceTitle: "Garmin-Katalog",
+    watchFaceLabel: "Garmin App- und Watchface-Katalog",
     viewWatchFace: "In Connect IQ ansehen",
     free: "Kostenlos",
     open: "Öffnen",
@@ -1091,15 +1054,18 @@ export const storeLaunches = [
     icon: sawmillPlannerIcon,
     note: "Web & mobile product",
     summary:
-      "A planning tool for band-sawmill operators: cutting patterns, blade heights, log volume calculations, production plans, and shift reports. The web version is available now; iOS and Android apps are coming soon.",
+      "A planning tool for band-sawmill operators: cutting patterns, blade heights, log volume calculations, production plans, and shift reports. Available on the web, iOS, and Android.",
     cardSummary:
-      "Plan log cutting patterns, blade heights, lumber yield, and production in the browser.",
+      "Plan log cutting patterns, blade heights, lumber yield, and production on the web, iOS, and Android.",
     impact: [
-      "Web version available now, with mobile apps in preparation.",
+      "Available on the web, the App Store, and Google Play.",
       "Brings cutting patterns, log volume calculations, and production planning into one tool for sawmill operators.",
     ],
-    mobileComingSoon: true,
-    links: [{ label: "Web", href: "https://sawmillplanner.com/" }],
+    links: [
+      { label: "Web", href: "https://sawmillplanner.com/" },
+      { label: "App Store", href: "https://apps.apple.com/us/app/sawmill-planner-cut-plans/id6823175678" },
+      { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.enidev.sawmillplanner" },
+    ],
   },
   ...gameLandings
     .filter((game) => !game.isDraft)
@@ -1789,53 +1755,6 @@ export const storeLaunches = [
   },
 ];
 
-const garminStoreLinks = {
-  Domestique: "https://apps.garmin.com/apps/8bea368d-87bf-4149-9fae-bc55015c3904",
-  Lumen: "https://apps.garmin.com/apps/c0f5ab7c-70e5-4dbd-a8d5-163f8758642b",
-  "1989 Sport LCD": "https://apps.garmin.com/apps/e640c8f4-4e06-47f9-9c79-8e19d4c464ef",
-  "Luxury Chronometer": "https://apps.garmin.com/apps/653cfda2-16f3-4f25-b26a-230afa8fd68e",
-  "Retro Digital LCD": "https://apps.garmin.com/apps/3ce91daf-d92b-4fdb-96e0-178fca7ceea3",
-  "Fill or Drain": "https://apps.garmin.com/apps/4906d74b-4165-49e5-911a-097d03dfbeec",
-  "Weather Dial": "https://apps.garmin.com/apps/1df99915-5c64-4394-b3cc-5cca0ebf1f29",
-  "FOOTBALL 2026": "https://apps.garmin.com/apps/73f60343-2276-4a5a-96cb-cc6f11c80abc",
-  Lagun: "https://apps.garmin.com/apps/fef10f82-1fec-488c-a367-0a912c09703d",
-  Memphis: "https://apps.garmin.com/apps/b18be0c5-0b12-4bc8-a761-301a88aad42a",
-  "Metric Rings": "https://apps.garmin.com/apps/31bd0fbd-081e-4fb4-93d0-e59d58ce8df6",
-  "Progress Arcs": "https://apps.garmin.com/apps/a9eca5e1-34ab-46aa-8ad6-9377e5d8f2eb",
-  "24-hour clock": "https://apps.garmin.com/apps/27808af0-d380-4c2b-8053-6663d7b7e5c2",
-  "4Nine": "https://apps.garmin.com/apps/9e9155ec-f175-455e-9e78-96c0334734a8",
-  Altura: "https://apps.garmin.com/apps/bf05d730-30a0-4ae2-b162-704ffe4cf07f",
-  "Camo Tactical": "https://apps.garmin.com/apps/d29b5116-d76a-43f9-9858-2296a53989ea",
-  "Chrono Orbit": "https://apps.garmin.com/apps/53268db5-e339-4e3e-9dc1-18e1f6e89155",
-  "Chrono Orbit Trial": "https://apps.garmin.com/apps/03d19a5b-605d-42ff-93fa-2727190abc93",
-  "Classic Nine": "https://apps.garmin.com/apps/a70a803a-6578-4bfe-9794-6b8db8303c68",
-  "Diamond for Lady": "https://apps.garmin.com/apps/5fa24ed5-7b15-4edb-92dd-af022dabe54c",
-  "Duo Time": "https://apps.garmin.com/apps/0a0e9640-874d-4184-8a92-56ff5b2b61e1",
-  "Duo Time Free": "https://apps.garmin.com/apps/9073ab74-a993-4d96-9fc1-a227bb3b8a2c",
-  "Ember Mountain": "https://apps.garmin.com/apps/5e650abf-7fcf-485a-a1ff-59456a81c56f",
-  Hallowtide: "https://apps.garmin.com/apps/075b6c4f-9408-46b3-bf79-10adfb6518bd",
-  "Inside Watch": "https://apps.garmin.com/apps/f209abd2-e39c-464d-9bd2-8fbb66d8c4a2",
-  "JSON Face": "https://apps.garmin.com/apps/8dd645f7-55a3-4c36-97d4-802aa06f8c0a",
-  "Little Companions": "https://apps.garmin.com/apps/8ea15e2c-395a-4e53-973d-c35a36f1bfd6",
-  "Love It": "https://apps.garmin.com/apps/40837b83-a558-4343-9196-ecfe1ab664e8",
-  "Love It Free": "https://apps.garmin.com/apps/839c7cd6-77c8-4870-bd18-f0008262f31f",
-  "Maneki Time": "https://apps.garmin.com/apps/b258f84a-966d-4307-9173-4adef48e5a40",
-  "Mood Meter": "https://apps.garmin.com/apps/89fbbdd9-ee88-4d93-9d26-5e517719a64a",
-  "Morse Codes": "https://apps.garmin.com/apps/7b1eaca8-41a8-435f-9091-a5b6c9f0a359",
-  "Night Patrol": "https://apps.garmin.com/apps/37b2b8f3-fd12-406c-a42b-ade3fba479aa",
-  "Padel Club": "https://apps.garmin.com/apps/bdf53ec6-153d-4649-8d16-08f757abaa99",
-  Ravenmoor: "https://apps.garmin.com/apps/cbae5fa7-3199-4766-837f-ad9fe5028602",
-  "Samurai Style": "https://apps.garmin.com/apps/327b4b5c-0eb8-492c-9798-28121b7ee3b4",
-  Spectra: "https://apps.garmin.com/apps/6672c81a-e253-4600-b796-dbd361dc2520",
-  "Sport Dashboard": "https://apps.garmin.com/apps/7e7c8386-dfcd-4173-abbe-f63a0cba819c",
-  "Sport Dashboard Free": "https://apps.garmin.com/apps/c8145eb9-c9d9-44f7-b2bb-577481df2996",
-  "Sunset Sunrise": "https://apps.garmin.com/apps/f1ea5b0d-d8b1-4d43-b9e6-5a4aad83593b",
-  Tessera: "https://apps.garmin.com/apps/d93cc1cd-1c86-45de-b160-c7d3e13053dc",
-  "Up to Mount": "https://apps.garmin.com/apps/b8886e80-65f8-4893-a8ba-d06c3c709b11",
-  "Watch Self-Test": "https://apps.garmin.com/apps/9bb4b606-9eae-4a75-a422-88dace06fcc3",
-  "WatchFaceKit Custom 1": "https://apps.garmin.com/apps/ad733c6d-c984-4ecd-9808-cc3dfbed0318",
-  "Zodiac Pro": "https://apps.garmin.com/apps/dce1b92a-8906-4bd0-9f07-495b8f7ab5ec",
-};
 
 export const projects = [
   {
@@ -1856,250 +1775,15 @@ export const projects = [
       "Prepared wearable releases for Connect IQ with clear store pages, screenshots, descriptions, QA checks, and upload-ready packages.",
     ],
     icon: garminWatchFacesCover,
-    watchFaces: [
-      {
-        name: "Domestique",
-        image: garminWatchFacesDomestiqueScreen,
-        status: "Approved",
-        rating: "5.0",
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Lumen",
-        image: garminWatchFacesLumenScreen,
-        status: "Approved",
-        rating: "5.0",
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "1989 Sport LCD",
-        image: garminWatchFaces1989SportLcdScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Luxury Chronometer",
-        image: garminWatchFacesLuxuryChronometerScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Retro Digital LCD",
-        image: garminWatchFacesRetroLcdScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Fill or Drain",
-        image: garminWatchFacesFillDrainScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Weather Dial",
-        image: garminWatchFacesWeatherDialScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "FOOTBALL 2026",
-        image: garminWatchFacesFootball2026Screen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Lagun",
-        image: garminWatchFacesLagunScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Memphis",
-        image: garminWatchFacesMemphisScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Metric Rings",
-        image: garminWatchFacesMetricRingsScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Progress Arcs",
-        image: garminWatchFacesProgressArcsScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "24-hour clock",
-        image: garminWatchFacesZuluScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "4Nine",
-        image: garminWatchFaces4NineScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Altura",
-        image: garminWatchFacesAlturaScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Camo Tactical",
-        image: garminWatchFacesCamoTacticalScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Chrono Orbit",
-        image: garminWatchFacesChronoOrbitScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Chrono Orbit Trial",
-        image: garminWatchFacesChronoOrbitTrialScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Classic Nine",
-        image: garminWatchFacesClassicNineScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Diamond for Lady",
-        image: garminWatchFacesDiamondForLadyScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Duo Time",
-        image: garminWatchFacesDuoTimeScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Duo Time Free",
-        image: garminWatchFacesDuoTimeFreeScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Ember Mountain",
-        image: garminWatchFacesEmberMountainScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Fieldwork",
-        image: garminWatchFacesFieldworkScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Hallowtide",
-        image: garminWatchFacesHallowtideScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Inside Watch",
-        image: garminWatchFacesInsideWatchScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "JSON Face",
-        image: garminWatchFacesJSONFaceScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Little Companions",
-        image: garminWatchFacesLittleCompanionsScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Love It",
-        image: garminWatchFacesLoveItScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Love It Free",
-        image: garminWatchFacesLoveItFreeScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Maneki Time",
-        image: garminWatchFacesManekiTimeScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Mood Meter",
-        image: garminWatchFacesMoodMeterScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Morse Codes",
-        image: garminWatchFacesMorseSOSScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Night Patrol",
-        image: garminWatchFacesNightPatrolScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Padel Club",
-        image: garminWatchFacesPadelClubScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Ravenmoor",
-        image: garminWatchFacesRavenmoorScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Samurai Style",
-        image: garminWatchFacesSamuraiStyleScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Spectra",
-        image: garminWatchFacesSpectraScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Sport Dashboard",
-        image: garminWatchFacesSportDashboardScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Sport Dashboard Free",
-        image: garminWatchFacesSportDashboardFreeScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Sunset Sunrise",
-        image: garminWatchFacesSunsetSunriseScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Tessera",
-        image: garminWatchFacesTesseraScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Up to Mount",
-        image: garminWatchFacesUpToMountScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Watch Self-Test",
-        image: garminWatchFacesWatchCheckScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "WatchFaceKit Custom 1",
-        image: garminWatchFacesWatchFaceKitCustomScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-      {
-        name: "Zodiac Pro",
-        image: garminWatchFacesZodiacScreen,
-        link: "https://apps.garmin.com/developer/dashboard?",
-      },
-    ],
+    watchFaces: garminCatalog.entries,
     links: [
       {
         label: "WatchFaceKit",
         href: "https://watchfacekit.com/",
       },
       {
-        label: "Connect IQ Dashboard",
-        href: "https://apps.garmin.com/developer/dashboard?",
+        label: "Connect IQ Store",
+        href: "https://apps.garmin.com/developer/99d754d0-1b13-4e24-b3af-833f50bc1ad1/apps",
       },
     ],
     featured: true,
@@ -3317,19 +3001,19 @@ function WatchFaceCatalog({ faces, strings }) {
       </div>
       <div className="watch-face-grid" aria-label={strings.watchFaceLabel}>
         {faces.map((face) => {
-          const storeLink = garminStoreLinks[face.name] || "https://apps.garmin.com/developer/99d754d0-1b13-4e24-b3af-833f50bc1ad1/apps";
+          const storeLink = face.link;
 
           return (
             <a
               className="watch-face-card"
               href={storeLink}
-              key={face.name}
+              key={face.id}
               target="_blank"
               rel="noreferrer"
               aria-label={`${strings.viewWatchFace}: ${face.name}`}
             >
               <div className="watch-face-media">
-                <img src={assetUrl(face.image)} alt={`${face.name} watch face preview`} />
+                <img src={assetUrl(face.image)} alt={`${face.name} preview`} loading="lazy" decoding="async" />
                 <span className="watch-face-action" aria-hidden="true">
                   {strings.viewWatchFace} <span>↗</span>
                 </span>
@@ -3339,7 +3023,6 @@ function WatchFaceCatalog({ faces, strings }) {
                 <p>Nadzeya</p>
                 <div className="watch-face-meta">
                   {face.rating ? <span>{strings.rating} {face.rating}</span> : null}
-                  <span>{strings.free}</span>
                 </div>
               </div>
             </a>
@@ -4448,6 +4131,49 @@ function GameSupportPage({ game, locale, strings }) {
   );
 }
 
+function HeroStats({ strings, locale }) {
+  const [downloads, setDownloads] = useState(31400);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch("https://ratings.lukichev.biz/", { signal: controller.signal, credentials: "omit" })
+      .then((response) => {
+        if (!response.ok) throw new Error("Downloads unavailable");
+        return response.json();
+      })
+      .then((data) => {
+        const floor = data?.downloads?.floor;
+        if (Number.isSafeInteger(floor) && floor > 0) setDownloads(floor);
+      })
+      .catch(() => {
+        // Keep the last verified total when the service is unavailable.
+      });
+    return () => controller.abort();
+  }, []);
+
+  const numberLocale = locale === "de" ? "de-DE" : "en-US";
+  const stats = [
+    // Shared mobile app catalog; browser projects are not part of this portfolio.
+    { value: 34, label: strings.heroStatApps },
+    { value: `${downloads.toLocaleString(numberLocale)}+`, label: strings.heroStatDownloads },
+    { value: garminCatalog.entries.filter((app) => app.type === "watch-face").length, label: strings.heroStatGarmin },
+  ];
+
+  return (
+    <div className="hero-stats-wrap">
+      <p className="hero-stats-label">{strings.heroStatsLabel}</p>
+      <dl className="hero-stats" aria-label={strings.heroStatsLabel}>
+      {stats.map((stat) => (
+        <div className="hero-stat" key={stat.label}>
+          <dt>{stat.label}</dt>
+          <dd>{stat.value}</dd>
+        </div>
+      ))}
+      </dl>
+    </div>
+  );
+}
+
 function Hero({ strings, locale }) {
   const proofItems = localizedProofPoints[locale] || proofPoints;
 
@@ -4465,6 +4191,7 @@ function Hero({ strings, locale }) {
             {strings.heroAvailabilityText}
           </div>
           <p className="hero-copy">{strings.heroCopy}</p>
+          <HeroStats strings={strings} locale={locale} />
           <div className="hero-actions" aria-label={strings.portfolioActionsLabel}>
             <a className="button primary" href={normalizeLocalizedInternalHref("/#projects", locale)}>
               {strings.viewWork}
