@@ -98,7 +98,6 @@ import tapMeArrowsScreen01 from "./assets/tap-me-arrows-screen-01.jpg";
 import tapMeArrowsScreen02 from "./assets/tap-me-arrows-screen-02.jpg";
 import tapMeArrowsScreen03 from "./assets/tap-me-arrows-screen-03.jpg";
 import tapMeArrowsScreen04 from "./assets/tap-me-arrows-screen-04.jpg";
-import garminWatchFacesCover from "./assets/garmin-watch-faces-domestique-screen.jpg";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -1774,7 +1773,7 @@ export const projects = [
     impact: [
       "Prepared wearable releases for Connect IQ with clear store pages, screenshots, descriptions, QA checks, and upload-ready packages.",
     ],
-    icon: garminWatchFacesCover,
+    icon: garminCatalog.entries.find((app) => app.id === "888c4c06-9e43-4f63-bc5d-6bd695ab5352").image,
     watchFaces: garminCatalog.entries,
     links: [
       {
