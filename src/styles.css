@@ -3345,3 +3345,17 @@ p {
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
+
+
+.watch-face-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.watch-face-rating-star {
+  color: #b77913;
+  font-size: 1.05em;
+  line-height: 1;
+}

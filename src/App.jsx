@@ -3022,7 +3022,12 @@ function WatchFaceCatalog({ faces, strings }) {
                 <h3>{face.name}</h3>
                 <p>Nadzeya</p>
                 <div className="watch-face-meta">
-                  {face.rating ? <span>{strings.rating} {face.rating}</span> : null}
+                  {face.rating ? (
+                    <span className="watch-face-rating" aria-label={`${strings.rating}: ${face.rating} / 5`}>
+                      <span className="watch-face-rating-star" aria-hidden="true">★</span>
+                      {face.rating}
+                    </span>
+                  ) : null}
                 </div>
               </div>
             </a>
